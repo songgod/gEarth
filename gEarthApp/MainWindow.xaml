@@ -1,0 +1,48 @@
+﻿<Fluent:RibbonWindow x:Class="gEarthApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="urn:fluent-ribbon"
+        xmlns:local="clr-namespace:gEarthApp"
+        xmlns:cmd="clr-namespace:gEarthApp.Commands"
+        xmlns:ocx="clr-namespace:AxgEarthViewLib;assembly=AxgEarthViewLib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+                     Loaded="RibbonWindow_Loaded">
+    <Fluent:RibbonWindow.CommandBindings>
+        <cmd:OpenCommand/>
+    </Fluent:RibbonWindow.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Fluent:Ribbon Grid.Row="0">
+            <!--<Fluent:Ribbon.Menu>
+                <Fluent:Backstage>
+                    <Fluent:BackstageTabControl>
+                        <Fluent:BackstageTabItem Header="New" />
+                        <Fluent:BackstageTabItem Header="Print" />
+                        <Fluent:Button Header="Blue" />
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>-->
+
+            <Fluent:RibbonTabItem Header="Home">
+                <Fluent:RibbonGroupBox Header="Project">
+                    <Fluent:Button Header="Open" Command="{x:Static cmd:CommandLib.Open}"/>
+                    <Fluent:Button Header="Grey"/>
+                    <Fluent:ToggleButton Header="Toggle" IsChecked="True"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+
+        <Grid Grid.Row="1" x:Name="panel">
+            <WindowsFormsHost>
+                <ocx:AxgEarthView x:Name="ax"/>
+            </WindowsFormsHost>
+        </Grid>
+    </Grid>
+</Fluent:RibbonWindow>
