@@ -29,11 +29,59 @@
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>-->
 
-            <Fluent:RibbonTabItem Header="Home">
-                <Fluent:RibbonGroupBox Header="Project">
-                    <Fluent:Button Header="Open" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
-                    <Fluent:Button Header="Grey"/>
-                    <Fluent:ToggleButton Header="Toggle" IsChecked="True"/>
+            <Fluent:RibbonTabItem Header="场景">
+                <Fluent:RibbonGroupBox Header="工程">
+                    <Fluent:Button Header="新建"/>
+                    <Fluent:Button Header="打开" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
+                    <Fluent:Button Header="保存"/>
+                    <Fluent:Button Header="另存为"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="在线数据">
+                    <Fluent:Button Header="谷歌高程"/>
+                    <Fluent:Button Header="谷歌影像"/>
+                    <Fluent:Button Header="必应影像"/>
+                    <Fluent:Button Header="Arcgis影像"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="本地数据">
+                    <Fluent:Button Header="高程数据"/>
+                    <Fluent:Button Header="影像数据"/>
+                    <Fluent:Button Header="矢量数据"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="显示">
+                <Fluent:RibbonGroupBox Header="着色">
+                    <Fluent:Button Header="RGB"/>
+                    <Fluent:Button Header="高程"/>
+                    <Fluent:Button Header="坡度"/>
+                    <Fluent:Button Header="坡向"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="环境">
+                    <Fluent:ToggleButton Header="大气层"/>
+                    <Fluent:ToggleButton Header="海洋"/>
+                    <Fluent:Button Header="星空"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="工具">
+                <Fluent:RibbonGroupBox Header="路径漫游">
+                    <Fluent:Button Header="添加路径"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="标签">
+                    <Fluent:Button Header="添加标签"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="动画">
+                    <Fluent:Button Header="开始录制"/>
+                    <Fluent:Button Header="结束录制"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="量算">
+                    <Fluent:Button Header="距离"/>
+                    <Fluent:Button Header="面积"/>
+                    <Fluent:Button Header="体积"/>
+                    <Fluent:Button Header="角度"/>
+                    <Fluent:Button Header="高度"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="分析">
+                    <Fluent:Button Header="通视"/>
+                    <Fluent:Button Header="剖面"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
