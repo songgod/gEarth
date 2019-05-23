@@ -27,19 +27,6 @@ namespace gEarthApp
         public MainWindow()
         {
             InitializeComponent();
-
-            //WindowsFormsHost host = new WindowsFormsHost();
-            //AxgEarthView ax = new AxgEarthView();
-            //ax.BeginInit();
-            //host.Child = ax;
-            //panel.Children.Add(host);
-            //ax.EndInit();
-            //EarthView = ax;
-        }
-
-        private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            ax.Open(@"E:\work\project\gwaldron-osgearth-1faf43a\tests\clouds.earth");
         }
     }
 }

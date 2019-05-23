@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AxgEarthViewLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace gEarthApp.Commands
@@ -24,7 +26,12 @@ namespace gEarthApp.Commands
 
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AxgEarthView ax = e.Parameter as AxgEarthView;
+            OpenFileDialog dlg = new OpenFileDialog();
+            if(dlg.ShowDialog()==DialogResult.OK)
+            {
+                ax.Open(dlg.FileName);
+            }
         }
     }
 }

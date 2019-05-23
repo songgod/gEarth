@@ -8,8 +8,7 @@
         xmlns:cmd="clr-namespace:gEarthApp.Commands"
         xmlns:ocx="clr-namespace:AxgEarthViewLib;assembly=AxgEarthViewLib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
-                     Loaded="RibbonWindow_Loaded">
+        Title="MainWindow" Height="350" Width="525">
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenCommand/>
     </Fluent:RibbonWindow.CommandBindings>
@@ -32,7 +31,7 @@
 
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="Project">
-                    <Fluent:Button Header="Open" Command="{x:Static cmd:CommandLib.Open}"/>
+                    <Fluent:Button Header="Open" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
                     <Fluent:Button Header="Grey"/>
                     <Fluent:ToggleButton Header="Toggle" IsChecked="True"/>
                 </Fluent:RibbonGroupBox>
