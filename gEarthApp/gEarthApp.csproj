@@ -199,6 +199,12 @@
   <ItemGroup>
     <Resource Include="Images\volume.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gEarth.Scene\gEarth.Scene.csproj">
+      <Project>{a70b8b25-9d98-4df9-bb6a-1f5dc80280cb}</Project>
+      <Name>gEarth.Scene</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
