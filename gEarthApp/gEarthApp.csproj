@@ -119,6 +119,86 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\openearth.png" />
+    <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\saveas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\googlealt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\googleimg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bingimg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arcgisimg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dem.png" />
+    <Resource Include="Images\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shaderrgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shaderdem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shaderslope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shaderaspect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\air.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ocean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\path.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\screenrecoder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\distance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\visibleanalysis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\area.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\angle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\volume.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

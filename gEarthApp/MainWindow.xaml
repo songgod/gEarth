@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarthApp.Commands"
         xmlns:ocx="clr-namespace:AxgEarthViewLib;assembly=AxgEarthViewLib"
+        WindowState="Maximized"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Fluent:RibbonWindow.CommandBindings>
@@ -31,57 +32,56 @@
 
             <Fluent:RibbonTabItem Header="场景">
                 <Fluent:RibbonGroupBox Header="工程">
-                    <Fluent:Button Header="新建"/>
-                    <Fluent:Button Header="打开" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
-                    <Fluent:Button Header="保存"/>
-                    <Fluent:Button Header="另存为"/>
+                    <Fluent:Button Header="新建" Width="64" Height="64" Size="Large" LargeIcon="/gEarthApp;component/Images/new.png"/>
+                    <Fluent:Button Header="打开" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/openearth.png" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
+                    <Fluent:Button Header="保存" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/save.png" />
+                    <Fluent:Button Header="另存为" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/saveas.png" />
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="在线数据">
-                    <Fluent:Button Header="谷歌高程"/>
-                    <Fluent:Button Header="谷歌影像"/>
-                    <Fluent:Button Header="必应影像"/>
-                    <Fluent:Button Header="Arcgis影像"/>
+                    <Fluent:Button Header="谷歌高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/googlealt.png"/>
+                    <Fluent:Button Header="谷歌影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/googleimg.png"/>
+                    <Fluent:Button Header="必应影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/bingimg.png"/>
+                    <Fluent:Button Header="Arcgis影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/arcgisimg.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="本地数据">
-                    <Fluent:Button Header="高程数据"/>
-                    <Fluent:Button Header="影像数据"/>
-                    <Fluent:Button Header="矢量数据"/>
+                    <Fluent:Button Header="高程数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/dem.png"/>
+                    <Fluent:Button Header="影像数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/image.png"/>
+                    <Fluent:Button Header="矢量数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/map.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="显示">
                 <Fluent:RibbonGroupBox Header="着色">
-                    <Fluent:Button Header="RGB"/>
-                    <Fluent:Button Header="高程"/>
-                    <Fluent:Button Header="坡度"/>
-                    <Fluent:Button Header="坡向"/>
+                    <Fluent:Button Header="RGB" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderrgb.png"/>
+                    <Fluent:Button Header="高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderdem.png"/>
+                    <Fluent:Button Header="坡度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderslope.png"/>
+                    <Fluent:Button Header="坡向" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderaspect.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="环境">
-                    <Fluent:ToggleButton Header="大气层"/>
-                    <Fluent:ToggleButton Header="海洋"/>
-                    <Fluent:Button Header="星空"/>
+                    <Fluent:ToggleButton Header="大气层" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/air.png"/>
+                    <Fluent:ToggleButton Header="海洋" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/ocean.png"/>
+                    <Fluent:Button Header="星空" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/stars.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="工具">
                 <Fluent:RibbonGroupBox Header="路径漫游">
-                    <Fluent:Button Header="添加路径"/>
+                    <Fluent:Button Header="添加路径" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/path.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="标签">
-                    <Fluent:Button Header="添加标签"/>
+                    <Fluent:Button Header="添加标签" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/label.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="动画">
-                    <Fluent:Button Header="开始录制"/>
-                    <Fluent:Button Header="结束录制"/>
+                    <Fluent:Button Header="开始录制" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/screenrecoder.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="量算">
-                    <Fluent:Button Header="距离"/>
-                    <Fluent:Button Header="面积"/>
-                    <Fluent:Button Header="体积"/>
-                    <Fluent:Button Header="角度"/>
-                    <Fluent:Button Header="高度"/>
+                    <Fluent:Button Header="距离" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/distance.png"/>
+                    <Fluent:Button Header="面积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/area.png"/>
+                    <Fluent:Button Header="体积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/volume.png"/>
+                    <Fluent:Button Header="角度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/angle.png"/>
+                    <Fluent:Button Header="高度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/hight.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="分析">
-                    <Fluent:Button Header="通视"/>
-                    <Fluent:Button Header="剖面"/>
+                    <Fluent:Button Header="通视" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visibleanalysis.png"/>
+                    <Fluent:Button Header="剖面" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/profile.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
