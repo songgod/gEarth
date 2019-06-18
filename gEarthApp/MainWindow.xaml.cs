@@ -1,5 +1,4 @@
-﻿using AxgEarthViewLib;
-using Fluent;
+﻿using Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;

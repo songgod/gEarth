@@ -1,4 +1,4 @@
-﻿using AxgEarthViewLib;
+﻿using gEarth.Scene.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +26,11 @@ namespace gEarthApp.Commands
 
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            AxgEarthView ax = e.Parameter as AxgEarthView;
+            EarthViewControl ax = e.Parameter as EarthViewControl;
             OpenFileDialog dlg = new OpenFileDialog();
             if(dlg.ShowDialog()==DialogResult.OK)
             {
-                ax.Open(dlg.FileName);
+                ax.OpenEarth(dlg.FileName);
             }
         }
     }

@@ -6,7 +6,7 @@
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarthApp.Commands"
-        xmlns:ocx="clr-namespace:AxgEarthViewLib;assembly=AxgEarthViewLib"
+        xmlns:gsview="clr-namespace:gEarth.Scene.View;assembly=gEarth.Scene"
         WindowState="Maximized"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
@@ -96,9 +96,7 @@
                 <TreeView></TreeView>
             </Border>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <WindowsFormsHost Grid.Column="2">
-                <ocx:AxgEarthView x:Name="ax"/>
-            </WindowsFormsHost>
+            <gsview:EarthViewControl  Grid.Column="2" x:Name="ax"/>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>
