@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Layers">
+      <UniqueIdentifier>{d939eefd-06b5-4763-9331-abb5b5620189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{e526207f-5f8a-4095-a067-58a71c73511a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -26,6 +32,60 @@
     </ClInclude>
     <ClInclude Include="Viewer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepElevationLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepImageLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTerrainLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepVisibleLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureElevationSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepOSGSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTMSSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepArcGISSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepBingSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureTileSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepGDALSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTileSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepWCSSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepWMSSource.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="oepXYZSource.h">
+      <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +103,60 @@
     </ClCompile>
     <ClCompile Include="Initor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepElevationLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepImageLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTerrainLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepVisibleLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureElevationSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepOSGSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTMSSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepArcGISSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepBingSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureTileSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepGDALSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTileSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepWCSSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepWMSSource.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepXYZSource.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

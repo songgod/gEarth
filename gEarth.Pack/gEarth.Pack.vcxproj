@@ -147,6 +147,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="oepFeatureElevationSource.h" />
+    <ClInclude Include="oepOSGSource.h" />
+    <ClInclude Include="oepTMSSource.h" />
+    <ClInclude Include="oepArcGISSource.h" />
+    <ClInclude Include="oepBingSource.h" />
+    <ClInclude Include="oepElevationLayer.h" />
+    <ClInclude Include="oepFeatureTileSource.h" />
+    <ClInclude Include="oepGDALSource.h" />
+    <ClInclude Include="oepImageLayer.h" />
+    <ClInclude Include="oepLayer.h" />
+    <ClInclude Include="oepMap.h" />
+    <ClInclude Include="oepSource.h" />
+    <ClInclude Include="oepTerrainLayer.h" />
+    <ClInclude Include="oepTileSource.h" />
+    <ClInclude Include="oepVisibleLayer.h" />
+    <ClInclude Include="oepWCSSource.h" />
+    <ClInclude Include="oepWMSSource.h" />
+    <ClInclude Include="oepXYZSource.h" />
     <ClInclude Include="Viewer.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="resource.h" />
@@ -155,6 +173,24 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Initor.cpp" />
+    <ClCompile Include="oepFeatureElevationSource.cpp" />
+    <ClCompile Include="oepOSGSource.cpp" />
+    <ClCompile Include="oepTMSSource.cpp" />
+    <ClCompile Include="oepArcGISSource.cpp" />
+    <ClCompile Include="oepBingSource.cpp" />
+    <ClCompile Include="oepElevationLayer.cpp" />
+    <ClCompile Include="oepFeatureTileSource.cpp" />
+    <ClCompile Include="oepGDALSource.cpp" />
+    <ClCompile Include="oepImageLayer.cpp" />
+    <ClCompile Include="oepLayer.cpp" />
+    <ClCompile Include="oepMap.cpp" />
+    <ClCompile Include="oepSource.cpp" />
+    <ClCompile Include="oepTerrainLayer.cpp" />
+    <ClCompile Include="oepTileSource.cpp" />
+    <ClCompile Include="oepVisibleLayer.cpp" />
+    <ClCompile Include="oepWCSSource.cpp" />
+    <ClCompile Include="oepWMSSource.cpp" />
+    <ClCompile Include="oepXYZSource.cpp" />
     <ClCompile Include="Viewer.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Stdafx.cpp">
