@@ -1,5 +1,6 @@
 #pragma once
 #include "oepLayer.h"
+#include <osgEarth/VisibleLayer>
 
 namespace gEarthPack
 {
@@ -7,6 +8,9 @@ namespace gEarthPack
 	{
 	public:
 		oepVisibleLayer();
+	public:
+
+		osgEarth::VisibleLayer* asoeVisibleLayer();
 	};
 }
 

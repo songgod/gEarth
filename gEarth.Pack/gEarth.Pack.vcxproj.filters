@@ -87,6 +87,12 @@
     <ClInclude Include="oepXYZSource.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="oepObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -157,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="oepXYZSource.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="oepObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

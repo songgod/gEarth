@@ -2,6 +2,16 @@
 #include "oepImageLayer.h"
 using namespace gEarthPack;
 
-oepImageLayer::oepImageLayer()
+oepImageLayer::oepImageLayer(oepTileSource^ source)
+	:oepTerrainLayer(source)
 {
+	if (source != nullptr && source->getoeConfigOptions() != NULL)
+		_handle->setValue(new osgEarth::ImageLayer(*(source->getoeConfigOptions())));
+	else
+		_handle->setValue(new osgEarth::ImageLayer());
+}
+
+osgEarth::ImageLayer* gEarthPack::oepImageLayer::asoeImageLayer()
+{
+	return dynamic_cast<osgEarth::ImageLayer*>(_handle->getValue());
 }

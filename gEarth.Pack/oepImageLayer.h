@@ -1,12 +1,17 @@
 #pragma once
 #include "oepTerrainLayer.h"
+#include <osgEarth/ImageLayer>
 
 namespace gEarthPack
 {
 	public ref class oepImageLayer : public oepTerrainLayer
 	{
 	public:
-		oepImageLayer();
+		oepImageLayer(oepTileSource^ source);
+
+	public:
+
+		osgEarth::ImageLayer* asoeImageLayer();
 	};
 }
 

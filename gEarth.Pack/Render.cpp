@@ -14,16 +14,6 @@ gEarthPack::Render::Render():_viewer(NULL)
 
 }
 
-gEarthPack::Render::!Render()
-{
-	End();
-}
-
-gEarthPack::Render::~Render()
-{
-	End();
-}
-
 void gEarthPack::Render::Start(IntPtr hwnd)
 {
 	if (_viewer)
