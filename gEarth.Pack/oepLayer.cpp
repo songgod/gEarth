@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "oepLayer.h"
 #include "Handle.h"
+#include "oepLayerFactory.h"
+#include <osgEarth/Map>
+#include <msclr\marshal_cppstd.h>  
 
+using namespace msclr::interop;
 using namespace gEarthPack;
+
 oepLayer::oepLayer()
 {
 	_handle = new LayerHandle();
@@ -36,4 +41,12 @@ void gEarthPack::oepLayers::init(osgEarth::Map* pMap)
 {
 	if (!pMap)
 		return;
+
+	for (unsigned int i = 0; i < pMap->getNumLayers(); i++)
+	{
+		osgEarth::Layer* pLayer = pMap->getLayerAt(i);
+		std::string type = pLayer->options().getConfig().key();
+		oepLayer^ layer = oepLayerFactory::creatorLayer(marshal_as<String^>(type), IntPtr(pLayer));
+		Add(layer);
+	}
 }

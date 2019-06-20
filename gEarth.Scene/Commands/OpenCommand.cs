@@ -31,6 +31,8 @@ namespace gEarth.Scene.Commands
             OpenFileDialog dlg = new OpenFileDialog();
             if(dlg.ShowDialog()==DialogResult.OK)
             {
+                if (Project.CurrentMap != null && Project.CurrentMap.Url == dlg.FileName)
+                    return;
                 oepMap map = new oepMap();
                 if (map.load(dlg.FileName))
                 {

@@ -93,6 +93,12 @@
     <ClInclude Include="Handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="oepLayerFactory.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepUnknownLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -166,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="oepObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepLayerFactory.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepUnknownLayer.cpp">
+      <Filter>Layers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

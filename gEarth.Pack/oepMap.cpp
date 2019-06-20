@@ -41,7 +41,9 @@ bool gEarthPack::oepMap::load(String^ url)
 	_handle = new MapHandle(mapnode);
 
 	Url = url;
+	_layers->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnCollectionChanged);
 	_layers->init(mapnode->getMap());
+	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnCollectionChanged);
 	return true;
 }
 

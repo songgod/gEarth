@@ -11,6 +11,11 @@ oepImageLayer::oepImageLayer(oepTileSource^ source)
 		_handle->setValue(new osgEarth::ImageLayer());
 }
 
+oepImageLayer::oepImageLayer(osgEarth::ImageLayer* layer)
+{
+	_handle->setValue(layer);
+}
+
 osgEarth::ImageLayer* gEarthPack::oepImageLayer::asoeImageLayer()
 {
 	return dynamic_cast<osgEarth::ImageLayer*>(_handle->getValue());

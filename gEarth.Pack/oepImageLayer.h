@@ -12,6 +12,10 @@ namespace gEarthPack
 	public:
 
 		osgEarth::ImageLayer* asoeImageLayer();
+
+	internal:
+
+		oepImageLayer(osgEarth::ImageLayer* layer);
 	};
 }
 
