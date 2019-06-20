@@ -1,4 +1,5 @@
 ﻿using gEarth.Scene.View;
+using gEarthPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace gEarthApp.Commands
+namespace gEarth.Scene.Commands
 {
-    internal class OpenCommand : CommandBinding
+    public class OpenCommand : CommandBinding
     {
         public OpenCommand()
         {
@@ -30,7 +31,12 @@ namespace gEarthApp.Commands
             OpenFileDialog dlg = new OpenFileDialog();
             if(dlg.ShowDialog()==DialogResult.OK)
             {
-                ax.OpenEarth(dlg.FileName);
+                oepMap map = new oepMap();
+                if (map.load(dlg.FileName))
+                {
+                    ax.OpenMap(map);
+                    Project.CurrentMap = map;
+                }
             }
         }
     }

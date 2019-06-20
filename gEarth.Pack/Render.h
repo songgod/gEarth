@@ -3,8 +3,10 @@
 #pragma once
 
 #include "viewer.h"
+#include "oepMap.h"
 
 using namespace System;
+using namespace System::Runtime::InteropServices;
 
 namespace gEarthPack {
 
@@ -21,7 +23,7 @@ namespace gEarthPack {
 
 	public:
 
-		bool Open(String^ url);
+		bool Open(oepMap^ map);
 
 	protected:
 

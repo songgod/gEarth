@@ -30,11 +30,11 @@ namespace gEarth.Scene.View
             render.Start(res);
         }
 
-        public bool OpenEarth(string url)
+        public bool OpenMap(oepMap map)
         {
-            if (render != null)
-                return render.Open(url);
-            return false;
+            if (map == null)
+                return false;
+            return render.Open(map);
         }
 
         private void EarthViewControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)

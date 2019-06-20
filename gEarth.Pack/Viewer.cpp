@@ -124,30 +124,22 @@ void Viewer::init()
 	InitCameraConfig();
 }
 
-bool Viewer::open(const std::string& file)
+void Viewer::open(osgEarth::MapNode* mapnode)
 {
-	osg::Node* node = osgDB::readNodeFile(file);
-	if (!node)
-		return false;
-
-	osgEarth::MapNode* mapnode = osgEarth::MapNode::get(node);
 	if (!mapnode)
-		return false;
+		return;
 	_mapnode = mapnode;
 
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
-	_root->addChild(node);
+	_root->addChild(mapnode);
 	resume();
-	_url = file;
-	return true;
 }
 
 void Viewer::clear()
 {
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
-	_url = "";
 	resume();
 }
 

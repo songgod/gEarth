@@ -28,7 +28,12 @@ namespace gEarthPack
 
 	public ref class oepLayers : public ObservableCollection<oepLayer^>
 	{
+	public:
+		oepLayers(){}
 
+	internal:
+
+		void init(osgEarth::Map* pMap);
 	};
 }
 

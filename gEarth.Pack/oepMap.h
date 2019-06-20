@@ -1,6 +1,6 @@
 #pragma once
 
-#include <osgEarth/Map>
+#include <osgEarth/MapNode>
 #include "oepLayer.h"
 #include "Handle.h"
 
@@ -22,6 +22,20 @@ namespace gEarthPack
 			oepLayers^ get();
 		}
 
+		property String^ Url
+		{
+			String^ get();
+		private:
+			void set(String^ url);
+		}
+
+	public:
+
+		bool load(String^ url);
+		bool save();
+		bool saveAs(String^ url);
+
+
 	internal:
 
 		void quit();
@@ -33,8 +47,9 @@ namespace gEarthPack
 
 	private:
 
-		typedef Handle<osgEarth::Map> MapHandle;
+		typedef Handle<osgEarth::MapNode> MapHandle;
 		MapHandle* _handle;
 		oepLayers^ _layers;
+		String^ _url;
 	};
 }

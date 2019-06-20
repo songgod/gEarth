@@ -34,9 +34,14 @@ void gEarthPack::Render::End()
 	}
 }
 
-bool gEarthPack::Render::Open(String^ url)
+bool gEarthPack::Render::Open(oepMap^ map)
 {
-	if (!_viewer)
+	osgEarth::Map* pMap = map->getMap();
+	if (!pMap)
 		return false;
-	return _viewer->open(marshal_as<std::string>(url));
+
+	osgEarth::MapNode* pMapNode = new osgEarth::MapNode(pMap);
+
+	_viewer->open(pMapNode);
+	return true;
 }

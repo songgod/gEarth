@@ -31,3 +31,9 @@ osgEarth::Layer* gEarthPack::oepLayer::asoeLayer()
 {
 	return _handle->getValue();
 }
+
+void gEarthPack::oepLayers::init(osgEarth::Map* pMap)
+{
+	if (!pMap)
+		return;
+}

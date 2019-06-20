@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns:local="clr-namespace:gEarthApp"
-        xmlns:cmd="clr-namespace:gEarthApp.Commands"
+        xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
         xmlns:gsview="clr-namespace:gEarth.Scene.View;assembly=gEarth.Scene"
         WindowState="Maximized"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenCommand/>
+        <cmd:NewCommand/>
+        <cmd:SaveAsCommand/>
+        <cmd:SaveCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
