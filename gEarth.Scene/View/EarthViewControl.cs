@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace gEarth.Scene.View
 {
+    public delegate void EarthViewReady(bool bready);
     public class EarthViewControl : WindowsFormsHost
     {
         private Render render { get; set; }
@@ -20,6 +21,8 @@ namespace gEarth.Scene.View
             Unloaded += EarthViewControl_Unloaded;
         }
 
+        public event EarthViewReady OnEarthViewReady;
+
         private void Child_Paint(object sender, PaintEventArgs e)
         {
             if (render != null)
@@ -28,11 +31,13 @@ namespace gEarth.Scene.View
             render = new Render();
             IntPtr res = Child.Handle;
             render.Start(res);
+            if (OnEarthViewReady != null)
+                OnEarthViewReady.Invoke(true);
         }
 
         public bool OpenMap(oepMap map)
         {
-            if (map == null)
+            if (map == null || render==null)
                 return false;
             return render.Open(map);
         }

@@ -1,4 +1,6 @@
 ﻿using Fluent;
+using gEarth.Scene;
+using gEarthPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,23 @@ namespace gEarthApp
         public MainWindow()
         {
             InitializeComponent();
+            ax.OnEarthViewReady += Ax_OnEarthViewReady;
+        }
+
+        private void Ax_OnEarthViewReady(bool bready)
+        {
+            if (Project.LastMapUrl.Length > 0)
+            {
+                oepMap map = new oepMap();
+                if (map.load(Project.LastMapUrl))
+                {
+                    ax.OpenMap(map);
+                    Project.CurrentMap = map;
+                    return;
+                }
+            }
+            if (gEarth.Scene.Commands.CommandLib.New.CanExecute(ax, null))
+                gEarth.Scene.Commands.CommandLib.New.Execute(ax, null);
         }
     }
 }

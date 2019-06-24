@@ -11,7 +11,9 @@ gEarthPack::oepMap::oepMap()
 {
 	_handle = new MapHandle(new osgEarth::MapNode(new osgEarth::Map()));
 	_layers = gcnew oepLayers();
-	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnCollectionChanged);
+	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
+	_extensions = gcnew oepExtensions();
+	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
 }
 
 gEarthPack::oepMap::~oepMap()
@@ -41,9 +43,12 @@ bool gEarthPack::oepMap::load(String^ url)
 	_handle = new MapHandle(mapnode);
 
 	Url = url;
-	_layers->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnCollectionChanged);
+	_layers->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
 	_layers->init(mapnode->getMap());
-	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnCollectionChanged);
+	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
+	_extensions->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
+	_extensions->init(mapnode->getMap());
+	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
 	return true;
 }
 
@@ -78,12 +83,22 @@ osgEarth::Map * gEarthPack::oepMap::getMap()
 	return NULL;
 }
 
+osgEarth::MapNode* gEarthPack::oepMap::getMapNode()
+{
+	return _handle->getValue();
+}
+
 gEarthPack::oepLayers^ gEarthPack::oepMap::Layers::get()
 {
 	return _layers;
 }
 
-void gEarthPack::oepMap::OnCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+gEarthPack::oepExtensions^ gEarthPack::oepMap::Extensions::get()
+{
+	return _extensions;
+}
+
+void gEarthPack::oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::Map* map = getMap();
 	if (!map)
@@ -136,6 +151,66 @@ void gEarthPack::oepMap::OnCollectionChanged(System::Object^ sender, System::Col
 	}
 }
 
+
+
+void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+{
+	osgEarth::MapNode* mapnode = getMapNode();
+	if (!mapnode)
+		return;
+	switch (e->Action)
+	{
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
+	{
+		for (int i = 0; i < e->NewItems->Count; i++)
+		{
+			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
+			if (ext != nullptr && ext->getoeExtension())
+			{
+				mapnode->addExtension(ext->getoeExtension());
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Remove:
+	{
+		for (int i = 0; i < e->OldItems->Count; i++)
+		{
+			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
+			if (ext != nullptr && ext->getoeExtension())
+			{
+				mapnode->removeExtension(ext->getoeExtension());
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Replace:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Move:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
+	{
+		for (int i = 0; i < e->OldItems->Count; i++)
+		{
+			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
+			if (ext != nullptr && ext->getoeExtension())
+			{
+				mapnode->removeExtension(ext->getoeExtension());
+			}
+		}
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 String^ gEarthPack::oepMap::Url::get()
 {
 	return _url;
@@ -146,3 +221,4 @@ void gEarthPack::oepMap::Url::set(String^ url)
 	_url = url;
 	NotifyChanged("Url");
 }
+

@@ -35,10 +35,10 @@
 
             <Fluent:RibbonTabItem Header="场景">
                 <Fluent:RibbonGroupBox Header="工程">
-                    <Fluent:Button Header="新建" Width="64" Height="64" Size="Large" LargeIcon="/gEarthApp;component/Images/new.png"/>
+                    <Fluent:Button Header="新建" Width="64" Height="64" Size="Large" LargeIcon="/gEarthApp;component/Images/new.png" Command="{x:Static cmd:CommandLib.New}" CommandParameter="{x:Reference ax}"/>
                     <Fluent:Button Header="打开" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/openearth.png" Command="{x:Static cmd:CommandLib.Open}" CommandParameter="{x:Reference ax}"/>
-                    <Fluent:Button Header="保存" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/save.png" />
-                    <Fluent:Button Header="另存为" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/saveas.png" />
+                    <Fluent:Button Header="保存" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/save.png" Command="{x:Static cmd:CommandLib.Save}" CommandParameter="{x:Reference ax}"/>
+                    <Fluent:Button Header="另存为" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/saveas.png" Command="{x:Static cmd:CommandLib.SaveAs}" CommandParameter="{x:Reference ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="在线数据">
                     <Fluent:Button Header="谷歌高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/googlealt.png"/>

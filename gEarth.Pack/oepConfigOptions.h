@@ -3,12 +3,12 @@
 #include <osgEarth/Config>
 namespace gEarthPack
 {
-	public ref class oepSource : oepObject
+	public ref class oepConfigOptions : oepObject
 	{
 	public:
-		oepSource();
-		~oepSource();
-		!oepSource();
+		oepConfigOptions();
+		~oepConfigOptions();
+		!oepConfigOptions();
 
 	public:
 

@@ -19,6 +19,9 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{e526207f-5f8a-4095-a067-58a71c73511a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Extensions">
+      <UniqueIdentifier>{2377e501-8d5a-438d-b733-2ad5b4a1b7b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -72,9 +75,6 @@
     <ClInclude Include="oepGDALSource.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="oepSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="oepTileSource.h">
       <Filter>Sources</Filter>
     </ClInclude>
@@ -98,6 +98,24 @@
     </ClInclude>
     <ClInclude Include="oepUnknownLayer.h">
       <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepExtension.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepDriverConfigOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepConfigOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSkyOptions.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSimpleSkyOptions.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepViewpointsOptions.h">
+      <Filter>Extensions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +173,6 @@
     <ClCompile Include="oepGDALSource.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="oepSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="oepTileSource.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -178,6 +193,24 @@
     </ClCompile>
     <ClCompile Include="oepUnknownLayer.cpp">
       <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepExtension.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepConfigOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepDriverConfigOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSkyOptions.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSimpleSkyOptions.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepViewpointsOptions.cpp">
+      <Filter>Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

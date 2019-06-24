@@ -1,6 +1,7 @@
 ﻿using gEarth.Scene.View;
 using gEarthPack;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace gEarth.Scene.Commands
     {
         public NewCommand()
         {
-            Command = CommandLib.Open;
+            Command = CommandLib.New;
             CanExecute += NewCommand_CanExecute;
             Executed += NewCommand_Executed;
         }
@@ -24,6 +25,14 @@ namespace gEarth.Scene.Commands
             if(ax!=null)
             {
                 oepMap map = new oepMap();
+                string wdimg = Directory.GetCurrentDirectory() + "\\data\\world\\world.tif";
+                string wdelv = Directory.GetCurrentDirectory() + "\\data\\world\\world-dem.tif";
+                oepImageLayer wdimglyr = new oepImageLayer(new oepGDALSource() { url = wdimg });
+                oepElevationLayer wdelvlyr = new oepElevationLayer(new oepGDALSource() { url = wdelv });
+                map.Layers.Add(wdimglyr);
+                map.Layers.Add(wdelvlyr);
+                oepExtension skyext = new oepExtension(new oepSimpleSkyOptions());
+                map.Extensions.Add(skyext);
                 ax.OpenMap(map);
                 Project.CurrentMap = map;
             }

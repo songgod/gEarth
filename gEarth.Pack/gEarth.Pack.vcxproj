@@ -100,7 +100,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\debug\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,10 +111,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <OmitFramePointers>
+      </OmitFramePointers>
     </ClCompile>
     <Link>
       <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\debug\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,7 +129,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,7 +141,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,10 +155,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Handle.h" />
+    <ClInclude Include="oepConfigOptions.h" />
+    <ClInclude Include="oepDriverConfigOptions.h" />
+    <ClInclude Include="oepExtension.h" />
     <ClInclude Include="oepFeatureElevationSource.h" />
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSource.h" />
+    <ClInclude Include="oepSimpleSkyOptions.h" />
+    <ClInclude Include="oepSkyOptions.h" />
     <ClInclude Include="oepTMSSource.h" />
     <ClInclude Include="oepArcGISSource.h" />
     <ClInclude Include="oepBingSource.h" />
@@ -165,10 +173,10 @@
     <ClInclude Include="oepImageLayer.h" />
     <ClInclude Include="oepLayer.h" />
     <ClInclude Include="oepMap.h" />
-    <ClInclude Include="oepSource.h" />
     <ClInclude Include="oepTerrainLayer.h" />
     <ClInclude Include="oepTileSource.h" />
     <ClInclude Include="oepUnknownLayer.h" />
+    <ClInclude Include="oepViewpointsOptions.h" />
     <ClInclude Include="oepVisibleLayer.h" />
     <ClInclude Include="oepWCSSource.h" />
     <ClInclude Include="oepWMSSource.h" />
@@ -181,10 +189,15 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Initor.cpp" />
+    <ClCompile Include="oepConfigOptions.cpp" />
+    <ClCompile Include="oepDriverConfigOptions.cpp" />
+    <ClCompile Include="oepExtension.cpp" />
     <ClCompile Include="oepFeatureElevationSource.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSource.cpp" />
+    <ClCompile Include="oepSimpleSkyOptions.cpp" />
+    <ClCompile Include="oepSkyOptions.cpp" />
     <ClCompile Include="oepTMSSource.cpp" />
     <ClCompile Include="oepArcGISSource.cpp" />
     <ClCompile Include="oepBingSource.cpp" />
@@ -194,10 +207,10 @@
     <ClCompile Include="oepImageLayer.cpp" />
     <ClCompile Include="oepLayer.cpp" />
     <ClCompile Include="oepMap.cpp" />
-    <ClCompile Include="oepSource.cpp" />
     <ClCompile Include="oepTerrainLayer.cpp" />
     <ClCompile Include="oepTileSource.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
+    <ClCompile Include="oepViewpointsOptions.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />
     <ClCompile Include="oepWCSSource.cpp" />
     <ClCompile Include="oepWMSSource.cpp" />

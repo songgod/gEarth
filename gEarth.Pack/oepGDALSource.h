@@ -7,5 +7,13 @@ namespace gEarthPack
 	{
 	public:
 		oepGDALSource();
+
+	public:
+		
+		property String^ url
+		{
+			String^ get();
+			void set(String^ v);
+		}
 	};
 }
