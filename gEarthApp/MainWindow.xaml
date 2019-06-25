@@ -7,9 +7,8 @@
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
         xmlns:gsview="clr-namespace:gEarth.Scene.View;assembly=gEarth.Scene"
-        WindowState="Maximized"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenCommand/>
         <cmd:NewCommand/>

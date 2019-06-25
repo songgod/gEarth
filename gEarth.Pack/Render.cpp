@@ -36,11 +36,9 @@ void gEarthPack::Render::End()
 
 bool gEarthPack::Render::Open(oepMap^ map)
 {
-	osgEarth::Map* pMap = map->getMap();
-	if (!pMap)
+	osgEarth::MapNode* pMapNode = map->getMapNode();
+	if (!pMapNode)
 		return false;
-
-	osgEarth::MapNode* pMapNode = new osgEarth::MapNode(pMap);
 
 	_viewer->open(pMapNode);
 	return true;

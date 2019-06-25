@@ -130,9 +130,14 @@ void Viewer::open(osgEarth::MapNode* mapnode)
 		return;
 	_mapnode = mapnode;
 
+	osg::Node* top = _mapnode;
+
+	while (top->getNumParents() > 0)
+		top = top->getParent(0);
+
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
-	_root->addChild(mapnode);
+	_root->addChild(top);
 	resume();
 }
 
