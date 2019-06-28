@@ -11,14 +11,22 @@ namespace gEarth.Scene.Commands
     {
         static CommandLib()
         {
-            Open = new RoutedUICommand("Open", "Open", typeof(CommandLib));
-            New = new RoutedUICommand("New", "New", typeof(CommandLib));
-            Save = new RoutedUICommand("Save", "Save", typeof(CommandLib));
-            SaveAs = new RoutedUICommand("SaveAs", "SaveAs", typeof(CommandLib));
+            OpenMap = CreateCommand("OpenMap");
+            NewMap = CreateCommand("NewMap");
+            SaveMap = CreateCommand("SaveMap");
+            SaveMapAs = CreateCommand("SaveMapAs");
+            AddGdalImageLayerCommand = CreateCommand("AddGdalImageLayerCommand");
+            AddGdalElevationLayerCommand = CreateCommand("AddGdalEelvationLayerCommand");
         }
-        public static RoutedUICommand Open { get; set; }
-        public static RoutedUICommand New { get; set; }
-        public static RoutedUICommand Save { get; set; }
-        public static RoutedUICommand SaveAs { get; set; }
+        private static RoutedUICommand CreateCommand(string name)
+        {
+            return new RoutedUICommand(name, name, typeof(CommandLib));
+        }
+        public static RoutedUICommand OpenMap { get; set; }
+        public static RoutedUICommand NewMap { get; set; }
+        public static RoutedUICommand SaveMap { get; set; }
+        public static RoutedUICommand SaveMapAs { get; set; }
+        public static RoutedUICommand AddGdalImageLayerCommand { get; set; }
+        public static RoutedUICommand AddGdalElevationLayerCommand { get; set; }
     }
 }

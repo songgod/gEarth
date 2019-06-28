@@ -10,22 +10,22 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class OpenCommand : CommandBinding
+    public class OpenMapCommand : CommandBinding
     {
-        public OpenCommand()
+        public OpenMapCommand()
         {
-            Command = CommandLib.Open;
-            Executed += OpenCommand_Executed;
-            CanExecute += OpenCommand_CanExecute;
+            Command = CommandLib.OpenMap;
+            Executed += OpenMapCommand_Executed;
+            CanExecute += OpenMapCommand_CanExecute;
         }
 
-        private void OpenCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void OpenMapCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
             e.Handled = true;
         }
 
-        private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void OpenMapCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EarthViewControl ax = e.Parameter as EarthViewControl;
             OpenFileDialog dlg = new OpenFileDialog();

@@ -8,16 +8,16 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class SaveCommand : CommandBinding
+    public class SaveMapCommand : CommandBinding
     {
-        public SaveCommand()
+        public SaveMapCommand()
         {
-            Command = CommandLib.Save;
-            CanExecute += SaveCommand_CanExecute;
-            Executed += SaveCommand_Executed;
+            Command = CommandLib.SaveMap;
+            CanExecute += SaveMapCommand_CanExecute;
+            Executed += SaveMapCommand_Executed;
         }
 
-        private void SaveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void SaveMapCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if(Project.CurrentMap.Url.Length>0)
                 Project.CurrentMap.save();
@@ -31,7 +31,7 @@ namespace gEarth.Scene.Commands
             }
         }
 
-        private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void SaveMapCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Project.CurrentMap!=null;
             e.Handled = true;

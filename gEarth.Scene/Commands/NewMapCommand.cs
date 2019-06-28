@@ -10,16 +10,16 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class NewCommand : CommandBinding
+    public class NewMapCommand : CommandBinding
     {
-        public NewCommand()
+        public NewMapCommand()
         {
-            Command = CommandLib.New;
-            CanExecute += NewCommand_CanExecute;
-            Executed += NewCommand_Executed;
+            Command = CommandLib.NewMap;
+            CanExecute += NewMapCommand_CanExecute;
+            Executed += NewMapCommand_Executed;
         }
 
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void NewMapCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EarthViewControl ax = e.Parameter as EarthViewControl;
             if(ax!=null)
@@ -38,7 +38,7 @@ namespace gEarth.Scene.Commands
             }
         }
 
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void NewMapCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
             e.Handled = true;

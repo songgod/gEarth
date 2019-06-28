@@ -43,8 +43,8 @@ namespace gEarthApp
                     return;
                 }
             }
-            if (gEarth.Scene.Commands.CommandLib.New.CanExecute(ax, null))
-                gEarth.Scene.Commands.CommandLib.New.Execute(ax, null);
+            if (gEarth.Scene.Commands.CommandLib.NewMap.CanExecute(ax, null))
+                gEarth.Scene.Commands.CommandLib.NewMap.Execute(ax, null);
         }
     }
 }

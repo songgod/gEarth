@@ -10,16 +10,16 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class SaveAsCommand : CommandBinding
+    public class SaveMapAsCommand : CommandBinding
     {
-        public SaveAsCommand()
+        public SaveMapAsCommand()
         {
-            Command = CommandLib.SaveAs;
-            CanExecute += SaveAsCommand_CanExecute;
-            Executed += SaveAsCommand_Executed;
+            Command = CommandLib.SaveMapAs;
+            CanExecute += SaveMapAsCommand_CanExecute;
+            Executed += SaveMapAsCommand_Executed;
         }
 
-        private void SaveAsCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void SaveMapAsCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -28,7 +28,7 @@ namespace gEarth.Scene.Commands
             }
         }
 
-        private void SaveAsCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void SaveMapAsCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = Project.CurrentMap != null;
             e.Handled = true;
