@@ -1,2 +1,2 @@
 # gEarth
-osg+osgearth+ocx+wpf
+osg+osgearth+cli+wpf
