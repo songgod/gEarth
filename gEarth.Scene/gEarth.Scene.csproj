@@ -71,6 +71,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +82,8 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddArcGISImageLayerCommand.cs" />
+    <Compile Include="Commands\AddBingImageLayerCommand.cs" />
     <Compile Include="Commands\AddGdalElevationLayerCommand.cs" />
     <Compile Include="Commands\AddGdalImageLayerCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />
@@ -88,15 +91,24 @@
     <Compile Include="Commands\OpenMapCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />
+    <Compile Include="Windows\BingSourceOptionsWindow.xaml.cs">
+      <DependentUpon>BingSourceOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\EarthViewControl.cs" />
+    <Compile Include="Controls\EarthViewControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gEarth.Pack\gEarth.Pack.vcxproj">
       <Project>{6123fdce-d8bf-438c-baa4-6b146a980657}</Project>
       <Name>gEarth.Pack</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Windows\BingSourceOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

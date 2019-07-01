@@ -1,4 +1,4 @@
-﻿using gEarth.Scene.View;
+﻿using gEarth.Scene.Controls;
 using gEarthPack;
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,10 @@ namespace gEarth.Scene.Commands
                 oepGDALSource source = new oepGDALSource() { url = dlg.FileName };
                 oepElevationLayer imglyr = new oepElevationLayer(source);
                 Project.CurrentMap.Layers.Add(imglyr);
+                if (!imglyr.IsOK)
+                {
+                    MessageBox.Show(imglyr.StatusString);
+                }
             }
         }
         private void AddGdalElevationLayerCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)

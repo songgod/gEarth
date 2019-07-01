@@ -9,6 +9,13 @@ namespace gEarthPack
 	{
 	public:
 		oepArcGISSource();
+
+	public:
+		property String^ url
+		{
+			String^ get();
+			void set(String^ v);
+		}
 	};
 }
 

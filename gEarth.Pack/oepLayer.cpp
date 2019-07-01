@@ -50,3 +50,13 @@ void gEarthPack::oepLayers::init(osgEarth::Map* pMap)
 		Add(layer);
 	}
 }
+
+String^ gEarthPack::oepLayer::StatusString::get()
+{
+	return marshal_as<String^>(asoeLayer()->getStatus().toString());
+}
+
+bool gEarthPack::oepLayer::IsOK::get()
+{
+	return asoeLayer()->getStatus().isOK() ? true : false;
+}

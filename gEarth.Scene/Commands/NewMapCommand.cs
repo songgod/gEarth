@@ -1,4 +1,4 @@
-﻿using gEarth.Scene.View;
+﻿using gEarth.Scene.Controls;
 using gEarthPack;
 using System;
 using System.IO;

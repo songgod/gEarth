@@ -17,6 +17,8 @@ namespace gEarth.Scene.Commands
             SaveMapAs = CreateCommand("SaveMapAs");
             AddGdalImageLayerCommand = CreateCommand("AddGdalImageLayerCommand");
             AddGdalElevationLayerCommand = CreateCommand("AddGdalEelvationLayerCommand");
+            AddArcGISImageLayerCommand = CreateCommand("AddArcGISImageLayerCommand");
+            AddBingImageLayerCommand = CreateCommand("AddBingImageLayerCommand");
         }
         private static RoutedUICommand CreateCommand(string name)
         {
@@ -28,5 +30,7 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand SaveMapAs { get; set; }
         public static RoutedUICommand AddGdalImageLayerCommand { get; set; }
         public static RoutedUICommand AddGdalElevationLayerCommand { get; set; }
+        public static RoutedUICommand AddArcGISImageLayerCommand { get; set; }
+        public static RoutedUICommand AddBingImageLayerCommand { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Windows.Forms.Integration;
 using gEarthPack;
 using System.Windows.Forms;
 
-namespace gEarth.Scene.View
+namespace gEarth.Scene.Controls
 {
     public delegate void EarthViewReady(bool bready);
     public class EarthViewControl : WindowsFormsHost

@@ -15,6 +15,18 @@ namespace gEarthPack
 		~oepLayer();
 		!oepLayer();
 
+	public:
+
+		property bool IsOK
+		{
+			bool get();
+		}
+
+		property String^ StatusString
+		{
+			String^ get();
+		}
+
 	internal:
 
 		void quit();

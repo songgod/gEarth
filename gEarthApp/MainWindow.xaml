@@ -6,7 +6,7 @@
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
-        xmlns:gsview="clr-namespace:gEarth.Scene.View;assembly=gEarth.Scene"
+        xmlns:gsctrls="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Fluent:RibbonWindow.CommandBindings>
@@ -16,6 +16,8 @@
         <cmd:SaveMapCommand/>
         <cmd:AddGdalImageLayerCommand/>
         <cmd:AddGdalElevationLayerCommand/>
+        <cmd:AddArcGISImageLayerCommand/>
+        <cmd:AddBingImageLayerCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -42,10 +44,8 @@
                     <Fluent:Button Header="另存为" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/saveas.png" Command="{x:Static cmd:CommandLib.SaveMapAs}" CommandParameter="{x:Reference ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="在线数据">
-                    <Fluent:Button Header="谷歌高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/googlealt.png"/>
-                    <Fluent:Button Header="谷歌影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/googleimg.png"/>
-                    <Fluent:Button Header="必应影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/bingimg.png"/>
-                    <Fluent:Button Header="Arcgis影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/arcgisimg.png"/>
+                    <Fluent:Button Header="必应影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/bingimg.png" Command="{x:Static cmd:CommandLib.AddBingImageLayerCommand}"/>
+                    <Fluent:Button Header="Arcgis影像" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/arcgisimg.png" Command="{x:Static cmd:CommandLib.AddArcGISImageLayerCommand}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="本地数据">
                     <Fluent:Button Header="高程数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/dem.png" Command="{x:Static cmd:CommandLib.AddGdalElevationLayerCommand}"/>
@@ -100,7 +100,7 @@
                 <TreeView></TreeView>
             </Border>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <gsview:EarthViewControl  Grid.Column="2" x:Name="ax"/>
+            <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax"/>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>
