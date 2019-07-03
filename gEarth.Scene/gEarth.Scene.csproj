@@ -95,6 +95,9 @@
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ArcGISSourceOptionsWindow.xaml.cs">
+      <DependentUpon>ArcGISSourceOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BingSourceOptionsWindow.xaml.cs">
       <DependentUpon>BingSourceOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\MapTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ArcGISSourceOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

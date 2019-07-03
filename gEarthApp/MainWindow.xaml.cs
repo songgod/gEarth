@@ -40,15 +40,15 @@ namespace gEarthApp
 
         private void Ax_OnEarthViewReady(bool bready)
         {
-            if (Project.LastMapUrl.Length > 0)
-            {
-                oepMap map = new oepMap();
-                if (map.load(Project.LastMapUrl))
-                {
-                    Project.CurrentMap = map;
-                    return;
-                }
-            }
+            //if (Project.LastMapUrl.Length > 0)
+            //{
+            //    oepMap map = new oepMap();
+            //    if (map.load(Project.LastMapUrl))
+            //    {
+            //        Project.CurrentMap = map;
+            //        return;
+            //    }
+            //}
             if (gEarth.Scene.Commands.CommandLib.NewMap.CanExecute(ax, null))
                 gEarth.Scene.Commands.CommandLib.NewMap.Execute(ax, null);
         }

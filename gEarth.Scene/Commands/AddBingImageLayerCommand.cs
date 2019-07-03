@@ -27,7 +27,7 @@ namespace gEarth.Scene.Commands
             var res = window.ShowDialog();
             if(res.HasValue && res.Value)
             {
-                oepImageLayer imglyr = new oepImageLayer(src);
+                oepImageLayer imglyr = new oepImageLayer(src) { Name = "Bing: " + src.imagerySet };
                 Project.CurrentMap.Layers.Add(imglyr);
                 if (!imglyr.IsOK)
                 {

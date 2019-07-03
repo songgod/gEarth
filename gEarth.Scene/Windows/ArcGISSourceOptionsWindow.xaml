@@ -1,0 +1,37 @@
+﻿<Window x:Class="gEarth.Scene.Windows.ArcGISSourceOptionsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gEarth.Scene.Windows"
+            ShowInTaskbar="False"
+             mc:Ignorable="d" 
+            Title="添加ArcGIS数据"
+             Height="160" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="路径:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Text="{Binding url}" Grid.Row="0" Grid.Column="1"/>
+        <TextBlock Text="令牌:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding token}" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="格式:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Text="{Binding format}" Grid.Row="2" Grid.Column="1"/>
+        <TextBlock Text="图层:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Text="{Binding layers}" Grid.Row="3" Grid.Column="1"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right">
+            <Button Content="确定" Width="100" x:Name="Ok" Click="Ok_Click"/>
+            <TextBlock Width="10"/>
+            <Button Content="取消" Width="100" x:Name="Cancel" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

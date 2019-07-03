@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace gEarth.Scene.Windows
 {
     /// <summary>
-    /// Interaction logic for BingSourceOptionsWindow.xaml
+    /// Interaction logic for ArcGISSourceOptionsWindow.xaml
     /// </summary>
-    public partial class BingSourceOptionsWindow : Window
+    public partial class ArcGISSourceOptionsWindow : Window
     {
-        public BingSourceOptionsWindow()
+        public ArcGISSourceOptionsWindow()
         {
             InitializeComponent();
         }
-
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;

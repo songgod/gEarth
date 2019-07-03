@@ -13,7 +13,7 @@ oepGDALSource::oepGDALSource()
 
 String^ gEarthPack::oepGDALSource::url::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::GDALOptions*)(_handle))->url()->getString());
+	return marshal_as<String^>(((osgEarth::Drivers::GDALOptions*)(_handle))->url()->full());
 }
 
 void gEarthPack::oepGDALSource::url::set(String^ v)

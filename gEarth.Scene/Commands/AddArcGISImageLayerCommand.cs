@@ -1,4 +1,6 @@
-﻿using System;
+﻿using gEarth.Scene.Windows;
+using gEarthPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,18 @@ namespace gEarth.Scene.Commands
 
         private void AddArcGISImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            oepArcGISSource src = new oepArcGISSource();
+            ArcGISSourceOptionsWindow window = new ArcGISSourceOptionsWindow() { DataContext = src };
+            var res = window.ShowDialog();
+            if (res.HasValue && res.Value)
+            {
+                oepImageLayer imglyr = new oepImageLayer(src) { Name = "ArcGISImage" };
+                Project.CurrentMap.Layers.Add(imglyr);
+                if (!imglyr.IsOK)
+                {
+                    System.Windows.MessageBox.Show(imglyr.StatusString);
+                }
+            }
         }
 
         private void AddArcGISImageLayerCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
