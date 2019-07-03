@@ -11,6 +11,14 @@ namespace gEarthPack
 	public:
 		oepUnknownLayer();
 
+	public:
+
+		property bool Visible
+		{
+			bool get();
+			void set(bool v);
+		}
+
 	internal:
 
 		oepUnknownLayer(osgEarth::Layer* layer);
