@@ -20,7 +20,11 @@
                     <TextBlock Text="{StaticResource entries}" />
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepLayer}">
-                    <TextBlock Text="{Binding Path=Name}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Visible}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepExtension}">
                     <TextBlock Text="{Binding Path=Name}"/>

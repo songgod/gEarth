@@ -8,6 +8,15 @@ namespace gEarthPack
 	{
 	public:
 		oepVisibleLayer();
+
+	public:
+
+		property bool Visible
+		{
+			bool get();
+			void set(bool v);
+		}
+
 	public:
 
 		osgEarth::VisibleLayer* asoeVisibleLayer();
