@@ -97,7 +97,7 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <Border BorderThickness="1" MinWidth="100" Grid.Column="0">
-                <TreeView></TreeView>
+                <gsctrls:MapTreeControl x:Name="mtree"/>
             </Border>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
             <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax"/>

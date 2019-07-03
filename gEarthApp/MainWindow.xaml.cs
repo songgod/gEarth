@@ -29,6 +29,13 @@ namespace gEarthApp
         {
             InitializeComponent();
             ax.OnEarthViewReady += Ax_OnEarthViewReady;
+            gEarth.Scene.Project.OnCurrentMapChanged += Project_OnCurrentMapChanged;
+        }
+
+        private void Project_OnCurrentMapChanged(oepMap oldmap, oepMap newmap)
+        {
+            ax.OpenMap(newmap);
+            mtree.InitMap(newmap);
         }
 
         private void Ax_OnEarthViewReady(bool bready)
@@ -38,7 +45,6 @@ namespace gEarthApp
                 oepMap map = new oepMap();
                 if (map.load(Project.LastMapUrl))
                 {
-                    ax.OpenMap(map);
                     Project.CurrentMap = map;
                     return;
                 }

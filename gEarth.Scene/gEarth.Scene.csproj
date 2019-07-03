@@ -70,6 +70,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -91,6 +92,9 @@
     <Compile Include="Commands\OpenMapCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />
+    <Compile Include="Controls\MapTreeControl.xaml.cs">
+      <DependentUpon>MapTreeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BingSourceOptionsWindow.xaml.cs">
       <DependentUpon>BingSourceOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -105,6 +109,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\MapTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\BingSourceOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

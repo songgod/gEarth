@@ -12,6 +12,14 @@ namespace gEarthPack
 
 	public:
 
+		virtual property String^ Name
+		{
+			String^ get();
+			void set(String^ v);
+		}
+
+	public:
+
 		virtual event PropertyChangedEventHandler^ PropertyChanged;
 
 	public:

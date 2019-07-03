@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "oepExtension.h"
+#include <msclr\marshal_cppstd.h>  
+
+using namespace msclr::interop;
 
 osgEarth::Extension* createSpecialExtension(const osgEarth::Config& conf)
 {
@@ -32,12 +35,24 @@ gEarthPack::oepExtension::oepExtension(oepConfigOptions^ config):_handle(NULL)
 	}
 }
 
-osgEarth::Extension* gEarthPack::oepExtension::getoeExtension()
+osgEarth::Extension* gEarthPack::oepExtension::asoeExtension()
 {
 	return _handle!=NULL ? _handle->getValue() : NULL;
 }
 
-void gEarthPack::oepExtensions::init(osgEarth::Map* pMap)
+String^ gEarthPack::oepExtension::Name::get()
 {
+	osgEarth::Extension* pext = asoeExtension();
+	if (!pext)
+		return "";
+	return marshal_as<String^>(pext->getName());
+}
 
+void gEarthPack::oepExtension::Name::set(String^ v)
+{
+	osgEarth::Extension* pext = asoeExtension();
+	if (!pext)
+		return;
+	pext->setName(marshal_as<std::string>(v));
+	NotifyChanged("Name");
 }

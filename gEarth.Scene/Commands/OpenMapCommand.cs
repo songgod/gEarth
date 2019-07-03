@@ -36,7 +36,6 @@ namespace gEarth.Scene.Commands
                 oepMap map = new oepMap();
                 if (map.load(dlg.FileName))
                 {
-                    ax.OpenMap(map);
                     Project.CurrentMap = map;
                 }
             }

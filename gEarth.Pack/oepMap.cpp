@@ -4,6 +4,7 @@
 #include <osgDB\ReadFile>
 #include <osgDB\WriteFile>
 #include <msclr\marshal_cppstd.h>  
+#include "oepLayerFactory.h"
 
 using namespace msclr::interop;
 
@@ -43,13 +44,36 @@ bool gEarthPack::oepMap::load(String^ url)
 	_handle = new MapHandle(mapnode);
 
 	Url = url;
-	_layers->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
-	_layers->init(mapnode->getMap());
-	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
-	_extensions->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
-	_extensions->init(mapnode->getMap());
-	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
+	InitLayers();
+	InitExtensions();
 	return true;
+}
+
+void gEarthPack::oepMap::InitLayers()
+{
+	osgEarth::Map* pMap = getMap();
+	if (pMap == NULL)
+		return;
+
+	_layers->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
+	for (unsigned int i = 0; i < pMap->getNumLayers(); i++)
+	{
+		osgEarth::Layer* pLayer = pMap->getLayerAt(i);
+		std::string type = pLayer->options().getConfig().key();
+		oepLayer^ layer = oepLayerFactory::creatorLayer(marshal_as<String^>(type), IntPtr(pLayer));
+		if(layer==nullptr)
+			continue;
+		
+		_layers->Add(layer);
+	}
+	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnLayersCollectionChanged);
+}
+
+void gEarthPack::oepMap::InitExtensions()
+{
+	_extensions->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
+	//todo
+	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
 }
 
 bool gEarthPack::oepMap::save()
@@ -86,11 +110,6 @@ osgEarth::Map * gEarthPack::oepMap::getMap()
 osgEarth::MapNode* gEarthPack::oepMap::getMapNode()
 {
 	return _handle->getValue();
-}
-
-gEarthPack::oepLayers^ gEarthPack::oepMap::Layers::get()
-{
-	return _layers;
 }
 
 gEarthPack::oepExtensions^ gEarthPack::oepMap::Extensions::get()
@@ -175,9 +194,9 @@ void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, S
 		for (int i = 0; i < e->NewItems->Count; i++)
 		{
 			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->getoeExtension())
+			if (ext != nullptr && ext->asoeExtension())
 			{
-				mapnode->addExtension(ext->getoeExtension());
+				mapnode->addExtension(ext->asoeExtension());
 			}
 		}
 		break;
@@ -187,9 +206,9 @@ void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, S
 		for (int i = 0; i < e->OldItems->Count; i++)
 		{
 			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->getoeExtension())
+			if (ext != nullptr && ext->asoeExtension())
 			{
-				mapnode->removeExtension(ext->getoeExtension());
+				mapnode->removeExtension(ext->asoeExtension());
 			}
 		}
 		break;
@@ -209,9 +228,9 @@ void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, S
 		for (int i = 0; i < e->OldItems->Count; i++)
 		{
 			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->getoeExtension())
+			if (ext != nullptr && ext->asoeExtension())
 			{
-				mapnode->removeExtension(ext->getoeExtension());
+				mapnode->removeExtension(ext->asoeExtension());
 			}
 		}
 		break;
@@ -232,3 +251,24 @@ void gEarthPack::oepMap::Url::set(String^ url)
 	NotifyChanged("Url");
 }
 
+gEarthPack::oepLayers^ gEarthPack::oepMap::Layers::get()
+{
+	return _layers;
+}
+
+String^ gEarthPack::oepMap::Name::get()
+{
+	osgEarth::Map* pmap = getMap();
+	if (!pmap)
+		return "";
+	return marshal_as<String^>(pmap->getName());
+}
+
+void gEarthPack::oepMap::Name::set(String^ v)
+{
+	osgEarth::Map* pmap = getMap();
+	if (!pmap)
+		return;
+	pmap->setName(marshal_as<std::string>(v));
+	NotifyChanged("Name");
+}

@@ -14,9 +14,17 @@ namespace gEarthPack
 	public:
 		oepExtension(oepConfigOptions^ config);
 
+	public:
+
+		virtual property String^ Name
+		{
+			String^ get() override;
+			void set(String^ v) override;
+		}
+
 	internal:
 
-		osgEarth::Extension* getoeExtension();
+		osgEarth::Extension* asoeExtension();
 
 	protected:
 
@@ -29,10 +37,6 @@ namespace gEarthPack
 	{
 	public:
 		oepExtensions() {}
-
-	internal:
-
-		void init(osgEarth::Map* pMap);
 	};
 }
 

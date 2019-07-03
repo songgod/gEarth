@@ -2,6 +2,7 @@
 using gEarthPack;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace gEarth.Scene.Commands
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 oepGDALSource source = new oepGDALSource() { url = dlg.FileName };
-                oepElevationLayer imglyr = new oepElevationLayer(source);
+                oepElevationLayer imglyr = new oepElevationLayer(source) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
                 Project.CurrentMap.Layers.Add(imglyr);
                 if (!imglyr.IsOK)
                 {

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="gEarth.Scene.Controls.MapTreeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gEarth.Scene.Controls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:oep="clr-namespace:gEarthPack;assembly=gEarth.Pack"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <TreeView Name="GroupView" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Items}">
+            <TreeView.Resources>
+                <sys:String x:Key="entries">元素</sys:String>
+                <sys:String x:Key="extensions">扩展</sys:String>
+                <HierarchicalDataTemplate DataType="{x:Type oep:oepExtensions}" ItemsSource="{Binding}">
+                    <TextBlock Text="{StaticResource extensions}" />
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type oep:oepLayers}" ItemsSource="{Binding}">
+                    <TextBlock Text="{StaticResource entries}" />
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepLayer}">
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepExtension}">
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+    </Grid>
+</UserControl>

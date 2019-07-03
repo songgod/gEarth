@@ -17,6 +17,12 @@ namespace gEarthPack
 
 	public:
 
+		virtual property String^ Name
+		{
+			String^ get() override;
+			void set(String^ v) override;
+		}
+
 		property bool IsOK
 		{
 			bool get();
@@ -42,10 +48,6 @@ namespace gEarthPack
 	{
 	public:
 		oepLayers(){}
-
-	internal:
-
-		void init(osgEarth::Map* pMap);
 	};
 }
 

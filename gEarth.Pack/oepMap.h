@@ -18,6 +18,12 @@ namespace gEarthPack
 
 	public:
 
+		virtual property String^ Name
+		{
+			String^ get() override;
+			void set(String^ v) override;
+		}
+
 		property oepLayers^ Layers
 		{
 			oepLayers^ get();
@@ -50,6 +56,8 @@ namespace gEarthPack
 
 	private:
 
+		void InitLayers();
+		void InitExtensions();
 		void OnLayersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);
 		void OnExtensionsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);
 
