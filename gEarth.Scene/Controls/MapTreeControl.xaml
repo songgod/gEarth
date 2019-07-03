@@ -9,25 +9,62 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TreeView Name="GroupView" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Items}">
+        <TreeView Name="treeView" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Items}">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True" />
+                </Style>
+            </TreeView.ItemContainerStyle>
             <TreeView.Resources>
-                <sys:String x:Key="entries">元素</sys:String>
+                <sys:String x:Key="entries">图层</sys:String>
                 <sys:String x:Key="extensions">扩展</sys:String>
                 <HierarchicalDataTemplate DataType="{x:Type oep:oepExtensions}" ItemsSource="{Binding}">
-                    <TextBlock Text="{StaticResource extensions}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/gEarth.Scene;component/Images/extensions.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{StaticResource extensions}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type oep:oepLayers}" ItemsSource="{Binding}">
-                    <TextBlock Text="{StaticResource entries}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/gEarth.Scene;component/Images/layers.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{StaticResource entries}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type oep:oepLayer}">
+                <DataTemplate DataType="{x:Type oep:oepImageLayer}">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding Visible}"/>
+                        <TextBlock Text=" "/>
+                        <Image Source="/gEarth.Scene;component/Images/image.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepElevationLayer}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Visible}"/>
+                        <TextBlock Text=" "/>
+                        <Image Source="/gEarth.Scene;component/Images/elevation.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepUnknownLayer}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Visible}"/>
+                        <TextBlock Text=" "/>
+                        <Image Source="/gEarth.Scene;component/Images/vector.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepExtension}">
-                    <TextBlock Text="{Binding Path=Name}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/gEarth.Scene;component/Images/extensions.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
                 </DataTemplate>
             </TreeView.Resources>
         </TreeView>
