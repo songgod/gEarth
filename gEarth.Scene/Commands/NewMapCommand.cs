@@ -19,22 +19,24 @@ namespace gEarth.Scene.Commands
             Executed += NewMapCommand_Executed;
         }
 
+        public static oepMap NewMap()
+        {
+            oepMap map = new oepMap();
+            string wdimg = Directory.GetCurrentDirectory() + "\\data\\world\\world.tif";
+            string wdelv = Directory.GetCurrentDirectory() + "\\data\\world\\world-dem.tif";
+            oepImageLayer wdimglyr = new oepImageLayer(new oepGDALSource() { url = wdimg }) { Name = Path.GetFileNameWithoutExtension(wdimg) };
+            oepElevationLayer wdelvlyr = new oepElevationLayer(new oepGDALSource() { url = wdelv }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
+            map.Layers.Add(wdimglyr);
+            map.Layers.Add(wdelvlyr);
+            oepExtension skyext = new oepExtension(new oepSimpleSkyOptions());
+            map.Extensions.Add(skyext);
+            return map;
+        }
+
         private void NewMapCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            EarthViewControl ax = e.Parameter as EarthViewControl;
-            if(ax!=null)
-            {
-                oepMap map = new oepMap();
-                string wdimg = Directory.GetCurrentDirectory() + "\\data\\world\\world.tif";
-                string wdelv = Directory.GetCurrentDirectory() + "\\data\\world\\world-dem.tif";
-                oepImageLayer wdimglyr = new oepImageLayer(new oepGDALSource() { url = wdimg }) { Name = Path.GetFileNameWithoutExtension(wdimg) };
-                oepElevationLayer wdelvlyr = new oepElevationLayer(new oepGDALSource() { url = wdelv }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
-                map.Layers.Add(wdimglyr);
-                map.Layers.Add(wdelvlyr);
-                oepExtension skyext = new oepExtension(new oepSimpleSkyOptions());
-                map.Extensions.Add(skyext);
-                Project.CurrentMap = map;
-            }
+            oepMap map = NewMap();
+            Project.CurrentMap = map;
         }
 
         private void NewMapCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)

@@ -28,8 +28,27 @@ namespace gEarthApp
         public MainWindow()
         {
             InitializeComponent();
+            InitStartMap();
             ax.OnEarthViewReady += Ax_OnEarthViewReady;
             gEarth.Scene.Project.OnCurrentMapChanged += Project_OnCurrentMapChanged;
+        }
+
+        private oepMap StartMap { get; set; }
+
+        private void InitStartMap()
+        {
+            if (Project.LastMapUrl.Length > 0)
+            {
+                oepMap map = new oepMap();
+                if (map.load(Project.LastMapUrl))
+                {
+                    StartMap = map;
+                }
+            }
+            if (StartMap == null)
+            {
+                StartMap = gEarth.Scene.Commands.NewMapCommand.NewMap();
+            }
         }
 
         private void Project_OnCurrentMapChanged(oepMap oldmap, oepMap newmap)
@@ -40,17 +59,7 @@ namespace gEarthApp
 
         private void Ax_OnEarthViewReady(bool bready)
         {
-            //if (Project.LastMapUrl.Length > 0)
-            //{
-            //    oepMap map = new oepMap();
-            //    if (map.load(Project.LastMapUrl))
-            //    {
-            //        Project.CurrentMap = map;
-            //        return;
-            //    }
-            //}
-            if (gEarth.Scene.Commands.CommandLib.NewMap.CanExecute(ax, null))
-                gEarth.Scene.Commands.CommandLib.NewMap.Execute(ax, null);
+            Project.CurrentMap = StartMap;
         }
     }
 }

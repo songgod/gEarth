@@ -27,7 +27,6 @@ namespace gEarth.Scene.Commands
 
         private void OpenMapCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            EarthViewControl ax = e.Parameter as EarthViewControl;
             OpenFileDialog dlg = new OpenFileDialog();
             if(dlg.ShowDialog()==DialogResult.OK)
             {

@@ -61,7 +61,7 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepExtension}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/gEarth.Scene;component/Images/extensions.png"/>
+                        <Image Source="/gEarth.Scene;component/Images/extension.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
