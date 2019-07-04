@@ -22,6 +22,9 @@
     <Filter Include="Extensions">
       <UniqueIdentifier>{2377e501-8d5a-438d-b733-2ad5b4a1b7b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ColorFilter">
+      <UniqueIdentifier>{d8787dd3-ff06-4bd2-8d67-0dac69e05332}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -117,6 +120,30 @@
     <ClInclude Include="oepViewpointsOptions.h">
       <Filter>Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="oepBrightnessContrastColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepChromaKeyColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepCMYKColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepGammaColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepHSLColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepRGBColorFilter.h">
+      <Filter>ColorFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="oepVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -211,6 +238,30 @@
     </ClCompile>
     <ClCompile Include="oepViewpointsOptions.cpp">
       <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepBrightnessContrastColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepChromaKeyColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepCMYKColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepGammaColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepHSLColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepRGBColorFilter.cpp">
+      <Filter>ColorFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="oepVector.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

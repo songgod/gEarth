@@ -126,30 +126,36 @@ void gEarthPack::oepMap::OnLayersCollectionChanged(System::Object^ sender, Syste
 	{
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
 	{
-		map->beginUpdate();
-		for (int i = 0; i < e->NewItems->Count; i++)
+		if (e->NewItems != nullptr && e->NewItems->Count > 0)
 		{
-			oepLayer^ layer = dynamic_cast<oepLayer^>(e->NewItems[i]);
-			if (layer != nullptr)
+			map->beginUpdate();
+			for (int i = 0; i < e->NewItems->Count; i++)
 			{
-				map->addLayer(layer->asoeLayer());
+				oepLayer^ layer = dynamic_cast<oepLayer^>(e->NewItems[i]);
+				if (layer != nullptr)
+				{
+					map->addLayer(layer->asoeLayer());
+				}
 			}
+			map->endUpdate();
 		}
-		map->endUpdate();
 		break;
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Remove:
 	{
-		map->beginUpdate();
-		for (int i = 0; i < e->OldItems->Count; i++)
+		if (e->OldItems != nullptr && e->OldItems->Count > 0)
 		{
-			oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
-			if (layer != nullptr)
+			map->beginUpdate();
+			for (int i = 0; i < e->OldItems->Count; i++)
 			{
-				map->removeLayer(layer->asoeLayer());
+				oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
+				if (layer != nullptr)
+				{
+					map->removeLayer(layer->asoeLayer());
+				}
 			}
+			map->endUpdate();
 		}
-		map->endUpdate();
 		break;
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Replace:
@@ -168,12 +174,7 @@ void gEarthPack::oepMap::OnLayersCollectionChanged(System::Object^ sender, Syste
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
 		map->beginUpdate();
-		for (int i = 0; i < e->OldItems->Count; i++)
-		{
-			oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
-			if (layer != nullptr)
-				map->removeLayer(layer->asoeLayer());
-		}
+		map->clear();
 		map->endUpdate();
 		break;
 	}
@@ -191,24 +192,30 @@ void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, S
 	{
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
 	{
-		for (int i = 0; i < e->NewItems->Count; i++)
+		if (e->NewItems != nullptr && e->NewItems->Count > 0)
 		{
-			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->asoeExtension())
+			for (int i = 0; i < e->NewItems->Count; i++)
 			{
-				mapnode->addExtension(ext->asoeExtension());
+				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
+				if (ext != nullptr && ext->asoeExtension())
+				{
+					mapnode->addExtension(ext->asoeExtension());
+				}
 			}
 		}
 		break;
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Remove:
 	{
-		for (int i = 0; i < e->OldItems->Count; i++)
+		if (e->OldItems != nullptr && e->OldItems->Count > 0)
 		{
-			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->asoeExtension())
+			for (int i = 0; i < e->OldItems->Count; i++)
 			{
-				mapnode->removeExtension(ext->asoeExtension());
+				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
+				if (ext != nullptr && ext->asoeExtension())
+				{
+					mapnode->removeExtension(ext->asoeExtension());
+				}
 			}
 		}
 		break;
@@ -225,14 +232,7 @@ void gEarthPack::oepMap::OnExtensionsCollectionChanged(System::Object^ sender, S
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		for (int i = 0; i < e->OldItems->Count; i++)
-		{
-			oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-			if (ext != nullptr && ext->asoeExtension())
-			{
-				mapnode->removeExtension(ext->asoeExtension());
-			}
-		}
+		mapnode->clearExtensions();
 		break;
 	}
 	default:

@@ -13,6 +13,8 @@ namespace gEarthPack
 	{
 	public:
 		oepExtension(oepConfigOptions^ config);
+		~oepExtension();
+		!oepExtension();
 
 	public:
 

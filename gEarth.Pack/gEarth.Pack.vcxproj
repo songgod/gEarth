@@ -155,13 +155,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Handle.h" />
+    <ClInclude Include="oepBrightnessContrastColorFilter.h" />
+    <ClInclude Include="oepChromaKeyColorFilter.h" />
+    <ClInclude Include="oepCMYKColorFilter.h" />
+    <ClInclude Include="oepColorFilter.h" />
     <ClInclude Include="oepConfigOptions.h" />
     <ClInclude Include="oepDriverConfigOptions.h" />
     <ClInclude Include="oepExtension.h" />
     <ClInclude Include="oepFeatureElevationSource.h" />
+    <ClInclude Include="oepGammaColorFilter.h" />
+    <ClInclude Include="oepHSLColorFilter.h" />
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSource.h" />
+    <ClInclude Include="oepRGBColorFilter.h" />
     <ClInclude Include="oepSimpleSkyOptions.h" />
     <ClInclude Include="oepSkyOptions.h" />
     <ClInclude Include="oepTMSSource.h" />
@@ -176,6 +183,7 @@
     <ClInclude Include="oepTerrainLayer.h" />
     <ClInclude Include="oepTileSource.h" />
     <ClInclude Include="oepUnknownLayer.h" />
+    <ClInclude Include="oepVector.h" />
     <ClInclude Include="oepViewpointsOptions.h" />
     <ClInclude Include="oepVisibleLayer.h" />
     <ClInclude Include="oepWCSSource.h" />
@@ -189,13 +197,20 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Initor.cpp" />
+    <ClCompile Include="oepBrightnessContrastColorFilter.cpp" />
+    <ClCompile Include="oepChromaKeyColorFilter.cpp" />
+    <ClCompile Include="oepCMYKColorFilter.cpp" />
+    <ClCompile Include="oepColorFilter.cpp" />
     <ClCompile Include="oepConfigOptions.cpp" />
     <ClCompile Include="oepDriverConfigOptions.cpp" />
     <ClCompile Include="oepExtension.cpp" />
     <ClCompile Include="oepFeatureElevationSource.cpp" />
+    <ClCompile Include="oepGammaColorFilter.cpp" />
+    <ClCompile Include="oepHSLColorFilter.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSource.cpp" />
+    <ClCompile Include="oepRGBColorFilter.cpp" />
     <ClCompile Include="oepSimpleSkyOptions.cpp" />
     <ClCompile Include="oepSkyOptions.cpp" />
     <ClCompile Include="oepTMSSource.cpp" />
@@ -210,6 +225,7 @@
     <ClCompile Include="oepTerrainLayer.cpp" />
     <ClCompile Include="oepTileSource.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
+    <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewpointsOptions.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />
     <ClCompile Include="oepWCSSource.cpp" />

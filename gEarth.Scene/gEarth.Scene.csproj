@@ -92,6 +92,12 @@
     <Compile Include="Commands\OpenMapCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />
+    <Compile Include="Commands\SetBrightnessColorFilterCommand.cs" />
+    <Compile Include="Commands\SetChromaKeyColorFilterCommand.cs" />
+    <Compile Include="Commands\SetCMYKColorFilterCommand.cs" />
+    <Compile Include="Commands\SetGammaColorFilterCommand.cs" />
+    <Compile Include="Commands\SetHSLColorFilterCommand.cs" />
+    <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +110,24 @@
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\EarthViewControl.cs" />
+    <Compile Include="Windows\BrightnessColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>BrightnessColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChromaKeyColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>ChromaKeyColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CMYKColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>CMYKColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GammaColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>GammaColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\HSLColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>HSLColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RGBColorFilterOptionsWindow.xaml.cs">
+      <DependentUpon>RGBColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gEarth.Pack\gEarth.Pack.vcxproj">
@@ -121,6 +145,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\BingSourceOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BrightnessColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChromaKeyColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CMYKColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GammaColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\HSLColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RGBColorFilterOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

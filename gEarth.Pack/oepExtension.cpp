@@ -35,6 +35,24 @@ gEarthPack::oepExtension::oepExtension(oepConfigOptions^ config):_handle(NULL)
 	}
 }
 
+gEarthPack::oepExtension::~oepExtension()
+{
+	if (_handle != NULL)
+	{
+		delete _handle;
+		_handle = NULL;
+	}
+}
+
+gEarthPack::oepExtension::!oepExtension()
+{
+	if (_handle != NULL)
+	{
+		delete _handle;
+		_handle = NULL;
+	}
+}
+
 osgEarth::Extension* gEarthPack::oepExtension::asoeExtension()
 {
 	return _handle!=NULL ? _handle->getValue() : NULL;
