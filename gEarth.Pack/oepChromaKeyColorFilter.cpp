@@ -12,6 +12,15 @@ osgEarth::Util::ChromaKeyColorFilter* gEarthPack::oepChromaKeyColorFilter::asoeC
 	return dynamic_cast<osgEarth::Util::ChromaKeyColorFilter*>(_handle->getValue());
 }
 
+void gEarthPack::oepChromaKeyColorFilter::Reset()
+{
+	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	if (!cf)
+		return;
+	cf->setColor(osg::Vec3f(0, 0, 0));
+	cf->setDistance(0);
+}
+
 gEarthPack::oepVec3f gEarthPack::oepChromaKeyColorFilter::Color::get()
 {
 	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();

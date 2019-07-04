@@ -13,6 +13,10 @@ namespace gEarthPack
 
 	public:
 
+		void Reset() override;
+
+	public:
+
 		property oepVec3f Color
 		{
 			oepVec3f get();

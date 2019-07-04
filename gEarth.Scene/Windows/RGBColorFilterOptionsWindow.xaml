@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:gEarth.Scene.Windows"
+                    WindowStyle="ToolWindow"
+            WindowStartupLocation="CenterScreen"
              mc:Ignorable="d" 
         ShowInTaskbar="False"
         Title="RGB滤色设置"
@@ -21,8 +23,8 @@
         <TextBlock Text="R:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Text="G:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Text="B:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Slider Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Value="{Binding R}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
-        <Slider Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Value="{Binding G}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
-        <Slider Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Value="{Binding B}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding R}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding G}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding B}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
     </Grid>
 </Window>

@@ -14,6 +14,10 @@ namespace gEarthPack
 		~oepColorFilter();
 		!oepColorFilter();
 
+	public:
+
+		virtual void Reset(){}
+
 	internal:
 
 		osgEarth::ColorFilter* asoeColorFilter();

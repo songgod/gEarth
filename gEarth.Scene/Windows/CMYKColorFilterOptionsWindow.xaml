@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:gEarth.Scene.Windows"
+                    WindowStyle="ToolWindow"
+            WindowStartupLocation="CenterScreen"
              mc:Ignorable="d" 
         ShowInTaskbar="False"
         Title="CMYK滤色设置"
@@ -23,9 +25,9 @@
         <TextBlock Text="M:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Text="Y:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Text="K:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Slider Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Value="{Binding C}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
-        <Slider Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Value="{Binding M}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
-        <Slider Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Value="{Binding Y}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
-        <Slider Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Value="{Binding K}" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding C}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding M}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding Y}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
+        <Slider Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding K}" Minimum="-1" Maximum="1" SmallChange="0.01" LargeChange="0.1"/>
     </Grid>
 </Window>

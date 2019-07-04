@@ -8,7 +8,7 @@
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
         xmlns:gsctrls="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="gEarth" Height="600" Width="800">
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenMapCommand/>
         <cmd:NewMapCommand/>
@@ -66,7 +66,7 @@
                     <Fluent:Button Header="Gamma" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shadergamma.png" Command="{x:Static cmd:CommandLib.SetGammaColorFilterCommand}"/>
                     <Fluent:Button Header="CMYK" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shadercmyk.png" Command="{x:Static cmd:CommandLib.SetCMYKColorFilterCommand}"/>
                     <Fluent:Button Header="色度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderchroma.png" Command="{x:Static cmd:CommandLib.SetChromaKeyColorFilterCommand}"/>
-                    <Fluent:Button Header="亮度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderbrightness.png" Command="{x:Static cmd:CommandLib.SetBrightnessColorFilterCommand}"/>
+                    <Fluent:Button Header="亮度对比度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderbrightness.png" Command="{x:Static cmd:CommandLib.SetBrightnessColorFilterCommand}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="着色">
                     <Fluent:Button Header="高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderdem.png"/>

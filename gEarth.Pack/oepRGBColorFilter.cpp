@@ -7,6 +7,14 @@ gEarthPack::oepRGBColorFilter::oepRGBColorFilter()
 	_handle = new ColorFilterHandle(new osgEarth::Util::RGBColorFilter());
 }
 
+void gEarthPack::oepRGBColorFilter::Reset()
+{
+	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	if (!cf)
+		return;
+	cf->setRGBOffset(osg::Vec3f(0,0,0));
+}
+
 osgEarth::Util::RGBColorFilter* gEarthPack::oepRGBColorFilter::asoeRGBColorFilter()
 {
 	return dynamic_cast<osgEarth::Util::RGBColorFilter*>(_handle->getValue());

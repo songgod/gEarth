@@ -11,6 +11,14 @@ osgEarth::Util::GammaColorFilter* gEarthPack::oepGammaColorFilter::asoGammaColor
 	return dynamic_cast<osgEarth::Util::GammaColorFilter*>(_handle->getValue());
 }
 
+void gEarthPack::oepGammaColorFilter::Reset()
+{
+	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
+	if (!cf)
+		return;
+	cf->setGamma(osg::Vec3f(1, 1, 1));
+}
+
 gEarthPack::oepVec3f gEarthPack::oepGammaColorFilter::Gamma::get()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();

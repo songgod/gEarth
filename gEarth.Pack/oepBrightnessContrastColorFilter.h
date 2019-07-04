@@ -13,6 +13,10 @@ namespace gEarthPack
 
 	public:
 
+		void Reset() override;
+
+	public:
+
 		property oepVec2f BrightnessContrast
 		{
 			oepVec2f get();

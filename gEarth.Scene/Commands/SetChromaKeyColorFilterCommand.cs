@@ -32,6 +32,7 @@ namespace gEarth.Scene.Commands
             }
             ChromaKeyColorFilterOptionsWindow w = new ChromaKeyColorFilterOptionsWindow() { DataContext = cf };
             w.ShowDialog();
+            cf.Reset();
             foreach (var layer in Project.CurrentMap.Layers)
             {
                 oepImageLayer imglyr = layer as oepImageLayer;

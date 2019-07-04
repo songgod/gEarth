@@ -32,6 +32,7 @@ namespace gEarth.Scene.Commands
             }
             RGBColorFilterOptionsWindow w = new RGBColorFilterOptionsWindow() { DataContext = cf };
             w.ShowDialog();
+            cf.Reset();
             foreach (var layer in Project.CurrentMap.Layers)
             {
                 oepImageLayer imglyr = layer as oepImageLayer;

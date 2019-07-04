@@ -11,6 +11,14 @@ osgEarth::Util::CMYKColorFilter* gEarthPack::oepCMYKColorFilter::asoCMYKColorFil
 	return dynamic_cast<osgEarth::Util::CMYKColorFilter*>(_handle->getValue());
 }
 
+void gEarthPack::oepCMYKColorFilter::Reset()
+{
+	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	if (!cf)
+		return;
+	cf->setCMYKOffset(osg::Vec4f(0, 0, 0, 0));
+}
+
 gEarthPack::oepVec4f gEarthPack::oepCMYKColorFilter::Offset::get()
 {
 	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();

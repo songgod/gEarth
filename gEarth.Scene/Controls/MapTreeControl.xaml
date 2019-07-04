@@ -33,7 +33,7 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepImageLayer}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="2">
                         <CheckBox IsChecked="{Binding Visible}"/>
                         <TextBlock Text=" "/>
                         <Image Source="/gEarth.Scene;component/Images/image.png"/>
@@ -42,7 +42,7 @@
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepElevationLayer}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="2">
                         <CheckBox IsChecked="{Binding Visible}"/>
                         <TextBlock Text=" "/>
                         <Image Source="/gEarth.Scene;component/Images/elevation.png"/>
@@ -51,7 +51,7 @@
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepUnknownLayer}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="2">
                         <CheckBox IsChecked="{Binding Visible}"/>
                         <TextBlock Text=" "/>
                         <Image Source="/gEarth.Scene;component/Images/vector.png"/>
@@ -60,7 +60,7 @@
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepExtension}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="2">
                         <Image Source="/gEarth.Scene;component/Images/extension.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>

@@ -11,6 +11,14 @@ osgEarth::Util::BrightnessContrastColorFilter* gEarthPack::oepBrightnessContrast
 	return dynamic_cast<osgEarth::Util::BrightnessContrastColorFilter*>(_handle->getValue());
 }
 
+void gEarthPack::oepBrightnessContrastColorFilter::Reset()
+{
+	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
+	if (!cf)
+		return;
+	cf->setBrightnessContrast(osg::Vec2f(1, 1));
+}
+
 gEarthPack::oepVec2f gEarthPack::oepBrightnessContrastColorFilter::BrightnessContrast::get()
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();

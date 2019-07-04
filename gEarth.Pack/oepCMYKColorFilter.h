@@ -13,6 +13,10 @@ namespace gEarthPack
 
 	public:
 
+		void Reset() override;
+
+	public:
+
 		property oepVec4f Offset
 		{
 			oepVec4f get();

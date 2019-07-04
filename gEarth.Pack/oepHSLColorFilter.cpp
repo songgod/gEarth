@@ -12,6 +12,14 @@ osgEarth::Util::HSLColorFilter* gEarthPack::oepHSLColorFilter::asoeHSLColorFilte
 	return dynamic_cast<osgEarth::Util::HSLColorFilter*>(_handle->getValue());
 }
 
+void gEarthPack::oepHSLColorFilter::Reset()
+{
+	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	if (!cf)
+		return;
+	cf->setHSLOffset(osg::Vec3f(0, 0, 0));
+}
+
 gEarthPack::oepVec3f gEarthPack::oepHSLColorFilter::Offset::get()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
