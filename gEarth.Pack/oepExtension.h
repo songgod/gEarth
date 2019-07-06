@@ -12,7 +12,7 @@ namespace gEarthPack
 	public ref class oepExtension : oepObject
 	{
 	public:
-		oepExtension(oepConfigOptions^ config);
+		oepExtension();
 		~oepExtension();
 		!oepExtension();
 

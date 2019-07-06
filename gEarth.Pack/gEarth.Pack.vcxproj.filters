@@ -111,15 +111,6 @@
     <ClInclude Include="oepConfigOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="oepSkyOptions.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="oepSimpleSkyOptions.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="oepViewpointsOptions.h">
-      <Filter>Extensions</Filter>
-    </ClInclude>
     <ClInclude Include="oepBrightnessContrastColorFilter.h">
       <Filter>ColorFilter</Filter>
     </ClInclude>
@@ -143,6 +134,18 @@
     </ClInclude>
     <ClInclude Include="oepVector.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepExtensionFactory.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSimpleSkyExtension.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepViewpointsExtension.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepViewpoint.h">
+      <Filter>Extensions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,15 +233,6 @@
     <ClCompile Include="oepDriverConfigOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="oepSkyOptions.cpp">
-      <Filter>Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="oepSimpleSkyOptions.cpp">
-      <Filter>Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="oepViewpointsOptions.cpp">
-      <Filter>Extensions</Filter>
-    </ClCompile>
     <ClCompile Include="oepBrightnessContrastColorFilter.cpp">
       <Filter>ColorFilter</Filter>
     </ClCompile>
@@ -262,6 +256,18 @@
     </ClCompile>
     <ClCompile Include="oepVector.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepExtensionFactory.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepViewpointsExtension.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSimpleSkyExtension.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepViewpoint.cpp">
+      <Filter>Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -32,6 +32,14 @@
                         <TextBlock Text="{StaticResource entries}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type oep:oepViewpointsExtension}" ItemsSource="{Binding ViewPoints}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/gEarth.Scene;component/Images/extension.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                
                 <DataTemplate DataType="{x:Type oep:oepImageLayer}">
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <CheckBox IsChecked="{Binding Visible}"/>
@@ -59,12 +67,21 @@
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type oep:oepExtension}">
+                <DataTemplate DataType="{x:Type oep:oepSimpleSkyExtension}">
                     <StackPanel Orientation="Horizontal" Margin="2">
-                        <Image Source="/gEarth.Scene;component/Images/extension.png"/>
+                        <Image Source="/gEarth.Scene;component/Images/simplesky.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepViewpoint}">
+                    <ContentControl MouseDoubleClick="ContentControl_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="/gEarth.Scene;component/Images/viewpoint.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
                 </DataTemplate>
             </TreeView.Resources>
         </TreeView>

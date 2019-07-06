@@ -162,6 +162,7 @@
     <ClInclude Include="oepConfigOptions.h" />
     <ClInclude Include="oepDriverConfigOptions.h" />
     <ClInclude Include="oepExtension.h" />
+    <ClInclude Include="oepExtensionFactory.h" />
     <ClInclude Include="oepFeatureElevationSource.h" />
     <ClInclude Include="oepGammaColorFilter.h" />
     <ClInclude Include="oepHSLColorFilter.h" />
@@ -169,8 +170,7 @@
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSource.h" />
     <ClInclude Include="oepRGBColorFilter.h" />
-    <ClInclude Include="oepSimpleSkyOptions.h" />
-    <ClInclude Include="oepSkyOptions.h" />
+    <ClInclude Include="oepSimpleSkyExtension.h" />
     <ClInclude Include="oepTMSSource.h" />
     <ClInclude Include="oepArcGISSource.h" />
     <ClInclude Include="oepBingSource.h" />
@@ -184,7 +184,8 @@
     <ClInclude Include="oepTileSource.h" />
     <ClInclude Include="oepUnknownLayer.h" />
     <ClInclude Include="oepVector.h" />
-    <ClInclude Include="oepViewpointsOptions.h" />
+    <ClInclude Include="oepViewpoint.h" />
+    <ClInclude Include="oepViewpointsExtension.h" />
     <ClInclude Include="oepVisibleLayer.h" />
     <ClInclude Include="oepWCSSource.h" />
     <ClInclude Include="oepWMSSource.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="oepConfigOptions.cpp" />
     <ClCompile Include="oepDriverConfigOptions.cpp" />
     <ClCompile Include="oepExtension.cpp" />
+    <ClCompile Include="oepExtensionFactory.cpp" />
     <ClCompile Include="oepFeatureElevationSource.cpp" />
     <ClCompile Include="oepGammaColorFilter.cpp" />
     <ClCompile Include="oepHSLColorFilter.cpp" />
@@ -211,8 +213,7 @@
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSource.cpp" />
     <ClCompile Include="oepRGBColorFilter.cpp" />
-    <ClCompile Include="oepSimpleSkyOptions.cpp" />
-    <ClCompile Include="oepSkyOptions.cpp" />
+    <ClCompile Include="oepSimpleSkyExtension.cpp" />
     <ClCompile Include="oepTMSSource.cpp" />
     <ClCompile Include="oepArcGISSource.cpp" />
     <ClCompile Include="oepBingSource.cpp" />
@@ -226,7 +227,8 @@
     <ClCompile Include="oepTileSource.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepVector.cpp" />
-    <ClCompile Include="oepViewpointsOptions.cpp" />
+    <ClCompile Include="oepViewpoint.cpp" />
+    <ClCompile Include="oepViewpointsExtension.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />
     <ClCompile Include="oepWCSSource.cpp" />
     <ClCompile Include="oepWMSSource.cpp" />

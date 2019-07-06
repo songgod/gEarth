@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms.Integration;
 using gEarthPack;
 using System.Windows.Forms;
+using System.Windows;
 
 namespace gEarth.Scene.Controls
 {
@@ -47,5 +48,24 @@ namespace gEarth.Scene.Controls
             Child.Paint -= Child_Paint;
             render.End();
         }
+
+       static void OnViewPointChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            EarthViewControl owner = obj as EarthViewControl;
+            oepViewpoint vp = args.NewValue as oepViewpoint;
+            owner.render.Flyto(vp);
+        }
+
+        public gEarthPack.oepViewpoint ViewPoint
+        {
+            get { return (gEarthPack.oepViewpoint)GetValue(ViewPointProperty); }
+            set { SetValue(ViewPointProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ViewPoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewPointProperty =
+            DependencyProperty.Register("ViewPoint", typeof(gEarthPack.oepViewpoint), typeof(EarthViewControl), new PropertyMetadata(new PropertyChangedCallback(OnViewPointChangedCallback)));
+
+
     }
 }

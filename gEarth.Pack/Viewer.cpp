@@ -166,6 +166,12 @@ const osg::Vec4& Viewer::getClearColor() const
 	return _viewer->getCamera()->getClearColor();
 }
 
+void Viewer::flyto(const osgEarth::Viewpoint& vp)
+{
+	osgEarth::Util::EarthManipulator* mp = (osgEarth::Util::EarthManipulator*)(_viewer->getCameraManipulator());
+	mp->setViewpoint(vp, 2.0);
+}
+
 void Viewer::InitCameraConfig()
 {
 	RECT rect;

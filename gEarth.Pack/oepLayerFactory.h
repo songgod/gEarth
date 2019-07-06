@@ -7,7 +7,7 @@ using namespace System::Collections::Generic;
 
 namespace gEarthPack
 {
-	public interface class ILayerCreator
+	public interface class IoepLayerCreator
 	{
 		String^ supportType();
 		oepLayer^ createLayer(IntPtr param);
@@ -20,14 +20,14 @@ namespace gEarthPack
 
 	public:
 
-		static void registerCreator(ILayerCreator^ creator);
+		static void registerCreator(IoepLayerCreator^ creator);
 		static void unregisterCreator(String^ type);
 
 		static oepLayer^ creatorLayer(String^ type, IntPtr param);
 
 	private:
 
-		static Dictionary<String^, ILayerCreator^>^ _creatorcache;
+		static Dictionary<String^, IoepLayerCreator^>^ _creatorcache;
 
 	};
 }

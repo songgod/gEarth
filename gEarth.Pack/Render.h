@@ -4,6 +4,7 @@
 
 #include "viewer.h"
 #include "oepMap.h"
+#include "oepViewpoint.h"
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
@@ -24,6 +25,7 @@ namespace gEarthPack {
 	public:
 
 		bool Open(oepMap^ map);
+		void Flyto(oepViewpoint^ vp);
 
 	protected:
 

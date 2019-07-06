@@ -5,6 +5,7 @@
 #include <osgDB\WriteFile>
 #include <msclr\marshal_cppstd.h>  
 #include "oepLayerFactory.h"
+#include "oepExtensionFactory.h"
 
 using namespace msclr::interop;
 
@@ -71,8 +72,21 @@ void gEarthPack::oepMap::InitLayers()
 
 void gEarthPack::oepMap::InitExtensions()
 {
+	osgEarth::MapNode* pMapNode = getMapNode();
+	if (pMapNode == NULL)
+		return;
 	_extensions->CollectionChanged -= gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
-	//todo
+	const std::vector<osg::ref_ptr<osgEarth::Extension>>&extensions = pMapNode->getExtensions();
+	for (unsigned int i = 0; i < extensions.size(); i++)
+	{
+		osgEarth::Extension* oeextension = extensions[i];
+		std::string type = oeextension->getConfigKey();
+		oepExtension^ extension = oepExtensionFactory::creatorExtenson(marshal_as<String^>(type), IntPtr(oeextension));
+		if (extension == nullptr)
+			continue;
+
+		_extensions->Add(extension);
+	}
 	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepMap::OnExtensionsCollectionChanged);
 }
 

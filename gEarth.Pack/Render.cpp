@@ -43,3 +43,10 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	_viewer->open(pMapNode);
 	return true;
 }
+
+void gEarthPack::Render::Flyto(oepViewpoint^ vp)
+{
+	if (vp == nullptr || vp->asoeViewpoint() == NULL)
+		return;
+	_viewer->flyto(*(vp->asoeViewpoint()));
+}

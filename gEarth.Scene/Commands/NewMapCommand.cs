@@ -28,7 +28,7 @@ namespace gEarth.Scene.Commands
             oepElevationLayer wdelvlyr = new oepElevationLayer(new oepGDALSource() { url = wdelv }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
             map.Layers.Add(wdimglyr);
             map.Layers.Add(wdelvlyr);
-            oepExtension skyext = new oepExtension(new oepSimpleSkyOptions());
+            oepSimpleSkyExtension skyext = new oepSimpleSkyExtension();
             map.Extensions.Add(skyext);
             return map;
         }

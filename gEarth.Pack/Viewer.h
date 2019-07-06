@@ -4,6 +4,7 @@
 #include <osg/Group>
 #include <osgEarth/MapNode>
 #include <windows.h>
+#include <osgEarth/Viewpoint>
 
 /** 渲染窗口*/
 class Viewer
@@ -47,6 +48,9 @@ public:
 
 	/** 获取背景色*/
 	const osg::Vec4& getClearColor() const;
+
+	/**飞行到视点*/
+	void flyto(const osgEarth::Viewpoint& vp);
 
 protected:
 

@@ -46,5 +46,26 @@ namespace gEarth.Scene.Controls
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         internal static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(ObservableCollection<Object>), typeof(MapTreeControl), new PropertyMetadata(null));
+
+
+
+        public gEarthPack.oepViewpoint SelectViewpoint
+        {
+            get { return (gEarthPack.oepViewpoint)GetValue(SelectViewpointProperty); }
+            set { SetValue(SelectViewpointProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectViewpoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectViewpointProperty =
+            DependencyProperty.Register("SelectViewpoint", typeof(gEarthPack.oepViewpoint), typeof(MapTreeControl), new PropertyMetadata(null));
+
+
+
+        private void ContentControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ContentControl cc = sender as ContentControl;
+            gEarthPack.oepViewpoint vp = cc.DataContext as gEarthPack.oepViewpoint;
+            SelectViewpoint = vp;
+        }
     }
 }

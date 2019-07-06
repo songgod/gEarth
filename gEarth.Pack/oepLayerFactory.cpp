@@ -10,7 +10,7 @@ using namespace gEarthPack;
 
 namespace gEarthPack
 {
-	private ref class oepImageLayerCreator : ILayerCreator
+	private ref class oepImageLayerCreator : IoepLayerCreator
 	{
 	public:
 		virtual String^ supportType()
@@ -25,7 +25,7 @@ namespace gEarthPack
 		}
 	};
 
-	private ref class oepElevationLayerCreator : ILayerCreator
+	private ref class oepElevationLayerCreator : IoepLayerCreator
 	{
 	public:
 		virtual String^ supportType()
@@ -39,7 +39,7 @@ namespace gEarthPack
 		}
 	};
 
-	private ref class oepUnkownLayerCreator : ILayerCreator
+	private ref class oepUnkownLayerCreator : IoepLayerCreator
 	{
 	public:
 		virtual String^ supportType()
@@ -57,13 +57,13 @@ namespace gEarthPack
 
 static oepLayerFactory::oepLayerFactory()
 {
-	_creatorcache = gcnew Dictionary<String^, ILayerCreator^>();
+	_creatorcache = gcnew Dictionary<String^, IoepLayerCreator^>();
 	registerCreator(gcnew oepImageLayerCreator());
 	registerCreator(gcnew oepElevationLayerCreator());
 	registerCreator(gcnew oepUnkownLayerCreator());
 }
 
-void gEarthPack::oepLayerFactory::registerCreator(ILayerCreator^ creator)
+void gEarthPack::oepLayerFactory::registerCreator(IoepLayerCreator^ creator)
 {
 	if (creator == nullptr)
 		return;
