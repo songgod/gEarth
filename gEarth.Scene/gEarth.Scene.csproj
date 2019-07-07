@@ -98,6 +98,7 @@
     <Compile Include="Commands\SetGammaColorFilterCommand.cs" />
     <Compile Include="Commands\SetHSLColorFilterCommand.cs" />
     <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
+    <Compile Include="Commands\SetSimpleSkyOptionsCommand.cs" />
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,9 @@
     </Compile>
     <Compile Include="Windows\RGBColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>RGBColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SimpleSkyOptionsWindow.xaml.cs">
+      <DependentUpon>SimpleSkyOptionsWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\RGBColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SimpleSkyOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

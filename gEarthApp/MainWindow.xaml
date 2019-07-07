@@ -24,6 +24,7 @@
         <cmd:SetGammaColorFilterCommand/>
         <cmd:SetHSLColorFilterCommand/>
         <cmd:SetRGBColorFilterCommand/>
+        <cmd:SetSimpleSkyOptionsCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -74,9 +75,8 @@
                     <Fluent:Button Header="坡向" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderaspect.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="环境">
-                    <Fluent:ToggleButton Header="大气层" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/air.png"/>
+                    <Fluent:ToggleButton Header="大气" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/air.png" Command="{x:Static cmd:CommandLib.SetSimpleSkyOptionsCommand}"/>
                     <Fluent:ToggleButton Header="海洋" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/ocean.png"/>
-                    <Fluent:Button Header="星空" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/stars.png"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="工具">
