@@ -60,10 +60,20 @@ namespace gEarthPack
 			void set(bool b);
 		}
 
+		property Nullable<Boolean> Visible
+		{
+			Nullable<Boolean> get();
+			void set(Nullable<Boolean> b);
+		}
+
 	internal:
 		oepSimpleSkyExtension(osgEarth::Extension* ext);
 		osgEarth::Util::SkyNode* getoeSkyNode();
 		osgEarth::SimpleSky::SimpleSkyOptions* getoeSimpleSkyOptions();
+
+	private:
+
+		bool _bNotifyVisible;
 	};
 }
 

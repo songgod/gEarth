@@ -69,6 +69,8 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepSimpleSkyExtension}">
                     <StackPanel Orientation="Horizontal" Margin="2">
+                        <CheckBox IsChecked="{Binding Visible}"/>
+                        <TextBlock Text=" "/>
                         <Image Source="/gEarth.Scene;component/Images/simplesky.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>

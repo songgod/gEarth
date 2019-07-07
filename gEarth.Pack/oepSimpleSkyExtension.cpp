@@ -2,7 +2,7 @@
 #include "oepSimpleSkyExtension.h"
 #include "oepExtensionFactory.h"
 
-gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension()
+gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
 {
 	osgEarth::SimpleSky::SimpleSkyOptions options;
 	osgEarth::Config conf = options.getConfig();
@@ -11,7 +11,7 @@ gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension()
 	_handle = new ExtensionHandle(extension);
 }
 
-gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext)
+gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext) :_bNotifyVisible(true)
 {
 	_handle = new ExtensionHandle(ext);
 }
@@ -137,6 +137,9 @@ void gEarthPack::oepSimpleSkyExtension::SunVisible::set(bool b)
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (sn) sn->setSunVisible(b);
 	if (so) so->sunVisible() = b;
+	NotifyChanged("SunVisible");
+	if(_bNotifyVisible)
+		NotifyChanged("Visible");
 }
 
 bool gEarthPack::oepSimpleSkyExtension::MoonVisible::get()
@@ -153,6 +156,9 @@ void gEarthPack::oepSimpleSkyExtension::MoonVisible::set(bool b)
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (sn) sn->setMoonVisible(b);
 	if (so) so->moonVisible() = b;
+	NotifyChanged("MoonVisible");
+	if (_bNotifyVisible)
+		NotifyChanged("Visible");
 }
 
 bool gEarthPack::oepSimpleSkyExtension::StarsVisible::get()
@@ -169,6 +175,9 @@ void gEarthPack::oepSimpleSkyExtension::StarsVisible::set(bool b)
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (sn) sn->setStarsVisible(b);
 	if (so) so->starsVisible() = b;
+	NotifyChanged("StarsVisible");
+	if (_bNotifyVisible)
+		NotifyChanged("Visible");
 }
 
 bool gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::get()
@@ -185,4 +194,43 @@ void gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::set(bool b)
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (sn) sn->setAtmosphereVisible(b);
 	if (so) so->atmosphereVisible() = b;
+	NotifyChanged("AtmosphereVisible");
+	if (_bNotifyVisible)
+		NotifyChanged("Visible");
+}
+
+Nullable<Boolean> gEarthPack::oepSimpleSkyExtension::Visible::get()
+{
+	if (SunVisible && MoonVisible && StarsVisible && AtmosphereVisible)
+		return Nullable<Boolean>(true);
+
+	if (!SunVisible && !MoonVisible && !StarsVisible && !AtmosphereVisible)
+		return Nullable<Boolean>(false);
+
+	return Nullable<Boolean>();
+}
+
+void gEarthPack::oepSimpleSkyExtension::Visible::set(Nullable<Boolean> b)
+{
+	if (!b.HasValue)
+		return;
+	_bNotifyVisible = false;
+
+	if (b.Value)
+	{
+		SunVisible = true;
+		MoonVisible = true;
+		StarsVisible = true;
+		AtmosphereVisible = true;
+	}
+	else
+	{
+		SunVisible = false;
+		MoonVisible = false;
+		StarsVisible = false;
+		AtmosphereVisible = false;
+	}
+
+	_bNotifyVisible = true;
+	NotifyChanged("Visible");
 }
