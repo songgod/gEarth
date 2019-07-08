@@ -190,6 +190,7 @@
     <ClInclude Include="oepTileSourceOptions.h" />
     <ClInclude Include="oepUnknownLayer.h" />
     <ClInclude Include="oepVector.h" />
+    <ClInclude Include="oepViewFitter.h" />
     <ClInclude Include="oepViewpoint.h" />
     <ClInclude Include="oepViewpointsExtension.h" />
     <ClInclude Include="oepVisibleLayer.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepVector.cpp" />
+    <ClCompile Include="oepViewFitter.cpp" />
     <ClCompile Include="oepViewpoint.cpp" />
     <ClCompile Include="oepViewpointsExtension.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />

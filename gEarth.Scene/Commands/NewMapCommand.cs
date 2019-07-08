@@ -34,8 +34,9 @@ namespace gEarth.Scene.Commands
                 {
                     driver = new oepGDALSourceOptions() { url = wdelv }
                 }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
-            map.Layers.Add(wdimglyr);
             map.Layers.Add(wdelvlyr);
+            map.Layers.Add(wdimglyr);
+            
             oepSimpleSkyExtension skyext = new oepSimpleSkyExtension();
             map.Extensions.Add(skyext);
             return map;

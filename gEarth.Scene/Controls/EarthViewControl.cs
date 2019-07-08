@@ -13,7 +13,7 @@ namespace gEarth.Scene.Controls
     public delegate void EarthViewReady(bool bready);
     public class EarthViewControl : WindowsFormsHost
     {
-        private Render render { get; set; }
+        public Render render { get; private set; }
 
         public EarthViewControl()
         {
@@ -64,7 +64,7 @@ namespace gEarth.Scene.Controls
 
         // Using a DependencyProperty as the backing store for ViewPoint.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ViewPointProperty =
-            DependencyProperty.Register("ViewPoint", typeof(gEarthPack.oepViewpoint), typeof(EarthViewControl), new PropertyMetadata(new PropertyChangedCallback(OnViewPointChangedCallback)));
+            DependencyProperty.Register("ViewPoint", typeof(gEarthPack.oepViewpoint), typeof(EarthViewControl), new PropertyMetadata(null,new PropertyChangedCallback(OnViewPointChangedCallback)));
 
 
     }

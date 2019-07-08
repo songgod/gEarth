@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 
 namespace gEarth.Scene.Controls
 {
+    public delegate void SelectObjectChanged(Object obj);
+
     /// <summary>
     /// Interaction logic for MapTreeControl.xaml
     /// </summary>
@@ -47,25 +49,31 @@ namespace gEarth.Scene.Controls
         internal static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(ObservableCollection<Object>), typeof(MapTreeControl), new PropertyMetadata(null));
 
+        public event SelectObjectChanged OnSelectObjectChanged;
 
-
-        public gEarthPack.oepViewpoint SelectViewpoint
+        public Object SelectObject
         {
-            get { return (gEarthPack.oepViewpoint)GetValue(SelectViewpointProperty); }
-            set { SetValue(SelectViewpointProperty, value); }
+            get { return (Object)GetValue(SelectObjectProperty); }
+            set { SetValue(SelectObjectProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for SelectViewpoint.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectViewpointProperty =
-            DependencyProperty.Register("SelectViewpoint", typeof(gEarthPack.oepViewpoint), typeof(MapTreeControl), new PropertyMetadata(null));
+        static void OnSelectObjectChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            MapTreeControl mtc = (MapTreeControl)obj;
+            if(mtc.OnSelectObjectChanged!=null)
+            {
+                mtc.OnSelectObjectChanged.Invoke(mtc.SelectObject);
+            }
+        }
 
+        // Using a DependencyProperty as the backing store for SelectObject.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectObjectProperty =
+            DependencyProperty.Register("SelectObject", typeof(Object), typeof(MapTreeControl), new PropertyMetadata(null,new PropertyChangedCallback(OnSelectObjectChangedCallback)));
 
-
-        private void ContentControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void cc_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ContentControl cc = sender as ContentControl;
-            gEarthPack.oepViewpoint vp = cc.DataContext as gEarthPack.oepViewpoint;
-            SelectViewpoint = vp;
+            SelectObject = cc.DataContext;
         }
     }
 }

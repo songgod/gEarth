@@ -43,6 +43,18 @@ void gEarthPack::oepViewpoint::Name::set(String^ v)
 	NotifyChanged("Name");
 }
 
+bool gEarthPack::oepViewpoint::IsValid::get()
+{
+	if (!_handle)
+		return false;
+	return _handle->isValid();
+}
+
+gEarthPack::oepViewpoint::oepViewpoint(osgEarth::Viewpoint vp): _handle(new osgEarth::Viewpoint()), _ownhandle(true)
+{
+	(*_handle) = vp;
+}
+
 void gEarthPack::oepViewpoint::setHandle(osgEarth::Viewpoint* handle)
 {
 	if (_handle != NULL && _ownhandle)

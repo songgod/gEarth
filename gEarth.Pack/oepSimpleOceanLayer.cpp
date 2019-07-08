@@ -56,3 +56,20 @@ void gEarthPack::oepSimpleOceanLayer::Color::set(oepVec4f v)
 	ol->setColor(osgEarth::Color(v.x,v.y,v.z,v.a));
 	NotifyChanged("Color");
 }
+
+float gEarthPack::oepSimpleOceanLayer::SeaLevel::get()
+{
+	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
+	if (!ol)
+		return 0.0;
+	return ol->getSeaLevel();
+}
+
+void gEarthPack::oepSimpleOceanLayer::SeaLevel::set(float v)
+{
+	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
+	if (!ol)
+		return;
+	ol->setSeaLevel(v);
+	NotifyChanged("SeaLevel");
+}

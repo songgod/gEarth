@@ -38,7 +38,7 @@ namespace gEarth.Scene.Commands
                     throw new Exception("water_modulate.png is not exist");
                 }
                     
-                ol = new oepSimpleOceanLayer(new oepSimpleOceanLayerOptions() { TextureUrl = wmimg });
+                ol = new oepSimpleOceanLayer(new oepSimpleOceanLayerOptions() { TextureUrl = wmimg }) { SeaLevel = 60 };
                 Project.CurrentMap.Layers.Add(ol);
             }
 

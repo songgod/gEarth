@@ -114,7 +114,7 @@
                 <gsctrls:MapTreeControl x:Name="mtree"/>
             </Border>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax" ViewPoint="{Binding Path=SelectViewpoint, ElementName=mtree}"/>
+            <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax"/>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>

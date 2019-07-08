@@ -60,6 +60,9 @@ void gEarthPack::oepMap::InitLayers()
 	for (unsigned int i = 0; i < pMap->getNumLayers(); i++)
 	{
 		osgEarth::Layer* pLayer = pMap->getLayerAt(i);
+		osgEarth::VisibleLayer* pVisibleLayer = dynamic_cast<osgEarth::VisibleLayer*>(pLayer);
+		if(!pVisibleLayer)
+			continue;
 		std::string type = pLayer->options().getConfig().key();
 		oepLayer^ layer = oepLayerFactory::creatorLayer(marshal_as<String^>(type), IntPtr(pLayer));
 		if(layer==nullptr)

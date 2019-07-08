@@ -26,6 +26,12 @@ namespace gEarthPack
 			void set(float v);
 		}
 
+		property float SeaLevel
+		{
+			float get();
+			void set(float v);
+		}
+
 	internal:
 		oepSimpleOceanLayer(osgEarth::Util::SimpleOceanLayer* layer);
 		osgEarth::Util::SimpleOceanLayer* asoeSimpleOceanLayer();

@@ -11,22 +11,25 @@ WindowStyle="ToolWindow"
              mc:Ignorable="d" 
         ShowInTaskbar="False"
         Title="海洋设置"
-             Height="90.801" Width="300">
+             Height="130.801" Width="300">
     <Grid>
         <Grid.Resources>
             <cvt:oepVec4f2ColorConverter x:Key="v42ccvt"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="颜色:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <xctk:ColorPicker Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedColor="{Binding Color, Converter={StaticResource v42ccvt}}"/>
-        <TextBlock Text="高度:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="最大高度:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <xctk:DecimalUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding MaxAltitude}"/>
+        <TextBlock Text="海平面高度:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <xctk:DecimalUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding SeaLevel}"/>
     </Grid>
 </Window>

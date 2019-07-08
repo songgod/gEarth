@@ -41,22 +41,26 @@
                 </HierarchicalDataTemplate>
                 
                 <DataTemplate DataType="{x:Type oep:oepImageLayer}">
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <CheckBox IsChecked="{Binding Visible}"/>
-                        <TextBlock Text=" "/>
-                        <Image Source="/gEarth.Scene;component/Images/image.png"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                    </StackPanel>
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <CheckBox IsChecked="{Binding Visible}"/>
+                            <TextBlock Text=" "/>
+                            <Image Source="/gEarth.Scene;component/Images/image.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepElevationLayer}">
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <CheckBox IsChecked="{Binding Visible}"/>
-                        <TextBlock Text=" "/>
-                        <Image Source="/gEarth.Scene;component/Images/elevation.png"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                    </StackPanel>
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <CheckBox IsChecked="{Binding Visible}"/>
+                            <TextBlock Text=" "/>
+                            <Image Source="/gEarth.Scene;component/Images/elevation.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepSimpleOceanLayer}">
                     <StackPanel Orientation="Horizontal" Margin="2">
@@ -68,13 +72,15 @@
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepUnknownLayer}">
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <CheckBox IsChecked="{Binding Visible}"/>
-                        <TextBlock Text=" "/>
-                        <Image Source="/gEarth.Scene;component/Images/vector.png"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                    </StackPanel>
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <CheckBox IsChecked="{Binding Visible}"/>
+                            <TextBlock Text=" "/>
+                            <Image Source="/gEarth.Scene;component/Images/vector.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepSimpleSkyExtension}">
                     <StackPanel Orientation="Horizontal" Margin="2">
@@ -86,7 +92,7 @@
                     </StackPanel>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepViewpoint}">
-                    <ContentControl MouseDoubleClick="ContentControl_MouseDoubleClick" DataContext="{Binding}">
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
                         <StackPanel Orientation="Horizontal" Margin="2">
                             <Image Source="/gEarth.Scene;component/Images/viewpoint.png"/>
                             <TextBlock Text=" "/>

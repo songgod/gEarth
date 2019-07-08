@@ -30,6 +30,7 @@ namespace gEarthApp
             InitializeComponent();
             InitStartMap();
             ax.OnEarthViewReady += Ax_OnEarthViewReady;
+            mtree.OnSelectObjectChanged += Mtree_OnSelectObjectChanged;
             gEarth.Scene.Project.OnCurrentMapChanged += Project_OnCurrentMapChanged;
         }
 
@@ -37,17 +38,34 @@ namespace gEarthApp
 
         private void InitStartMap()
         {
-            if (Project.LastMapUrl.Length > 0)
-            {
-                oepMap map = new oepMap();
-                if (map.load(Project.LastMapUrl))
-                {
-                    StartMap = map;
-                }
-            }
-            if (StartMap == null)
-            {
+            //if (Project.LastMapUrl!=null && Project.LastMapUrl.Length > 0)
+            //{
+            //    oepMap map = new oepMap();
+            //    if (map.load(Project.LastMapUrl))
+            //    {
+            //        StartMap = map;
+            //    }
+            //}
+            //if (StartMap == null)
+            //{
                 StartMap = gEarth.Scene.Commands.NewMapCommand.NewMap();
+            //}
+        }
+
+        private void Mtree_OnSelectObjectChanged(object obj)
+        {
+            oepViewpoint vp = obj as oepViewpoint;
+            if(vp!=null)
+            {
+                ax.ViewPoint = vp;
+                return;
+            }
+            oepLayer lyr = obj as oepLayer;
+            if(lyr!=null)
+            {
+                vp = oepViewFitter.Fitter(lyr, Project.CurrentMap, ax.render);
+                ax.ViewPoint = vp;
+                return;
             }
         }
 

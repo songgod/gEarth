@@ -22,8 +22,13 @@ namespace gEarthPack
 			void set(String^ v) override;
 		}
 
-	internal:
+		property bool IsValid
+		{
+			bool get();
+		}
 
+	internal:
+		oepViewpoint(osgEarth::Viewpoint vp);
 		void setHandle(osgEarth::Viewpoint* handle);
 		void resetHandle();
 		osgEarth::Viewpoint* asoeViewpoint();

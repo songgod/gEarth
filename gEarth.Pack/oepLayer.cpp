@@ -3,6 +3,7 @@
 #include "Handle.h"
 #include "oepLayerFactory.h"
 #include <osgEarth/Map>
+#include <osgEarthUtil/ViewFitter>
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
@@ -71,4 +72,3 @@ void gEarthPack::oepLayer::Name::set(String^ v)
 	plyr->setName(marshal_as<std::string>(v));
 	NotifyChanged("Name");
 }
-

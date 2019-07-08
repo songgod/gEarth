@@ -27,7 +27,7 @@ namespace gEarthPack {
 		bool Open(oepMap^ map);
 		void Flyto(oepViewpoint^ vp);
 
-	protected:
+	internal:
 
 		Viewer* _viewer;
 	};

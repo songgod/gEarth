@@ -171,6 +171,9 @@
     <ClInclude Include="oepVisibleLayerOptions.h">
       <Filter>LayerOptions</Filter>
     </ClInclude>
+    <ClInclude Include="oepViewFitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="oepVisibleLayerOptions.cpp">
       <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepViewFitter.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
