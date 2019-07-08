@@ -26,6 +26,7 @@ namespace gEarth.Scene.Commands
             SetHSLColorFilterCommand = CreateCommand("SetHSLColorFilterCommand");
             SetRGBColorFilterCommand = CreateCommand("SetRGBColorFilterCommand");
             SetSimpleSkyOptionsCommand = CreateCommand("SetSimpleSkyOptionsCommand");
+            SetSimpleOceanOptionsCommand = CreateCommand("SetSimpleOceanOptionsCommand");
         }
         private static RoutedUICommand CreateCommand(string name)
         {
@@ -46,5 +47,6 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand SetHSLColorFilterCommand { get; set; }
         public static RoutedUICommand SetRGBColorFilterCommand { get; set; }
         public static RoutedUICommand SetSimpleSkyOptionsCommand { get; set; }
+        public static RoutedUICommand SetSimpleOceanOptionsCommand { get; set; }
     }
 }

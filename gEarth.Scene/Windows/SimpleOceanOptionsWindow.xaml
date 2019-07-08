@@ -1,0 +1,32 @@
+﻿<Window x:Class="gEarth.Scene.Windows.SimpleOceanOptionsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:gEarth.Scene.Windows"
+        xmlns:cvt="clr-namespace:gEarth.Scene.Converter"
+WindowStyle="ToolWindow"
+            WindowStartupLocation="CenterScreen"
+             mc:Ignorable="d" 
+        ShowInTaskbar="False"
+        Title="海洋设置"
+             Height="90.801" Width="300">
+    <Grid>
+        <Grid.Resources>
+            <cvt:oepVec4f2ColorConverter x:Key="v42ccvt"/>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="颜色:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <xctk:ColorPicker Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedColor="{Binding Color, Converter={StaticResource v42ccvt}}"/>
+        <TextBlock Text="高度:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <xctk:DecimalUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Value="{Binding MaxAltitude}"/>
+    </Grid>
+</Window>

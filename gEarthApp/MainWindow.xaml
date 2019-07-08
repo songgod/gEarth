@@ -25,6 +25,7 @@
         <cmd:SetHSLColorFilterCommand/>
         <cmd:SetRGBColorFilterCommand/>
         <cmd:SetSimpleSkyOptionsCommand/>
+        <cmd:SetSimpleOceanOptionsCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -76,7 +77,7 @@
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="环境">
                     <Fluent:Button Header="大气" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/air.png" Command="{x:Static cmd:CommandLib.SetSimpleSkyOptionsCommand}"/>
-                    <Fluent:Button Header="海洋" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/ocean.png"/>
+                    <Fluent:Button Header="海洋" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/ocean.png" Command="{x:Static cmd:CommandLib.SetSimpleOceanOptionsCommand}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="工具">

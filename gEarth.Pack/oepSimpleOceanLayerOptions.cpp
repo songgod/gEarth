@@ -24,6 +24,7 @@ void gEarthPack::oepSimpleOceanLayerOptions::Color::set(oepVec4f v)
 {
 	osgEarth::Color c(v.x, v.y, v.z, v.a);
 	asoeSimpleOceanLayerOptions()->color() = c;
+	NotifyChanged("Color");
 }
 
 float gEarthPack::oepSimpleOceanLayerOptions::MaxAltitude::get()
@@ -34,6 +35,7 @@ float gEarthPack::oepSimpleOceanLayerOptions::MaxAltitude::get()
 void gEarthPack::oepSimpleOceanLayerOptions::MaxAltitude::set(float v)
 {
 	asoeSimpleOceanLayerOptions()->maxAltitude() = v;
+	NotifyChanged("MaxAltitude");
 }
 
 String^ gEarthPack::oepSimpleOceanLayerOptions::MaskLayer::get()
@@ -44,6 +46,7 @@ String^ gEarthPack::oepSimpleOceanLayerOptions::MaskLayer::get()
 void gEarthPack::oepSimpleOceanLayerOptions::MaskLayer::set(String^ v)
 {
 	asoeSimpleOceanLayerOptions()->maskLayer() = marshal_as<std::string>(v);
+	NotifyChanged("MaskLayer");
 }
 
 bool gEarthPack::oepSimpleOceanLayerOptions::UseBathymetry::get()
@@ -54,17 +57,18 @@ bool gEarthPack::oepSimpleOceanLayerOptions::UseBathymetry::get()
 void gEarthPack::oepSimpleOceanLayerOptions::UseBathymetry::set(bool b)
 {
 	asoeSimpleOceanLayerOptions()->useBathymetry() = b;
+	NotifyChanged("UseBathymetry");
 }
 
 String^ gEarthPack::oepSimpleOceanLayerOptions::TextureUrl::get()
 {
-	return "";
-	//return marshal_as<String^>(asoeSimpleOceanLayerOptions()->texture().value());
+	return marshal_as<String^>(asoeSimpleOceanLayerOptions()->texture().value().full());
 }
 
 void gEarthPack::oepSimpleOceanLayerOptions::TextureUrl::set(String^ url)
 {
 	asoeSimpleOceanLayerOptions()->texture()= marshal_as<std::string>(url);
+	NotifyChanged("TextureUrl");
 }
 
 unsigned gEarthPack::oepSimpleOceanLayerOptions::TextureLOD::get()
@@ -75,4 +79,5 @@ unsigned gEarthPack::oepSimpleOceanLayerOptions::TextureLOD::get()
 void gEarthPack::oepSimpleOceanLayerOptions::TextureLOD::set(unsigned v)
 {
 	asoeSimpleOceanLayerOptions()->textureLOD() = v;
+	NotifyChanged("TextureLOD");
 }

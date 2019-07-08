@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace gEarth.Scene.Windows
 {
     /// <summary>
-    /// Interaction logic for ChromaKeyColorFilterOptionsWindow.xaml
+    /// Interaction logic for SimpleOceanOptionsWindow.xaml
     /// </summary>
-    public partial class ChromaKeyColorFilterOptionsWindow : Window
+    public partial class SimpleOceanOptionsWindow : Window
     {
-        public ChromaKeyColorFilterOptionsWindow()
+        public SimpleOceanOptionsWindow()
         {
             InitializeComponent();
         }
