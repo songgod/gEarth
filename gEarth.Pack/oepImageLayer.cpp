@@ -16,6 +16,9 @@ oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 oepImageLayer::oepImageLayer(osgEarth::ImageLayer* layer)
 {
 	_handle->setValue(layer);
+	_colorfilters = gcnew oepColorFilters();
+	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepImageLayer::OnColorFiltersCollectionChanged);
+
 }
 
 osgEarth::ImageLayer* gEarthPack::oepImageLayer::asoeImageLayer()
