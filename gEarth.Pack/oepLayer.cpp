@@ -8,7 +8,7 @@
 using namespace msclr::interop;
 using namespace gEarthPack;
 
-oepLayer::oepLayer()
+oepLayer::oepLayer():_handle(NULL)
 {
 	_handle = new LayerHandle();
 }
@@ -34,6 +34,8 @@ void gEarthPack::oepLayer::quit()
 
 osgEarth::Layer* gEarthPack::oepLayer::asoeLayer()
 {
+	if (!_handle)
+		return NULL;
 	return _handle->getValue();
 }
 

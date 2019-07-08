@@ -20,12 +20,13 @@ namespace gEarth.Scene.Commands
 
         private void AddArcGISImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            oepArcGISSource src = new oepArcGISSource();
+            oepArcGISSourceOptions src = new oepArcGISSourceOptions();
             ArcGISSourceOptionsWindow window = new ArcGISSourceOptionsWindow() { DataContext = src };
             var res = window.ShowDialog();
             if (res.HasValue && res.Value)
             {
-                oepImageLayer imglyr = new oepImageLayer(src) { Name = "ArcGISImage" };
+                oepImageLayerOptions options = new oepImageLayerOptions() { driver = src };
+                oepImageLayer imglyr = new oepImageLayer(options) { Name = "ArcGISImage" };
                 Project.CurrentMap.Layers.Add(imglyr);
                 if (!imglyr.IsOK)
                 {

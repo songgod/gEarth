@@ -1,6 +1,7 @@
 #pragma once
 
 #include "oepObject.h"
+#include "oepLayerOptions.h"
 #include "Handle.h"
 #include <osgEarth/Layer>
 

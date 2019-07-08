@@ -99,7 +99,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -116,7 +116,7 @@
       </OmitFramePointers>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -128,7 +128,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -140,7 +140,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -161,35 +161,42 @@
     <ClInclude Include="oepColorFilter.h" />
     <ClInclude Include="oepConfigOptions.h" />
     <ClInclude Include="oepDriverConfigOptions.h" />
+    <ClInclude Include="oepElevationLayerOptions.h" />
     <ClInclude Include="oepExtension.h" />
     <ClInclude Include="oepExtensionFactory.h" />
-    <ClInclude Include="oepFeatureElevationSource.h" />
+    <ClInclude Include="oepFeatureElevationSourceOptions.h" />
     <ClInclude Include="oepGammaColorFilter.h" />
     <ClInclude Include="oepHSLColorFilter.h" />
+    <ClInclude Include="oepImageLayerOptions.h" />
     <ClInclude Include="oepLayerFactory.h" />
+    <ClInclude Include="oepLayerOptions.h" />
     <ClInclude Include="oepObject.h" />
-    <ClInclude Include="oepOSGSource.h" />
+    <ClInclude Include="oepOSGSourceOptions.h" />
     <ClInclude Include="oepRGBColorFilter.h" />
+    <ClInclude Include="oepSimpleOceanLayer.h" />
+    <ClInclude Include="oepSimpleOceanLayerOptions.h" />
     <ClInclude Include="oepSimpleSkyExtension.h" />
-    <ClInclude Include="oepTMSSource.h" />
-    <ClInclude Include="oepArcGISSource.h" />
-    <ClInclude Include="oepBingSource.h" />
+    <ClInclude Include="oepTerrainLayerOptions.h" />
+    <ClInclude Include="oepTMSSourceOptions.h" />
+    <ClInclude Include="oepArcGISSourceOptions.h" />
+    <ClInclude Include="oepBingSourceOptions.h" />
     <ClInclude Include="oepElevationLayer.h" />
-    <ClInclude Include="oepFeatureTileSource.h" />
-    <ClInclude Include="oepGDALSource.h" />
+    <ClInclude Include="oepFeatureTileSourceOptions.h" />
+    <ClInclude Include="oepGDALSourceOptions.h" />
     <ClInclude Include="oepImageLayer.h" />
     <ClInclude Include="oepLayer.h" />
     <ClInclude Include="oepMap.h" />
     <ClInclude Include="oepTerrainLayer.h" />
-    <ClInclude Include="oepTileSource.h" />
+    <ClInclude Include="oepTileSourceOptions.h" />
     <ClInclude Include="oepUnknownLayer.h" />
     <ClInclude Include="oepVector.h" />
     <ClInclude Include="oepViewpoint.h" />
     <ClInclude Include="oepViewpointsExtension.h" />
     <ClInclude Include="oepVisibleLayer.h" />
-    <ClInclude Include="oepWCSSource.h" />
-    <ClInclude Include="oepWMSSource.h" />
-    <ClInclude Include="oepXYZSource.h" />
+    <ClInclude Include="oepVisibleLayerOptions.h" />
+    <ClInclude Include="oepWCSSourceOptions.h" />
+    <ClInclude Include="oepWMSSourceOptions.h" />
+    <ClInclude Include="oepXYZSourceOptions.h" />
     <ClInclude Include="Viewer.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="resource.h" />
@@ -204,35 +211,42 @@
     <ClCompile Include="oepColorFilter.cpp" />
     <ClCompile Include="oepConfigOptions.cpp" />
     <ClCompile Include="oepDriverConfigOptions.cpp" />
+    <ClCompile Include="oepElevationLayerOptions.cpp" />
     <ClCompile Include="oepExtension.cpp" />
     <ClCompile Include="oepExtensionFactory.cpp" />
-    <ClCompile Include="oepFeatureElevationSource.cpp" />
+    <ClCompile Include="oepFeatureElevationSourceOptions.cpp" />
     <ClCompile Include="oepGammaColorFilter.cpp" />
     <ClCompile Include="oepHSLColorFilter.cpp" />
+    <ClCompile Include="oepImageLayerOptions.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
+    <ClCompile Include="oepLayerOptions.cpp" />
     <ClCompile Include="oepObject.cpp" />
-    <ClCompile Include="oepOSGSource.cpp" />
+    <ClCompile Include="oepOSGSourceOptions.cpp" />
     <ClCompile Include="oepRGBColorFilter.cpp" />
+    <ClCompile Include="oepSimpleOceanLayer.cpp" />
+    <ClCompile Include="oepSimpleOceanLayerOptions.cpp" />
     <ClCompile Include="oepSimpleSkyExtension.cpp" />
-    <ClCompile Include="oepTMSSource.cpp" />
-    <ClCompile Include="oepArcGISSource.cpp" />
-    <ClCompile Include="oepBingSource.cpp" />
+    <ClCompile Include="oepTerrainLayerOptions.cpp" />
+    <ClCompile Include="oepTMSSourceOptions.cpp" />
+    <ClCompile Include="oepArcGISSourceOptions.cpp" />
+    <ClCompile Include="oepBingSourceOptions.cpp" />
     <ClCompile Include="oepElevationLayer.cpp" />
-    <ClCompile Include="oepFeatureTileSource.cpp" />
-    <ClCompile Include="oepGDALSource.cpp" />
+    <ClCompile Include="oepFeatureTileSourceOptions.cpp" />
+    <ClCompile Include="oepGDALSourceOptions.cpp" />
     <ClCompile Include="oepImageLayer.cpp" />
     <ClCompile Include="oepLayer.cpp" />
     <ClCompile Include="oepMap.cpp" />
     <ClCompile Include="oepTerrainLayer.cpp" />
-    <ClCompile Include="oepTileSource.cpp" />
+    <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewpoint.cpp" />
     <ClCompile Include="oepViewpointsExtension.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />
-    <ClCompile Include="oepWCSSource.cpp" />
-    <ClCompile Include="oepWMSSource.cpp" />
-    <ClCompile Include="oepXYZSource.cpp" />
+    <ClCompile Include="oepVisibleLayerOptions.cpp" />
+    <ClCompile Include="oepWCSSourceOptions.cpp" />
+    <ClCompile Include="oepWMSSourceOptions.cpp" />
+    <ClCompile Include="oepXYZSourceOptions.cpp" />
     <ClCompile Include="Viewer.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Stdafx.cpp">

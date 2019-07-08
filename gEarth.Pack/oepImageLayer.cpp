@@ -2,11 +2,10 @@
 #include "oepImageLayer.h"
 using namespace gEarthPack;
 
-oepImageLayer::oepImageLayer(oepTileSource^ source)
-	:oepTerrainLayer(source)
+oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 {
-	if (source != nullptr && source->getoeConfigOptions() != NULL)
-		_handle->setValue(new osgEarth::ImageLayer(*(source->getoeConfigOptions())));
+	if (imagelayeroptions != nullptr && imagelayeroptions->asoeImageLayerOptions() != NULL)
+		_handle->setValue(new osgEarth::ImageLayer(*(imagelayeroptions->asoeImageLayerOptions())));
 	else
 		_handle->setValue(new osgEarth::ImageLayer());
 

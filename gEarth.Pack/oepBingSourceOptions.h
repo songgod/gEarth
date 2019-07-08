@@ -1,12 +1,12 @@
 #pragma once
-#include "oepTileSource.h"
+#include "oepTileSourceOptions.h"
 
 namespace gEarthPack
 {
-	public ref class oepBingSource : public oepTileSource
+	public ref class oepBingSourceOptions : public oepTileSourceOptions
 	{
 	public:
-		oepBingSource();
+		oepBingSourceOptions();
 
 	public:
 

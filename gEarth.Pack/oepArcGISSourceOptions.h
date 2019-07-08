@@ -1,14 +1,14 @@
 #pragma once
 
-#include "oepTileSource.h"
+#include "oepTileSourceOptions.h"
 
 namespace gEarthPack
 {
 
-	public ref class oepArcGISSource : public oepTileSource
+	public ref class oepArcGISSourceOptions : public oepTileSourceOptions
 	{
 	public:
-		oepArcGISSource();
+		oepArcGISSourceOptions();
 
 	public:
 

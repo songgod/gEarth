@@ -24,8 +24,16 @@ namespace gEarth.Scene.Commands
             oepMap map = new oepMap();
             string wdimg = Directory.GetCurrentDirectory() + "\\data\\world\\world.tif";
             string wdelv = Directory.GetCurrentDirectory() + "\\data\\world\\world-dem.tif";
-            oepImageLayer wdimglyr = new oepImageLayer(new oepGDALSource() { url = wdimg }) { Name = Path.GetFileNameWithoutExtension(wdimg) };
-            oepElevationLayer wdelvlyr = new oepElevationLayer(new oepGDALSource() { url = wdelv }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
+            oepImageLayer wdimglyr = new oepImageLayer(
+                new oepImageLayerOptions()
+                {
+                    driver = new oepGDALSourceOptions() { url = wdimg }
+                }) { Name = Path.GetFileNameWithoutExtension(wdimg) };
+            oepElevationLayer wdelvlyr = new oepElevationLayer(
+                new oepElevationLayerOptions()
+                {
+                    driver = new oepGDALSourceOptions() { url = wdelv }
+                }) { Name = Path.GetFileNameWithoutExtension(wdelv) };
             map.Layers.Add(wdimglyr);
             map.Layers.Add(wdelvlyr);
             oepSimpleSkyExtension skyext = new oepSimpleSkyExtension();

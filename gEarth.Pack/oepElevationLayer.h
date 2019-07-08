@@ -1,5 +1,6 @@
 #pragma once
 #include "oepTerrainLayer.h"
+#include "oepElevationLayerOptions.h"
 #include <osgEarth/ElevationLayer>
 
 namespace gEarthPack
@@ -7,7 +8,7 @@ namespace gEarthPack
 	public ref class oepElevationLayer : public oepTerrainLayer
 	{
 	public:
-		oepElevationLayer(oepTileSource^ source);
+		oepElevationLayer(oepElevationLayerOptions^ elevationlayeroptions);
 
 	public:
 

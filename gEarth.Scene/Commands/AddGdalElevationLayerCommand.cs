@@ -25,8 +25,9 @@ namespace gEarth.Scene.Commands
             OpenFileDialog dlg = new OpenFileDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                oepGDALSource source = new oepGDALSource() { url = dlg.FileName };
-                oepElevationLayer imglyr = new oepElevationLayer(source) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
+                oepGDALSourceOptions source = new oepGDALSourceOptions() { url = dlg.FileName };
+                oepElevationLayerOptions options = new oepElevationLayerOptions() { driver = source };
+                oepElevationLayer imglyr = new oepElevationLayer(options) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
                 Project.CurrentMap.Layers.Add(imglyr);
                 if (!imglyr.IsOK)
                 {

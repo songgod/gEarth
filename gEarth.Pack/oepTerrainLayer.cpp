@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 
-oepTerrainLayer::oepTerrainLayer(oepTileSource^ source)
+oepTerrainLayer::oepTerrainLayer()
 {
 }
 

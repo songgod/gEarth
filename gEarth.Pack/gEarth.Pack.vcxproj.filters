@@ -16,14 +16,17 @@
     <Filter Include="Layers">
       <UniqueIdentifier>{d939eefd-06b5-4763-9331-abb5b5620189}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources">
-      <UniqueIdentifier>{e526207f-5f8a-4095-a067-58a71c73511a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Extensions">
       <UniqueIdentifier>{2377e501-8d5a-438d-b733-2ad5b4a1b7b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="ColorFilter">
       <UniqueIdentifier>{d8787dd3-ff06-4bd2-8d67-0dac69e05332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SourceOptions">
+      <UniqueIdentifier>{e526207f-5f8a-4095-a067-58a71c73511a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LayerOptions">
+      <UniqueIdentifier>{65ebf944-e5f4-4167-81bd-3a2802b966c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,39 +60,6 @@
     <ClInclude Include="oepVisibleLayer.h">
       <Filter>Layers</Filter>
     </ClInclude>
-    <ClInclude Include="oepFeatureElevationSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepOSGSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepTMSSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepArcGISSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepBingSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepFeatureTileSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepGDALSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepTileSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepWCSSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepWMSSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="oepXYZSource.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="oepObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,9 +74,6 @@
     </ClInclude>
     <ClInclude Include="oepExtension.h">
       <Filter>Extensions</Filter>
-    </ClInclude>
-    <ClInclude Include="oepDriverConfigOptions.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oepConfigOptions.h">
       <Filter>Header Files</Filter>
@@ -147,6 +114,63 @@
     <ClInclude Include="oepViewpoint.h">
       <Filter>Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="oepSimpleOceanLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepArcGISSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTileSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepBingSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureElevationSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureTileSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepGDALSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepOSGSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTMSSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepWCSSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepWMSSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepXYZSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepDriverConfigOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepElevationLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepImageLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSimpleOceanLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepTerrainLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepVisibleLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -182,39 +206,6 @@
     <ClCompile Include="oepVisibleLayer.cpp">
       <Filter>Layers</Filter>
     </ClCompile>
-    <ClCompile Include="oepFeatureElevationSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepOSGSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepTMSSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepArcGISSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepBingSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepFeatureTileSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepGDALSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepTileSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepWCSSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepWMSSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="oepXYZSource.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="oepObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,9 +219,6 @@
       <Filter>Extensions</Filter>
     </ClCompile>
     <ClCompile Include="oepConfigOptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="oepDriverConfigOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="oepBrightnessContrastColorFilter.cpp">
@@ -268,6 +256,63 @@
     </ClCompile>
     <ClCompile Include="oepViewpoint.cpp">
       <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSimpleOceanLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepArcGISSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTileSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepBingSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureElevationSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureTileSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepGDALSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepOSGSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTMSSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepWCSSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepWMSSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepXYZSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepDriverConfigOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepElevationLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepImageLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSimpleOceanLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTerrainLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepVisibleLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

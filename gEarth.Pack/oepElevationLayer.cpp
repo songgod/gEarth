@@ -2,11 +2,10 @@
 #include "oepElevationLayer.h"
 using namespace gEarthPack;
 
-oepElevationLayer::oepElevationLayer(oepTileSource^ source)
-	:oepTerrainLayer(source)
+oepElevationLayer::oepElevationLayer(oepElevationLayerOptions^ elevationlayeroptions)
 {
-	if (source != nullptr && source->getoeConfigOptions() != NULL)
-		_handle->setValue(new osgEarth::ElevationLayer(*(source->getoeConfigOptions())));
+	if (elevationlayeroptions != nullptr && elevationlayeroptions->asoeElevationLayerOptions() != NULL)
+		_handle->setValue(new osgEarth::ElevationLayer(*(elevationlayeroptions->asoeElevationLayerOptions())));
 	else
 		_handle->setValue(new osgEarth::ElevationLayer());
 }

@@ -22,12 +22,13 @@ namespace gEarth.Scene.Commands
 
         private void AddBingImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            oepBingSource src = new oepBingSource();
+            oepBingSourceOptions src = new oepBingSourceOptions();
             BingSourceOptionsWindow window = new BingSourceOptionsWindow() { DataContext = src };
             var res = window.ShowDialog();
             if(res.HasValue && res.Value)
             {
-                oepImageLayer imglyr = new oepImageLayer(src) { Name = "Bing: " + src.imagerySet };
+                oepImageLayerOptions options = new oepImageLayerOptions() { driver = src };
+                oepImageLayer imglyr = new oepImageLayer(options) { Name = "Bing: " + src.imagerySet };
                 Project.CurrentMap.Layers.Add(imglyr);
                 if (!imglyr.IsOK)
                 {

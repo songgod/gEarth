@@ -1,5 +1,6 @@
 #pragma once
 #include "oepTerrainLayer.h"
+#include "oepImageLayerOptions.h"
 #include "oepColorFilter.h"
 #include <osgEarth/ImageLayer>
 
@@ -8,7 +9,7 @@ namespace gEarthPack
 	public ref class oepImageLayer : public oepTerrainLayer
 	{
 	public:
-		oepImageLayer(oepTileSource^ source);
+		oepImageLayer(oepImageLayerOptions^ imagelayeroptions);
 
 	public:
 
@@ -17,12 +18,9 @@ namespace gEarthPack
 			oepColorFilters^ get();
 		}
 
-	public:
-
-		osgEarth::ImageLayer* asoeImageLayer();
-
 	internal:
 
+		osgEarth::ImageLayer* asoeImageLayer();
 		oepImageLayer(osgEarth::ImageLayer* layer);
 
 	private:

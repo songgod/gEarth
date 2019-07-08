@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "oepGDALSource.h"
+#include "oepGDALSourceOptions.h"
 #include <osgEarthDrivers/gdal/GDALOptions>
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
 using namespace gEarthPack;
 
-oepGDALSource::oepGDALSource()
+oepGDALSourceOptions::oepGDALSourceOptions()
 {
 	_handle = new osgEarth::Drivers::GDALOptions();
 }
 
-String^ gEarthPack::oepGDALSource::url::get()
+String^ gEarthPack::oepGDALSourceOptions::url::get()
 {
 	return marshal_as<String^>(((osgEarth::Drivers::GDALOptions*)(_handle))->url()->full());
 }
 
-void gEarthPack::oepGDALSource::url::set(String^ v)
+void gEarthPack::oepGDALSourceOptions::url::set(String^ v)
 {
 	((osgEarth::Drivers::GDALOptions*)(_handle))->url() = marshal_as<std::string>(v);
 }

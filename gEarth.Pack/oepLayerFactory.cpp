@@ -3,8 +3,10 @@
 #include "oepImageLayer.h"
 #include "oepElevationLayer.h"
 #include "oepUnknownLayer.h"
+#include "oepSimpleOceanLayer.h"
 #include <osgEarth/ImageLayer>
 #include <osgEarth/ElevationLayer>
+#include <osgEarthUtil/SimpleOceanLayer>
 
 using namespace gEarthPack;
 
@@ -39,6 +41,20 @@ namespace gEarthPack
 		}
 	};
 
+	private ref class oepSimpleOceanLayerCreator : IoepLayerCreator
+	{
+	public:
+		virtual String^ supportType()
+		{
+			return "simple_ocean";
+		}
+		virtual oepLayer ^ createLayer(IntPtr param)
+		{
+			osgEarth::Util::SimpleOceanLayer* pOceanLayer = (osgEarth::Util::SimpleOceanLayer*)param.ToPointer();
+			return gcnew oepSimpleOceanLayer(pOceanLayer);
+		}
+	};
+
 	private ref class oepUnkownLayerCreator : IoepLayerCreator
 	{
 	public:
@@ -60,6 +76,7 @@ static oepLayerFactory::oepLayerFactory()
 	_creatorcache = gcnew Dictionary<String^, IoepLayerCreator^>();
 	registerCreator(gcnew oepImageLayerCreator());
 	registerCreator(gcnew oepElevationLayerCreator());
+	registerCreator(gcnew oepSimpleOceanLayerCreator());
 	registerCreator(gcnew oepUnkownLayerCreator());
 }
 

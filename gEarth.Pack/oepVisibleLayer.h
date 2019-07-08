@@ -1,5 +1,6 @@
 #pragma once
 #include "oepLayer.h"
+#include "oepVisibleLayerOptions.h"
 #include <osgEarth/VisibleLayer>
 
 namespace gEarthPack
