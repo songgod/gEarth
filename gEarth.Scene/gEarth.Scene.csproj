@@ -107,6 +107,7 @@
     <Compile Include="Commands\AddBingImageLayerCommand.cs" />
     <Compile Include="Commands\AddGdalElevationLayerCommand.cs" />
     <Compile Include="Commands\AddGdalImageLayerCommand.cs" />
+    <Compile Include="Commands\AddViewpointCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />
     <Compile Include="Commands\NewMapCommand.cs" />
     <Compile Include="Commands\OpenMapCommand.cs" />
@@ -124,6 +125,9 @@
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\oepVec4f2ColorConverter.cs" />
+    <Compile Include="Windows\AddViewpointOptionsWindow.xaml.cs">
+      <DependentUpon>AddViewpointOptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ArcGISSourceOptionsWindow.xaml.cs">
       <DependentUpon>ArcGISSourceOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -166,6 +170,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\MapTreeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddViewpointOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

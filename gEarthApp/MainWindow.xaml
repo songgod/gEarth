@@ -26,6 +26,7 @@
         <cmd:SetRGBColorFilterCommand/>
         <cmd:SetSimpleSkyOptionsCommand/>
         <cmd:SetSimpleOceanOptionsCommand/>
+        <cmd:AddViewpointCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -85,7 +86,7 @@
                     <Fluent:Button Header="添加路径" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/path.png"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="标签">
-                    <Fluent:Button Header="添加标签" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/label.png"/>
+                    <Fluent:Button Header="添加标签" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/label.png" Command="{x:Static cmd:CommandLib.AddViewpointCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="动画">
                     <Fluent:Button Header="开始录制" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/screenrecoder.png"/>

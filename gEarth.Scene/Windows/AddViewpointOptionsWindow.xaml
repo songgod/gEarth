@@ -1,0 +1,19 @@
+﻿<Window x:Class="gEarth.Scene.Windows.AddViewpointOptionsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gEarth.Scene.Windows"
+             mc:Ignorable="d" 
+            ShowInTaskbar="False"
+            Title="添加当前视点"
+             Height="60" Width="237.209">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="名称:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
+        <TextBox Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
+    </Grid>
+</Window>

@@ -58,7 +58,11 @@ namespace gEarth.Scene.Controls
 
         public gEarthPack.oepViewpoint ViewPoint
         {
-            get { return (gEarthPack.oepViewpoint)GetValue(ViewPointProperty); }
+            get
+            {
+                //return (gEarthPack.oepViewpoint)GetValue(ViewPointProperty);
+                return render.GetViewpoint();
+            }
             set { SetValue(ViewPointProperty, value); }
         }
 

@@ -52,6 +52,9 @@ public:
 	/**飞行到视点*/
 	void flyto(const osgEarth::Viewpoint& vp);
 
+	/** 获取当前视点*/
+	osgEarth::Viewpoint getViewpoint();
+
 protected:
 
 	void InitCameraConfig();

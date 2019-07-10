@@ -50,3 +50,9 @@ void gEarthPack::Render::Flyto(oepViewpoint^ vp)
 		return;
 	_viewer->flyto(*(vp->asoeViewpoint()));
 }
+
+gEarthPack::oepViewpoint^ gEarthPack::Render::GetViewpoint()
+{
+	osgEarth::Viewpoint vp = _viewer->getViewpoint();
+	return gcnew gEarthPack::oepViewpoint(vp);
+}

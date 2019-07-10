@@ -172,6 +172,12 @@ void Viewer::flyto(const osgEarth::Viewpoint& vp)
 	mp->setViewpoint(vp, 2.0);
 }
 
+osgEarth::Viewpoint Viewer::getViewpoint()
+{
+	osgEarth::Util::EarthManipulator* mp = (osgEarth::Util::EarthManipulator*)(_viewer->getCameraManipulator());
+	return mp->getViewpoint();
+}
+
 void Viewer::InitCameraConfig()
 {
 	RECT rect;
