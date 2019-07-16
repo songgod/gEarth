@@ -39,7 +39,7 @@ namespace gEarth.Scene.Commands
                 oepve = new oepViewpointsExtension();
                 Project.CurrentMap.Extensions.Add(oepve);
             }
-            oepViewpoint vp = evc.ViewPoint;
+            oepViewpoint vp = evc.render.Viewpoint;
             vp.Name = "Viewpoint";
             oepve.ViewPoints.Add(vp);
             AddViewpointOptionsWindow w = new AddViewpointOptionsWindow() { DataContext = vp };

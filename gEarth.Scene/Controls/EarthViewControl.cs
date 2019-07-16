@@ -36,40 +36,10 @@ namespace gEarth.Scene.Controls
                 OnEarthViewReady.Invoke(true);
         }
 
-        public bool OpenMap(oepMap map)
-        {
-            if (map == null || render==null)
-                return false;
-            return render.Open(map);
-        }
-
         private void EarthViewControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             Child.Paint -= Child_Paint;
             render.End();
         }
-
-       static void OnViewPointChangedCallback(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            EarthViewControl owner = obj as EarthViewControl;
-            oepViewpoint vp = args.NewValue as oepViewpoint;
-            owner.render.Flyto(vp);
-        }
-
-        public gEarthPack.oepViewpoint ViewPoint
-        {
-            get
-            {
-                //return (gEarthPack.oepViewpoint)GetValue(ViewPointProperty);
-                return render.GetViewpoint();
-            }
-            set { SetValue(ViewPointProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ViewPoint.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewPointProperty =
-            DependencyProperty.Register("ViewPoint", typeof(gEarthPack.oepViewpoint), typeof(EarthViewControl), new PropertyMetadata(null,new PropertyChangedCallback(OnViewPointChangedCallback)));
-
-
     }
 }

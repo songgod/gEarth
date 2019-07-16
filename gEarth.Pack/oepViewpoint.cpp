@@ -50,7 +50,7 @@ bool gEarthPack::oepViewpoint::IsValid::get()
 	return _handle->isValid();
 }
 
-gEarthPack::oepViewpoint::oepViewpoint(osgEarth::Viewpoint vp): _handle(new osgEarth::Viewpoint()), _ownhandle(true)
+gEarthPack::oepViewpoint::oepViewpoint(const osgEarth::Viewpoint& vp): _handle(new osgEarth::Viewpoint()), _ownhandle(true)
 {
 	(*_handle) = vp;
 }

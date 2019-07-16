@@ -4,6 +4,7 @@
 #include "oepViewpointsExtension.h"
 #include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
 #include <osgEarthDrivers/viewpoints/ViewpointsOptions>
+#include "oepAnimationPathExtension.h"
 
 using namespace gEarthPack;
 
@@ -52,6 +53,22 @@ namespace gEarthPack
 			return gcnew oepViewpointsExtension(extension);
 		}
 	};
+
+	private ref class oepAnimationPathExtensionCreator : IoepExtensionCreator
+	{
+	public:
+		virtual String^ supportType()
+		{
+			return "animationpath";
+		}
+
+		virtual oepExtension ^ createExtenson(IntPtr param)
+		{
+			osgEarth::Extension* extension = (osgEarth::Extension*)(param.ToPointer());
+			if (!extension) throw gcnew Exception("Invalid viewpoints extension");
+			return gcnew oepAnimationPathExtension(extension);
+		}
+	};
 }
 
 
@@ -60,6 +77,7 @@ static oepExtensionFactory::oepExtensionFactory()
 	_creatorcache = gcnew Dictionary<String^, IoepExtensionCreator^>();
 	registerCreator(gcnew oepSimpleSkyCreator());
 	registerCreator(gcnew oepViewpointsExtensionCreator());
+	registerCreator(gcnew oepAnimationPathExtensionCreator());
 }
 
 void gEarthPack::oepExtensionFactory::registerCreator(IoepExtensionCreator^ creator)

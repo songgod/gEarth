@@ -5,17 +5,31 @@
 #include "viewer.h"
 #include "oepMap.h"
 #include "oepViewpoint.h"
+#include "oepEventHandler.h"
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
 
 namespace gEarthPack {
 
-	public ref class Render
+	public ref class Render : public oepNotify
 	{
 	public:
 
 		Render();
+
+	public:
+
+		property oepViewpoint^ Viewpoint
+		{
+			oepViewpoint^ get();
+			void set(oepViewpoint^ v);
+		}
+
+		property oepEventHandlers^ Handlers
+		{
+			oepEventHandlers^ get();
+		}
 
 	public:
 
@@ -25,11 +39,14 @@ namespace gEarthPack {
 	public:
 
 		bool Open(oepMap^ map);
-		void Flyto(oepViewpoint^ vp);
-		oepViewpoint^ GetViewpoint();
+
+	protected:
+
+		void OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);
 
 	internal:
 
 		Viewer* _viewer;
+		oepEventHandlers^ _handlers;
 	};
 }

@@ -57,21 +57,21 @@ namespace gEarthApp
             oepViewpoint vp = obj as oepViewpoint;
             if(vp!=null)
             {
-                ax.ViewPoint = vp;
+                ax.render.Viewpoint = vp;
                 return;
             }
             oepLayer lyr = obj as oepLayer;
             if(lyr!=null)
             {
                 vp = oepViewFitter.Fitter(lyr, Project.CurrentMap, ax.render);
-                ax.ViewPoint = vp;
+                ax.render.Viewpoint = vp;
                 return;
             }
         }
 
         private void Project_OnCurrentMapChanged(oepMap oldmap, oepMap newmap)
         {
-            ax.OpenMap(newmap);
+            ax.render.Open(newmap);
             mtree.InitMap(newmap);
         }
 

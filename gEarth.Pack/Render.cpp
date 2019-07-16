@@ -11,7 +11,8 @@ using namespace msclr::interop;
 
 gEarthPack::Render::Render():_viewer(NULL)
 {
-
+	_handlers = gcnew oepEventHandlers();
+	_handlers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::Render::OnHandlersCollectionChanged);
 }
 
 void gEarthPack::Render::Start(IntPtr hwnd)
@@ -44,15 +45,82 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	return true;
 }
 
-void gEarthPack::Render::Flyto(oepViewpoint^ vp)
+void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	if (vp == nullptr || vp->asoeViewpoint() == NULL)
+	if (!_viewer)
 		return;
-	_viewer->flyto(*(vp->asoeViewpoint()));
+	switch (e->Action)
+	{
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
+	{
+		if (e->NewItems != nullptr && e->NewItems->Count > 0)
+		{
+			for (int i = 0; i < e->NewItems->Count; i++)
+			{
+				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->NewItems[i]);
+				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
+				{
+					_viewer->getViewer()->addEventHandler(oepeh->asosgEventHandler());
+				}
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Remove:
+	{
+		if (e->OldItems != nullptr && e->OldItems->Count > 0)
+		{
+			for (int i = 0; i < e->OldItems->Count; i++)
+			{
+				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->OldItems[i]);
+				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
+				{
+					_viewer->getViewer()->removeEventHandler(oepeh->asosgEventHandler());
+				}
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Replace:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Move:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
+	{
+		osgViewer::Viewer::EventHandlers &ehs = _viewer->getViewer()->getEventHandlers();
+		osgViewer::Viewer::EventHandlers::iterator iter = ehs.begin();
+		for(iter;iter!=ehs.end();++iter)
+		{
+			_viewer->getViewer()->removeEventHandler(*iter);
+		}
+		break;
+	}
+	default:
+		break;
+	}
 }
 
-gEarthPack::oepViewpoint^ gEarthPack::Render::GetViewpoint()
+gEarthPack::oepViewpoint^ gEarthPack::Render::Viewpoint::get()
 {
 	osgEarth::Viewpoint vp = _viewer->getViewpoint();
 	return gcnew gEarthPack::oepViewpoint(vp);
+}
+
+void gEarthPack::Render::Viewpoint::set(oepViewpoint^ v)
+{
+	if (v == nullptr || v->asoeViewpoint() == NULL)
+		return;
+	_viewer->flyto(*(v->asoeViewpoint()));
+	NotifyChanged("Viewpoint");
+}
+
+gEarthPack::oepEventHandlers^ gEarthPack::Render::Handlers::get()
+{
+	return _handlers;
 }

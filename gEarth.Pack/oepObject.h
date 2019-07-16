@@ -1,11 +1,10 @@
 #pragma once
 
-using namespace System::ComponentModel;
-using namespace System;
+#include "oepNotify.h"
 
 namespace gEarthPack
 {
-	public ref class oepObject : INotifyPropertyChanged
+	public ref class oepObject : public oepNotify
 	{
 	public:
 		oepObject();
@@ -16,17 +15,6 @@ namespace gEarthPack
 		{
 			String^ get();
 			void set(String^ v);
-		}
-
-	public:
-
-		virtual event PropertyChangedEventHandler^ PropertyChanged;
-
-	public:
-
-		void NotifyChanged(String^ property)
-		{
-			PropertyChanged(this, gcnew PropertyChangedEventArgs(property));
 		}
 	};
 }

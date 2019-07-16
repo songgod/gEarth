@@ -98,6 +98,7 @@ void gEarthPack::oepViewpointsExtension::OnViewpointsCollectionChanged(System::O
 		{
 			oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[0]);
 			vps[e->NewStartingIndex] = *(oepvp->asoeViewpoint());
+			oepvp->setHandle(&(vps[e->NewStartingIndex]));
 		}
 		break;
 	}

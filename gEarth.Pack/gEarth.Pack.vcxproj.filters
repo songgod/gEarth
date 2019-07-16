@@ -28,6 +28,12 @@
     <Filter Include="LayerOptions">
       <UniqueIdentifier>{65ebf944-e5f4-4167-81bd-3a2802b966c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{7a83ed12-d908-4514-90b4-6096c5a82d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Handlers">
+      <UniqueIdentifier>{32c2d66b-7372-4f46-92cb-daaae64bde0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -174,6 +180,30 @@
     <ClInclude Include="oepViewFitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationPathOptions.h">
+      <Filter>Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationPathExtension.h">
+      <Filter>Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="oepAnimationPathExtension.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepAnimationPath.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepNotify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordScreenHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepEventHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepRecordScreenHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -319,6 +349,30 @@
     </ClCompile>
     <ClCompile Include="oepViewFitter.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationPathExtension.cpp">
+      <Filter>Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationPathPlugin.cpp">
+      <Filter>Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="oepAnimationPathExtension.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepAnimationPath.cpp">
+      <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepNotify.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordScreenHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepRecordScreenHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepEventHandler.cpp">
+      <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

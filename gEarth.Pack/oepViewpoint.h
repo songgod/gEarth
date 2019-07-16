@@ -28,7 +28,7 @@ namespace gEarthPack
 		}
 
 	internal:
-		oepViewpoint(osgEarth::Viewpoint vp);
+		oepViewpoint(const osgEarth::Viewpoint& vp);
 		void setHandle(osgEarth::Viewpoint* handle);
 		void resetHandle();
 		osgEarth::Viewpoint* asoeViewpoint();
