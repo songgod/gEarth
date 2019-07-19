@@ -42,7 +42,7 @@ namespace gEarth.Scene.Commands
                 Project.CurrentMap.Layers.Add(ol);
             }
 
-            SimpleOceanOptionsWindow sw = new SimpleOceanOptionsWindow() { DataContext = ol };
+            SimpleOceanOptionsWindow sw = new SimpleOceanOptionsWindow() { DataContext = ol, Owner = System.Windows.Application.Current.MainWindow };
             sw.ShowDialog();
         }
 

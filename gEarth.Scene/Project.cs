@@ -58,5 +58,23 @@ namespace gEarth.Scene
                 fs.Close();
             }
         }
+
+        static public string TempPath
+        {
+            get
+            {
+                try
+                {
+                    string temppath = System.IO.Path.GetTempPath() + "gEarth\\";
+                    if (!Directory.Exists(temppath))
+                        Directory.CreateDirectory(temppath);
+                    return temppath;
+                }
+                catch (Exception)
+                {
+                    return Directory.GetCurrentDirectory()+"\\";
+                }
+            }
+        }
     }
 }

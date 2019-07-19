@@ -37,17 +37,17 @@ namespace osgEarth
 				if (_anipth.valid())
 					return _anipth.get();
 				
-				_anipth = new osg::AnimationPath();
 				if (!_url.empty())
 				{
 					if (osgDB::fileExists(_url))
 					{
+						_anipth = new osg::AnimationPath();
 						std::ifstream ifs(_url);
 						_anipth->read(ifs);
 						return _anipth.get();
 					}
 				}
-				return _anipth;
+				return _anipth.get();
 			}
 
 		private:

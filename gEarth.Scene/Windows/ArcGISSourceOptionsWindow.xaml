@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:gEarth.Scene.Windows"
             ShowInTaskbar="False"
              mc:Ignorable="d" 
+        WindowStyle="ToolWindow"
             Title="添加ArcGIS数据"
              Height="160" Width="600">
     <Grid>

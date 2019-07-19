@@ -67,6 +67,12 @@ namespace gEarthApp
                 ax.render.Viewpoint = vp;
                 return;
             }
+            oepAnimationPath apth = obj as oepAnimationPath;
+            if(apth!=null)
+            {
+                ax.render.PlayPath(apth);
+                return;
+            }
         }
 
         private void Project_OnCurrentMapChanged(oepMap oldmap, oepMap newmap)

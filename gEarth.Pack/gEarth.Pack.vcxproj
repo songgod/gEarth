@@ -205,6 +205,7 @@
     <ClInclude Include="oepWCSSourceOptions.h" />
     <ClInclude Include="oepWMSSourceOptions.h" />
     <ClInclude Include="oepXYZSourceOptions.h" />
+    <ClInclude Include="PlayPathHandler.h" />
     <ClInclude Include="RecordScreenHandler.h" />
     <ClInclude Include="Viewer.h" />
     <ClInclude Include="Render.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="oepWCSSourceOptions.cpp" />
     <ClCompile Include="oepWMSSourceOptions.cpp" />
     <ClCompile Include="oepXYZSourceOptions.cpp" />
+    <ClCompile Include="PlayPathHandler.cpp" />
     <ClCompile Include="RecordScreenHandler.cpp" />
     <ClCompile Include="Viewer.cpp" />
     <ClCompile Include="Render.cpp" />

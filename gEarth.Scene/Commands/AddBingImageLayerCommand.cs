@@ -23,7 +23,7 @@ namespace gEarth.Scene.Commands
         private void AddBingImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             oepBingSourceOptions src = new oepBingSourceOptions();
-            BingSourceOptionsWindow window = new BingSourceOptionsWindow() { DataContext = src };
+            BingSourceOptionsWindow window = new BingSourceOptionsWindow() { DataContext = src, Owner = System.Windows.Application.Current.MainWindow };
             var res = window.ShowDialog();
             if(res.HasValue && res.Value)
             {

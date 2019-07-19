@@ -204,6 +204,9 @@
     <ClInclude Include="oepRecordScreenHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="PlayPathHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -372,6 +375,9 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="oepEventHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayPathHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

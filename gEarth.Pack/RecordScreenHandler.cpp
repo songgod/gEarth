@@ -1,5 +1,9 @@
 #include "stdafx.h"
 #include "RecordScreenHandler.h"
+#include <sstream>
+#include <osgDB/FileUtils>
+#include <osgDB/FileNameUtils>
+#include <iomanip>
 
 using namespace gEarthPack;
 
@@ -26,4 +30,41 @@ bool gEarthPack::RecordScreenHandler::save()
 		return true;
 	}
 	return false;
+}
+
+void gEarthPack::RecordScreenHandler::start()
+{
+	_currentlyRecording = true;
+	_animStartTime = osg::Timer::instance()->tick();
+	_animPath = new osg::AnimationPath();
+
+	if (!_filename.empty())
+	{
+		std::stringstream ss;
+		ss << osgDB::getNameLessExtension(_filename);
+		if (_autoinc != -1)
+		{
+			ss << "_" << std::setfill('0') << std::setw(2) << _autoinc;
+			_autoinc++;
+		}
+		ss << "." << osgDB::getFileExtension(_filename);
+
+		OSG_NOTICE << "Recording camera path to file " << ss.str() << std::endl;
+		_fout.open(ss.str().c_str());
+
+		// make sure doubles are not trucated by default stream precision = 6
+		_fout.precision(15);
+	}
+	else
+	{
+		OSG_NOTICE << "Recording camera path." << std::endl;
+	}
+}
+
+void gEarthPack::RecordScreenHandler::stop()
+{
+	_currentlyRecording = false;
+	_delta = 0.0f;
+
+	if (_fout) _fout.close();
 }

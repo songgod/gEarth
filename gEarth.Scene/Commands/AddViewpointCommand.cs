@@ -42,7 +42,7 @@ namespace gEarth.Scene.Commands
             oepViewpoint vp = evc.render.Viewpoint;
             vp.Name = "Viewpoint";
             oepve.ViewPoints.Add(vp);
-            AddViewpointOptionsWindow w = new AddViewpointOptionsWindow() { DataContext = vp };
+            AddViewpointOptionsWindow w = new AddViewpointOptionsWindow() { DataContext = vp, Owner = System.Windows.Application.Current.MainWindow };
             w.ShowDialog();
         }
 

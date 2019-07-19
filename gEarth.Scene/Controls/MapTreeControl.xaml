@@ -34,12 +34,19 @@
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type oep:oepViewpointsExtension}" ItemsSource="{Binding ViewPoints}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/gEarth.Scene;component/Images/extension.png"/>
+                        <Image Source="/gEarth.Scene;component/Images/viewpoints.png"/>
                         <TextBlock Text=" "/>
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>
-                
+                <HierarchicalDataTemplate DataType="{x:Type oep:oepAnimationPathExtension}" ItemsSource="{Binding AnimationPaths}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/gEarth.Scene;component/Images/animationpaths.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+
                 <DataTemplate DataType="{x:Type oep:oepImageLayer}">
                     <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
                         <StackPanel Orientation="Horizontal" Margin="2">
@@ -95,6 +102,15 @@
                     <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
                         <StackPanel Orientation="Horizontal" Margin="2">
                             <Image Source="/gEarth.Scene;component/Images/viewpoint.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepAnimationPath}">
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="/gEarth.Scene;component/Images/animationpath.png"/>
                             <TextBlock Text=" "/>
                             <TextBlock Text="{Binding Path=Name}"/>
                         </StackPanel>

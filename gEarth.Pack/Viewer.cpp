@@ -11,6 +11,8 @@
 #include <OpenThreads/Block>
 #include <osgEarthUtil/EarthManipulator>
 
+using namespace gEarthPack;
+
 
 class RenderThread : public OpenThreads::Thread
 {
@@ -178,6 +180,12 @@ osgEarth::Viewpoint Viewer::getViewpoint()
 	return mp->getViewpoint();
 }
 
+void Viewer::playPath(osg::AnimationPath* path)
+{
+	if (_playpathmp.valid())
+		_playpathmp->playPath(path);
+}
+
 void Viewer::InitCameraConfig()
 {
 	RECT rect;
@@ -257,6 +265,8 @@ void Viewer::InitCameraConfig()
 
 	_viewer->addEventHandler(new osgViewer::StatsHandler());
 	_viewer->addEventHandler(new osgGA::StateSetManipulator(camera->getOrCreateStateSet()));
+	_playpathmp = new	 PlayPathHandler();
+	_viewer->addEventHandler(_playpathmp);
 
 	_viewer->setKeyEventSetsDone(0);
 

@@ -28,6 +28,7 @@ namespace gEarth.Scene.Commands
             SetSimpleSkyOptionsCommand = CreateCommand("SetSimpleSkyOptionsCommand");
             SetSimpleOceanOptionsCommand = CreateCommand("SetSimpleOceanOptionsCommand");
             AddViewpointCommand = CreateCommand("AddViewpointCommand");
+            RecordScreenCommand = CreateCommand("RecordScreenCommand");
         }
         private static RoutedUICommand CreateCommand(string name)
         {
@@ -50,5 +51,6 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand SetSimpleSkyOptionsCommand { get; set; }
         public static RoutedUICommand SetSimpleOceanOptionsCommand { get; set; }
         public static RoutedUICommand AddViewpointCommand { get; set; }
+        public static RoutedUICommand RecordScreenCommand { get; set; }
     }
 }

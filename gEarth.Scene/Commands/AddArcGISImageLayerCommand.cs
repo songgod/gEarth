@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
@@ -21,7 +22,7 @@ namespace gEarth.Scene.Commands
         private void AddArcGISImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             oepArcGISSourceOptions src = new oepArcGISSourceOptions();
-            ArcGISSourceOptionsWindow window = new ArcGISSourceOptionsWindow() { DataContext = src };
+            ArcGISSourceOptionsWindow window = new ArcGISSourceOptionsWindow() { DataContext = src, Owner = Application.Current.MainWindow };
             var res = window.ShowDialog();
             if (res.HasValue && res.Value)
             {

@@ -14,5 +14,7 @@ namespace gEarthPack
 	public:
 
 		bool save();
+		void start();
+		void stop();
 	};
 }

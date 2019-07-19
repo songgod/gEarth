@@ -9,6 +9,12 @@ namespace gEarthPack
 	public:
 		oepRecordScreenHandler(String^ file, float fps);
 
+	public:
+
+		void Save();
+		void Start();
+		void Stop();
+
 	internal:
 		RecordScreenHandler* asRecordScreenHandler();
 	};

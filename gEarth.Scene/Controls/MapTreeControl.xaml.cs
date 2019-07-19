@@ -73,6 +73,8 @@ namespace gEarth.Scene.Controls
         private void cc_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ContentControl cc = sender as ContentControl;
+            if(SelectObject==cc.DataContext)
+                SelectObject = null;
             SelectObject = cc.DataContext;
         }
     }

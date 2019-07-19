@@ -111,6 +111,7 @@
     <Compile Include="Commands\CommandLib.cs" />
     <Compile Include="Commands\NewMapCommand.cs" />
     <Compile Include="Commands\OpenMapCommand.cs" />
+    <Compile Include="Commands\RecordScreenCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />
     <Compile Include="Commands\SetBrightnessColorFilterCommand.cs" />
@@ -151,6 +152,9 @@
     </Compile>
     <Compile Include="Windows\HSLColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>HSLColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RecordScreenWindow.xaml.cs">
+      <DependentUpon>RecordScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\RGBColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>RGBColorFilterOptionsWindow.xaml</DependentUpon>
@@ -205,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\RecordScreenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\RGBColorFilterOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +249,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\animationpath.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\animationpaths.png" />
+    <Resource Include="Images\viewpoints.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

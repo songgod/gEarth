@@ -46,7 +46,7 @@ osgEarth::AnimationPath::AnimationPathInfo* gEarthPack::oepAnimationPath::asoeAn
 void gEarthPack::oepAnimationPath::init()
 {
 	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
-	if (!ap)
+	if (!ap || !ap->animationpath())
 		return;
 
 	osg::AnimationPath::TimeControlPointMap& tcpm = ap->animationpath()->getTimeControlPointMap();
@@ -63,7 +63,7 @@ void gEarthPack::oepAnimationPath::init()
 void gEarthPack::oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
-	if (!ap)
+	if (!ap || !ap->animationpath())
 		return;
 
 	osg::AnimationPath::TimeControlPointMap& tcpm = ap->animationpath()->getTimeControlPointMap();

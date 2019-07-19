@@ -35,7 +35,7 @@ namespace gEarth.Scene.Commands
                 Project.CurrentMap.Extensions.Add(se);
             }
 
-            SimpleSkyOptionsWindow sw = new SimpleSkyOptionsWindow() { DataContext = se };
+            SimpleSkyOptionsWindow sw = new SimpleSkyOptionsWindow() { DataContext = se, Owner = System.Windows.Application.Current.MainWindow };
             sw.ShowDialog();
         }
 

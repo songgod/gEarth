@@ -5,66 +5,60 @@
 #include <osgEarth/MapNode>
 #include <windows.h>
 #include <osgEarth/Viewpoint>
+#include <osg/AnimationPath>
+#include "PlayPathHandler.h"
 
-/** 渲染窗口*/
-class Viewer
+namespace gEarthPack
 {
-public:
+	class Viewer
+	{
+	public:
 
-	Viewer(HWND hWnd);
-	~Viewer();
+		Viewer(HWND hWnd);
+		~Viewer();
 
-public:
+	public:
 
-	/** 初始化*/
-	void init();
+		void init();
 
-	/** 打开节点*/
-	void open(osgEarth::MapNode* mapnode);
+		void open(osgEarth::MapNode* mapnode);
 
-	/** 清空节点*/
-	void clear();
+		void clear();
 
-	/** 开始渲染*/
-	void start();
+		void start();
 
-	/** 暂停渲染，在暂停渲染后可以对场景进行修改*/
-	void pause();
+		void pause();
 
-	/** 恢复渲染*/
-	void resume();
+		void resume();
 
-	/** 获取osg视窗*/
-	osgViewer::Viewer* getViewer() const { return _viewer; }
+		osgViewer::Viewer* getViewer() const { return _viewer; }
 
-	/** 获取根节点*/
-	osg::Group* getRoot() const { return _root; }
+		osg::Group* getRoot() const { return _root; }
 
-	/** 获取MapNode*/
-	osgEarth::MapNode* getMapNode() const { return _mapnode; }
+		osgEarth::MapNode* getMapNode() const { return _mapnode; }
 
-	/** 设置背景色*/
-	void setClearColor(const osg::Vec4& color);
+		void setClearColor(const osg::Vec4& color);
 
-	/** 获取背景色*/
-	const osg::Vec4& getClearColor() const;
+		const osg::Vec4& getClearColor() const;
 
-	/**飞行到视点*/
-	void flyto(const osgEarth::Viewpoint& vp);
+		void flyto(const osgEarth::Viewpoint& vp);
 
-	/** 获取当前视点*/
-	osgEarth::Viewpoint getViewpoint();
+		osgEarth::Viewpoint getViewpoint();
 
-protected:
+		void playPath(osg::AnimationPath* path);
 
-	void InitCameraConfig();
-	void frame();
+	protected:
 
-private:
+		void InitCameraConfig();
+		void frame();
 
-	HWND _hWnd;
-	osgViewer::Viewer* _viewer;
-	osgEarth::MapNode* _mapnode;
-	osg::Group* _root;
-	void* _renderthread;
-};
+	private:
+
+		HWND _hWnd;
+		osgViewer::Viewer* _viewer;
+		osgEarth::MapNode* _mapnode;
+		osg::Group* _root;
+		osg::ref_ptr<PlayPathHandler> _playpathmp;
+		void* _renderthread;
+	};
+}

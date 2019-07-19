@@ -45,6 +45,13 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	return true;
 }
 
+void gEarthPack::Render::PlayPath(oepAnimationPath^ path)
+{
+	if (path == nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
+		return;
+	_viewer->playPath(path->asoeAnimationPathInfo()->animationpath());
+}
+
 void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	if (!_viewer)
@@ -93,12 +100,7 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		osgViewer::Viewer::EventHandlers &ehs = _viewer->getViewer()->getEventHandlers();
-		osgViewer::Viewer::EventHandlers::iterator iter = ehs.begin();
-		for(iter;iter!=ehs.end();++iter)
-		{
-			_viewer->getViewer()->removeEventHandler(*iter);
-		}
+		throw gcnew NotImplementedException();
 		break;
 	}
 	default:

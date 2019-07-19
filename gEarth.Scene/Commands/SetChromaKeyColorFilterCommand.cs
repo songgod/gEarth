@@ -30,7 +30,7 @@ namespace gEarth.Scene.Commands
                     imglyr.ColorFilters.Add(cf);
                 }
             }
-            ChromaKeyColorFilterOptionsWindow w = new ChromaKeyColorFilterOptionsWindow() { DataContext = cf };
+            ChromaKeyColorFilterOptionsWindow w = new ChromaKeyColorFilterOptionsWindow() { DataContext = cf, Owner = System.Windows.Application.Current.MainWindow };
             w.ShowDialog();
             cf.Reset();
             foreach (var layer in Project.CurrentMap.Layers)
