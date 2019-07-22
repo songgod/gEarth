@@ -28,6 +28,7 @@
         <cmd:SetSimpleOceanOptionsCommand/>
         <cmd:AddViewpointCommand/>
         <cmd:RecordScreenCommand/>
+        <cmd:EditAnimationPathCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -84,13 +85,11 @@
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="工具">
                 <Fluent:RibbonGroupBox Header="路径漫游">
-                    <Fluent:Button Header="添加路径" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/path.png"/>
+                    <Fluent:Button Header="添加路径" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/path.png" Command="{x:Static cmd:CommandLib.EditAnimationPathCommand}" CommandParameter="{Binding ElementName=ax}"/>
+                    <Fluent:Button Header="录制操作" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/screenrecoder.png" Command="{x:Static cmd:CommandLib.RecordScreenCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="标签">
                     <Fluent:Button Header="添加标签" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/label.png" Command="{x:Static cmd:CommandLib.AddViewpointCommand}" CommandParameter="{Binding ElementName=ax}"/>
-                </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="动画">
-                    <Fluent:Button Header="开始录制" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/screenrecoder.png" Command="{x:Static cmd:CommandLib.RecordScreenCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="量算">
                     <Fluent:Button Header="距离" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/distance.png"/>

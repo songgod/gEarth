@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:gEarth.Scene.Windows"
              mc:Ignorable="d" 
+        WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
             ShowInTaskbar="False"
             Title="添加当前视点"

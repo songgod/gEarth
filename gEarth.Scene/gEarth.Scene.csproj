@@ -109,6 +109,7 @@
     <Compile Include="Commands\AddGdalImageLayerCommand.cs" />
     <Compile Include="Commands\AddViewpointCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />
+    <Compile Include="Commands\EditAnimationPathCommand.cs" />
     <Compile Include="Commands\NewMapCommand.cs" />
     <Compile Include="Commands\OpenMapCommand.cs" />
     <Compile Include="Commands\RecordScreenCommand.cs" />
@@ -146,6 +147,9 @@
     </Compile>
     <Compile Include="Windows\CMYKColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>CMYKColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditAnimationPathWindow.xaml.cs">
+      <DependentUpon>EditAnimationPathWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\GammaColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>GammaColorFilterOptionsWindow.xaml</DependentUpon>
@@ -198,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CMYKColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditAnimationPathWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

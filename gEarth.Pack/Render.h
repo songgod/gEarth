@@ -6,7 +6,6 @@
 #include "oepMap.h"
 #include "oepViewpoint.h"
 #include "oepEventHandler.h"
-#include "oepAnimationPath.h"
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
@@ -40,7 +39,6 @@ namespace gEarthPack {
 	public:
 
 		bool Open(oepMap^ map);
-		void PlayPath(oepAnimationPath^ path);
 
 	protected:
 

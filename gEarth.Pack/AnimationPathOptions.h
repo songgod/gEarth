@@ -13,10 +13,23 @@ namespace osgEarth
 		{
 		public:
 
-			AnimationPathInfo(){}
+			AnimationPathInfo()
+			{
+				_anipth = new osg::AnimationPath();
+			}
+
 			AnimationPathInfo(const std::string& name, const std::string& url):_name(name),_url(url)
 			{
-
+				_anipth = new osg::AnimationPath();
+				if (!_url.empty())
+				{
+					if (osgDB::fileExists(_url))
+					{
+						_anipth = new osg::AnimationPath();
+						std::ifstream ifs(_url);
+						_anipth->read(ifs);
+					}
+				}
 			}
 
 		public:
@@ -27,28 +40,8 @@ namespace osgEarth
 			std::string& url() { return _url; }
 			const std::string& url() const { return _url; }
 
-			osg::AnimationPath* animationpath() { return path(); }
-			const osg::AnimationPath* animationpath() const { return path(); }
-
-		protected:
-
-			osg::AnimationPath* path() const
-			{
-				if (_anipth.valid())
-					return _anipth.get();
-				
-				if (!_url.empty())
-				{
-					if (osgDB::fileExists(_url))
-					{
-						_anipth = new osg::AnimationPath();
-						std::ifstream ifs(_url);
-						_anipth->read(ifs);
-						return _anipth.get();
-					}
-				}
-				return _anipth.get();
-			}
+			osg::AnimationPath* animationpath() { return _anipth; }
+			const osg::AnimationPath* animationpath() const { return _anipth; }
 
 		private:
 			std::string _name;

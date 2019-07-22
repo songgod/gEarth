@@ -45,13 +45,6 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	return true;
 }
 
-void gEarthPack::Render::PlayPath(oepAnimationPath^ path)
-{
-	if (path == nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
-		return;
-	_viewer->playPath(path->asoeAnimationPathInfo()->animationpath());
-}
-
 void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	if (!_viewer)

@@ -1,6 +1,7 @@
 #pragma once
 #include "oepObject.h"
 #include "Handle.h"
+#include "Render.h"
 #include "AnimationPathOptions.h"
 #include <osg/AnimationPath>
 
@@ -24,6 +25,10 @@ namespace gEarthPack
 			double get();
 			void set(double v);
 		}
+
+	public:
+
+		static oepControlPoint^ MakeControlPoint(Render^ render, double time);
 
 	internal:
 
@@ -70,6 +75,15 @@ namespace gEarthPack
 		{
 			oepControlPoints^ get();
 		}
+
+	public:
+
+		static void PlayPath(oepAnimationPath^ path, Render^ render);
+		static oepAnimationPath^ From(String^ url);
+
+	public:
+
+		bool Save();
 
 	internal:
 

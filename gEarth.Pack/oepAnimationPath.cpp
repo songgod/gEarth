@@ -30,6 +30,41 @@ gEarthPack::oepAnimationPath::~oepAnimationPath()
 	}
 }
 
+void gEarthPack::oepAnimationPath::PlayPath(oepAnimationPath^ path, Render^ render)
+{
+	if (render==nullptr || render->_viewer==NULL ||
+		path== nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
+		return;
+	render->_viewer->playPath(path->asoeAnimationPathInfo()->animationpath());
+}
+
+gEarthPack::oepAnimationPath^ gEarthPack::oepAnimationPath::From(String^ url)
+{
+	if (String::IsNullOrEmpty(url))
+		return nullptr;
+	AnimationPathInfo* info = new AnimationPathInfo();
+	info->name() = marshal_as<std::string>(System::IO::Path::GetFileNameWithoutExtension(url));
+	info->url() = marshal_as<std::string>(url);
+	
+	oepAnimationPath^ res = gcnew oepAnimationPath(info);
+	return res;
+}
+
+bool gEarthPack::oepAnimationPath::Save()
+{
+	if (_handle!=NULL && _handle->getValue()!=NULL && _handle->getValue()->animationpath()!=NULL && !_handle->getValue()->animationpath()->empty() && !String::IsNullOrEmpty(Url))
+	{
+		std::string url = marshal_as<std::string>(Url);
+		std::ofstream ofs(url);
+		ofs.setf(std::ios::fixed, std::ios::floatfield);
+		ofs.precision(15);
+		_handle->getValue()->animationpath()->write(ofs);
+		ofs.close();
+		return true;
+	}
+	return false;
+}
+
 gEarthPack::oepAnimationPath::oepAnimationPath(AnimationPathInfo* info)
 {
 	_handle = new AnimationPathInfoHandle(info);
@@ -214,6 +249,17 @@ gEarthPack::oepControlPoint::!oepControlPoint()
 		delete _handle;
 		_handle = NULL;
 	}
+}
+
+gEarthPack::oepControlPoint^ gEarthPack::oepControlPoint::MakeControlPoint(Render^ render, double time)
+{
+	if (render == nullptr || render->_viewer==NULL || render->_viewer->getViewer()==NULL)
+		return nullptr;
+	const osg::Matrixd& m = render->_viewer->getViewer()->getCamera()->getInverseViewMatrix();
+	osg::AnimationPath::ControlPoint cp(m.getTrans(), m.getRotate());
+	gEarthPack::oepControlPoint^ oepcp = gcnew gEarthPack::oepControlPoint(cp);
+	oepcp->Time = time;
+	return oepcp;
 }
 
 gEarthPack::oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true)

@@ -70,7 +70,7 @@ namespace gEarthApp
             oepAnimationPath apth = obj as oepAnimationPath;
             if(apth!=null)
             {
-                ax.render.PlayPath(apth);
+                oepAnimationPath.PlayPath(apth, ax.render);
                 return;
             }
         }

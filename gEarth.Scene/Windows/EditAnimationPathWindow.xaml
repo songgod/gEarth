@@ -1,30 +1,29 @@
-﻿<Window x:Class="gEarth.Scene.Windows.RecordScreenWindow"
+﻿<Window x:Class="gEarth.Scene.Windows.EditAnimationPathWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:gEarth.Scene.Windows"
-            mc:Ignorable="d" 
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+         WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
             ShowInTaskbar="False"
-            Title="录制浏览操作"
-        Closed="Window_Closed"
+            Title="编辑路径"
              Height="96.152" Width="237.209">
     <Window.Resources>
-        <sys:String x:Key="recordexisterr">记录已经存在，请重新输入名称</sys:String>
+        <sys:String x:Key="pathexisterr">路径已经存在，请重新输入名称</sys:String>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <TextBox Margin="2" Name="tbName" Grid.ColumnSpan="2"/>
-        <Button Margin="2" Name="btnstart" Content="开始" Grid.Column="0" Grid.Row="1" Click="start_Click"/>
-        <Button Margin="2" Name="btnstop" IsEnabled="False" Content="停止" Grid.Column="1" Grid.Row="1" Click="stop_Click"/>
+        <Button Margin="2" Name="btnadd" Content="添加当前视点" Grid.Column="0" Grid.Row="1" Click="btnadd_Click"/>
+        <Button Margin="2" Name="btnok" IsEnabled="False" Content="保存" Grid.Column="1" Grid.Row="1" Click="btnok_Click"/>
     </Grid>
 </Window>
