@@ -110,8 +110,14 @@
     <Compile Include="Commands\AddViewpointCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />
     <Compile Include="Commands\EditAnimationPathCommand.cs" />
+    <Compile Include="Commands\MesureAngleCommand.cs" />
+    <Compile Include="Commands\MesureAreaCommand.cs" />
+    <Compile Include="Commands\MesureDistanceCommand.cs" />
+    <Compile Include="Commands\MesureHeightCommand.cs" />
+    <Compile Include="Commands\MesureVolumeCommand.cs" />
     <Compile Include="Commands\NewMapCommand.cs" />
     <Compile Include="Commands\OpenMapCommand.cs" />
+    <Compile Include="Commands\AnalysisProfileCommand.cs" />
     <Compile Include="Commands\RecordScreenCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />
@@ -123,6 +129,7 @@
     <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
     <Compile Include="Commands\SetSimpleOceanOptionsCommand.cs" />
     <Compile Include="Commands\SetSimpleSkyOptionsCommand.cs" />
+    <Compile Include="Commands\AnalysisVisbleCommand.cs" />
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>

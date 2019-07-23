@@ -30,6 +30,13 @@ namespace gEarth.Scene.Commands
             AddViewpointCommand = CreateCommand("AddViewpointCommand");
             RecordScreenCommand = CreateCommand("RecordScreenCommand");
             EditAnimationPathCommand = CreateCommand("EditAnimationPathCommand");
+            MesureDistanceCommand = CreateCommand("MesureDistanceCommand");
+            MesureAreaCommand = CreateCommand("MesureAreaCommand");
+            MesureVolumeCommand = CreateCommand("MesureVolumeCommand");
+            MesureAngleCommand = CreateCommand("MesureAngleCommand");
+            MesureHeightCommand = CreateCommand("MesureHeightCommand");
+            AnalysisVisbleCommand = CreateCommand("AnalysisVisbleCommand");
+            AnalysisProfileCommand = CreateCommand("AnalysisProfileCommand");
         }
         private static RoutedUICommand CreateCommand(string name)
         {
@@ -54,5 +61,12 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand AddViewpointCommand { get; set; }
         public static RoutedUICommand RecordScreenCommand { get; set; }
         public static RoutedUICommand EditAnimationPathCommand { get; set; }
+        public static RoutedUICommand MesureDistanceCommand { get; set; }
+        public static RoutedUICommand MesureAreaCommand { get; set; }
+        public static RoutedUICommand MesureVolumeCommand { get; set; }
+        public static RoutedUICommand MesureAngleCommand { get; set; }
+        public static RoutedUICommand MesureHeightCommand { get; set; }
+        public static RoutedUICommand AnalysisVisbleCommand { get; set; }
+        public static RoutedUICommand AnalysisProfileCommand { get; set; }
     }
 }
