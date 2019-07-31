@@ -10,6 +10,7 @@
 #include <OpenThreads/Thread>
 #include <OpenThreads/Block>
 #include <osgEarthUtil/EarthManipulator>
+#include <osgEarth\GLUtils>
 
 using namespace gEarthPack;
 
@@ -276,6 +277,8 @@ void Viewer::InitCameraConfig()
 	pLight->setAmbient(osg::Vec4(0.32, 0.32, 0.32, 1.0));
 	pLight->setDiffuse(osg::Vec4(0.35, 0.35, 0.35, 1.0));
 	pLight->setSpecular(osg::Vec4(0.6, 0.6, 0.6, 1.0));
+
+	osgEarth::GLUtils::setGlobalDefaults(_viewer->getCamera()->getOrCreateStateSet());
 
 	// Realize the Viewer
 	_viewer->realize();

@@ -164,6 +164,9 @@
     <Compile Include="Windows\HSLColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>HSLColorFilterOptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MeasureDistanceWindow.xaml.cs">
+      <DependentUpon>MeasureDistanceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RecordScreenWindow.xaml.cs">
       <DependentUpon>RecordScreenWindow.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\HSLColorFilterOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MeasureDistanceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

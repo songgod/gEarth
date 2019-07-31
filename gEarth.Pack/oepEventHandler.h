@@ -2,6 +2,7 @@
 #include "oepObject.h"
 #include "Handle.h"
 #include <osgGA/EventHandler>
+#include <osgEarth/MapNode>
 
 using namespace System::Collections::ObjectModel;
 
@@ -26,6 +27,9 @@ namespace gEarthPack
 	internal:
 
 		osgGA::EventHandler* asosgEventHandler();
+		virtual void setMapNode(osgEarth::MapNode* pMapNode){}
+		virtual osgEarth::MapNode* getMapNode() { return NULL; }
+		virtual void quit(){}
 
 	protected:
 

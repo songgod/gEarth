@@ -58,9 +58,12 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->NewItems[i]);
-				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
+				if (oepeh != nullptr/* && oepeh->asosgEventHandler() != NULL*/)
 				{
+					_viewer->pause();
+					oepeh->setMapNode(_viewer->getMapNode());
 					_viewer->getViewer()->addEventHandler(oepeh->asosgEventHandler());
+					_viewer->resume();
 				}
 			}
 		}
@@ -75,7 +78,10 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->OldItems[i]);
 				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
 				{
+					_viewer->pause();
+					oepeh->quit();
 					_viewer->getViewer()->removeEventHandler(oepeh->asosgEventHandler());
+					_viewer->resume();
 				}
 			}
 		}

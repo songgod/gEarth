@@ -175,6 +175,7 @@
     <ClInclude Include="oepImageLayerOptions.h" />
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepLayerOptions.h" />
+    <ClInclude Include="oepMesureDistanceHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="oepImageLayerOptions.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepLayerOptions.cpp" />
+    <ClCompile Include="oepMesureDistanceHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />

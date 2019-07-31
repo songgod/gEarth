@@ -1,4 +1,7 @@
-﻿using System;
+﻿using gEarth.Scene.Controls;
+using gEarth.Scene.Windows;
+using gEarthPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +21,14 @@ namespace gEarth.Scene.Commands
 
         private void MesureDistanceCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            EarthViewControl evc = e.Parameter as EarthViewControl;
+            if (evc == null)
+                return;
+
+            if (MeasureDistanceWindow.Single != null)
+                return;
+            MeasureDistanceWindow w = new MeasureDistanceWindow() { EarthViewCtrl = evc, Owner = System.Windows.Application.Current.MainWindow };
+            w.Show();
         }
 
         private void MesureDistanceCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
