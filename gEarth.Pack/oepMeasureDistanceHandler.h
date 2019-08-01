@@ -7,11 +7,11 @@ using namespace osgEarth::Util;
 
 namespace gEarthPack
 {
-	public ref class oepMesureDistanceHandler :
+	public ref class oepMeasureDistanceHandler :
 		public oepEventHandler
 	{
 	public:
-		oepMesureDistanceHandler();
+		oepMeasureDistanceHandler();
 
 	public:
 
@@ -36,9 +36,8 @@ namespace gEarthPack
 
 	internal:
 		MeasureToolHandler* asMesureDistanceHandler();
-		virtual void setMapNode(osgEarth::MapNode* pMapNode) override;
-		virtual osgEarth::MapNode* getMapNode() override;
-		virtual void quit() override;
+		virtual void bind(osgEarth::MapNode* pMapNode) override;
+		virtual void unbind(osgEarth::MapNode* pMapNode) override;
 
 	private:
 

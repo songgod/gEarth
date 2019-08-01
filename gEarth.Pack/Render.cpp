@@ -6,8 +6,34 @@
 
 #include <string>  
 #include <msclr\marshal_cppstd.h>  
+#include "HandleMapManager.h"
+#include "MouseCoordHandler.h"
 
 using namespace msclr::interop;
+
+namespace
+{
+	class MouseMoveCallback : public gEarthPack::MouseCoordHandler::MouseMoveCallback
+	{
+	public:
+
+		MouseMoveCallback()
+		{
+
+		}
+
+	public:
+
+		virtual void update(gEarthPack::MouseCoordHandler* sender, const osg::Vec3& coords)
+		{
+			gEarthPack::Render^ render = gEarthPack::HandleMapManager::getHandle<gEarthPack::Render>(sender);
+			if (render == nullptr)
+				return;
+
+			render->FireMoveEvent(gEarthPack::oepVec3f(coords.y(), coords.x(), coords.z()));
+		}
+	};
+}
 
 gEarthPack::Render::Render():_viewer(NULL)
 {
@@ -23,11 +49,14 @@ void gEarthPack::Render::Start(IntPtr hwnd)
 	HWND h = (HWND)hwnd.ToPointer();
 	_viewer = new Viewer(h);
 	_viewer->init();
+	InitEvents();
 	_viewer->start();
+
 }
 
 void gEarthPack::Render::End()
 {
+	gEarthPack::HandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
 	if (_viewer)
 	{
 		delete _viewer;
@@ -45,10 +74,20 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	return true;
 }
 
+void gEarthPack::Render::InitEvents()
+{
+	gEarthPack::HandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
+	MouseMoveCallback* cb = new MouseMoveCallback();
+	_viewer->getMouseCoordHandler()->addMoveCallback(cb);
+}
+
 void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	if (!_viewer)
+	if (!_viewer || !_viewer->getMapNode())
+	{
+		throw gcnew Exception("MapNode is NULL");
 		return;
+	}
 	switch (e->Action)
 	{
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
@@ -58,11 +97,14 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->NewItems[i]);
-				if (oepeh != nullptr/* && oepeh->asosgEventHandler() != NULL*/)
+				if (oepeh != nullptr)
 				{
 					_viewer->pause();
-					oepeh->setMapNode(_viewer->getMapNode());
-					_viewer->getViewer()->addEventHandler(oepeh->asosgEventHandler());
+					oepeh->bind(_viewer->getMapNode());
+					if(oepeh->asosgEventHandler())
+						_viewer->getViewer()->addEventHandler(oepeh->asosgEventHandler());
+					else
+						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
 				}
 			}
@@ -79,8 +121,11 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
 				{
 					_viewer->pause();
-					oepeh->quit();
-					_viewer->getViewer()->removeEventHandler(oepeh->asosgEventHandler());
+					oepeh->unbind(_viewer->getMapNode());
+					if (oepeh->asosgEventHandler())
+						_viewer->getViewer()->removeEventHandler(oepeh->asosgEventHandler());
+					else
+						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
 				}
 			}
@@ -105,6 +150,11 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 	default:
 		break;
 	}
+}
+
+void gEarthPack::Render::FireMoveEvent(oepVec3f p)
+{
+	OnMouseMove(this, p);
 }
 
 gEarthPack::oepViewpoint^ gEarthPack::Render::Viewpoint::get()

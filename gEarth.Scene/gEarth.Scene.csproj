@@ -133,6 +133,7 @@
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\oepVec3f2StringConverter.cs" />
     <Compile Include="Converter\oepVec4f2ColorConverter.cs" />
     <Compile Include="Windows\AddViewpointOptionsWindow.xaml.cs">
       <DependentUpon>AddViewpointOptionsWindow.xaml</DependentUpon>

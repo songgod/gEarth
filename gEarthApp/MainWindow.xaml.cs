@@ -31,7 +31,7 @@ namespace gEarthApp
             InitStartMap();
             ax.OnEarthViewReady += Ax_OnEarthViewReady;
             mtree.OnSelectObjectChanged += Mtree_OnSelectObjectChanged;
-            gEarth.Scene.Project.OnCurrentMapChanged += Project_OnCurrentMapChanged;
+            Project.OnCurrentMapChanged += Project_OnCurrentMapChanged;
         }
 
         private oepMap StartMap { get; set; }
@@ -84,6 +84,12 @@ namespace gEarthApp
         private void Ax_OnEarthViewReady(bool bready)
         {
             Project.CurrentMap = StartMap;
+            ax.render.OnMouseMove += Render_OnMouseMove;
+        }
+
+        private void Render_OnMouseMove(Render render, oepVec3f p)
+        {
+            this.coords.Dispatcher.Invoke(new Action(() => { this.coords.Text = "lat: "+p.x.ToString() + " lng:" + p.y.ToString() + " alt:" + p.z.ToString(); }));
         }
     }
 }

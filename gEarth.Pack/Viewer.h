@@ -7,6 +7,7 @@
 #include <osgEarth/Viewpoint>
 #include <osg/AnimationPath>
 #include "PlayPathHandler.h"
+#include "MouseCoordHandler.h"
 
 namespace gEarthPack
 {
@@ -47,6 +48,8 @@ namespace gEarthPack
 
 		void playPath(osg::AnimationPath* path);
 
+		MouseCoordHandler* getMouseCoordHandler() const { return _mousecoordshandler; }
+
 	protected:
 
 		void InitCameraConfig();
@@ -58,7 +61,8 @@ namespace gEarthPack
 		osgViewer::Viewer* _viewer;
 		osgEarth::MapNode* _mapnode;
 		osg::Group* _root;
-		osg::ref_ptr<PlayPathHandler> _playpathmp;
+		PlayPathHandler* _playpathmp;
+		MouseCoordHandler* _mousecoordshandler;
 		void* _renderthread;
 	};
 }

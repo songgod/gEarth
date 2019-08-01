@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
         xmlns:gsctrls="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
+        xmlns:gscvt="clr-namespace:gEarth.Scene.Converter;assembly=gEarth.Scene"
         mc:Ignorable="d"
         Title="gEarth" Height="600" Width="800">
     <Fluent:RibbonWindow.CommandBindings>
@@ -41,6 +42,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <Fluent:Ribbon Grid.Row="0">
@@ -124,5 +126,10 @@
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
             <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax"/>
         </Grid>
+        <Border Grid.Row="2" x:Name="status" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="coords" Width="250" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Fluent:RibbonWindow>

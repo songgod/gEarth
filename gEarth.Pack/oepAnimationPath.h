@@ -1,7 +1,6 @@
 #pragma once
 #include "oepObject.h"
 #include "Handle.h"
-#include "Render.h"
 #include "AnimationPathOptions.h"
 #include <osg/AnimationPath>
 
@@ -10,6 +9,7 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
+	ref class Render;
 	public ref class oepControlPoint : 
 		public oepNotify
 	{

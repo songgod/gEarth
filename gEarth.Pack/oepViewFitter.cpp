@@ -2,6 +2,9 @@
 #include "oepViewFitter.h"
 #include <osgEarthUtil/ViewFitter>
 #include <osgEarth/Viewpoint>
+#include "Render.h"
+#include "oepViewpoint.h"
+#include "oepLayer.h"
 
 static gEarthPack::oepViewFitter::oepViewFitter()
 {

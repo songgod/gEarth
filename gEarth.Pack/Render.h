@@ -4,6 +4,7 @@
 
 #include "viewer.h"
 #include "oepMap.h"
+#include "oepVector.h"
 #include "oepViewpoint.h"
 #include "oepEventHandler.h"
 
@@ -11,6 +12,9 @@ using namespace System;
 using namespace System::Runtime::InteropServices;
 
 namespace gEarthPack {
+
+	ref class Render;
+	public delegate void MouseMoveEvent(Render^, oepVec3f);
 
 	public ref class Render : public oepNotify
 	{
@@ -40,13 +44,20 @@ namespace gEarthPack {
 
 		bool Open(oepMap^ map);
 
+	public:
+
+		event MouseMoveEvent^ OnMouseMove;
+		void FireMoveEvent(oepVec3f p);
+
 	protected:
 
+		void InitEvents();
 		void OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);
 
 	internal:
 
 		Viewer* _viewer;
 		oepEventHandlers^ _handlers;
+		oepVec3f _mousecoord;
 	};
 }

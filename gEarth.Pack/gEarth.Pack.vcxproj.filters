@@ -207,7 +207,13 @@
     <ClInclude Include="PlayPathHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="oepMesureDistanceHandler.h">
+    <ClInclude Include="oepMeasureDistanceHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="HandleMapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseCoordHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -383,7 +389,13 @@
     <ClCompile Include="PlayPathHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="oepMesureDistanceHandler.cpp">
+    <ClCompile Include="oepMeasureDistanceHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="HandleMapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseCoordHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

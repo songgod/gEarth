@@ -27,9 +27,8 @@ namespace gEarthPack
 	internal:
 
 		osgGA::EventHandler* asosgEventHandler();
-		virtual void setMapNode(osgEarth::MapNode* pMapNode){}
-		virtual osgEarth::MapNode* getMapNode() { return NULL; }
-		virtual void quit(){}
+		virtual void bind(osgEarth::MapNode* pMapNode){}
+		virtual void unbind(osgEarth::MapNode* pMapNode){}
 
 	protected:
 

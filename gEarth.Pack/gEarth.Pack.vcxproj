@@ -157,6 +157,8 @@
     <ClInclude Include="AnimationPathExtension.h" />
     <ClInclude Include="AnimationPathOptions.h" />
     <ClInclude Include="Handle.h" />
+    <ClInclude Include="HandleMapManager.h" />
+    <ClInclude Include="MouseCoordHandler.h" />
     <ClInclude Include="oepAnimationPath.h" />
     <ClInclude Include="oepAnimationPathExtension.h" />
     <ClInclude Include="oepBrightnessContrastColorFilter.h" />
@@ -175,7 +177,7 @@
     <ClInclude Include="oepImageLayerOptions.h" />
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepLayerOptions.h" />
-    <ClInclude Include="oepMesureDistanceHandler.h" />
+    <ClInclude Include="oepMeasureDistanceHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
@@ -217,7 +219,9 @@
     <ClCompile Include="AnimationPathExtension.cpp" />
     <ClCompile Include="AnimationPathPlugin.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="HandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
+    <ClCompile Include="MouseCoordHandler.cpp" />
     <ClCompile Include="oepAnimationPath.cpp" />
     <ClCompile Include="oepAnimationPathExtension.cpp" />
     <ClCompile Include="oepBrightnessContrastColorFilter.cpp" />
@@ -236,7 +240,7 @@
     <ClCompile Include="oepImageLayerOptions.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepLayerOptions.cpp" />
-    <ClCompile Include="oepMesureDistanceHandler.cpp" />
+    <ClCompile Include="oepMeasureDistanceHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />

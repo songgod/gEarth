@@ -14,57 +14,57 @@
 
 using namespace gEarthPack;
 
-
-class RenderThread : public OpenThreads::Thread
+namespace
 {
-private:
-
-	Viewer* _viewer;
-	OpenThreads::Block _block;
-	OpenThreads::Mutex _mutex;
-
-public:
-	RenderThread::RenderThread(Viewer* viewer) : _viewer(viewer)
+	class RenderThread : public OpenThreads::Thread
 	{
+	private:
 
-	}
+		Viewer* _viewer;
+		OpenThreads::Block _block;
+		OpenThreads::Mutex _mutex;
 
-	RenderThread::~RenderThread()
-	{
-		if (isRunning())
+	public:
+		RenderThread::RenderThread(Viewer* viewer) : _viewer(viewer)
 		{
-			cancel();
-			join();
+
 		}
-	}
 
-	void pause(bool bPause)
-	{
-		_block.set(!bPause);
-		OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
-	}
-
-	void RenderThread::run()
-	{
-		while (!testCancel() && _viewer &&
-			_viewer->getViewer() && 
-			!_viewer->getViewer()->done())
+		RenderThread::~RenderThread()
 		{
-			_block.block();
-
+			if (isRunning())
 			{
-				OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
-				_viewer->getViewer()->frame();
+				cancel();
+				join();
 			}
-			
-			//OpenThreads::Thread::microSleep(100);
 		}
-	}
-};
 
+		void pause(bool bPause)
+		{
+			_block.set(!bPause);
+			OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+		}
 
+		void RenderThread::run()
+		{
+			while (!testCancel() && _viewer &&
+				_viewer->getViewer() && 
+				!_viewer->getViewer()->done())
+			{
+				_block.block();
 
-Viewer::Viewer(HWND hWnd) : _hWnd(hWnd),_viewer(NULL),_renderthread(NULL), _mapnode(NULL)
+				{
+					OpenThreads::ScopedLock<OpenThreads::Mutex> lock(_mutex);
+					_viewer->getViewer()->frame();
+				}
+			
+				//OpenThreads::Thread::microSleep(100);
+			}
+		}
+	};
+}
+
+Viewer::Viewer(HWND hWnd) : _hWnd(hWnd),_viewer(NULL),_renderthread(NULL), _mapnode(NULL), _mousecoordshandler(NULL), _playpathmp(NULL)
 {
 
 }
@@ -141,6 +141,7 @@ void Viewer::open(osgEarth::MapNode* mapnode)
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
 	_root->addChild(top);
+	((MouseCoordHandler*)(_mousecoordshandler))->setMapNode(mapnode);
 	resume();
 }
 
@@ -148,6 +149,7 @@ void Viewer::clear()
 {
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
+	((MouseCoordHandler*)(_mousecoordshandler))->setMapNode(NULL);
 	resume();
 }
 
@@ -183,7 +185,7 @@ osgEarth::Viewpoint Viewer::getViewpoint()
 
 void Viewer::playPath(osg::AnimationPath* path)
 {
-	if (_playpathmp.valid())
+	if (_playpathmp)
 		_playpathmp->playPath(path);
 }
 
@@ -268,6 +270,8 @@ void Viewer::InitCameraConfig()
 	_viewer->addEventHandler(new osgGA::StateSetManipulator(camera->getOrCreateStateSet()));
 	_playpathmp = new	 PlayPathHandler();
 	_viewer->addEventHandler(_playpathmp);
+	_mousecoordshandler = new MouseCoordHandler();
+	_viewer->addEventHandler(_mousecoordshandler);
 
 	_viewer->setKeyEventSetsDone(0);
 

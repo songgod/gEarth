@@ -32,7 +32,7 @@ namespace gEarth.Scene.Windows
 
         public EarthViewControl EarthViewCtrl { get; set; }
 
-        private oepMesureDistanceHandler Handle { get; set; }
+        private oepMeasureDistanceHandler Handle { get; set; }
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -42,7 +42,7 @@ namespace gEarth.Scene.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Handle = new oepMesureDistanceHandler();
+            Handle = new oepMeasureDistanceHandler();
             this.DataContext = Handle;
             EarthViewCtrl.render.Handlers.Add(Handle);
         }

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "oepAnimationPath.h"
+#include "Render.h"
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
