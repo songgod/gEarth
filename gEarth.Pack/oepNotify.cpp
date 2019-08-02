@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "oepNotify.h"
 
+using namespace gEarthPack;
 
-gEarthPack::oepNotify::oepNotify()
+oepNotify::oepNotify()
 {
 }

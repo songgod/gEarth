@@ -2,7 +2,9 @@
 #include "oepViewpointsExtension.h"
 #include "oepExtensionFactory.h"
 
-gEarthPack::oepViewpointsExtension::oepViewpointsExtension()
+using namespace gEarthPack;
+
+oepViewpointsExtension::oepViewpointsExtension()
 {
 	osgEarth::Viewpoints::ViewpointsOptions options;
 	osgEarth::Config conf = options.getConfig();
@@ -11,25 +13,25 @@ gEarthPack::oepViewpointsExtension::oepViewpointsExtension()
 	_handle = new ExtensionHandle(extension);
 	_viewpoints = gcnew oepViewPoints();
 	init();
-	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepViewpointsExtension::OnViewpointsCollectionChanged);
+	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
 }
 
-gEarthPack::oepViewpointsExtension::oepViewpointsExtension(osgEarth::Extension* ext)
+oepViewpointsExtension::oepViewpointsExtension(osgEarth::Extension* ext)
 {
 	_handle = new ExtensionHandle(ext);
 	_viewpoints = gcnew oepViewPoints();
 	init();
-	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepViewpointsExtension::OnViewpointsCollectionChanged);
+	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
 }
 
-osgEarth::Viewpoints::ViewpointsOptions* gEarthPack::oepViewpointsExtension::getoeViewpointsOptions()
+osgEarth::Viewpoints::ViewpointsOptions* oepViewpointsExtension::getoeViewpointsOptions()
 {
 	if (!_handle)
 		return NULL;
 	return dynamic_cast<osgEarth::Viewpoints::ViewpointsOptions*>(_handle->getValue());
 }
 
-void gEarthPack::oepViewpointsExtension::init()
+void oepViewpointsExtension::init()
 {
 	osgEarth::Viewpoints::ViewpointsOptions* vo = getoeViewpointsOptions();
 	if (!vo)
@@ -44,7 +46,7 @@ void gEarthPack::oepViewpointsExtension::init()
 	}
 }
 
-void gEarthPack::oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::Viewpoints::ViewpointsOptions* vo = getoeViewpointsOptions();
 	if (!vo)
@@ -118,7 +120,7 @@ void gEarthPack::oepViewpointsExtension::OnViewpointsCollectionChanged(System::O
 	}
 }
 
-gEarthPack::oepViewPoints^ gEarthPack::oepViewpointsExtension::ViewPoints::get()
+oepViewPoints^ oepViewpointsExtension::ViewPoints::get()
 {
 	return _viewpoints;
 }

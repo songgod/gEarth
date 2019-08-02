@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "viewer.h"
 #include <OpenThreads\ScopedLock>
 #include <osgViewer\ViewerEventHandlers>

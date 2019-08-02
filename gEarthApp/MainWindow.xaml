@@ -4,12 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Fluent="urn:fluent-ribbon"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:gEarthApp"
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
         xmlns:gsctrls="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
         xmlns:gscvt="clr-namespace:gEarth.Scene.Converter;assembly=gEarth.Scene"
         mc:Ignorable="d"
         Title="gEarth" Height="600" Width="800">
+    <Fluent:RibbonWindow.Resources>
+        <sys:String x:Key="lat">纬度: </sys:String>
+        <sys:String x:Key="lng">经度: </sys:String>
+        <sys:String x:Key="alt">高度: </sys:String>
+    </Fluent:RibbonWindow.Resources>
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenMapCommand/>
         <cmd:NewMapCommand/>
@@ -128,7 +134,7 @@
         </Grid>
         <Border Grid.Row="2" x:Name="status" BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock x:Name="coords" Width="250" HorizontalAlignment="Right"/>
+                <TextBlock x:Name="coords" Width="300" HorizontalAlignment="Right"/>
             </StackPanel>
         </Border>
     </Grid>

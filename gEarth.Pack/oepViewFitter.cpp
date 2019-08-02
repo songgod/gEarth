@@ -6,11 +6,13 @@
 #include "oepViewpoint.h"
 #include "oepLayer.h"
 
-static gEarthPack::oepViewFitter::oepViewFitter()
+using namespace gEarthPack;
+
+static oepViewFitter::oepViewFitter()
 {
 }
 
-gEarthPack::oepViewpoint^ gEarthPack::oepViewFitter::Fitter(oepLayer^ layer, oepMap^ map, Render^ render)
+oepViewpoint^ oepViewFitter::Fitter(oepLayer^ layer, oepMap^ map, Render^ render)
 {
 	if (layer == nullptr || map==nullptr || render == nullptr)
 		return nullptr;
@@ -34,7 +36,7 @@ gEarthPack::oepViewpoint^ gEarthPack::oepViewFitter::Fitter(oepLayer^ layer, oep
 		osgEarth::Viewpoint vp;
 		if (fitter.createViewpoint(points, vp))
 		{
-			return gcnew gEarthPack::oepViewpoint(vp);
+			return gcnew oepViewpoint(vp);
 		}
 	}
 	else if (pLayer->getNode())
@@ -59,7 +61,7 @@ gEarthPack::oepViewpoint^ gEarthPack::oepViewFitter::Fitter(oepLayer^ layer, oep
 			osgEarth::Viewpoint vp;
 			if (fitter.createViewpoint(points, vp))
 			{
-				return gcnew gEarthPack::oepViewpoint(vp);
+				return gcnew oepViewpoint(vp);
 			}
 		}
 	}

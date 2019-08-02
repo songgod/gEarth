@@ -1,17 +1,19 @@
 #include "stdafx.h"
 #include "oepGammaColorFilter.h"
 
-gEarthPack::oepGammaColorFilter::oepGammaColorFilter()
+using namespace gEarthPack;
+
+oepGammaColorFilter::oepGammaColorFilter()
 {
 	_handle = new ColorFilterHandle(new osgEarth::Util::GammaColorFilter());
 }
 
-osgEarth::Util::GammaColorFilter* gEarthPack::oepGammaColorFilter::asoGammaColorFilter()
+osgEarth::Util::GammaColorFilter* oepGammaColorFilter::asoGammaColorFilter()
 {
 	return dynamic_cast<osgEarth::Util::GammaColorFilter*>(_handle->getValue());
 }
 
-void gEarthPack::oepGammaColorFilter::Reset()
+void oepGammaColorFilter::Reset()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -19,7 +21,7 @@ void gEarthPack::oepGammaColorFilter::Reset()
 	cf->setGamma(osg::Vec3f(1, 1, 1));
 }
 
-gEarthPack::oepVec3f gEarthPack::oepGammaColorFilter::Gamma::get()
+oepVec3f oepGammaColorFilter::Gamma::get()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -27,7 +29,7 @@ gEarthPack::oepVec3f gEarthPack::oepGammaColorFilter::Gamma::get()
 	return oepVec3f(cf->getGamma());
 }
 
-void gEarthPack::oepGammaColorFilter::Gamma::set(oepVec3f v)
+void oepGammaColorFilter::Gamma::set(oepVec3f v)
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -36,7 +38,7 @@ void gEarthPack::oepGammaColorFilter::Gamma::set(oepVec3f v)
 	NotifyChanged("Gamma");
 }
 
-float gEarthPack::oepGammaColorFilter::V0::get()
+float oepGammaColorFilter::V0::get()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -44,7 +46,7 @@ float gEarthPack::oepGammaColorFilter::V0::get()
 	return cf->getGamma().x();
 }
 
-void gEarthPack::oepGammaColorFilter::V0::set(float v)
+void oepGammaColorFilter::V0::set(float v)
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -55,7 +57,7 @@ void gEarthPack::oepGammaColorFilter::V0::set(float v)
 	NotifyChanged("V0");
 }
 
-float gEarthPack::oepGammaColorFilter::V1::get()
+float oepGammaColorFilter::V1::get()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -63,7 +65,7 @@ float gEarthPack::oepGammaColorFilter::V1::get()
 	return cf->getGamma().y();
 }
 
-void gEarthPack::oepGammaColorFilter::V1::set(float v)
+void oepGammaColorFilter::V1::set(float v)
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -74,7 +76,7 @@ void gEarthPack::oepGammaColorFilter::V1::set(float v)
 	NotifyChanged("V1");
 }
 
-float gEarthPack::oepGammaColorFilter::V2::get()
+float oepGammaColorFilter::V2::get()
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)
@@ -82,7 +84,7 @@ float gEarthPack::oepGammaColorFilter::V2::get()
 	return cf->getGamma().z();
 }
 
-void gEarthPack::oepGammaColorFilter::V2::set(float v)
+void oepGammaColorFilter::V2::set(float v)
 {
 	osgEarth::Util::GammaColorFilter* cf = asoGammaColorFilter();
 	if (!cf)

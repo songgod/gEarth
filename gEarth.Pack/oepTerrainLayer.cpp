@@ -7,7 +7,7 @@ oepTerrainLayer::oepTerrainLayer()
 {
 }
 
-osgEarth::TerrainLayer* gEarthPack::oepTerrainLayer::asoeTerrainLayer()
+osgEarth::TerrainLayer* oepTerrainLayer::asoeTerrainLayer()
 {
 	return dynamic_cast<osgEarth::TerrainLayer*>(_handle->getValue());
 }

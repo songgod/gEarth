@@ -216,6 +216,12 @@
     <ClInclude Include="MouseCoordHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepMeasureAreaHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureAreaHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -396,6 +402,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MouseCoordHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureAreaHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureAreaHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

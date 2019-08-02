@@ -3,34 +3,35 @@
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
+using namespace gEarthPack;
 
-gEarthPack::oepRecordScreenHandler::oepRecordScreenHandler(String^ file, float fps)
+oepRecordScreenHandler::oepRecordScreenHandler(String^ file, float fps)
 {
 	_handle->setValue(new RecordScreenHandler(marshal_as<std::string>(file),fps));
 }
 
-void gEarthPack::oepRecordScreenHandler::Save()
+void oepRecordScreenHandler::Save()
 {
-	gEarthPack::RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = asRecordScreenHandler();
 	if (rsh)
 		rsh->save();
 }
 
-void gEarthPack::oepRecordScreenHandler::Start()
+void oepRecordScreenHandler::Start()
 {
-	gEarthPack::RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = asRecordScreenHandler();
 	if (rsh)
 		rsh->start();
 }
 
-void gEarthPack::oepRecordScreenHandler::Stop()
+void oepRecordScreenHandler::Stop()
 {
-	gEarthPack::RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = asRecordScreenHandler();
 	if (rsh)
 		rsh->stop();
 }
 
-gEarthPack::RecordScreenHandler* gEarthPack::oepRecordScreenHandler::asRecordScreenHandler()
+RecordScreenHandler* oepRecordScreenHandler::asRecordScreenHandler()
 {
-	return dynamic_cast<gEarthPack::RecordScreenHandler*>(_handle->getValue());
+	return dynamic_cast<RecordScreenHandler*>(_handle->getValue());
 }

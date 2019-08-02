@@ -1,27 +1,28 @@
 #include "stdafx.h"
+
 #include "MouseCoordHandler.h"
 #include <osgEarth/MapNode>
 #include <osgEarth/TerrainEngineNode>
 
 using namespace osgEarth;
+using namespace gEarthPack;
 
-
-gEarthPack::MouseCoordHandler::MouseCoordHandler():_mapNode(NULL)
+MouseCoordHandler::MouseCoordHandler():_mapNode(NULL)
 {
 }
 
 
-gEarthPack::MouseCoordHandler::~MouseCoordHandler()
+MouseCoordHandler::~MouseCoordHandler()
 {
 }
 
-void gEarthPack::MouseCoordHandler::addMoveCallback(MouseMoveCallback* callback)
+void MouseCoordHandler::addMoveCallback(MouseMoveCallback* callback)
 {
 	if(callback)
 		_callbacks.push_back(callback);
 }
 
-bool gEarthPack::MouseCoordHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
+bool MouseCoordHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
 {
 	if (_mapNode && ea.getEventType() == ea.MOVE || ea.getEventType() == ea.DRAG)
 	{

@@ -80,19 +80,19 @@ static oepLayerFactory::oepLayerFactory()
 	registerCreator(gcnew oepUnkownLayerCreator());
 }
 
-void gEarthPack::oepLayerFactory::registerCreator(IoepLayerCreator^ creator)
+void oepLayerFactory::registerCreator(IoepLayerCreator^ creator)
 {
 	if (creator == nullptr)
 		return;
 	_creatorcache[creator->supportType()] = creator;
 }
 
-void gEarthPack::oepLayerFactory::unregisterCreator(String^ type)
+void oepLayerFactory::unregisterCreator(String^ type)
 {
 	_creatorcache->Remove(type);
 }
 
-gEarthPack::oepLayer^ gEarthPack::oepLayerFactory::creatorLayer(String^ type, IntPtr param)
+oepLayer^ oepLayerFactory::creatorLayer(String^ type, IntPtr param)
 {
 	if (_creatorcache->ContainsKey(type))
 		return _creatorcache[type]->createLayer(param);

@@ -6,17 +6,17 @@ oepTerrainLayerOptions::oepTerrainLayerOptions() : _driver(nullptr)
 {
 }
 
-osgEarth::TerrainLayerOptions* gEarthPack::oepTerrainLayerOptions::asoeTerrainLayerOptions()
+osgEarth::TerrainLayerOptions* oepTerrainLayerOptions::asoeTerrainLayerOptions()
 {
 	return dynamic_cast<osgEarth::TerrainLayerOptions*>(_handle);
 }
 
-gEarthPack::oepTileSourceOptions^ gEarthPack::oepTerrainLayerOptions::driver::get()
+oepTileSourceOptions^ oepTerrainLayerOptions::driver::get()
 {
 	return _driver;
 }
 
-void gEarthPack::oepTerrainLayerOptions::driver::set(oepTileSourceOptions^ v)
+void oepTerrainLayerOptions::driver::set(oepTileSourceOptions^ v)
 {
 	_driver = v;
 	osgEarth::TerrainLayerOptions* to = asoeTerrainLayerOptions();

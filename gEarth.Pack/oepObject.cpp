@@ -7,12 +7,12 @@ oepObject::oepObject()
 {
 }
 
-String^ gEarthPack::oepObject::Name::get()
+String^ oepObject::Name::get()
 {
 	throw gcnew System::NotImplementedException();
 }
 
-void gEarthPack::oepObject::Name::set(String^ v)
+void oepObject::Name::set(String^ v)
 {
 	throw gcnew System::NotImplementedException();
 }

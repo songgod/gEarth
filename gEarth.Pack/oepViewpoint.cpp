@@ -3,23 +3,14 @@
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
+using namespace gEarthPack;
 
-
-gEarthPack::oepViewpoint::oepViewpoint() : _handle(new osgEarth::Viewpoint()), _ownhandle(true)
+oepViewpoint::oepViewpoint() : _handle(new osgEarth::Viewpoint()), _ownhandle(true)
 {
 }
 
 
-gEarthPack::oepViewpoint::~oepViewpoint()
-{
-	if (_handle != NULL && _ownhandle)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-gEarthPack::oepViewpoint::!oepViewpoint()
+oepViewpoint::~oepViewpoint()
 {
 	if (_handle != NULL && _ownhandle)
 	{
@@ -28,14 +19,23 @@ gEarthPack::oepViewpoint::!oepViewpoint()
 	}
 }
 
-String^ gEarthPack::oepViewpoint::Name::get()
+oepViewpoint::!oepViewpoint()
+{
+	if (_handle != NULL && _ownhandle)
+	{
+		delete _handle;
+		_handle = NULL;
+	}
+}
+
+String^ oepViewpoint::Name::get()
 {
 	if (!_handle)
 		return "";
 	return marshal_as<String^>(_handle->name().value());
 }
 
-void gEarthPack::oepViewpoint::Name::set(String^ v)
+void oepViewpoint::Name::set(String^ v)
 {
 	if (!_handle)
 		return;
@@ -43,19 +43,19 @@ void gEarthPack::oepViewpoint::Name::set(String^ v)
 	NotifyChanged("Name");
 }
 
-bool gEarthPack::oepViewpoint::IsValid::get()
+bool oepViewpoint::IsValid::get()
 {
 	if (!_handle)
 		return false;
 	return _handle->isValid();
 }
 
-gEarthPack::oepViewpoint::oepViewpoint(const osgEarth::Viewpoint& vp): _handle(new osgEarth::Viewpoint()), _ownhandle(true)
+oepViewpoint::oepViewpoint(const osgEarth::Viewpoint& vp): _handle(new osgEarth::Viewpoint()), _ownhandle(true)
 {
 	(*_handle) = vp;
 }
 
-void gEarthPack::oepViewpoint::setHandle(osgEarth::Viewpoint* handle)
+void oepViewpoint::setHandle(osgEarth::Viewpoint* handle)
 {
 	if (_handle != NULL && _ownhandle)
 	{
@@ -66,7 +66,7 @@ void gEarthPack::oepViewpoint::setHandle(osgEarth::Viewpoint* handle)
 	_ownhandle = false;
 }
 
-void gEarthPack::oepViewpoint::resetHandle()
+void oepViewpoint::resetHandle()
 {
 	if (_ownhandle)
 		return;
@@ -74,7 +74,7 @@ void gEarthPack::oepViewpoint::resetHandle()
 	_ownhandle = true;
 }
 
-osgEarth::Viewpoint* gEarthPack::oepViewpoint::asoeViewpoint()
+osgEarth::Viewpoint* oepViewpoint::asoeViewpoint()
 {
 	return _handle;
 }

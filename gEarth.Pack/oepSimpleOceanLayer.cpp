@@ -11,17 +11,17 @@ oepSimpleOceanLayer::oepSimpleOceanLayer(oepSimpleOceanLayerOptions^ options)
 		_handle->setValue(new osgEarth::Util::SimpleOceanLayer());
 }
 
-osgEarth::Util::SimpleOceanLayer* gEarthPack::oepSimpleOceanLayer::asoeSimpleOceanLayer()
+osgEarth::Util::SimpleOceanLayer* oepSimpleOceanLayer::asoeSimpleOceanLayer()
 {
 	return dynamic_cast<osgEarth::Util::SimpleOceanLayer*>(_handle->getValue());
 }
 
-gEarthPack::oepSimpleOceanLayer::oepSimpleOceanLayer(osgEarth::Util::SimpleOceanLayer* layer)
+oepSimpleOceanLayer::oepSimpleOceanLayer(osgEarth::Util::SimpleOceanLayer* layer)
 {
 	_handle->setValue(layer);
 }
 
-float gEarthPack::oepSimpleOceanLayer::MaxAltitude::get()
+float oepSimpleOceanLayer::MaxAltitude::get()
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)
@@ -29,7 +29,7 @@ float gEarthPack::oepSimpleOceanLayer::MaxAltitude::get()
 	return ol->getMaxAltitude();
 }
 
-void gEarthPack::oepSimpleOceanLayer::MaxAltitude::set(float v)
+void oepSimpleOceanLayer::MaxAltitude::set(float v)
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)
@@ -38,7 +38,7 @@ void gEarthPack::oepSimpleOceanLayer::MaxAltitude::set(float v)
 	NotifyChanged("MaxAltitude");
 }
 
-gEarthPack::oepVec4f gEarthPack::oepSimpleOceanLayer::Color::get()
+oepVec4f oepSimpleOceanLayer::Color::get()
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)
@@ -48,7 +48,7 @@ gEarthPack::oepVec4f gEarthPack::oepSimpleOceanLayer::Color::get()
 	return oepVec4f(c.x(), c.y(), c.z(), c.a());
 }
 
-void gEarthPack::oepSimpleOceanLayer::Color::set(oepVec4f v)
+void oepSimpleOceanLayer::Color::set(oepVec4f v)
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)
@@ -57,7 +57,7 @@ void gEarthPack::oepSimpleOceanLayer::Color::set(oepVec4f v)
 	NotifyChanged("Color");
 }
 
-float gEarthPack::oepSimpleOceanLayer::SeaLevel::get()
+float oepSimpleOceanLayer::SeaLevel::get()
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)
@@ -65,7 +65,7 @@ float gEarthPack::oepSimpleOceanLayer::SeaLevel::get()
 	return ol->getSeaLevel();
 }
 
-void gEarthPack::oepSimpleOceanLayer::SeaLevel::set(float v)
+void oepSimpleOceanLayer::SeaLevel::set(float v)
 {
 	osgEarth::Util::SimpleOceanLayer* ol = asoeSimpleOceanLayer();
 	if (!ol)

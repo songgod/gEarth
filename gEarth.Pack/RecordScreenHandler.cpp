@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "RecordScreenHandler.h"
 #include <sstream>
 #include <osgDB/FileUtils>
@@ -17,7 +18,7 @@ RecordScreenHandler::~RecordScreenHandler()
 {
 }
 
-bool gEarthPack::RecordScreenHandler::save()
+bool RecordScreenHandler::save()
 {
 	if (_animPath.valid() && !_animPath->empty())
 	{
@@ -32,7 +33,7 @@ bool gEarthPack::RecordScreenHandler::save()
 	return false;
 }
 
-void gEarthPack::RecordScreenHandler::start()
+void RecordScreenHandler::start()
 {
 	_currentlyRecording = true;
 	_animStartTime = osg::Timer::instance()->tick();
@@ -61,7 +62,7 @@ void gEarthPack::RecordScreenHandler::start()
 	}
 }
 
-void gEarthPack::RecordScreenHandler::stop()
+void RecordScreenHandler::stop()
 {
 	_currentlyRecording = false;
 	_delta = 0.0f;

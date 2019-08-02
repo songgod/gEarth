@@ -14,17 +14,17 @@ oepLayer::oepLayer():_handle(NULL)
 	_handle = new LayerHandle();
 }
 
-gEarthPack::oepLayer::~oepLayer()
+oepLayer::~oepLayer()
 {
 	quit();
 }
 
-gEarthPack::oepLayer::!oepLayer()
+oepLayer::!oepLayer()
 {
 	quit();
 }
 
-void gEarthPack::oepLayer::quit()
+void oepLayer::quit()
 {
 	if (_handle != NULL)
 	{
@@ -33,14 +33,14 @@ void gEarthPack::oepLayer::quit()
 	}
 }
 
-osgEarth::Layer* gEarthPack::oepLayer::asoeLayer()
+osgEarth::Layer* oepLayer::asoeLayer()
 {
 	if (!_handle)
 		return NULL;
 	return _handle->getValue();
 }
 
-String^ gEarthPack::oepLayer::StatusString::get()
+String^ oepLayer::StatusString::get()
 {
 	osgEarth::Layer* plyr = asoeLayer();
 	if (!plyr)
@@ -48,7 +48,7 @@ String^ gEarthPack::oepLayer::StatusString::get()
 	return marshal_as<String^>(plyr->getStatus().toString());
 }
 
-bool gEarthPack::oepLayer::IsOK::get()
+bool oepLayer::IsOK::get()
 {
 	osgEarth::Layer* plyr = asoeLayer();
 	if (!plyr)
@@ -56,7 +56,7 @@ bool gEarthPack::oepLayer::IsOK::get()
 	return plyr->getStatus().isOK() ? true : false;
 }
 
-String^ gEarthPack::oepLayer::Name::get()
+String^ oepLayer::Name::get()
 {
 	osgEarth::Layer* plyr = asoeLayer();
 	if (!plyr)
@@ -64,7 +64,7 @@ String^ gEarthPack::oepLayer::Name::get()
 	return marshal_as<String^>(plyr->getName());
 }
 
-void gEarthPack::oepLayer::Name::set(String^ v)
+void oepLayer::Name::set(String^ v)
 {
 	osgEarth::Layer* plyr = asoeLayer();
 	if (!plyr)

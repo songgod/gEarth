@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "AnimationPathExtension.h"
 
 using namespace osgEarth::AnimationPath;

@@ -10,28 +10,28 @@ oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 		_handle->setValue(new osgEarth::ImageLayer());
 
 	_colorfilters = gcnew oepColorFilters();
-	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepImageLayer::OnColorFiltersCollectionChanged);
+	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepImageLayer::OnColorFiltersCollectionChanged);
 }
 
 oepImageLayer::oepImageLayer(osgEarth::ImageLayer* layer)
 {
 	_handle->setValue(layer);
 	_colorfilters = gcnew oepColorFilters();
-	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepImageLayer::OnColorFiltersCollectionChanged);
+	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepImageLayer::OnColorFiltersCollectionChanged);
 
 }
 
-osgEarth::ImageLayer* gEarthPack::oepImageLayer::asoeImageLayer()
+osgEarth::ImageLayer* oepImageLayer::asoeImageLayer()
 {
 	return dynamic_cast<osgEarth::ImageLayer*>(_handle->getValue());
 }
 
-gEarthPack::oepColorFilters^ gEarthPack::oepImageLayer::ColorFilters::get()
+oepColorFilters^ oepImageLayer::ColorFilters::get()
 {
 	return _colorfilters;
 }
 
-void gEarthPack::oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::ImageLayer* pLayer = asoeImageLayer();
 	if (!pLayer)

@@ -3,8 +3,9 @@
 #include "AnimationPathOptions.h"
 #include "oepExtensionFactory.h"
 
+using namespace gEarthPack;
 
-gEarthPack::oepAnimationPathExtension::oepAnimationPathExtension()
+oepAnimationPathExtension::oepAnimationPathExtension()
 {
 	osgEarth::AnimationPath::AnimationPathOptions options;
 	osgEarth::Config conf = options.getConfig();
@@ -13,17 +14,17 @@ gEarthPack::oepAnimationPathExtension::oepAnimationPathExtension()
 	_handle = new ExtensionHandle(extension);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
-	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepAnimationPathExtension::OnAnimationPathCollectionChanged);
+	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);
 }
 
-osgEarth::AnimationPath::AnimationPathOptions* gEarthPack::oepAnimationPathExtension::getoeAnimationPathOptions()
+osgEarth::AnimationPath::AnimationPathOptions* oepAnimationPathExtension::getoeAnimationPathOptions()
 {
 	if (!_handle)
 		return NULL;
 	return dynamic_cast<osgEarth::AnimationPath::AnimationPathOptions*>(_handle->getValue());
 }
 
-void gEarthPack::oepAnimationPathExtension::init()
+void oepAnimationPathExtension::init()
 {
 	osgEarth::AnimationPath::AnimationPathOptions* vo = getoeAnimationPathOptions();
 	if (!vo)
@@ -37,7 +38,7 @@ void gEarthPack::oepAnimationPathExtension::init()
 	}
 }
 
-void gEarthPack::oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::AnimationPath::AnimationPathOptions* vo = getoeAnimationPathOptions();
 	if (!vo)
@@ -109,15 +110,15 @@ void gEarthPack::oepAnimationPathExtension::OnAnimationPathCollectionChanged(Sys
 	}
 }
 
-gEarthPack::oepAnimationPathExtension::oepAnimationPathExtension(osgEarth::Extension* ext)
+oepAnimationPathExtension::oepAnimationPathExtension(osgEarth::Extension* ext)
 {
 	_handle = new ExtensionHandle(ext);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
-	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepAnimationPathExtension::OnAnimationPathCollectionChanged);
+	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);
 }
 
-gEarthPack::oepAnimationPaths^ gEarthPack::oepAnimationPathExtension::AnimationPaths::get()
+oepAnimationPaths^ oepAnimationPathExtension::AnimationPaths::get()
 {
 	return _animationpaths;
 }

@@ -89,7 +89,10 @@ namespace gEarthApp
 
         private void Render_OnMouseMove(Render render, oepVec3f p)
         {
-            this.coords.Dispatcher.Invoke(new Action(() => { this.coords.Text = "lat: "+p.x.ToString() + " lng:" + p.y.ToString() + " alt:" + p.z.ToString(); }));
+            string lat = this.Resources["lat"] as string;
+            string lng = this.Resources["lat"] as string;
+            string alt = this.Resources["lat"] as string;
+            this.coords.Dispatcher.Invoke(new Action(() => { this.coords.Text =lat+p.x.ToString() + lng + p.y.ToString() + alt + p.z.ToString(); }));
         }
     }
 }

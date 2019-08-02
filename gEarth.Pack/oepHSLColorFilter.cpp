@@ -1,18 +1,19 @@
 #include "stdafx.h"
 #include "oepHSLColorFilter.h"
 
+using namespace gEarthPack;
 
-gEarthPack::oepHSLColorFilter::oepHSLColorFilter()
+oepHSLColorFilter::oepHSLColorFilter()
 {
 	_handle = new ColorFilterHandle(new osgEarth::Util::HSLColorFilter());
 }
 
-osgEarth::Util::HSLColorFilter* gEarthPack::oepHSLColorFilter::asoeHSLColorFilter()
+osgEarth::Util::HSLColorFilter* oepHSLColorFilter::asoeHSLColorFilter()
 {
 	return dynamic_cast<osgEarth::Util::HSLColorFilter*>(_handle->getValue());
 }
 
-void gEarthPack::oepHSLColorFilter::Reset()
+void oepHSLColorFilter::Reset()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -20,7 +21,7 @@ void gEarthPack::oepHSLColorFilter::Reset()
 	cf->setHSLOffset(osg::Vec3f(0, 0, 0));
 }
 
-gEarthPack::oepVec3f gEarthPack::oepHSLColorFilter::Offset::get()
+oepVec3f oepHSLColorFilter::Offset::get()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -28,7 +29,7 @@ gEarthPack::oepVec3f gEarthPack::oepHSLColorFilter::Offset::get()
 	return oepVec3f(cf->getHSLOffset());
 }
 
-void gEarthPack::oepHSLColorFilter::Offset::set(oepVec3f v)
+void oepHSLColorFilter::Offset::set(oepVec3f v)
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -38,7 +39,7 @@ void gEarthPack::oepHSLColorFilter::Offset::set(oepVec3f v)
 }
 
 
-float gEarthPack::oepHSLColorFilter::H::get()
+float oepHSLColorFilter::H::get()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -46,7 +47,7 @@ float gEarthPack::oepHSLColorFilter::H::get()
 	return cf->getHSLOffset().x();
 }
 
-void gEarthPack::oepHSLColorFilter::H::set(float v)
+void oepHSLColorFilter::H::set(float v)
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -57,7 +58,7 @@ void gEarthPack::oepHSLColorFilter::H::set(float v)
 	NotifyChanged("H");
 }
 
-float gEarthPack::oepHSLColorFilter::S::get()
+float oepHSLColorFilter::S::get()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -65,7 +66,7 @@ float gEarthPack::oepHSLColorFilter::S::get()
 	return cf->getHSLOffset().y();
 }
 
-void gEarthPack::oepHSLColorFilter::S::set(float v)
+void oepHSLColorFilter::S::set(float v)
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -76,7 +77,7 @@ void gEarthPack::oepHSLColorFilter::S::set(float v)
 	NotifyChanged("S");
 }
 
-float gEarthPack::oepHSLColorFilter::L::get()
+float oepHSLColorFilter::L::get()
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)
@@ -84,7 +85,7 @@ float gEarthPack::oepHSLColorFilter::L::get()
 	return cf->getHSLOffset().z();
 }
 
-void gEarthPack::oepHSLColorFilter::L::set(float v)
+void oepHSLColorFilter::L::set(float v)
 {
 	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
 	if (!cf)

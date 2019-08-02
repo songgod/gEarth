@@ -10,10 +10,11 @@
 #include "MouseCoordHandler.h"
 
 using namespace msclr::interop;
+using namespace gEarthPack;
 
 namespace
 {
-	class MouseMoveCallback : public gEarthPack::MouseCoordHandler::MouseMoveCallback
+	class MouseMoveCallback : public MouseCoordHandler::MouseMoveCallback
 	{
 	public:
 
@@ -24,24 +25,24 @@ namespace
 
 	public:
 
-		virtual void update(gEarthPack::MouseCoordHandler* sender, const osg::Vec3& coords)
+		virtual void update(MouseCoordHandler* sender, const osg::Vec3& coords)
 		{
-			gEarthPack::Render^ render = gEarthPack::HandleMapManager::getHandle<gEarthPack::Render>(sender);
+			Render^ render = HandleMapManager::getHandle<Render>(sender);
 			if (render == nullptr)
 				return;
 
-			render->FireMoveEvent(gEarthPack::oepVec3f(coords.y(), coords.x(), coords.z()));
+			render->FireMoveEvent(oepVec3f(coords.y(), coords.x(), coords.z()));
 		}
 	};
 }
 
-gEarthPack::Render::Render():_viewer(NULL)
+Render::Render():_viewer(NULL)
 {
 	_handlers = gcnew oepEventHandlers();
-	_handlers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::Render::OnHandlersCollectionChanged);
+	_handlers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &Render::OnHandlersCollectionChanged);
 }
 
-void gEarthPack::Render::Start(IntPtr hwnd)
+void Render::Start(IntPtr hwnd)
 {
 	if (_viewer)
 		return;
@@ -54,9 +55,9 @@ void gEarthPack::Render::Start(IntPtr hwnd)
 
 }
 
-void gEarthPack::Render::End()
+void Render::End()
 {
-	gEarthPack::HandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
+	HandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
 	if (_viewer)
 	{
 		delete _viewer;
@@ -64,7 +65,7 @@ void gEarthPack::Render::End()
 	}
 }
 
-bool gEarthPack::Render::Open(oepMap^ map)
+bool Render::Open(oepMap^ map)
 {
 	osgEarth::MapNode* pMapNode = map->getMapNode();
 	if (!pMapNode)
@@ -74,14 +75,14 @@ bool gEarthPack::Render::Open(oepMap^ map)
 	return true;
 }
 
-void gEarthPack::Render::InitEvents()
+void Render::InitEvents()
 {
-	gEarthPack::HandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
+	HandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
 	MouseMoveCallback* cb = new MouseMoveCallback();
 	_viewer->getMouseCoordHandler()->addMoveCallback(cb);
 }
 
-void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	if (!_viewer || !_viewer->getMapNode())
 	{
@@ -152,18 +153,18 @@ void gEarthPack::Render::OnHandlersCollectionChanged(System::Object^ sender, Sys
 	}
 }
 
-void gEarthPack::Render::FireMoveEvent(oepVec3f p)
+void Render::FireMoveEvent(oepVec3f p)
 {
 	OnMouseMove(this, p);
 }
 
-gEarthPack::oepViewpoint^ gEarthPack::Render::Viewpoint::get()
+oepViewpoint^ Render::Viewpoint::get()
 {
 	osgEarth::Viewpoint vp = _viewer->getViewpoint();
-	return gcnew gEarthPack::oepViewpoint(vp);
+	return gcnew oepViewpoint(vp);
 }
 
-void gEarthPack::Render::Viewpoint::set(oepViewpoint^ v)
+void Render::Viewpoint::set(oepViewpoint^ v)
 {
 	if (v == nullptr || v->asoeViewpoint() == NULL)
 		return;
@@ -171,7 +172,7 @@ void gEarthPack::Render::Viewpoint::set(oepViewpoint^ v)
 	NotifyChanged("Viewpoint");
 }
 
-gEarthPack::oepEventHandlers^ gEarthPack::Render::Handlers::get()
+oepEventHandlers^ Render::Handlers::get()
 {
 	return _handlers;
 }

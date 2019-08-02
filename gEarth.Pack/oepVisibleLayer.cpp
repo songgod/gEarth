@@ -6,12 +6,12 @@ oepVisibleLayer::oepVisibleLayer()
 {
 }
 
-osgEarth::VisibleLayer* gEarthPack::oepVisibleLayer::asoeVisibleLayer()
+osgEarth::VisibleLayer* oepVisibleLayer::asoeVisibleLayer()
 {
 	return dynamic_cast<osgEarth::VisibleLayer*>(_handle->getValue());
 }
 
-bool gEarthPack::oepVisibleLayer::Visible::get()
+bool oepVisibleLayer::Visible::get()
 {
 	osgEarth::VisibleLayer* plyr = asoeVisibleLayer();
 	if (plyr == nullptr)
@@ -19,7 +19,7 @@ bool gEarthPack::oepVisibleLayer::Visible::get()
 	return plyr->getVisible() ? true : false;
 }
 
-void gEarthPack::oepVisibleLayer::Visible::set(bool v)
+void oepVisibleLayer::Visible::set(bool v)
 {
 	osgEarth::VisibleLayer* plyr = asoeVisibleLayer();
 	if (plyr == nullptr)

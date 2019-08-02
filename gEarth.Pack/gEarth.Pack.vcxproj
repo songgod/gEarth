@@ -99,7 +99,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgutild.lib;osgEarthFeaturesd.lib;osgEarthAnnotationd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -114,9 +114,10 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <OmitFramePointers>
       </OmitFramePointers>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgutild.lib;osgEarthFeaturesd.lib;osgEarthAnnotationd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -128,7 +129,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgutil.lib;osgEarthFeatures.lib;osgEarthAnnotation.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -140,7 +141,7 @@
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgutil.lib;osgEarthFeatures.lib;osgEarthAnnotation.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="AnimationPathOptions.h" />
     <ClInclude Include="Handle.h" />
     <ClInclude Include="HandleMapManager.h" />
+    <ClInclude Include="MeasureAreaHandler.h" />
     <ClInclude Include="MouseCoordHandler.h" />
     <ClInclude Include="oepAnimationPath.h" />
     <ClInclude Include="oepAnimationPathExtension.h" />
@@ -177,6 +179,7 @@
     <ClInclude Include="oepImageLayerOptions.h" />
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepLayerOptions.h" />
+    <ClInclude Include="oepMeasureAreaHandler.h" />
     <ClInclude Include="oepMeasureDistanceHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
@@ -221,6 +224,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="HandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
+    <ClCompile Include="MeasureAreaHandler.cpp" />
     <ClCompile Include="MouseCoordHandler.cpp" />
     <ClCompile Include="oepAnimationPath.cpp" />
     <ClCompile Include="oepAnimationPathExtension.cpp" />
@@ -240,6 +244,7 @@
     <ClCompile Include="oepImageLayerOptions.cpp" />
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepLayerOptions.cpp" />
+    <ClCompile Include="oepMeasureAreaHandler.cpp" />
     <ClCompile Include="oepMeasureDistanceHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />

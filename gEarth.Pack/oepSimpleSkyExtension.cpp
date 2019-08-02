@@ -2,7 +2,9 @@
 #include "oepSimpleSkyExtension.h"
 #include "oepExtensionFactory.h"
 
-gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
+using namespace gEarthPack;
+
+oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
 {
 	osgEarth::SimpleSky::SimpleSkyOptions options;
 	osgEarth::Config conf = options.getConfig();
@@ -11,19 +13,19 @@ gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
 	_handle = new ExtensionHandle(extension);
 }
 
-gEarthPack::oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext) :_bNotifyVisible(true)
+oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext) :_bNotifyVisible(true)
 {
 	_handle = new ExtensionHandle(ext);
 }
 
-osgEarth::Util::SkyNode* gEarthPack::oepSimpleSkyExtension::getoeSkyNode()
+osgEarth::Util::SkyNode* oepSimpleSkyExtension::getoeSkyNode()
 {
 	if (!_handle || !_handle->getValue())
 		return NULL;
 	return dynamic_cast<osgEarth::Util::SkyNode*>(_handle->getValue()->getUserData());
 }
 
-osgEarth::SimpleSky::SimpleSkyOptions* gEarthPack::oepSimpleSkyExtension::getoeSimpleSkyOptions()
+osgEarth::SimpleSky::SimpleSkyOptions* oepSimpleSkyExtension::getoeSimpleSkyOptions()
 {
 	if (!_handle)
 		return NULL;
@@ -31,7 +33,7 @@ osgEarth::SimpleSky::SimpleSkyOptions* gEarthPack::oepSimpleSkyExtension::getoeS
 	return dynamic_cast<osgEarth::SimpleSky::SimpleSkyOptions*>(_handle->getValue());
 }
 
-int gEarthPack::oepSimpleSkyExtension::DataYear::get()
+int oepSimpleSkyExtension::DataYear::get()
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -42,7 +44,7 @@ int gEarthPack::oepSimpleSkyExtension::DataYear::get()
 	return 0;
 }
 
-void gEarthPack::oepSimpleSkyExtension::DataYear::set(int v)
+void oepSimpleSkyExtension::DataYear::set(int v)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -54,7 +56,7 @@ void gEarthPack::oepSimpleSkyExtension::DataYear::set(int v)
 	}
 }
 
-int gEarthPack::oepSimpleSkyExtension::DataMonth::get()
+int oepSimpleSkyExtension::DataMonth::get()
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -65,7 +67,7 @@ int gEarthPack::oepSimpleSkyExtension::DataMonth::get()
 	return 0;
 }
 
-void gEarthPack::oepSimpleSkyExtension::DataMonth::set(int v)
+void oepSimpleSkyExtension::DataMonth::set(int v)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -77,7 +79,7 @@ void gEarthPack::oepSimpleSkyExtension::DataMonth::set(int v)
 	}
 }
 
-int gEarthPack::oepSimpleSkyExtension::DataDay::get()
+int oepSimpleSkyExtension::DataDay::get()
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -88,7 +90,7 @@ int gEarthPack::oepSimpleSkyExtension::DataDay::get()
 	return 0;
 }
 
-void gEarthPack::oepSimpleSkyExtension::DataDay::set(int v)
+void oepSimpleSkyExtension::DataDay::set(int v)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -100,7 +102,7 @@ void gEarthPack::oepSimpleSkyExtension::DataDay::set(int v)
 	}
 }
 
-double gEarthPack::oepSimpleSkyExtension::DataHours::get()
+double oepSimpleSkyExtension::DataHours::get()
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -111,7 +113,7 @@ double gEarthPack::oepSimpleSkyExtension::DataHours::get()
 	return 0.0;
 }
 
-void gEarthPack::oepSimpleSkyExtension::DataHours::set(double v)
+void oepSimpleSkyExtension::DataHours::set(double v)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	if (sn)
@@ -123,7 +125,7 @@ void gEarthPack::oepSimpleSkyExtension::DataHours::set(double v)
 	}
 }
 
-bool gEarthPack::oepSimpleSkyExtension::SunVisible::get()
+bool oepSimpleSkyExtension::SunVisible::get()
 {
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (so)
@@ -131,7 +133,7 @@ bool gEarthPack::oepSimpleSkyExtension::SunVisible::get()
 	return false;
 }
 
-void gEarthPack::oepSimpleSkyExtension::SunVisible::set(bool b)
+void oepSimpleSkyExtension::SunVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
@@ -142,7 +144,7 @@ void gEarthPack::oepSimpleSkyExtension::SunVisible::set(bool b)
 		NotifyChanged("Visible");
 }
 
-bool gEarthPack::oepSimpleSkyExtension::MoonVisible::get()
+bool oepSimpleSkyExtension::MoonVisible::get()
 {
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (so)
@@ -150,7 +152,7 @@ bool gEarthPack::oepSimpleSkyExtension::MoonVisible::get()
 	return false;
 }
 
-void gEarthPack::oepSimpleSkyExtension::MoonVisible::set(bool b)
+void oepSimpleSkyExtension::MoonVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
@@ -161,7 +163,7 @@ void gEarthPack::oepSimpleSkyExtension::MoonVisible::set(bool b)
 		NotifyChanged("Visible");
 }
 
-bool gEarthPack::oepSimpleSkyExtension::StarsVisible::get()
+bool oepSimpleSkyExtension::StarsVisible::get()
 {
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (so)
@@ -169,7 +171,7 @@ bool gEarthPack::oepSimpleSkyExtension::StarsVisible::get()
 	return false;
 }
 
-void gEarthPack::oepSimpleSkyExtension::StarsVisible::set(bool b)
+void oepSimpleSkyExtension::StarsVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
@@ -180,7 +182,7 @@ void gEarthPack::oepSimpleSkyExtension::StarsVisible::set(bool b)
 		NotifyChanged("Visible");
 }
 
-bool gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::get()
+bool oepSimpleSkyExtension::AtmosphereVisible::get()
 {
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
 	if (so)
@@ -188,7 +190,7 @@ bool gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::get()
 	return false;
 }
 
-void gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::set(bool b)
+void oepSimpleSkyExtension::AtmosphereVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
 	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
@@ -199,7 +201,7 @@ void gEarthPack::oepSimpleSkyExtension::AtmosphereVisible::set(bool b)
 		NotifyChanged("Visible");
 }
 
-Nullable<Boolean> gEarthPack::oepSimpleSkyExtension::Visible::get()
+Nullable<Boolean> oepSimpleSkyExtension::Visible::get()
 {
 	if (SunVisible && MoonVisible && StarsVisible && AtmosphereVisible)
 		return Nullable<Boolean>(true);
@@ -210,7 +212,7 @@ Nullable<Boolean> gEarthPack::oepSimpleSkyExtension::Visible::get()
 	return Nullable<Boolean>();
 }
 
-void gEarthPack::oepSimpleSkyExtension::Visible::set(Nullable<Boolean> b)
+void oepSimpleSkyExtension::Visible::set(Nullable<Boolean> b)
 {
 	if (!b.HasValue)
 		return;

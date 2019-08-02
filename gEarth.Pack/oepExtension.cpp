@@ -3,13 +3,14 @@
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
+using namespace gEarthPack;
 
-gEarthPack::oepExtension::oepExtension():_handle(NULL)
+oepExtension::oepExtension():_handle(NULL)
 {
 	
 }
 
-gEarthPack::oepExtension::~oepExtension()
+oepExtension::~oepExtension()
 {
 	if (_handle != NULL)
 	{
@@ -18,7 +19,7 @@ gEarthPack::oepExtension::~oepExtension()
 	}
 }
 
-gEarthPack::oepExtension::!oepExtension()
+oepExtension::!oepExtension()
 {
 	if (_handle != NULL)
 	{
@@ -27,12 +28,12 @@ gEarthPack::oepExtension::!oepExtension()
 	}
 }
 
-osgEarth::Extension* gEarthPack::oepExtension::asoeExtension()
+osgEarth::Extension* oepExtension::asoeExtension()
 {
 	return _handle!=NULL ? _handle->getValue() : NULL;
 }
 
-String^ gEarthPack::oepExtension::Name::get()
+String^ oepExtension::Name::get()
 {
 	osgEarth::Extension* pext = asoeExtension();
 	if (!pext)
@@ -40,7 +41,7 @@ String^ gEarthPack::oepExtension::Name::get()
 	return marshal_as<String^>(pext->getName());
 }
 
-void gEarthPack::oepExtension::Name::set(String^ v)
+void oepExtension::Name::set(String^ v)
 {
 	osgEarth::Extension* pext = asoeExtension();
 	if (!pext)

@@ -1,20 +1,13 @@
 #include "stdafx.h"
 #include "oepColorFilter.h"
 
-gEarthPack::oepColorFilter::oepColorFilter() : _handle(NULL)
+using namespace gEarthPack;
+
+oepColorFilter::oepColorFilter() : _handle(NULL)
 {
 }
 
-gEarthPack::oepColorFilter::~oepColorFilter()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-gEarthPack::oepColorFilter::!oepColorFilter()
+oepColorFilter::~oepColorFilter()
 {
 	if (_handle != NULL)
 	{
@@ -23,7 +16,16 @@ gEarthPack::oepColorFilter::!oepColorFilter()
 	}
 }
 
-osgEarth::ColorFilter* gEarthPack::oepColorFilter::asoeColorFilter()
+oepColorFilter::!oepColorFilter()
+{
+	if (_handle != NULL)
+	{
+		delete _handle;
+		_handle = NULL;
+	}
+}
+
+osgEarth::ColorFilter* oepColorFilter::asoeColorFilter()
 {
 	if (!_handle)
 		return NULL;

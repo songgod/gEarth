@@ -15,7 +15,7 @@ oepElevationLayer::oepElevationLayer(osgEarth::ElevationLayer* pElevationLayer)
 	_handle->setValue(pElevationLayer);
 }
 
-osgEarth::ElevationLayer * gEarthPack::oepElevationLayer::asoeElevationLayer()
+osgEarth::ElevationLayer * oepElevationLayer::asoeElevationLayer()
 {
 	return dynamic_cast<osgEarth::ElevationLayer*>(_handle->getValue());
 }

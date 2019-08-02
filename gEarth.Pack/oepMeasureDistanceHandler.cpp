@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "oepMeasureDistanceHandler.h"
 #include "HandleMapManager.h"
-using namespace System::Collections::Generic;
+
+using namespace gEarthPack;
 
 namespace
 {
@@ -14,7 +15,7 @@ namespace
 
 		virtual void onDistanceChanged(MeasureToolHandler* sender, double distance)
 		{
-			gEarthPack::oepMeasureDistanceHandler^ handle = gEarthPack::HandleMapManager::getHandle<gEarthPack::oepMeasureDistanceHandler>(sender);
+			oepMeasureDistanceHandler^ handle = HandleMapManager::getHandle<oepMeasureDistanceHandler>(sender);
 			if (handle == nullptr)
 				return;
 			handle->Distance = distance;
@@ -22,22 +23,22 @@ namespace
 	};
 }
 
-gEarthPack::oepMeasureDistanceHandler::oepMeasureDistanceHandler() : _distance(0.0)
+oepMeasureDistanceHandler::oepMeasureDistanceHandler() : _distance(0.0)
 {
 	
 }
 
-MeasureToolHandler* gEarthPack::oepMeasureDistanceHandler::asMesureDistanceHandler()
+MeasureToolHandler* oepMeasureDistanceHandler::asMesureDistanceHandler()
 {
 	return dynamic_cast<MeasureToolHandler*>(_handle->getValue());
 }
 
-void gEarthPack::oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
+void oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureToolHandler* mth = new MeasureToolHandler(pMapNode);
 	mth->addEventHandler(new MeasureDistanceToolCallback());
 	_handle->setValue(mth);
-	gEarthPack::HandleMapManager::registerHandle(mth,this);
+	HandleMapManager::registerHandle(mth,this);
 	
 	mth->setIntersectionMask(0x1);
 
@@ -50,7 +51,7 @@ void gEarthPack::oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 	mth->setLineStyle(style);
 }
 
-void gEarthPack::oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
+void oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
 {
 	MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
@@ -61,21 +62,21 @@ void gEarthPack::oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
 		handle->getMapNode()->setNodeMask(_nodemask);
 	}
 	handle->setMapNode(NULL);
-	gEarthPack::HandleMapManager::unRegisterHandle(handle);
+	HandleMapManager::unRegisterHandle(handle);
 }
 
-double gEarthPack::oepMeasureDistanceHandler::Distance::get()
+double oepMeasureDistanceHandler::Distance::get()
 {
 	return _distance;
 }
 
-void gEarthPack::oepMeasureDistanceHandler::Distance::set(double d)
+void oepMeasureDistanceHandler::Distance::set(double d)
 {
 	_distance = d;
 	NotifyChanged("Distance");
 }
 
-bool gEarthPack::oepMeasureDistanceHandler::bPath::get()
+bool oepMeasureDistanceHandler::bPath::get()
 {
 	MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
@@ -84,7 +85,7 @@ bool gEarthPack::oepMeasureDistanceHandler::bPath::get()
 	return handle->getIsPath();
 }
 
-void gEarthPack::oepMeasureDistanceHandler::bPath::set(bool b)
+void oepMeasureDistanceHandler::bPath::set(bool b)
 {
 	MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
@@ -94,7 +95,7 @@ void gEarthPack::oepMeasureDistanceHandler::bPath::set(bool b)
 	NotifyChanged("bPath");
 }
 
-bool gEarthPack::oepMeasureDistanceHandler::bGreatCircle::get()
+bool oepMeasureDistanceHandler::bGreatCircle::get()
 {
 	MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
@@ -103,7 +104,7 @@ bool gEarthPack::oepMeasureDistanceHandler::bGreatCircle::get()
 	return handle->getGeoInterpolation() == osgEarth::GEOINTERP_GREAT_CIRCLE;
 }
 
-void gEarthPack::oepMeasureDistanceHandler::bGreatCircle::set(bool b)
+void oepMeasureDistanceHandler::bGreatCircle::set(bool b)
 {
 	MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)

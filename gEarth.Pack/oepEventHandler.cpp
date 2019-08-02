@@ -3,13 +3,14 @@
 #include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
+using namespace gEarthPack;
 
-gEarthPack::oepEventHandler::oepEventHandler()
+oepEventHandler::oepEventHandler()
 {
 	_handle = new EventHandlerHandle();
 }
 
-gEarthPack::oepEventHandler::~oepEventHandler()
+oepEventHandler::~oepEventHandler()
 {
 	if (_handle != NULL)
 	{
@@ -18,7 +19,7 @@ gEarthPack::oepEventHandler::~oepEventHandler()
 	}
 }
 
-gEarthPack::oepEventHandler::!oepEventHandler()
+oepEventHandler::!oepEventHandler()
 {
 	if (_handle != NULL)
 	{
@@ -27,12 +28,12 @@ gEarthPack::oepEventHandler::!oepEventHandler()
 	}
 }
 
-osgGA::EventHandler* gEarthPack::oepEventHandler::asosgEventHandler()
+osgGA::EventHandler* oepEventHandler::asosgEventHandler()
 {
 	return _handle != NULL ? _handle->getValue() : NULL;
 }
 
-String^ gEarthPack::oepEventHandler::Name::get()
+String^ oepEventHandler::Name::get()
 {
 	osgGA::EventHandler* evh = asosgEventHandler();
 	if (!evh)
@@ -40,7 +41,7 @@ String^ gEarthPack::oepEventHandler::Name::get()
 	return marshal_as<String^>(evh->getName());
 }
 
-void gEarthPack::oepEventHandler::Name::set(String^ v)
+void oepEventHandler::Name::set(String^ v)
 {
 	osgGA::EventHandler* evh = asosgEventHandler();
 	if (!evh)

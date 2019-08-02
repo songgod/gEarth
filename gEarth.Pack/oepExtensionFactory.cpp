@@ -80,19 +80,19 @@ static oepExtensionFactory::oepExtensionFactory()
 	registerCreator(gcnew oepAnimationPathExtensionCreator());
 }
 
-void gEarthPack::oepExtensionFactory::registerCreator(IoepExtensionCreator^ creator)
+void oepExtensionFactory::registerCreator(IoepExtensionCreator^ creator)
 {
 	if (creator == nullptr)
 		return;
 	_creatorcache[creator->supportType()] = creator;
 }
 
-void gEarthPack::oepExtensionFactory::unregisterCreator(String^ type)
+void oepExtensionFactory::unregisterCreator(String^ type)
 {
 	_creatorcache->Remove(type);
 }
 
-gEarthPack::oepExtension^ gEarthPack::oepExtensionFactory::creatorExtenson(String^ type, IntPtr param)
+oepExtension^ oepExtensionFactory::creatorExtenson(String^ type, IntPtr param)
 {
 	if (_creatorcache->ContainsKey(type))
 		return _creatorcache[type]->createExtenson(param);
@@ -100,7 +100,7 @@ gEarthPack::oepExtension^ gEarthPack::oepExtensionFactory::creatorExtenson(Strin
 	return nullptr;
 }
 
-osgEarth::Extension* gEarthPack::oepExtensionFactory::createoeExtension(const osgEarth::Config& config)
+osgEarth::Extension* oepExtensionFactory::createoeExtension(const osgEarth::Config& config)
 {
 	std::string name = config.key();
 	osgEarth::Extension* extension = osgEarth::Extension::create(name, config);

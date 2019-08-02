@@ -6,7 +6,7 @@ oepTileSourceOptions::oepTileSourceOptions()
 {
 }
 
-osgEarth::TileSourceOptions* gEarthPack::oepTileSourceOptions::asoeTileSourceOptions()
+osgEarth::TileSourceOptions* oepTileSourceOptions::asoeTileSourceOptions()
 {
 	return dynamic_cast<osgEarth::TileSourceOptions*>(_handle);
 }

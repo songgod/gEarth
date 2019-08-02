@@ -1,18 +1,20 @@
 #include "stdafx.h"
+
 #include "PlayPathHandler.h"
 #include <osgViewer/View>
 
+using namespace gEarthPack;
 
-gEarthPack::PlayPathHandler::PlayPathHandler():_currentplaying(false)
+PlayPathHandler::PlayPathHandler():_currentplaying(false)
 {
 }
 
-void gEarthPack::PlayPathHandler::playPath(osg::AnimationPath* path)
+void PlayPathHandler::playPath(osg::AnimationPath* path)
 {
 	_animationpath = path;
 }
 
-bool gEarthPack::PlayPathHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdapter &aa)
+bool PlayPathHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdapter &aa)
 {
 	osgViewer::View* view = dynamic_cast<osgViewer::View*>(&aa);
 	if (view == NULL)

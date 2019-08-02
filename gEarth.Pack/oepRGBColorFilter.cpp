@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "oepRGBColorFilter.h"
 
+using namespace gEarthPack;
 
-gEarthPack::oepRGBColorFilter::oepRGBColorFilter()
+oepRGBColorFilter::oepRGBColorFilter()
 {
 	_handle = new ColorFilterHandle(new osgEarth::Util::RGBColorFilter());
 }
 
-void gEarthPack::oepRGBColorFilter::Reset()
+void oepRGBColorFilter::Reset()
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -15,12 +16,12 @@ void gEarthPack::oepRGBColorFilter::Reset()
 	cf->setRGBOffset(osg::Vec3f(0,0,0));
 }
 
-osgEarth::Util::RGBColorFilter* gEarthPack::oepRGBColorFilter::asoeRGBColorFilter()
+osgEarth::Util::RGBColorFilter* oepRGBColorFilter::asoeRGBColorFilter()
 {
 	return dynamic_cast<osgEarth::Util::RGBColorFilter*>(_handle->getValue());
 }
 
-gEarthPack::oepVec3f gEarthPack::oepRGBColorFilter::Offset::get()
+oepVec3f oepRGBColorFilter::Offset::get()
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -28,7 +29,7 @@ gEarthPack::oepVec3f gEarthPack::oepRGBColorFilter::Offset::get()
 	return oepVec3f(cf->getRGBOffset());
 }
 
-void gEarthPack::oepRGBColorFilter::Offset::set(oepVec3f v)
+void oepRGBColorFilter::Offset::set(oepVec3f v)
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -37,7 +38,7 @@ void gEarthPack::oepRGBColorFilter::Offset::set(oepVec3f v)
 	NotifyChanged("Offset");
 }
 
-float gEarthPack::oepRGBColorFilter::R::get()
+float oepRGBColorFilter::R::get()
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -45,7 +46,7 @@ float gEarthPack::oepRGBColorFilter::R::get()
 	return cf->getRGBOffset().x();
 }
 
-void gEarthPack::oepRGBColorFilter::R::set(float v)
+void oepRGBColorFilter::R::set(float v)
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -56,7 +57,7 @@ void gEarthPack::oepRGBColorFilter::R::set(float v)
 	NotifyChanged("R");
 }
 
-float gEarthPack::oepRGBColorFilter::G::get()
+float oepRGBColorFilter::G::get()
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -64,7 +65,7 @@ float gEarthPack::oepRGBColorFilter::G::get()
 	return cf->getRGBOffset().y();
 }
 
-void gEarthPack::oepRGBColorFilter::G::set(float v)
+void oepRGBColorFilter::G::set(float v)
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -75,7 +76,7 @@ void gEarthPack::oepRGBColorFilter::G::set(float v)
 	NotifyChanged("G");
 }
 
-float gEarthPack::oepRGBColorFilter::B::get()
+float oepRGBColorFilter::B::get()
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)
@@ -83,7 +84,7 @@ float gEarthPack::oepRGBColorFilter::B::get()
 	return cf->getRGBOffset().z();
 }
 
-void gEarthPack::oepRGBColorFilter::B::set(float v)
+void oepRGBColorFilter::B::set(float v)
 {
 	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
 	if (!cf)

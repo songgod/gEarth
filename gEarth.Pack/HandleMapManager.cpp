@@ -3,12 +3,12 @@
 
 using namespace gEarthPack;
 
-static gEarthPack::HandleMapManager::HandleMapManager()
+static HandleMapManager::HandleMapManager()
 {
 	_handlemap = gcnew HandleMap();
 }
 
-void gEarthPack::HandleMapManager::registerHandle(void* p, Object^ obj)
+void HandleMapManager::registerHandle(void* p, Object^ obj)
 {
 	if (obj == nullptr || p == NULL)
 		return;
@@ -16,7 +16,7 @@ void gEarthPack::HandleMapManager::registerHandle(void* p, Object^ obj)
 	_handlemap[IntPtr(p)] = obj;
 }
 
-void gEarthPack::HandleMapManager::unRegisterHandle(void* p)
+void HandleMapManager::unRegisterHandle(void* p)
 {
 	if (p == NULL)
 		return;
@@ -31,7 +31,7 @@ void gEarthPack::HandleMapManager::unRegisterHandle(void* p)
 	}
 }
 
-Object^ gEarthPack::HandleMapManager::getHandle(void* p)
+Object^ HandleMapManager::getHandle(void* p)
 {
 	if (p == NULL)
 		return nullptr;
@@ -47,7 +47,7 @@ Object^ gEarthPack::HandleMapManager::getHandle(void* p)
 	return nullptr;
 }
 
-void gEarthPack::HandleMapManager::unRegisterHandle(Object^ obj)
+void HandleMapManager::unRegisterHandle(Object^ obj)
 {
 	if (obj == nullptr)
 		return;

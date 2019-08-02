@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "oepDriverConfigOptions.h"
+using namespace gEarthPack;
 
-
-gEarthPack::oepDriverConfigOptions::oepDriverConfigOptions()
+oepDriverConfigOptions::oepDriverConfigOptions()
 {
 }

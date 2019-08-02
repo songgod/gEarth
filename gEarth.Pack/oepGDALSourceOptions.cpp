@@ -11,12 +11,12 @@ oepGDALSourceOptions::oepGDALSourceOptions()
 	_handle = new osgEarth::Drivers::GDALOptions();
 }
 
-String^ gEarthPack::oepGDALSourceOptions::url::get()
+String^ oepGDALSourceOptions::url::get()
 {
 	return marshal_as<String^>(((osgEarth::Drivers::GDALOptions*)(_handle))->url()->full());
 }
 
-void gEarthPack::oepGDALSourceOptions::url::set(String^ v)
+void oepGDALSourceOptions::url::set(String^ v)
 {
 	((osgEarth::Drivers::GDALOptions*)(_handle))->url() = marshal_as<std::string>(v);
 }

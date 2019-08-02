@@ -1,17 +1,19 @@
 #include "stdafx.h"
 #include "oepBrightnessContrastColorFilter.h"
 
-gEarthPack::oepBrightnessContrastColorFilter::oepBrightnessContrastColorFilter()
+using namespace gEarthPack;
+
+oepBrightnessContrastColorFilter::oepBrightnessContrastColorFilter()
 {
 	_handle = new ColorFilterHandle(new osgEarth::Util::BrightnessContrastColorFilter());
 }
 
-osgEarth::Util::BrightnessContrastColorFilter* gEarthPack::oepBrightnessContrastColorFilter::asoeBrightnessContrastColorFilter()
+osgEarth::Util::BrightnessContrastColorFilter* oepBrightnessContrastColorFilter::asoeBrightnessContrastColorFilter()
 {
 	return dynamic_cast<osgEarth::Util::BrightnessContrastColorFilter*>(_handle->getValue());
 }
 
-void gEarthPack::oepBrightnessContrastColorFilter::Reset()
+void oepBrightnessContrastColorFilter::Reset()
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -19,7 +21,7 @@ void gEarthPack::oepBrightnessContrastColorFilter::Reset()
 	cf->setBrightnessContrast(osg::Vec2f(1, 1));
 }
 
-gEarthPack::oepVec2f gEarthPack::oepBrightnessContrastColorFilter::BrightnessContrast::get()
+oepVec2f oepBrightnessContrastColorFilter::BrightnessContrast::get()
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -27,7 +29,7 @@ gEarthPack::oepVec2f gEarthPack::oepBrightnessContrastColorFilter::BrightnessCon
 	return oepVec2f(cf->getBrightnessContrast());
 }
 
-void gEarthPack::oepBrightnessContrastColorFilter::BrightnessContrast::set(oepVec2f v)
+void oepBrightnessContrastColorFilter::BrightnessContrast::set(oepVec2f v)
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -36,7 +38,7 @@ void gEarthPack::oepBrightnessContrastColorFilter::BrightnessContrast::set(oepVe
 	NotifyChanged("BrightnessContrast");
 }
 
-float gEarthPack::oepBrightnessContrastColorFilter::V0::get()
+float oepBrightnessContrastColorFilter::V0::get()
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -44,7 +46,7 @@ float gEarthPack::oepBrightnessContrastColorFilter::V0::get()
 	return cf->getBrightnessContrast().x();
 }
 
-void gEarthPack::oepBrightnessContrastColorFilter::V0::set(float v)
+void oepBrightnessContrastColorFilter::V0::set(float v)
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -55,7 +57,7 @@ void gEarthPack::oepBrightnessContrastColorFilter::V0::set(float v)
 	NotifyChanged("V0");
 }
 
-float gEarthPack::oepBrightnessContrastColorFilter::V1::get()
+float oepBrightnessContrastColorFilter::V1::get()
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)
@@ -63,7 +65,7 @@ float gEarthPack::oepBrightnessContrastColorFilter::V1::get()
 	return cf->getBrightnessContrast().y();
 }
 
-void gEarthPack::oepBrightnessContrastColorFilter::V1::set(float v)
+void oepBrightnessContrastColorFilter::V1::set(float v)
 {
 	osgEarth::Util::BrightnessContrastColorFilter* cf = asoeBrightnessContrastColorFilter();
 	if (!cf)

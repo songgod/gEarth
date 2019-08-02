@@ -1,19 +1,22 @@
 #include "stdafx.h"
+
 #include "oepAnimationPath.h"
 #include "Render.h"
 #include <msclr\marshal_cppstd.h>  
 
+using namespace gEarthPack;
+
 using namespace msclr::interop;
 
-gEarthPack::oepAnimationPath::oepAnimationPath()
+oepAnimationPath::oepAnimationPath()
 {
 	_handle = new AnimationPathInfoHandle(new AnimationPathInfo());
 	_controlpoints = gcnew oepControlPoints();
 	init();
-	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepAnimationPath::OnControlPointsCollectionChanged);
+	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
 }
 
-gEarthPack::oepAnimationPath::!oepAnimationPath()
+oepAnimationPath::!oepAnimationPath()
 {
 	if (_handle != NULL)
 	{
@@ -22,7 +25,7 @@ gEarthPack::oepAnimationPath::!oepAnimationPath()
 	}
 }
 
-gEarthPack::oepAnimationPath::~oepAnimationPath()
+oepAnimationPath::~oepAnimationPath()
 {
 	if (_handle != NULL)
 	{
@@ -31,7 +34,7 @@ gEarthPack::oepAnimationPath::~oepAnimationPath()
 	}
 }
 
-void gEarthPack::oepAnimationPath::PlayPath(oepAnimationPath^ path, Render^ render)
+void oepAnimationPath::PlayPath(oepAnimationPath^ path, Render^ render)
 {
 	if (render==nullptr || render->_viewer==NULL ||
 		path== nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
@@ -39,7 +42,7 @@ void gEarthPack::oepAnimationPath::PlayPath(oepAnimationPath^ path, Render^ rend
 	render->_viewer->playPath(path->asoeAnimationPathInfo()->animationpath());
 }
 
-gEarthPack::oepAnimationPath^ gEarthPack::oepAnimationPath::From(String^ url)
+oepAnimationPath^ oepAnimationPath::From(String^ url)
 {
 	if (String::IsNullOrEmpty(url))
 		return nullptr;
@@ -51,7 +54,7 @@ gEarthPack::oepAnimationPath^ gEarthPack::oepAnimationPath::From(String^ url)
 	return res;
 }
 
-bool gEarthPack::oepAnimationPath::Save()
+bool oepAnimationPath::Save()
 {
 	if (_handle!=NULL && _handle->getValue()!=NULL && _handle->getValue()->animationpath()!=NULL && !_handle->getValue()->animationpath()->empty() && !String::IsNullOrEmpty(Url))
 	{
@@ -66,20 +69,20 @@ bool gEarthPack::oepAnimationPath::Save()
 	return false;
 }
 
-gEarthPack::oepAnimationPath::oepAnimationPath(AnimationPathInfo* info)
+oepAnimationPath::oepAnimationPath(AnimationPathInfo* info)
 {
 	_handle = new AnimationPathInfoHandle(info);
 	_controlpoints = gcnew oepControlPoints();
 	init();
-	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepAnimationPath::OnControlPointsCollectionChanged);
+	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
 }
 
-osgEarth::AnimationPath::AnimationPathInfo* gEarthPack::oepAnimationPath::asoeAnimationPathInfo()
+osgEarth::AnimationPath::AnimationPathInfo* oepAnimationPath::asoeAnimationPathInfo()
 {
 	return _handle != NULL ? _handle->getValue() : NULL;
 }
 
-void gEarthPack::oepAnimationPath::init()
+void oepAnimationPath::init()
 {
 	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
 	if (!ap || !ap->animationpath())
@@ -96,7 +99,7 @@ void gEarthPack::oepAnimationPath::init()
 	}
 }
 
-void gEarthPack::oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
 	if (!ap || !ap->animationpath())
@@ -164,7 +167,7 @@ void gEarthPack::oepAnimationPath::OnControlPointsCollectionChanged(System::Obje
 	}
 }
 
-String^ gEarthPack::oepAnimationPath::Name::get()
+String^ oepAnimationPath::Name::get()
 {
 	AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
@@ -172,7 +175,7 @@ String^ gEarthPack::oepAnimationPath::Name::get()
 	return marshal_as<String^>(ap->name());
 }
 
-void gEarthPack::oepAnimationPath::Name::set(String^ v)
+void oepAnimationPath::Name::set(String^ v)
 {
 	AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
@@ -182,7 +185,7 @@ void gEarthPack::oepAnimationPath::Name::set(String^ v)
 	NotifyChanged("Name");
 }
 
-String^ gEarthPack::oepAnimationPath::Url::get()
+String^ oepAnimationPath::Url::get()
 {
 	AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
@@ -190,7 +193,7 @@ String^ gEarthPack::oepAnimationPath::Url::get()
 	return marshal_as<String^>(ap->url());
 }
 
-void gEarthPack::oepAnimationPath::Url::set(String^ v)
+void oepAnimationPath::Url::set(String^ v)
 {
 	AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
@@ -200,17 +203,17 @@ void gEarthPack::oepAnimationPath::Url::set(String^ v)
 	NotifyChanged("Url");
 }
 
-gEarthPack::oepControlPoints^ gEarthPack::oepAnimationPath::ControlPoints::get()
+oepControlPoints^ oepAnimationPath::ControlPoints::get()
 {
 	return _controlpoints;
 }
 
-gEarthPack::oepControlPoint::oepControlPoint() : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true),_time(0.0)
+oepControlPoint::oepControlPoint() : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true),_time(0.0)
 {
 
 }
 
-void gEarthPack::oepControlPoint::setHandle(osg::AnimationPath::ControlPoint* cp)
+void oepControlPoint::setHandle(osg::AnimationPath::ControlPoint* cp)
 {
 	if (_handle != NULL && _ownhandle)
 	{
@@ -221,7 +224,7 @@ void gEarthPack::oepControlPoint::setHandle(osg::AnimationPath::ControlPoint* cp
 	_ownhandle = false;
 }
 
-void gEarthPack::oepControlPoint::resetHandle()
+void oepControlPoint::resetHandle()
 {
 	if (_ownhandle)
 		return;
@@ -229,12 +232,12 @@ void gEarthPack::oepControlPoint::resetHandle()
 	_ownhandle = true;
 }
 
-osg::AnimationPath::ControlPoint* gEarthPack::oepControlPoint::asosgControlPoint()
+osg::AnimationPath::ControlPoint* oepControlPoint::asosgControlPoint()
 {
 	return _handle;
 }
 
-gEarthPack::oepControlPoint::~oepControlPoint()
+oepControlPoint::~oepControlPoint()
 {
 	if (_handle != NULL && _ownhandle)
 	{
@@ -243,7 +246,7 @@ gEarthPack::oepControlPoint::~oepControlPoint()
 	}
 }
 
-gEarthPack::oepControlPoint::!oepControlPoint()
+oepControlPoint::!oepControlPoint()
 {
 	if (_handle != NULL && _ownhandle)
 	{
@@ -252,28 +255,28 @@ gEarthPack::oepControlPoint::!oepControlPoint()
 	}
 }
 
-gEarthPack::oepControlPoint^ gEarthPack::oepControlPoint::MakeControlPoint(Render^ render, double time)
+oepControlPoint^ oepControlPoint::MakeControlPoint(Render^ render, double time)
 {
 	if (render == nullptr || render->_viewer==NULL || render->_viewer->getViewer()==NULL)
 		return nullptr;
 	const osg::Matrixd& m = render->_viewer->getViewer()->getCamera()->getInverseViewMatrix();
 	osg::AnimationPath::ControlPoint cp(m.getTrans(), m.getRotate());
-	gEarthPack::oepControlPoint^ oepcp = gcnew gEarthPack::oepControlPoint(cp);
+	oepControlPoint^ oepcp = gcnew oepControlPoint(cp);
 	oepcp->Time = time;
 	return oepcp;
 }
 
-gEarthPack::oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true)
+oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true)
 {
 	(*_handle) = cp;
 }
 
-double gEarthPack::oepControlPoint::Time::get()
+double oepControlPoint::Time::get()
 {
 	return _time;
 }
 
-void gEarthPack::oepControlPoint::Time::set(double v)
+void oepControlPoint::Time::set(double v)
 {
 	_time = v;
 }
