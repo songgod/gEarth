@@ -30,7 +30,7 @@ void oepAnimationPathExtension::init()
 	if (!vo)
 		return;
 
-	AnimationPathInfos &aps = vo->animationpaths();
+	osgEarth::AnimationPath::AnimationPathInfos &aps = vo->animationpaths();
 	for (size_t i = 0; i < aps.size(); i++)
 	{
 		oepAnimationPath^ ap = gcnew oepAnimationPath(aps[i]);
@@ -43,7 +43,7 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 	osgEarth::AnimationPath::AnimationPathOptions* vo = getoeAnimationPathOptions();
 	if (!vo)
 		return;
-	AnimationPathInfos& aps = vo->animationpaths();
+	osgEarth::AnimationPath::AnimationPathInfos& aps = vo->animationpaths();
 	switch (e->Action)
 	{
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:

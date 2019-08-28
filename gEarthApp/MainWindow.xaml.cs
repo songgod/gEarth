@@ -87,7 +87,7 @@ namespace gEarthApp
             ax.render.OnMouseMove += Render_OnMouseMove;
         }
 
-        private void Render_OnMouseMove(Render render, oepVec3f p)
+        private void Render_OnMouseMove(oepRender render, oepVec3f p)
         {
             string lat = this.Resources["lat"] as string;
             string lng = this.Resources["lat"] as string;

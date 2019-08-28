@@ -42,9 +42,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Render.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Viewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,9 +64,6 @@
       <Filter>Layers</Filter>
     </ClInclude>
     <ClInclude Include="oepObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oepLayerFactory.h">
@@ -210,9 +204,6 @@
     <ClInclude Include="oepMeasureDistanceHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="HandleMapManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MouseCoordHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
@@ -222,15 +213,30 @@
     <ClInclude Include="MeasureAreaHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepMeasureHeightHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepHandleMapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CalcMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureHeightHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Viewer.cpp">
@@ -398,9 +404,6 @@
     <ClCompile Include="oepMeasureDistanceHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="HandleMapManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MouseCoordHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -408,6 +411,21 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="MeasureAreaHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureHeightHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepHandleMapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CalcMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureHeightHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

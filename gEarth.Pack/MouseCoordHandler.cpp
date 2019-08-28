@@ -1,8 +1,6 @@
 #include "stdafx.h"
 
 #include "MouseCoordHandler.h"
-#include <osgEarth/MapNode>
-#include <osgEarth/TerrainEngineNode>
 
 using namespace osgEarth;
 using namespace gEarthPack;

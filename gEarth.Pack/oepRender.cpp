@@ -2,11 +2,10 @@
 
 #include "stdafx.h"
 
-#include "Render.h"
-
+#include "oepRender.h"
+#include "viewer.h"
 #include <string>  
-#include <msclr\marshal_cppstd.h>  
-#include "HandleMapManager.h"
+#include "oepHandleMapManager.h"
 #include "MouseCoordHandler.h"
 
 using namespace msclr::interop;
@@ -27,7 +26,7 @@ namespace
 
 		virtual void update(MouseCoordHandler* sender, const osg::Vec3& coords)
 		{
-			Render^ render = HandleMapManager::getHandle<Render>(sender);
+			oepRender^ render = oepHandleMapManager::getHandle<oepRender>(sender);
 			if (render == nullptr)
 				return;
 
@@ -36,13 +35,13 @@ namespace
 	};
 }
 
-Render::Render():_viewer(NULL)
+oepRender::oepRender():_viewer(NULL)
 {
 	_handlers = gcnew oepEventHandlers();
-	_handlers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &Render::OnHandlersCollectionChanged);
+	_handlers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepRender::OnHandlersCollectionChanged);
 }
 
-void Render::Start(IntPtr hwnd)
+void oepRender::Start(IntPtr hwnd)
 {
 	if (_viewer)
 		return;
@@ -55,9 +54,9 @@ void Render::Start(IntPtr hwnd)
 
 }
 
-void Render::End()
+void oepRender::End()
 {
-	HandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
+	oepHandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
 	if (_viewer)
 	{
 		delete _viewer;
@@ -65,7 +64,7 @@ void Render::End()
 	}
 }
 
-bool Render::Open(oepMap^ map)
+bool oepRender::Open(oepMap^ map)
 {
 	osgEarth::MapNode* pMapNode = map->getMapNode();
 	if (!pMapNode)
@@ -75,14 +74,14 @@ bool Render::Open(oepMap^ map)
 	return true;
 }
 
-void Render::InitEvents()
+void oepRender::InitEvents()
 {
-	HandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
+	oepHandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
 	MouseMoveCallback* cb = new MouseMoveCallback();
 	_viewer->getMouseCoordHandler()->addMoveCallback(cb);
 }
 
-void Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	if (!_viewer || !_viewer->getMapNode())
 	{
@@ -153,18 +152,18 @@ void Render::OnHandlersCollectionChanged(System::Object^ sender, System::Collect
 	}
 }
 
-void Render::FireMoveEvent(oepVec3f p)
+void oepRender::FireMoveEvent(oepVec3f p)
 {
 	OnMouseMove(this, p);
 }
 
-oepViewpoint^ Render::Viewpoint::get()
+oepViewpoint^ oepRender::Viewpoint::get()
 {
 	osgEarth::Viewpoint vp = _viewer->getViewpoint();
 	return gcnew oepViewpoint(vp);
 }
 
-void Render::Viewpoint::set(oepViewpoint^ v)
+void oepRender::Viewpoint::set(oepViewpoint^ v)
 {
 	if (v == nullptr || v->asoeViewpoint() == NULL)
 		return;
@@ -172,7 +171,7 @@ void Render::Viewpoint::set(oepViewpoint^ v)
 	NotifyChanged("Viewpoint");
 }
 
-oepEventHandlers^ Render::Handlers::get()
+oepEventHandlers^ oepRender::Handlers::get()
 {
 	return _handlers;
 }

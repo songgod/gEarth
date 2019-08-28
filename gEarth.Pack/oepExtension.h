@@ -1,9 +1,7 @@
 #pragma once
 #include "oepObject.h"
-#include "Handle.h"
+#include "oepHandle.h"
 #include "oepConfigOptions.h"
-#include <osgEarth/Extension>
-#include <osgEarth/Map>
 
 using namespace System::Collections::ObjectModel;
 
@@ -30,7 +28,7 @@ namespace gEarthPack
 
 	protected:
 
-		typedef Handle<osgEarth::Extension> ExtensionHandle;
+		typedef oepHandle<osgEarth::Extension> ExtensionHandle;
 		ExtensionHandle* _handle;
 
 	};

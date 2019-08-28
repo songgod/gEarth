@@ -1,7 +1,6 @@
 #pragma once
 
 #include "oepObject.h"
-#include <osgEarth/Viewpoint>
 
 using namespace System::Collections::ObjectModel;
 

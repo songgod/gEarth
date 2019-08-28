@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "oepEventHandler.h"
-#include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
 using namespace gEarthPack;

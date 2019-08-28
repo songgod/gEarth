@@ -1,16 +1,15 @@
 #include "stdafx.h"
-
 #include "oepAnimationPath.h"
-#include "Render.h"
-#include <msclr\marshal_cppstd.h>  
+#include "oepRender.h"
+#include "Viewer.h"
+#include "AnimationPathOptions.h"
 
 using namespace gEarthPack;
-
 using namespace msclr::interop;
 
 oepAnimationPath::oepAnimationPath()
 {
-	_handle = new AnimationPathInfoHandle(new AnimationPathInfo());
+	_handle = new AnimationPathInfoHandle(new osgEarth::AnimationPath::AnimationPathInfo());
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
@@ -34,7 +33,7 @@ oepAnimationPath::~oepAnimationPath()
 	}
 }
 
-void oepAnimationPath::PlayPath(oepAnimationPath^ path, Render^ render)
+void oepAnimationPath::PlayPath(oepAnimationPath^ path, oepRender^ render)
 {
 	if (render==nullptr || render->_viewer==NULL ||
 		path== nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
@@ -46,7 +45,7 @@ oepAnimationPath^ oepAnimationPath::From(String^ url)
 {
 	if (String::IsNullOrEmpty(url))
 		return nullptr;
-	AnimationPathInfo* info = new AnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo* info = new osgEarth::AnimationPath::AnimationPathInfo();
 	info->name() = marshal_as<std::string>(System::IO::Path::GetFileNameWithoutExtension(url));
 	info->url() = marshal_as<std::string>(url);
 	
@@ -69,7 +68,7 @@ bool oepAnimationPath::Save()
 	return false;
 }
 
-oepAnimationPath::oepAnimationPath(AnimationPathInfo* info)
+oepAnimationPath::oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info)
 {
 	_handle = new AnimationPathInfoHandle(info);
 	_controlpoints = gcnew oepControlPoints();
@@ -169,7 +168,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 
 String^ oepAnimationPath::Name::get()
 {
-	AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
 		return "";
 	return marshal_as<String^>(ap->name());
@@ -177,7 +176,7 @@ String^ oepAnimationPath::Name::get()
 
 void oepAnimationPath::Name::set(String^ v)
 {
-	AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
 		return;
 
@@ -187,7 +186,7 @@ void oepAnimationPath::Name::set(String^ v)
 
 String^ oepAnimationPath::Url::get()
 {
-	AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
 		return "";
 	return marshal_as<String^>(ap->url());
@@ -195,7 +194,7 @@ String^ oepAnimationPath::Url::get()
 
 void oepAnimationPath::Url::set(String^ v)
 {
-	AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
 	if (!ap)
 		return;
 
@@ -255,7 +254,7 @@ oepControlPoint::!oepControlPoint()
 	}
 }
 
-oepControlPoint^ oepControlPoint::MakeControlPoint(Render^ render, double time)
+oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double time)
 {
 	if (render == nullptr || render->_viewer==NULL || render->_viewer->getViewer()==NULL)
 		return nullptr;

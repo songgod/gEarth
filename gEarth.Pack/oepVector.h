@@ -1,7 +1,4 @@
 #pragma once
-#include <osg/Vec2f>
-#include <osg/Vec3f>
-#include <osg/Vec4f>
 
 namespace gEarthPack
 {

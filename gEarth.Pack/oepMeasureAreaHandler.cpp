@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "oepMeasureAreaHandler.h"
-#include "HandleMapManager.h"
+#include "oepHandleMapManager.h"
+#include "MeasureAreaHandler.h"
 
 using namespace gEarthPack;
 
@@ -15,7 +16,7 @@ namespace
 
 		virtual void onAreaChanged(MeasureAreaHandler* sender, double area)
 		{
-			oepMeasureAreaHandler^ handle = HandleMapManager::getHandle<oepMeasureAreaHandler>(sender);
+			oepMeasureAreaHandler^ handle = oepHandleMapManager::getHandle<oepMeasureAreaHandler>(sender);
 			if (handle == nullptr)
 				return;
 			handle->Area = area;
@@ -39,7 +40,7 @@ void oepMeasureAreaHandler::bind(osgEarth::MapNode* pMapNode)
 	MeasureAreaHandler* mth = new MeasureAreaHandler(pMapNode);
 	mth->getResHandlers().push_back(new MeasureAreaToolCallback());
 	_handle->setValue(mth);
-	HandleMapManager::registerHandle(mth, this);
+	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);
 
@@ -63,7 +64,7 @@ void oepMeasureAreaHandler::unbind(osgEarth::MapNode* pMapNode)
 		handle->getMapNode()->setNodeMask(_nodemask);
 	}
 	handle->setMapNode(NULL);
-	HandleMapManager::unRegisterHandle(handle);
+	oepHandleMapManager::unRegisterHandle(handle);
 }
 
 double oepMeasureAreaHandler::Area::get()

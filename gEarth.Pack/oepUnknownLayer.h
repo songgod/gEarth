@@ -1,7 +1,6 @@
 #pragma once
 
 #include "oepLayer.h"
-#include <osgEarth/Layer>
 
 namespace gEarthPack
 {

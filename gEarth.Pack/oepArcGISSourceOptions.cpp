@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "oepArcGISSourceOptions.h"
-#include <osgEarthDrivers/arcgis/ArcGISOptions>
-#include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
 using namespace gEarthPack;

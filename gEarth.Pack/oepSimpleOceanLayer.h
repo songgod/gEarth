@@ -2,7 +2,6 @@
 #include "oepVisibleLayer.h"
 #include "oepVector.h"
 #include "oepSimpleOceanLayerOptions.h"
-#include <osgEarthUtil/SimpleOceanLayer>
 
 namespace gEarthPack
 {

@@ -5,12 +5,12 @@ using namespace System;
 
 namespace gEarthPack
 {
-	public ref class HandleMapManager
+	public ref class oepHandleMapManager
 	{
 		typedef Dictionary<IntPtr, Object^> HandleMap;
 
 	public:
-		static HandleMapManager();
+		static oepHandleMapManager();
 
 	public:
 

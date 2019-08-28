@@ -1,11 +1,13 @@
 #pragma once
 
+
+#include "oepRender.h"
+#include "oepMap.h"
+#include "oepViewpoint.h"
+#include "oepLayer.h"
+
 namespace gEarthPack
 {
-	ref class Render;
-	ref class oepMap;
-	ref class oepLayer;
-	ref class oepViewpoint;
 	public ref class oepViewFitter
 	{
 	public:
@@ -13,7 +15,7 @@ namespace gEarthPack
 
 	public:
 
-		static oepViewpoint^ Fitter(oepLayer^ layer, oepMap^ map, Render^ render);
+		static oepViewpoint^ Fitter(oepLayer^ layer, oepMap^ map, oepRender^ render);
 	};
 }
 

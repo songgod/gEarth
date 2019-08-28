@@ -1,15 +1,5 @@
 #pragma once
 
-#include <osgGA/GUIEventHandler>
-#include <osgEarthAnnotation/FeatureNode>
-#include <osgEarthSymbology/Style>
-#include <osgEarth/GeoCommon>
-#include <osgViewer/View>
-
-namespace osgEarth
-{
-	class MapNode;
-}
 namespace gEarthPack
 {
 	class MeasureAreaHandler : public osgGA::GUIEventHandler, public osgEarth::MapNodeObserver

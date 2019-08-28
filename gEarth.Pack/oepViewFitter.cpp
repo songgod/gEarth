@@ -1,10 +1,6 @@
 #include "stdafx.h"
+#include "Viewer.h"
 #include "oepViewFitter.h"
-#include <osgEarthUtil/ViewFitter>
-#include <osgEarth/Viewpoint>
-#include "Render.h"
-#include "oepViewpoint.h"
-#include "oepLayer.h"
 
 using namespace gEarthPack;
 
@@ -12,7 +8,7 @@ static oepViewFitter::oepViewFitter()
 {
 }
 
-oepViewpoint^ oepViewFitter::Fitter(oepLayer^ layer, oepMap^ map, Render^ render)
+oepViewpoint^ oepViewFitter::Fitter(oepLayer^ layer, oepMap^ map, oepRender^ render)
 {
 	if (layer == nullptr || map==nullptr || render == nullptr)
 		return nullptr;

@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "oepLayer.h"
-#include "Handle.h"
+#include "oepHandle.h"
 #include "oepLayerFactory.h"
-#include <osgEarth/Map>
-#include <osgEarthUtil/ViewFitter>
-#include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
 using namespace gEarthPack;

@@ -1,10 +1,5 @@
 #pragma once
 
-#include <osgEarth/Config>
-#include <osg/AnimationPath>
-#include <osgDB/FileNameUtils>
-#include <osgDB/FileUtils>
-
 namespace osgEarth
 {
 	namespace AnimationPath

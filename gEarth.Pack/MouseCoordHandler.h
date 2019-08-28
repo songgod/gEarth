@@ -1,12 +1,5 @@
 #pragma once
 
-#include <osgGA/GUIEventHandler>
-
-namespace osgEarth
-{
-	class MapNode;
-}
-
 namespace gEarthPack
 {
 	class MouseCoordHandler : public osgGA::GUIEventHandler

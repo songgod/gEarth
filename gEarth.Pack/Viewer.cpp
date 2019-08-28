@@ -1,17 +1,6 @@
 #include "stdafx.h"
 
 #include "viewer.h"
-#include <OpenThreads\ScopedLock>
-#include <osgViewer\ViewerEventHandlers>
-#include <osgViewer\api\win32\GraphicsWindowWin32>
-#include <osgGA\StateSetManipulator>
-#include <osgGA/TrackballManipulator>
-#include <osg\ComputeBoundsVisitor>
-#include <osgDB/ReadFile>
-#include <OpenThreads/Thread>
-#include <OpenThreads/Block>
-#include <osgEarthUtil/EarthManipulator>
-#include <osgEarth\GLUtils>
 
 using namespace gEarthPack;
 

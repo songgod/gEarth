@@ -139,6 +139,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgutil.lib;osgEarthFeatures.lib;osgEarthAnnotation.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -157,8 +158,10 @@
   <ItemGroup>
     <ClInclude Include="AnimationPathExtension.h" />
     <ClInclude Include="AnimationPathOptions.h" />
-    <ClInclude Include="Handle.h" />
-    <ClInclude Include="HandleMapManager.h" />
+    <ClInclude Include="CalcMath.h" />
+    <ClInclude Include="MeasureHeightHandler.h" />
+    <ClInclude Include="oepHandle.h" />
+    <ClInclude Include="oepHandleMapManager.h" />
     <ClInclude Include="MeasureAreaHandler.h" />
     <ClInclude Include="MouseCoordHandler.h" />
     <ClInclude Include="oepAnimationPath.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="oepLayerOptions.h" />
     <ClInclude Include="oepMeasureAreaHandler.h" />
     <ClInclude Include="oepMeasureDistanceHandler.h" />
+    <ClInclude Include="oepMeasureHeightHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
@@ -214,7 +218,7 @@
     <ClInclude Include="PlayPathHandler.h" />
     <ClInclude Include="RecordScreenHandler.h" />
     <ClInclude Include="Viewer.h" />
-    <ClInclude Include="Render.h" />
+    <ClInclude Include="oepRender.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
@@ -222,7 +226,9 @@
     <ClCompile Include="AnimationPathExtension.cpp" />
     <ClCompile Include="AnimationPathPlugin.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="HandleMapManager.cpp" />
+    <ClCompile Include="CalcMath.cpp" />
+    <ClCompile Include="MeasureHeightHandler.cpp" />
+    <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
     <ClCompile Include="MeasureAreaHandler.cpp" />
     <ClCompile Include="MouseCoordHandler.cpp" />
@@ -246,6 +252,7 @@
     <ClCompile Include="oepLayerOptions.cpp" />
     <ClCompile Include="oepMeasureAreaHandler.cpp" />
     <ClCompile Include="oepMeasureDistanceHandler.cpp" />
+    <ClCompile Include="oepMeasureHeightHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />
@@ -269,7 +276,10 @@
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewFitter.cpp" />
-    <ClCompile Include="oepViewpoint.cpp" />
+    <ClCompile Include="oepViewpoint.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="oepViewpointsExtension.cpp" />
     <ClCompile Include="oepVisibleLayer.cpp" />
     <ClCompile Include="oepVisibleLayerOptions.cpp" />
@@ -279,7 +289,7 @@
     <ClCompile Include="PlayPathHandler.cpp" />
     <ClCompile Include="RecordScreenHandler.cpp" />
     <ClCompile Include="Viewer.cpp" />
-    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="oepRender.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

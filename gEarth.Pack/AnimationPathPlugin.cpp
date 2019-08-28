@@ -2,10 +2,6 @@
 
 #include "AnimationPathExtension.h"
 
-#include <osgDB/ReaderWriter>
-#include <osgDB/Registry>
-#include <osgDB/FileNameUtils>
-
 namespace osgEarth {
 	namespace AnimationPath
 	{

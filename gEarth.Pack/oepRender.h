@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "viewer.h"
 #include "oepMap.h"
 #include "oepVector.h"
 #include "oepViewpoint.h"
@@ -12,15 +11,15 @@ using namespace System;
 using namespace System::Runtime::InteropServices;
 
 namespace gEarthPack {
+	class Viewer;
+	ref class oepRender;
+	public delegate void MouseMoveEvent(oepRender^, oepVec3f);
 
-	ref class Render;
-	public delegate void MouseMoveEvent(Render^, oepVec3f);
-
-	public ref class Render : public oepNotify
+	public ref class oepRender : public oepNotify
 	{
 	public:
 
-		Render();
+		oepRender();
 
 	public:
 

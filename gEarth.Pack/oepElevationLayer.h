@@ -1,7 +1,6 @@
 #pragma once
 #include "oepTerrainLayer.h"
 #include "oepElevationLayerOptions.h"
-#include <osgEarth/ElevationLayer>
 
 namespace gEarthPack
 {

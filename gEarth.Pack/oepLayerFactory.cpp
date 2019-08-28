@@ -4,9 +4,6 @@
 #include "oepElevationLayer.h"
 #include "oepUnknownLayer.h"
 #include "oepSimpleOceanLayer.h"
-#include <osgEarth/ImageLayer>
-#include <osgEarth/ElevationLayer>
-#include <osgEarthUtil/SimpleOceanLayer>
 
 using namespace gEarthPack;
 

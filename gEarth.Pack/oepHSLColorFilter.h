@@ -1,7 +1,6 @@
 #pragma once
 #include "oepColorFilter.h"
 #include "oepVector.h"
-#include <osgEarthUtil/HSLColorFilter>
 
 namespace gEarthPack
 {

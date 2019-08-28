@@ -1,17 +1,16 @@
 #pragma once
-#include <osg/ref_ptr>
 
 namespace gEarthPack
 {
 	template<class T>
-	class Handle
+	class oepHandle
 	{
 	public:
-		Handle()
+		oepHandle()
 		{
 			
 		}
-		Handle(T* t)
+		oepHandle(T* t)
 		{
 			_handle = t;
 		}

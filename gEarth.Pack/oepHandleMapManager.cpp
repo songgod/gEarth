@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "HandleMapManager.h"
+#include "oepHandleMapManager.h"
 
 using namespace gEarthPack;
 
-static HandleMapManager::HandleMapManager()
+static oepHandleMapManager::oepHandleMapManager()
 {
 	_handlemap = gcnew HandleMap();
 }
 
-void HandleMapManager::registerHandle(void* p, Object^ obj)
+void oepHandleMapManager::registerHandle(void* p, Object^ obj)
 {
 	if (obj == nullptr || p == NULL)
 		return;
@@ -16,7 +16,7 @@ void HandleMapManager::registerHandle(void* p, Object^ obj)
 	_handlemap[IntPtr(p)] = obj;
 }
 
-void HandleMapManager::unRegisterHandle(void* p)
+void oepHandleMapManager::unRegisterHandle(void* p)
 {
 	if (p == NULL)
 		return;
@@ -31,7 +31,7 @@ void HandleMapManager::unRegisterHandle(void* p)
 	}
 }
 
-Object^ HandleMapManager::getHandle(void* p)
+Object^ oepHandleMapManager::getHandle(void* p)
 {
 	if (p == NULL)
 		return nullptr;
@@ -47,7 +47,7 @@ Object^ HandleMapManager::getHandle(void* p)
 	return nullptr;
 }
 
-void HandleMapManager::unRegisterHandle(Object^ obj)
+void oepHandleMapManager::unRegisterHandle(Object^ obj)
 {
 	if (obj == nullptr)
 		return;

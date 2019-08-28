@@ -1,15 +1,14 @@
 #pragma once
 #include "oepObject.h"
-#include "Handle.h"
-#include "AnimationPathOptions.h"
-#include <osg/AnimationPath>
+#include "oepHandle.h"
+#include "oepRender.h"
+#include "AnimationPathExtension.h"
 
-using namespace osgEarth::AnimationPath;
 using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	ref class Render;
+	ref class oepRender;
 	public ref class oepControlPoint : 
 		public oepNotify
 	{
@@ -28,7 +27,7 @@ namespace gEarthPack
 
 	public:
 
-		static oepControlPoint^ MakeControlPoint(Render^ render, double time);
+		static oepControlPoint^ MakeControlPoint(oepRender^ render, double time);
 
 	internal:
 
@@ -78,7 +77,7 @@ namespace gEarthPack
 
 	public:
 
-		static void PlayPath(oepAnimationPath^ path, Render^ render);
+		static void PlayPath(oepAnimationPath^ path, oepRender^ render);
 		static oepAnimationPath^ From(String^ url);
 
 	public:
@@ -87,8 +86,8 @@ namespace gEarthPack
 
 	internal:
 
-		oepAnimationPath(AnimationPathInfo* info);
-		AnimationPathInfo* asoeAnimationPathInfo();
+		oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info);
+		osgEarth::AnimationPath::AnimationPathInfo* asoeAnimationPathInfo();
 
 	private:
 
@@ -97,7 +96,7 @@ namespace gEarthPack
 
 	protected:
 
-		typedef Handle<AnimationPathInfo> AnimationPathInfoHandle;
+		typedef oepHandle<osgEarth::AnimationPath::AnimationPathInfo> AnimationPathInfoHandle;
 		AnimationPathInfoHandle* _handle;
 		oepControlPoints^ _controlpoints;
 	};

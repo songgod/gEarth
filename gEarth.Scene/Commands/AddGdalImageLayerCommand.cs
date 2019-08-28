@@ -23,6 +23,12 @@ namespace gEarth.Scene.Commands
         private void AddGdalImageLayerCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "TIFF GeoTIFF(*.tif *.tiff)|*.tif;*.tiff;|"+
+                "Erdas Imaging Images(*img)|*img|"+
+                "Envi Image format(*img)|*img|"+
+                "MS Windows Device Independent Bitmap(*bmp)|*bmp|"+
+                "JPEG JFIF(*jpg *jpeg)|*jpg;*jpeg|" +
+                "All files(*.*)|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 oepGDALSourceOptions source = new oepGDALSourceOptions() { url = dlg.FileName };

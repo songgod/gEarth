@@ -1,11 +1,5 @@
 #pragma once
 
-#include <osgViewer/Viewer>
-#include <osg/Group>
-#include <osgEarth/MapNode>
-#include <windows.h>
-#include <osgEarth/Viewpoint>
-#include <osg/AnimationPath>
 #include "PlayPathHandler.h"
 #include "MouseCoordHandler.h"
 

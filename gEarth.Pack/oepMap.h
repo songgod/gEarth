@@ -1,9 +1,8 @@
 #pragma once
 
-#include <osgEarth/MapNode>
 #include "oepLayer.h"
 #include "oepExtension.h"
-#include "Handle.h"
+#include "oepHandle.h"
 
 using namespace System;
 
@@ -63,7 +62,7 @@ namespace gEarthPack
 
 	private:
 
-		typedef Handle<osgEarth::MapNode> MapHandle;
+		typedef oepHandle<osgEarth::MapNode> MapHandle;
 		MapHandle* _handle;
 		oepLayers^ _layers;
 		oepExtensions^ _extensions;

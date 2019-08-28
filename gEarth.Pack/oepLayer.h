@@ -2,8 +2,7 @@
 
 #include "oepObject.h"
 #include "oepLayerOptions.h"
-#include "Handle.h"
-#include <osgEarth/Layer>
+#include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
 
@@ -41,7 +40,7 @@ namespace gEarthPack
 
 	protected:
 
-		typedef Handle<osgEarth::Layer> LayerHandle;
+		typedef oepHandle<osgEarth::Layer> LayerHandle;
 		LayerHandle* _handle;
 	};
 

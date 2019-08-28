@@ -1,9 +1,6 @@
 #pragma once
 #include "oepEventHandler.h"
 #include "oepMap.h"
-#include <osgEarthUtil/MeasureTool>
-
-using namespace osgEarth::Util;
 
 namespace gEarthPack
 {
@@ -35,7 +32,7 @@ namespace gEarthPack
 		}
 
 	internal:
-		MeasureToolHandler* asMesureDistanceHandler();
+		osgEarth::Util::MeasureToolHandler* asMesureDistanceHandler();
 		virtual void bind(osgEarth::MapNode* pMapNode) override;
 		virtual void unbind(osgEarth::MapNode* pMapNode) override;
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <osgViewer/ViewerEventHandlers>
-
 namespace gEarthPack
 {
 	class RecordScreenHandler :

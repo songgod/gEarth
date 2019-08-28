@@ -1,6 +1,5 @@
 #pragma once
 #include "oepDriverConfigOptions.h"
-#include <osgEarth/TileSource>
 
 namespace gEarthPack
 {

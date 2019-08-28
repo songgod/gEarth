@@ -1,8 +1,6 @@
 #pragma once
 #include "oepExtension.h"
-#include "AnimationPathOptions.h"
 #include "oepAnimationPath.h"
-
 
 namespace gEarthPack
 {

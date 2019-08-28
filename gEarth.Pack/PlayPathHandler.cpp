@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "PlayPathHandler.h"
-#include <osgViewer/View>
 
 using namespace gEarthPack;
 

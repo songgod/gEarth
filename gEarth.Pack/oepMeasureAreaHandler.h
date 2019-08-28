@@ -1,9 +1,9 @@
 #pragma once
 #include "oepEventHandler.h"
-#include "MeasureAreaHandler.h"
 
 namespace gEarthPack
 {
+	class MeasureAreaHandler;
 	public ref class oepMeasureAreaHandler :
 		public oepEventHandler
 	{

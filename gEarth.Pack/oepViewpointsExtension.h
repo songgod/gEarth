@@ -1,7 +1,6 @@
 #pragma once
 #include "oepExtension.h"
 #include "oepViewpoint.h"
-#include <osgEarthDrivers/viewpoints/ViewpointsOptions>
 
 namespace gEarthPack
 {

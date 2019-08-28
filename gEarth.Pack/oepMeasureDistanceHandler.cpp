@@ -1,21 +1,22 @@
 #include "stdafx.h"
 #include "oepMeasureDistanceHandler.h"
-#include "HandleMapManager.h"
+#include "oepHandleMapManager.h"
 
 using namespace gEarthPack;
+using namespace osgEarth::Symbology;
 
 namespace
 {
-	class MeasureDistanceToolCallback : public MeasureToolHandler::MeasureToolEventHandler
+	class MeasureDistanceToolCallback : public osgEarth::Util::MeasureToolHandler::MeasureToolEventHandler
 	{
 	public:
 		MeasureDistanceToolCallback()
 		{
 		}
 
-		virtual void onDistanceChanged(MeasureToolHandler* sender, double distance)
+		virtual void onDistanceChanged(osgEarth::Util::MeasureToolHandler* sender, double distance)
 		{
-			oepMeasureDistanceHandler^ handle = HandleMapManager::getHandle<oepMeasureDistanceHandler>(sender);
+			oepMeasureDistanceHandler^ handle = oepHandleMapManager::getHandle<oepMeasureDistanceHandler>(sender);
 			if (handle == nullptr)
 				return;
 			handle->Distance = distance;
@@ -28,17 +29,17 @@ oepMeasureDistanceHandler::oepMeasureDistanceHandler() : _distance(0.0)
 	
 }
 
-MeasureToolHandler* oepMeasureDistanceHandler::asMesureDistanceHandler()
+osgEarth::Util::MeasureToolHandler* oepMeasureDistanceHandler::asMesureDistanceHandler()
 {
-	return dynamic_cast<MeasureToolHandler*>(_handle->getValue());
+	return dynamic_cast<osgEarth::Util::MeasureToolHandler*>(_handle->getValue());
 }
 
 void oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureToolHandler* mth = new MeasureToolHandler(pMapNode);
+	osgEarth::Util::MeasureToolHandler* mth = new osgEarth::Util::MeasureToolHandler(pMapNode);
 	mth->addEventHandler(new MeasureDistanceToolCallback());
 	_handle->setValue(mth);
-	HandleMapManager::registerHandle(mth,this);
+	oepHandleMapManager::registerHandle(mth,this);
 	
 	mth->setIntersectionMask(0x1);
 
@@ -53,7 +54,7 @@ void oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 
 void oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
 {
-	MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
 		return;
 	
@@ -62,7 +63,7 @@ void oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
 		handle->getMapNode()->setNodeMask(_nodemask);
 	}
 	handle->setMapNode(NULL);
-	HandleMapManager::unRegisterHandle(handle);
+	oepHandleMapManager::unRegisterHandle(handle);
 }
 
 double oepMeasureDistanceHandler::Distance::get()
@@ -78,7 +79,7 @@ void oepMeasureDistanceHandler::Distance::set(double d)
 
 bool oepMeasureDistanceHandler::bPath::get()
 {
-	MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
 		return false;
 
@@ -87,7 +88,7 @@ bool oepMeasureDistanceHandler::bPath::get()
 
 void oepMeasureDistanceHandler::bPath::set(bool b)
 {
-	MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
 		return;
 
@@ -97,7 +98,7 @@ void oepMeasureDistanceHandler::bPath::set(bool b)
 
 bool oepMeasureDistanceHandler::bGreatCircle::get()
 {
-	MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
 		return false;
 
@@ -106,7 +107,7 @@ bool oepMeasureDistanceHandler::bGreatCircle::get()
 
 void oepMeasureDistanceHandler::bGreatCircle::set(bool b)
 {
-	MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
 	if (!handle)
 		return;
 	if (b)

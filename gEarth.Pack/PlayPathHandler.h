@@ -1,9 +1,5 @@
 #pragma once
 
-#include <osgGA/GUIEventHandler>
-#include <osg/AnimationPath>
-#include <osgGA/AnimationPathManipulator>
-
 namespace gEarthPack
 {
 	class PlayPathHandler : public osgGA::GUIEventHandler

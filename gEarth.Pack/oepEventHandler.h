@@ -1,8 +1,6 @@
 #pragma once
 #include "oepObject.h"
-#include "Handle.h"
-#include <osgGA/EventHandler>
-#include <osgEarth/MapNode>
+#include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
 
@@ -32,7 +30,7 @@ namespace gEarthPack
 
 	protected:
 
-		typedef Handle<osgGA::EventHandler> EventHandlerHandle;
+		typedef oepHandle<osgGA::EventHandler> EventHandlerHandle;
 		EventHandlerHandle* _handle;
 	};
 

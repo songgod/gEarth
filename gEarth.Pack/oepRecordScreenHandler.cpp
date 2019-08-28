@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "oepRecordScreenHandler.h"
-#include <msclr\marshal_cppstd.h>  
+#include "RecordScreenHandler.h"
 
 using namespace msclr::interop;
 using namespace gEarthPack;

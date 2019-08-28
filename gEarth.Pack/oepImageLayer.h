@@ -2,7 +2,6 @@
 #include "oepTerrainLayer.h"
 #include "oepImageLayerOptions.h"
 #include "oepColorFilter.h"
-#include <osgEarth/ImageLayer>
 
 namespace gEarthPack
 {

@@ -1,7 +1,6 @@
 #pragma once
 #include "oepVisibleLayerOptions.h"
 #include "oepTileSourceOptions.h"
-#include <osgEarth/TerrainLayer>
 
 namespace gEarthPack
 {

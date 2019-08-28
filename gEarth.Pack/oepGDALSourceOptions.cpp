@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "oepGDALSourceOptions.h"
-#include <osgEarthDrivers/gdal/GDALOptions>
-#include <msclr\marshal_cppstd.h>  
 
 using namespace msclr::interop;
 using namespace gEarthPack;

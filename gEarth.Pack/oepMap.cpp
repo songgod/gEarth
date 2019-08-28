@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "oepMap.h"
-#include "Handle.h"
-#include <osgDB\ReadFile>
-#include <osgDB\WriteFile>
-#include <msclr\marshal_cppstd.h>  
+#include "oepHandle.h"
 #include "oepLayerFactory.h"
 #include "oepExtensionFactory.h"
 

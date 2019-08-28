@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "oepBingSourceOptions.h"
-#include <osgEarthDrivers/bing/BingOptions>
-#include <msclr/marshal_cppstd.h>
 
 using namespace msclr::interop;
 using namespace gEarthPack;

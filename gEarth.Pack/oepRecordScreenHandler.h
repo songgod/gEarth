@@ -1,8 +1,9 @@
 #pragma once
 #include "oepEventHandler.h"
-#include "RecordScreenHandler.h"
+
 namespace gEarthPack
 {
+	class RecordScreenHandler;
 	public ref class oepRecordScreenHandler :
 		public oepEventHandler
 	{

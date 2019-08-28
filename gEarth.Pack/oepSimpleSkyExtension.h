@@ -1,6 +1,5 @@
 #pragma once
 #include "oepExtension.h"
-#include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
 
 namespace gEarthPack
 {

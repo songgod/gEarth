@@ -13,7 +13,7 @@ namespace gEarth.Scene.Controls
     public delegate void EarthViewReady(bool bready);
     public class EarthViewControl : WindowsFormsHost
     {
-        public Render render { get; private set; }
+        public oepRender render { get; private set; }
 
         public EarthViewControl()
         {
@@ -29,7 +29,7 @@ namespace gEarth.Scene.Controls
             if (render != null)
                 return;
 
-            render = new Render();
+            render = new oepRender();
             IntPtr res = Child.Handle;
             render.Start(res);
             if (OnEarthViewReady != null)

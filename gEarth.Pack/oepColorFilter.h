@@ -1,7 +1,6 @@
 #pragma once
 #include "oepObject.h"
-#include "Handle.h"
-#include <osgEarth/ColorFilter>
+#include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
 
@@ -24,7 +23,7 @@ namespace gEarthPack
 
 	public:
 
-		typedef Handle<osgEarth::ColorFilter> ColorFilterHandle;
+		typedef oepHandle<osgEarth::ColorFilter> ColorFilterHandle;
 		ColorFilterHandle* _handle;
 	};
 

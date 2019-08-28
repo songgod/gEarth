@@ -1,9 +1,6 @@
 #include "stdafx.h"
-
 #include "MeasureAreaHandler.h"
-#include <osgEarth/MapNode>
-#include <osgEarth/GLUtils>
-#include <osgEarthSymbology/Geometry>
+#include "CalcMath.h"
 
 #define LC "[MeasureAreaHandler] "
 
@@ -87,7 +84,7 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 			}
 		}
 	}
-	else if (ea.getEventType() == osgGA::GUIEventAdapter::DOUBLECLICK) {
+	else if (ea.getEventType() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON) {
 		if (_gotFirstLocation)
 		{
 			//_gotFirstLocation = false;
@@ -113,7 +110,7 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 					_feature->getGeometry()->back() = osg::Vec3d(lon, lat, 0);
 				}
 				_featureNode->init();
-				fireAreaChanged();
+				//fireAreaChanged();
 				aa.requestRedraw();
 			}
 		}
@@ -186,11 +183,11 @@ void MeasureAreaHandler::fireAreaChanged()
 	double distance = 0;
 	if (_geointerpolation == GEOINTERP_GREAT_CIRCLE)
 	{
-		distance = GeoMath::distance(_feature->getGeometry()->asVector());
+		distance = CalcMath::calcArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
 	else if (_geointerpolation == GEOINTERP_RHUMB_LINE)
 	{
-		distance = GeoMath::rhumbDistance(_feature->getGeometry()->asVector());
+		distance = CalcMath::calcRhumbArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
 	for (ResultHandlers::const_iterator i = _reshandlers.begin(); i != _reshandlers.end(); ++i)
 	{

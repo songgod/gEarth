@@ -1,6 +1,5 @@
 #pragma once
 
-#include <osgEarth/Extension>
 #include "AnimationPathOptions.h"
 
 namespace osgEarth

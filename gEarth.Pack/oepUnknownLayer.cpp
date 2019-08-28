@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "oepUnknownLayer.h"
-#include <osgEarth/VisibleLayer>
 
 using namespace gEarthPack;
 

@@ -2,8 +2,6 @@
 #include "oepExtensionFactory.h"
 #include "oepSimpleSkyExtension.h"
 #include "oepViewpointsExtension.h"
-#include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
-#include <osgEarthDrivers/viewpoints/ViewpointsOptions>
 #include "oepAnimationPathExtension.h"
 
 using namespace gEarthPack;

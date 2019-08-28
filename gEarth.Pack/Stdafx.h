@@ -5,3 +5,80 @@
 #pragma once
 
 #include <windows.h> 
+#include <msclr\marshal_cppstd.h>  
+
+//osgEarth
+#include <osgEarth/Map>
+#include <osgEarth/MapNode>
+#include <osgEarth/Layer>
+#include <osgEarth/ColorFilter>
+#include <osgEarth/Viewpoint>
+#include <osgEarth/Extension>
+#include <osgEarth/GeoCommon>
+#include <osgEarth/GLUtils>
+#include <osgEarth/GeoMath>
+#include <osgEarth/TerrainEngineNode>
+#include <osgEarth/Config>
+#include <osgEarth/ElevationLayer>
+#include <osgEarth/ImageLayer>
+#include <osgEarth/TerrainLayer>
+#include <osgEarth/Layer>
+#include <osgEarth/VisibleLayer>
+#include <osgEarth/TileSource>
+
+#include <osgEarthUtil/BrightnessContrastColorFilter>
+#include <osgEarthUtil/ChromaKeyColorFilter>
+#include <osgEarthUtil/CMYKColorFilter>
+#include <osgEarthUtil/GammaColorFilter>
+#include <osgEarthUtil/HSLColorFilter>
+#include <osgEarthUtil/RGBColorFilter>
+#include <osgEarthUtil/MeasureTool>
+#include <osgEarthUtil/ViewFitter>
+#include <osgEarthUtil/EarthManipulator>
+#include <osgEarthUtil/SimpleOceanLayer>
+#include <osgEarthUtil/ViewFitter>
+
+
+#include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
+#include <osgEarthDrivers/viewpoints/ViewpointsOptions>
+#include <osgEarthDrivers/arcgis/ArcGISOptions>
+#include <osgEarthDrivers/bing/BingOptions>
+#include <osgEarthDrivers/gdal/GDALOptions>
+
+#include <osgEarthAnnotation/FeatureNode>
+
+#include <osgEarthSymbology/Style>
+#include <osgEarthSymbology/Geometry>
+
+#include <osgEarthFeatures/GeometryUtils>
+
+//osg
+#include <osg/ref_ptr>
+#include <osg/Vec3d>
+#include <osg/Vec2f>
+#include <osg/Vec3f>
+#include <osg/Vec4f>
+#include <osg/AnimationPath>
+#include <osg/Group>
+#include <osg\ComputeBoundsVisitor>
+
+#include <osgGA/GUIEventHandler>
+#include <osgGA/AnimationPathManipulator>
+#include <osgGA\StateSetManipulator>
+#include <osgGA/TrackballManipulator>
+
+#include <osgViewer/View>
+#include <osgViewer/Viewer>
+#include <osgViewer/ViewerEventHandlers>
+#include <osgViewer\api\win32\GraphicsWindowWin32>
+#include <osgDB/FileUtils>
+#include <osgDB/FileNameUtils>
+#include <osgDB\ReadFile>
+#include <osgDB\WriteFile>
+#include <osgDB/ReaderWriter>
+#include <osgDB/Registry>
+
+#include <OpenThreads\ScopedLock>
+#include <OpenThreads/Thread>
+#include <OpenThreads/Block>
+

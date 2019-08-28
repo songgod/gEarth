@@ -2,8 +2,6 @@
 
 #include "RecordScreenHandler.h"
 #include <sstream>
-#include <osgDB/FileUtils>
-#include <osgDB/FileNameUtils>
 #include <iomanip>
 
 using namespace gEarthPack;
