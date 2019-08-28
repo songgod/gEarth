@@ -9,36 +9,18 @@ using namespace msclr::interop;
 
 oepAnimationPath::oepAnimationPath()
 {
-	_handle = new AnimationPathInfoHandle(new osgEarth::AnimationPath::AnimationPathInfo());
+	_handle->setValue(new osgEarth::AnimationPath::AnimationPathInfo());
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
 }
 
-oepAnimationPath::!oepAnimationPath()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-oepAnimationPath::~oepAnimationPath()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
 void oepAnimationPath::PlayPath(oepAnimationPath^ path, oepRender^ render)
 {
 	if (render==nullptr || render->_viewer==NULL ||
-		path== nullptr || path->asoeAnimationPathInfo() == NULL || path->asoeAnimationPathInfo()->animationpath() == NULL)
+		path== nullptr || path->ref() == NULL || path->ref()->animationpath() == NULL)
 		return;
-	render->_viewer->playPath(path->asoeAnimationPathInfo()->animationpath());
+	render->_viewer->playPath(path->ref()->animationpath());
 }
 
 oepAnimationPath^ oepAnimationPath::From(String^ url)
@@ -70,20 +52,15 @@ bool oepAnimationPath::Save()
 
 oepAnimationPath::oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info)
 {
-	_handle = new AnimationPathInfoHandle(info);
+	_handle->setValue(info);
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
 }
 
-osgEarth::AnimationPath::AnimationPathInfo* oepAnimationPath::asoeAnimationPathInfo()
-{
-	return _handle != NULL ? _handle->getValue() : NULL;
-}
-
 void oepAnimationPath::init()
 {
-	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo* ap = ref();
 	if (!ap || !ap->animationpath())
 		return;
 
@@ -100,7 +77,7 @@ void oepAnimationPath::init()
 
 void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	osgEarth::AnimationPath::AnimationPathInfo* ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo* ap = ref();
 	if (!ap || !ap->animationpath())
 		return;
 
@@ -168,7 +145,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 
 String^ oepAnimationPath::Name::get()
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return "";
 	return marshal_as<String^>(ap->name());
@@ -176,7 +153,7 @@ String^ oepAnimationPath::Name::get()
 
 void oepAnimationPath::Name::set(String^ v)
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return;
 
@@ -186,7 +163,7 @@ void oepAnimationPath::Name::set(String^ v)
 
 String^ oepAnimationPath::Url::get()
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return "";
 	return marshal_as<String^>(ap->url());
@@ -194,7 +171,7 @@ String^ oepAnimationPath::Url::get()
 
 void oepAnimationPath::Url::set(String^ v)
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = asoeAnimationPathInfo();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return;
 
@@ -207,9 +184,9 @@ oepControlPoints^ oepAnimationPath::ControlPoints::get()
 	return _controlpoints;
 }
 
-oepControlPoint::oepControlPoint() : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true),_time(0.0)
+oepControlPoint::oepControlPoint() : _ownhandle(true),_time(0.0)
 {
-
+	_handle = new osg::AnimationPath::ControlPoint();
 }
 
 void oepControlPoint::setHandle(osg::AnimationPath::ControlPoint* cp)
@@ -236,24 +213,6 @@ osg::AnimationPath::ControlPoint* oepControlPoint::asosgControlPoint()
 	return _handle;
 }
 
-oepControlPoint::~oepControlPoint()
-{
-	if (_handle != NULL && _ownhandle)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-oepControlPoint::!oepControlPoint()
-{
-	if (_handle != NULL && _ownhandle)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
 oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double time)
 {
 	if (render == nullptr || render->_viewer==NULL || render->_viewer->getViewer()==NULL)
@@ -265,8 +224,9 @@ oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double tim
 	return oepcp;
 }
 
-oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _handle(new osg::AnimationPath::ControlPoint()), _ownhandle(true)
+oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _ownhandle(true)
 {
+	_handle = new osg::AnimationPath::ControlPoint();
 	(*_handle) = cp;
 }
 

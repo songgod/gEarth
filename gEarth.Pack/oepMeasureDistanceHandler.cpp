@@ -29,11 +29,6 @@ oepMeasureDistanceHandler::oepMeasureDistanceHandler() : _distance(0.0)
 	
 }
 
-osgEarth::Util::MeasureToolHandler* oepMeasureDistanceHandler::asMesureDistanceHandler()
-{
-	return dynamic_cast<osgEarth::Util::MeasureToolHandler*>(_handle->getValue());
-}
-
 void oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	osgEarth::Util::MeasureToolHandler* mth = new osgEarth::Util::MeasureToolHandler(pMapNode);
@@ -54,7 +49,7 @@ void oepMeasureDistanceHandler::bind(osgEarth::MapNode* pMapNode)
 
 void oepMeasureDistanceHandler::unbind(osgEarth::MapNode* pMapNode)
 {
-	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = as<osgEarth::Util::MeasureToolHandler>();
 	if (!handle)
 		return;
 	
@@ -79,7 +74,7 @@ void oepMeasureDistanceHandler::Distance::set(double d)
 
 bool oepMeasureDistanceHandler::bPath::get()
 {
-	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = as<osgEarth::Util::MeasureToolHandler>();
 	if (!handle)
 		return false;
 
@@ -88,7 +83,7 @@ bool oepMeasureDistanceHandler::bPath::get()
 
 void oepMeasureDistanceHandler::bPath::set(bool b)
 {
-	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = as<osgEarth::Util::MeasureToolHandler>();
 	if (!handle)
 		return;
 
@@ -98,7 +93,7 @@ void oepMeasureDistanceHandler::bPath::set(bool b)
 
 bool oepMeasureDistanceHandler::bGreatCircle::get()
 {
-	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = as<osgEarth::Util::MeasureToolHandler>();
 	if (!handle)
 		return false;
 
@@ -107,7 +102,7 @@ bool oepMeasureDistanceHandler::bGreatCircle::get()
 
 void oepMeasureDistanceHandler::bGreatCircle::set(bool b)
 {
-	osgEarth::Util::MeasureToolHandler* handle = asMesureDistanceHandler();
+	osgEarth::Util::MeasureToolHandler* handle = as<osgEarth::Util::MeasureToolHandler>();
 	if (!handle)
 		return;
 	if (b)

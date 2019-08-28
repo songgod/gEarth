@@ -10,12 +10,12 @@ oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid simple sky extension");
-	_handle = new ExtensionHandle(extension);
+	_handle->setValue(extension);
 }
 
 oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext) :_bNotifyVisible(true)
 {
-	_handle = new ExtensionHandle(ext);
+	_handle->setValue(ext);
 }
 
 osgEarth::Util::SkyNode* oepSimpleSkyExtension::getoeSkyNode()
@@ -23,14 +23,6 @@ osgEarth::Util::SkyNode* oepSimpleSkyExtension::getoeSkyNode()
 	if (!_handle || !_handle->getValue())
 		return NULL;
 	return dynamic_cast<osgEarth::Util::SkyNode*>(_handle->getValue()->getUserData());
-}
-
-osgEarth::SimpleSky::SimpleSkyOptions* oepSimpleSkyExtension::getoeSimpleSkyOptions()
-{
-	if (!_handle)
-		return NULL;
-
-	return dynamic_cast<osgEarth::SimpleSky::SimpleSkyOptions*>(_handle->getValue());
 }
 
 int oepSimpleSkyExtension::DataYear::get()
@@ -127,7 +119,7 @@ void oepSimpleSkyExtension::DataHours::set(double v)
 
 bool oepSimpleSkyExtension::SunVisible::get()
 {
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (so)
 		return so->sunVisible().value();
 	return false;
@@ -136,7 +128,7 @@ bool oepSimpleSkyExtension::SunVisible::get()
 void oepSimpleSkyExtension::SunVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (sn) sn->setSunVisible(b);
 	if (so) so->sunVisible() = b;
 	NotifyChanged("SunVisible");
@@ -146,7 +138,7 @@ void oepSimpleSkyExtension::SunVisible::set(bool b)
 
 bool oepSimpleSkyExtension::MoonVisible::get()
 {
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (so)
 		return so->moonVisible().value();
 	return false;
@@ -155,7 +147,7 @@ bool oepSimpleSkyExtension::MoonVisible::get()
 void oepSimpleSkyExtension::MoonVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (sn) sn->setMoonVisible(b);
 	if (so) so->moonVisible() = b;
 	NotifyChanged("MoonVisible");
@@ -165,7 +157,7 @@ void oepSimpleSkyExtension::MoonVisible::set(bool b)
 
 bool oepSimpleSkyExtension::StarsVisible::get()
 {
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (so)
 		return so->starsVisible().value();
 	return false;
@@ -174,7 +166,7 @@ bool oepSimpleSkyExtension::StarsVisible::get()
 void oepSimpleSkyExtension::StarsVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (sn) sn->setStarsVisible(b);
 	if (so) so->starsVisible() = b;
 	NotifyChanged("StarsVisible");
@@ -184,7 +176,7 @@ void oepSimpleSkyExtension::StarsVisible::set(bool b)
 
 bool oepSimpleSkyExtension::AtmosphereVisible::get()
 {
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (so)
 		return so->atmosphereVisible().value();
 	return false;
@@ -193,7 +185,7 @@ bool oepSimpleSkyExtension::AtmosphereVisible::get()
 void oepSimpleSkyExtension::AtmosphereVisible::set(bool b)
 {
 	osgEarth::Util::SkyNode* sn = getoeSkyNode();
-	osgEarth::SimpleSky::SimpleSkyOptions* so = getoeSimpleSkyOptions();
+	osgEarth::SimpleSky::SimpleSkyOptions* so = as<osgEarth::SimpleSky::SimpleSkyOptions>();
 	if (sn) sn->setAtmosphereVisible(b);
 	if (so) so->atmosphereVisible() = b;
 	NotifyChanged("AtmosphereVisible");

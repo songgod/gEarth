@@ -47,9 +47,5 @@ namespace gEarthPack
 			unsigned get();
 			void set(unsigned v);
 		}
-
-	internal:
-
-		osgEarth::Util::SimpleOceanLayerOptions* asoeSimpleOceanLayerOptions();
 	};
 }

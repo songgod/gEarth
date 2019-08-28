@@ -5,8 +5,8 @@ using namespace gEarthPack;
 
 oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 {
-	if (imagelayeroptions != nullptr && imagelayeroptions->asoeImageLayerOptions() != NULL)
-		_handle->setValue(new osgEarth::ImageLayer(*(imagelayeroptions->asoeImageLayerOptions())));
+	if (imagelayeroptions != nullptr && imagelayeroptions->as<osgEarth::ImageLayerOptions>() != NULL)
+		_handle->setValue(new osgEarth::ImageLayer(*(imagelayeroptions->as<osgEarth::ImageLayerOptions>())));
 	else
 		_handle->setValue(new osgEarth::ImageLayer());
 
@@ -22,11 +22,6 @@ oepImageLayer::oepImageLayer(osgEarth::ImageLayer* layer)
 
 }
 
-osgEarth::ImageLayer* oepImageLayer::asoeImageLayer()
-{
-	return dynamic_cast<osgEarth::ImageLayer*>(_handle->getValue());
-}
-
 oepColorFilters^ oepImageLayer::ColorFilters::get()
 {
 	return _colorfilters;
@@ -34,7 +29,7 @@ oepColorFilters^ oepImageLayer::ColorFilters::get()
 
 void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	osgEarth::ImageLayer* pLayer = asoeImageLayer();
+	osgEarth::ImageLayer* pLayer = as<osgEarth::ImageLayer>();
 	if (!pLayer)
 		return;
 	switch (e->Action)
@@ -46,9 +41,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->NewItems[i]);
-				if (cf != nullptr && cf->asoeColorFilter() != NULL)
+				if (cf != nullptr && cf->ref() != NULL)
 				{
-					pLayer->addColorFilter(cf->asoeColorFilter());
+					pLayer->addColorFilter(cf->ref());
 				}
 			}
 		}
@@ -61,9 +56,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->OldItems[i]);
-				if (cf != nullptr && cf->asoeColorFilter() != NULL)
+				if (cf != nullptr && cf->ref() != NULL)
 				{
-					pLayer->removeColorFilter(cf->asoeColorFilter());
+					pLayer->removeColorFilter(cf->ref());
 				}
 			}
 		}

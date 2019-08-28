@@ -101,8 +101,8 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 				{
 					_viewer->pause();
 					oepeh->bind(_viewer->getMapNode());
-					if(oepeh->asosgEventHandler())
-						_viewer->getViewer()->addEventHandler(oepeh->asosgEventHandler());
+					if(oepeh->ref())
+						_viewer->getViewer()->addEventHandler(oepeh->ref());
 					else
 						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
@@ -118,12 +118,12 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->OldItems[i]);
-				if (oepeh != nullptr && oepeh->asosgEventHandler() != NULL)
+				if (oepeh != nullptr && oepeh->ref() != NULL)
 				{
 					_viewer->pause();
 					oepeh->unbind(_viewer->getMapNode());
-					if (oepeh->asosgEventHandler())
-						_viewer->getViewer()->removeEventHandler(oepeh->asosgEventHandler());
+					if (oepeh->ref())
+						_viewer->getViewer()->removeEventHandler(oepeh->ref());
 					else
 						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
@@ -165,9 +165,9 @@ oepViewpoint^ oepRender::Viewpoint::get()
 
 void oepRender::Viewpoint::set(oepViewpoint^ v)
 {
-	if (v == nullptr || v->asoeViewpoint() == NULL)
+	if (v == nullptr || v->val() == NULL)
 		return;
-	_viewer->flyto(*(v->asoeViewpoint()));
+	_viewer->flyto(*(v->val()));
 	NotifyChanged("Viewpoint");
 }
 

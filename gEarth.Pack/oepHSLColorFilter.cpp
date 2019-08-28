@@ -5,17 +5,12 @@ using namespace gEarthPack;
 
 oepHSLColorFilter::oepHSLColorFilter()
 {
-	_handle = new ColorFilterHandle(new osgEarth::Util::HSLColorFilter());
-}
-
-osgEarth::Util::HSLColorFilter* oepHSLColorFilter::asoeHSLColorFilter()
-{
-	return dynamic_cast<osgEarth::Util::HSLColorFilter*>(_handle->getValue());
+	_handle->setValue(new osgEarth::Util::HSLColorFilter());
 }
 
 void oepHSLColorFilter::Reset()
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return;
 	cf->setHSLOffset(osg::Vec3f(0, 0, 0));
@@ -23,7 +18,7 @@ void oepHSLColorFilter::Reset()
 
 oepVec3f oepHSLColorFilter::Offset::get()
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return oepVec3f();
 	return oepVec3f(cf->getHSLOffset());
@@ -31,7 +26,7 @@ oepVec3f oepHSLColorFilter::Offset::get()
 
 void oepHSLColorFilter::Offset::set(oepVec3f v)
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return;
 	cf->setHSLOffset(osg::Vec3f(v.x, v.y, v.z));
@@ -41,7 +36,7 @@ void oepHSLColorFilter::Offset::set(oepVec3f v)
 
 float oepHSLColorFilter::H::get()
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getHSLOffset().x();
@@ -49,7 +44,7 @@ float oepHSLColorFilter::H::get()
 
 void oepHSLColorFilter::H::set(float v)
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getHSLOffset();
@@ -60,7 +55,7 @@ void oepHSLColorFilter::H::set(float v)
 
 float oepHSLColorFilter::S::get()
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getHSLOffset().y();
@@ -68,7 +63,7 @@ float oepHSLColorFilter::S::get()
 
 void oepHSLColorFilter::S::set(float v)
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getHSLOffset();
@@ -79,7 +74,7 @@ void oepHSLColorFilter::S::set(float v)
 
 float oepHSLColorFilter::L::get()
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getHSLOffset().z();
@@ -87,7 +82,7 @@ float oepHSLColorFilter::L::get()
 
 void oepHSLColorFilter::L::set(float v)
 {
-	osgEarth::Util::HSLColorFilter* cf = asoeHSLColorFilter();
+	osgEarth::Util::HSLColorFilter* cf = as<osgEarth::Util::HSLColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getHSLOffset();

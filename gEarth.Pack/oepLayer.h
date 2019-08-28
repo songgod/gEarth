@@ -1,6 +1,6 @@
 #pragma once
 
-#include "oepObject.h"
+#include "oepRefObject.h"
 #include "oepLayerOptions.h"
 #include "oepHandle.h"
 
@@ -8,12 +8,10 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepLayer : public oepObject
+	public ref class oepLayer : public oepRefObject<osgEarth::Layer>
 	{
 	public:
 		oepLayer();
-		~oepLayer();
-		!oepLayer();
 
 	public:
 
@@ -32,16 +30,6 @@ namespace gEarthPack
 		{
 			String^ get();
 		}
-
-	internal:
-
-		void quit();
-		osgEarth::Layer* asoeLayer();
-
-	protected:
-
-		typedef oepHandle<osgEarth::Layer> LayerHandle;
-		LayerHandle* _handle;
 	};
 
 	public ref class oepLayers : public ObservableCollection<oepLayer^>

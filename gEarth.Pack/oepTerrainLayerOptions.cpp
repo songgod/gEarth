@@ -6,11 +6,6 @@ oepTerrainLayerOptions::oepTerrainLayerOptions() : _driver(nullptr)
 {
 }
 
-osgEarth::TerrainLayerOptions* oepTerrainLayerOptions::asoeTerrainLayerOptions()
-{
-	return dynamic_cast<osgEarth::TerrainLayerOptions*>(_handle);
-}
-
 oepTileSourceOptions^ oepTerrainLayerOptions::driver::get()
 {
 	return _driver;
@@ -19,7 +14,7 @@ oepTileSourceOptions^ oepTerrainLayerOptions::driver::get()
 void oepTerrainLayerOptions::driver::set(oepTileSourceOptions^ v)
 {
 	_driver = v;
-	osgEarth::TerrainLayerOptions* to = asoeTerrainLayerOptions();
+	osgEarth::TerrainLayerOptions* to = as<osgEarth::TerrainLayerOptions>();
 	if (to != NULL)
 	{
 		to->driver() = *(_driver->asoeTileSourceOptions());

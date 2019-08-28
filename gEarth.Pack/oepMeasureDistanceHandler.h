@@ -32,7 +32,6 @@ namespace gEarthPack
 		}
 
 	internal:
-		osgEarth::Util::MeasureToolHandler* asMesureDistanceHandler();
 		virtual void bind(osgEarth::MapNode* pMapNode) override;
 		virtual void unbind(osgEarth::MapNode* pMapNode) override;
 

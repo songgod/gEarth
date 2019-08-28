@@ -21,10 +21,6 @@ namespace gEarthPack
 			bool get();
 			void set(bool v);
 		}
-
-	public:
-
-		osgEarth::VisibleLayer* asoeVisibleLayer();
 	};
 }
 

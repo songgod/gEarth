@@ -39,9 +39,5 @@ namespace gEarthPack
 			float get();
 			void set(float v);
 		}
-
-	internal:
-
-		osgEarth::Util::RGBColorFilter* asoeRGBColorFilter();
 	};
 }

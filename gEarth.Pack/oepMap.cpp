@@ -9,7 +9,7 @@ using namespace gEarthPack;
 
 oepMap::oepMap()
 {
-	_handle = new MapHandle(new osgEarth::MapNode(new osgEarth::Map()));
+	_handle->setValue(new osgEarth::MapNode(new osgEarth::Map()));
 	_layers = gcnew oepLayers();
 	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepMap::OnLayersCollectionChanged);
 	_extensions = gcnew oepExtensions();
@@ -40,7 +40,7 @@ bool oepMap::load(String^ url)
 		return false;
 
 	delete _handle;
-	_handle = new MapHandle(mapnode);
+	_handle->setValue(mapnode);
 
 	Url = url;
 	InitLayers();
@@ -149,7 +149,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->NewItems[i]);
 				if (layer != nullptr)
 				{
-					map->addLayer(layer->asoeLayer());
+					map->addLayer(layer->ref());
 				}
 			}
 			map->endUpdate();
@@ -166,7 +166,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
 				if (layer != nullptr)
 				{
-					map->removeLayer(layer->asoeLayer());
+					map->removeLayer(layer->ref());
 				}
 			}
 			map->endUpdate();
@@ -212,9 +212,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->asoeExtension())
+				if (ext != nullptr && ext->ref())
 				{
-					mapnode->addExtension(ext->asoeExtension());
+					mapnode->addExtension(ext->ref());
 				}
 			}
 		}
@@ -227,9 +227,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->asoeExtension())
+				if (ext != nullptr && ext->ref())
 				{
-					mapnode->removeExtension(ext->asoeExtension());
+					mapnode->removeExtension(ext->ref());
 				}
 			}
 		}

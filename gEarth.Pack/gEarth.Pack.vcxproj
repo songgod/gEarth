@@ -189,6 +189,7 @@
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
     <ClInclude Include="oepRecordScreenHandler.h" />
+    <ClInclude Include="oepRefObject.h" />
     <ClInclude Include="oepRGBColorFilter.h" />
     <ClInclude Include="oepSimpleOceanLayer.h" />
     <ClInclude Include="oepSimpleOceanLayerOptions.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="oepTerrainLayer.h" />
     <ClInclude Include="oepTileSourceOptions.h" />
     <ClInclude Include="oepUnknownLayer.h" />
+    <ClInclude Include="oepValObject.h" />
     <ClInclude Include="oepVector.h" />
     <ClInclude Include="oepViewFitter.h" />
     <ClInclude Include="oepViewpoint.h" />

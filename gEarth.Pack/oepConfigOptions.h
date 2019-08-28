@@ -1,22 +1,12 @@
 #pragma once
-#include "oepObject.h"
+#include "oepValObject.h"
 
 namespace gEarthPack
 {
-	public ref class oepConfigOptions : oepObject
+	public ref class oepConfigOptions : oepValObject<osgEarth::ConfigOptions>
 	{
 	public:
 		oepConfigOptions();
-		~oepConfigOptions();
-		!oepConfigOptions();
-
-	public:
-
-		osgEarth::ConfigOptions* getoeConfigOptions();
-
-	protected:
-
-		osgEarth::ConfigOptions* _handle;
 	};
 }
 

@@ -8,75 +8,70 @@ oepSimpleOceanLayerOptions::oepSimpleOceanLayerOptions()
 	_handle = new osgEarth::Util::SimpleOceanLayerOptions();
 }
 
-osgEarth::Util::SimpleOceanLayerOptions* oepSimpleOceanLayerOptions::asoeSimpleOceanLayerOptions()
-{
-	return dynamic_cast<osgEarth::Util::SimpleOceanLayerOptions*>(_handle);
-}
-
 oepVec4f oepSimpleOceanLayerOptions::Color::get()
 {
-	osgEarth::Color c = asoeSimpleOceanLayerOptions()->color().value();
+	osgEarth::Color c = as<osgEarth::Util::SimpleOceanLayerOptions>()->color().value();
 	return oepVec4f(c.r(), c.g(), c.b(), c.a());
 }
 
 void oepSimpleOceanLayerOptions::Color::set(oepVec4f v)
 {
 	osgEarth::Color c(v.x, v.y, v.z, v.a);
-	asoeSimpleOceanLayerOptions()->color() = c;
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->color() = c;
 	NotifyChanged("Color");
 }
 
 float oepSimpleOceanLayerOptions::MaxAltitude::get()
 {
-	return asoeSimpleOceanLayerOptions()->maxAltitude().value();
+	return as<osgEarth::Util::SimpleOceanLayerOptions>()->maxAltitude().value();
 }
 
 void oepSimpleOceanLayerOptions::MaxAltitude::set(float v)
 {
-	asoeSimpleOceanLayerOptions()->maxAltitude() = v;
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->maxAltitude() = v;
 	NotifyChanged("MaxAltitude");
 }
 
 String^ oepSimpleOceanLayerOptions::MaskLayer::get()
 {
-	return marshal_as<String^>(asoeSimpleOceanLayerOptions()->maskLayer().value());
+	return marshal_as<String^>(as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer().value());
 }
 
 void oepSimpleOceanLayerOptions::MaskLayer::set(String^ v)
 {
-	asoeSimpleOceanLayerOptions()->maskLayer() = marshal_as<std::string>(v);
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer() = marshal_as<std::string>(v);
 	NotifyChanged("MaskLayer");
 }
 
 bool oepSimpleOceanLayerOptions::UseBathymetry::get()
 {
-	return asoeSimpleOceanLayerOptions()->useBathymetry().value();
+	return as<osgEarth::Util::SimpleOceanLayerOptions>()->useBathymetry().value();
 }
 
 void oepSimpleOceanLayerOptions::UseBathymetry::set(bool b)
 {
-	asoeSimpleOceanLayerOptions()->useBathymetry() = b;
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->useBathymetry() = b;
 	NotifyChanged("UseBathymetry");
 }
 
 String^ oepSimpleOceanLayerOptions::TextureUrl::get()
 {
-	return marshal_as<String^>(asoeSimpleOceanLayerOptions()->texture().value().full());
+	return marshal_as<String^>(as<osgEarth::Util::SimpleOceanLayerOptions>()->texture().value().full());
 }
 
 void oepSimpleOceanLayerOptions::TextureUrl::set(String^ url)
 {
-	asoeSimpleOceanLayerOptions()->texture()= marshal_as<std::string>(url);
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->texture()= marshal_as<std::string>(url);
 	NotifyChanged("TextureUrl");
 }
 
 unsigned oepSimpleOceanLayerOptions::TextureLOD::get()
 {
-	return asoeSimpleOceanLayerOptions()->textureLOD().value();
+	return as<osgEarth::Util::SimpleOceanLayerOptions>()->textureLOD().value();
 }
 
 void oepSimpleOceanLayerOptions::TextureLOD::set(unsigned v)
 {
-	asoeSimpleOceanLayerOptions()->textureLOD() = v;
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->textureLOD() = v;
 	NotifyChanged("TextureLOD");
 }

@@ -6,35 +6,12 @@ using namespace gEarthPack;
 
 oepEventHandler::oepEventHandler()
 {
-	_handle = new EventHandlerHandle();
-}
-
-oepEventHandler::~oepEventHandler()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-oepEventHandler::!oepEventHandler()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-osgGA::EventHandler* oepEventHandler::asosgEventHandler()
-{
-	return _handle != NULL ? _handle->getValue() : NULL;
+	
 }
 
 String^ oepEventHandler::Name::get()
 {
-	osgGA::EventHandler* evh = asosgEventHandler();
+	osgGA::EventHandler* evh = ref();
 	if (!evh)
 		return "";
 	return marshal_as<String^>(evh->getName());
@@ -42,7 +19,7 @@ String^ oepEventHandler::Name::get()
 
 void oepEventHandler::Name::set(String^ v)
 {
-	osgGA::EventHandler* evh = asosgEventHandler();
+	osgGA::EventHandler* evh = ref();
 	if (!evh)
 		return;
 	evh->setName(marshal_as<std::string>(v));

@@ -1,5 +1,5 @@
 #pragma once
-#include "oepObject.h"
+#include "oepRefObject.h"
 #include "oepHandle.h"
 #include "oepConfigOptions.h"
 
@@ -7,12 +7,10 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepExtension : oepObject
+	public ref class oepExtension : oepRefObject<osgEarth::Extension>
 	{
 	public:
 		oepExtension();
-		~oepExtension();
-		!oepExtension();
 
 	public:
 
@@ -21,16 +19,6 @@ namespace gEarthPack
 			String^ get() override;
 			void set(String^ v) override;
 		}
-
-	internal:
-
-		osgEarth::Extension* asoeExtension();
-
-	protected:
-
-		typedef oepHandle<osgEarth::Extension> ExtensionHandle;
-		ExtensionHandle* _handle;
-
 	};
 
 	public ref class oepExtensions : public ObservableCollection<oepExtension^>

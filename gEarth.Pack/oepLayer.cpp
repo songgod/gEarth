@@ -6,40 +6,14 @@
 using namespace msclr::interop;
 using namespace gEarthPack;
 
-oepLayer::oepLayer():_handle(NULL)
+oepLayer::oepLayer()
 {
-	_handle = new LayerHandle();
-}
 
-oepLayer::~oepLayer()
-{
-	quit();
-}
-
-oepLayer::!oepLayer()
-{
-	quit();
-}
-
-void oepLayer::quit()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-}
-
-osgEarth::Layer* oepLayer::asoeLayer()
-{
-	if (!_handle)
-		return NULL;
-	return _handle->getValue();
 }
 
 String^ oepLayer::StatusString::get()
 {
-	osgEarth::Layer* plyr = asoeLayer();
+	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return "";
 	return marshal_as<String^>(plyr->getStatus().toString());
@@ -47,7 +21,7 @@ String^ oepLayer::StatusString::get()
 
 bool oepLayer::IsOK::get()
 {
-	osgEarth::Layer* plyr = asoeLayer();
+	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return false;
 	return plyr->getStatus().isOK() ? true : false;
@@ -55,7 +29,7 @@ bool oepLayer::IsOK::get()
 
 String^ oepLayer::Name::get()
 {
-	osgEarth::Layer* plyr = asoeLayer();
+	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return "";
 	return marshal_as<String^>(plyr->getName());
@@ -63,7 +37,7 @@ String^ oepLayer::Name::get()
 
 void oepLayer::Name::set(String^ v)
 {
-	osgEarth::Layer* plyr = asoeLayer();
+	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return;
 	plyr->setName(marshal_as<std::string>(v));

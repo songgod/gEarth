@@ -1,17 +1,15 @@
 #pragma once
 
-#include "oepObject.h"
+#include "oepValObject.h"
 
 using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepViewpoint : public oepObject
+	public ref class oepViewpoint : public oepValObject<osgEarth::Viewpoint>
 	{
 	public:
 		oepViewpoint();
-		~oepViewpoint();
-		!oepViewpoint();
 
 	public:
 
@@ -30,7 +28,6 @@ namespace gEarthPack
 		oepViewpoint(const osgEarth::Viewpoint& vp);
 		void setHandle(osgEarth::Viewpoint* handle);
 		void resetHandle();
-		osgEarth::Viewpoint* asoeViewpoint();
 
 	private:
 

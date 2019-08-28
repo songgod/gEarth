@@ -1,5 +1,6 @@
 #pragma once
-#include "oepObject.h"
+#include "oepValObject.h"
+#include "oepRefObject.h"
 #include "oepHandle.h"
 #include "oepRender.h"
 #include "AnimationPathExtension.h"
@@ -8,14 +9,11 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	ref class oepRender;
 	public ref class oepControlPoint : 
-		public oepNotify
+		public oepValObject<osg::AnimationPath::ControlPoint>
 	{
 	public:
 		oepControlPoint();
-		~oepControlPoint();
-		!oepControlPoint();
 
 	public:
 
@@ -38,7 +36,6 @@ namespace gEarthPack
 
 	private:
 
-		osg::AnimationPath::ControlPoint* _handle;
 		double _time;
 		bool _ownhandle;
 	};
@@ -49,12 +46,10 @@ namespace gEarthPack
 	};
 
 	public ref class oepAnimationPath :
-		public oepObject
+		public oepRefObject<osgEarth::AnimationPath::AnimationPathInfo>
 	{
 	public:
 		oepAnimationPath();
-		!oepAnimationPath();
-		~oepAnimationPath();
 
 	public:
 
@@ -87,7 +82,6 @@ namespace gEarthPack
 	internal:
 
 		oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info);
-		osgEarth::AnimationPath::AnimationPathInfo* asoeAnimationPathInfo();
 
 	private:
 
@@ -96,8 +90,6 @@ namespace gEarthPack
 
 	protected:
 
-		typedef oepHandle<osgEarth::AnimationPath::AnimationPathInfo> AnimationPathInfoHandle;
-		AnimationPathInfoHandle* _handle;
 		oepControlPoints^ _controlpoints;
 	};
 

@@ -10,7 +10,7 @@ oepViewpointsExtension::oepViewpointsExtension()
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid viewpoints extension");
-	_handle = new ExtensionHandle(extension);
+	_handle->setValue(extension);
 	_viewpoints = gcnew oepViewPoints();
 	init();
 	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
@@ -18,22 +18,15 @@ oepViewpointsExtension::oepViewpointsExtension()
 
 oepViewpointsExtension::oepViewpointsExtension(osgEarth::Extension* ext)
 {
-	_handle = new ExtensionHandle(ext);
+	_handle->setValue(ext);
 	_viewpoints = gcnew oepViewPoints();
 	init();
 	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
 }
 
-osgEarth::Viewpoints::ViewpointsOptions* oepViewpointsExtension::getoeViewpointsOptions()
-{
-	if (!_handle)
-		return NULL;
-	return dynamic_cast<osgEarth::Viewpoints::ViewpointsOptions*>(_handle->getValue());
-}
-
 void oepViewpointsExtension::init()
 {
-	osgEarth::Viewpoints::ViewpointsOptions* vo = getoeViewpointsOptions();
+	osgEarth::Viewpoints::ViewpointsOptions* vo = as<osgEarth::Viewpoints::ViewpointsOptions>();
 	if (!vo)
 		return;
 
@@ -48,7 +41,7 @@ void oepViewpointsExtension::init()
 
 void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	osgEarth::Viewpoints::ViewpointsOptions* vo = getoeViewpointsOptions();
+	osgEarth::Viewpoints::ViewpointsOptions* vo = as<osgEarth::Viewpoints::ViewpointsOptions>();
 	if (!vo)
 		return;
 	switch (e->Action)
@@ -60,9 +53,9 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[i]);
-				if (oepvp != nullptr && oepvp->asoeViewpoint()!=NULL)
+				if (oepvp != nullptr && oepvp->val()!=NULL)
 				{
-					osgEarth::Viewpoint vp = *(oepvp->asoeViewpoint());
+					osgEarth::Viewpoint vp = *(oepvp->val());
 					std::vector<osgEarth::Viewpoint>& vps = vo->viewpoints();
 					vps.push_back(vp);
 					oepvp->setHandle(&(vps[vps.size() - 1]));
@@ -80,7 +73,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->OldItems[i]);
-				if (oepvp != nullptr && oepvp->asoeViewpoint() != NULL)
+				if (oepvp != nullptr && oepvp->val() != NULL)
 				{
 					int index = oepvps->IndexOf(oepvp);
 					if (index >= 0 && index <= vps.size())
@@ -99,7 +92,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex<vps.size())
 		{
 			oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[0]);
-			vps[e->NewStartingIndex] = *(oepvp->asoeViewpoint());
+			vps[e->NewStartingIndex] = *(oepvp->val());
 			oepvp->setHandle(&(vps[e->NewStartingIndex]));
 		}
 		break;

@@ -230,7 +230,7 @@ void Viewer::InitCameraConfig()
 	camera->setClearColor(osg::Vec4f(0.2f, 0.2f, 0.2f, 1.0f));
 
 	// Add the Camera to the Viewer
-	//mViewer->addSlave(camera.get());
+	//mViewer->addSlave(camera.handle());
 	_viewer->setCamera(camera.get());
 
 	_viewer->getCamera()->setCullingMode(_viewer->getCamera()->getCullingMode() & ~osg::CullSettings::SMALL_FEATURE_CULLING);
@@ -252,7 +252,7 @@ void Viewer::InitCameraConfig()
 	// disable the small-feature culling
 	_viewer->getCamera()->setSmallFeatureCullingPixelSize(-1.0f);
 
-	// set a near/far ratio that is smaller than the default. This allows us to get
+	// set a near/far ratio that is smaller than the default. This allows us to handle
 	// closer to the ground without near clipping. If you need more, use --logdepth
 	_viewer->getCamera()->setNearFarRatio(0.0001);
 

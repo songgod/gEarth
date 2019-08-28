@@ -8,10 +8,6 @@ namespace gEarthPack
 	{
 	public:
 		oepTerrainLayer();
-
-	public:
-
-		osgEarth::TerrainLayer* asoeTerrainLayer();
 	};
 }
 

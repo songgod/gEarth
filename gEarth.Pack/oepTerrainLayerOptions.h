@@ -18,10 +18,6 @@ namespace gEarthPack
 			void set(oepTileSourceOptions^ v);
 		}
 
-	internal:
-
-		osgEarth::TerrainLayerOptions* asoeTerrainLayerOptions();
-
 	private:
 
 		oepTileSourceOptions^ _driver;

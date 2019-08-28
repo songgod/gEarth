@@ -231,6 +231,12 @@
     <ClInclude Include="MeasureHeightHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepRefObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepValObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

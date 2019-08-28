@@ -30,11 +30,6 @@ oepMeasureAreaHandler::oepMeasureAreaHandler():_area(0.0)
 
 }
 
-MeasureAreaHandler* oepMeasureAreaHandler::asMesureAreaHandler()
-{
-	return dynamic_cast<MeasureAreaHandler*>(_handle->getValue());
-}
-
 void oepMeasureAreaHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureAreaHandler* mth = new MeasureAreaHandler(pMapNode);
@@ -55,7 +50,7 @@ void oepMeasureAreaHandler::bind(osgEarth::MapNode* pMapNode)
 
 void oepMeasureAreaHandler::unbind(osgEarth::MapNode* pMapNode)
 {
-	MeasureAreaHandler* handle = asMesureAreaHandler();
+	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
 	if (!handle)
 		return;
 
@@ -80,7 +75,7 @@ void oepMeasureAreaHandler::Area::set(double a)
 
 bool gEarthPack::oepMeasureAreaHandler::bGreatCircle::get()
 {
-	MeasureAreaHandler* handle = asMesureAreaHandler();
+	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
 	if (!handle)
 		return false;
 	return handle->getGeoInterpolation() == osgEarth::GEOINTERP_GREAT_CIRCLE;
@@ -88,7 +83,7 @@ bool gEarthPack::oepMeasureAreaHandler::bGreatCircle::get()
 
 void gEarthPack::oepMeasureAreaHandler::bGreatCircle::set(bool b)
 {
-	MeasureAreaHandler* handle = asMesureAreaHandler();
+	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
 	if (!handle)
 		return;
 	if (b)

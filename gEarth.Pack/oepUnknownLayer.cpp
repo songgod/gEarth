@@ -14,7 +14,7 @@ oepUnknownLayer::oepUnknownLayer(osgEarth::Layer* layer)
 
 bool oepUnknownLayer::Visible::get()
 {
-	osgEarth::VisibleLayer* plyr = dynamic_cast<osgEarth::VisibleLayer*>(_handle->getValue());
+	osgEarth::VisibleLayer* plyr = as<osgEarth::VisibleLayer>();
 	if (plyr == nullptr)
 		return false;
 	return plyr->getVisible() ? true : false;
@@ -22,7 +22,7 @@ bool oepUnknownLayer::Visible::get()
 
 void oepUnknownLayer::Visible::set(bool v)
 {
-	osgEarth::VisibleLayer* plyr = dynamic_cast<osgEarth::VisibleLayer*>(_handle->getValue());
+	osgEarth::VisibleLayer* plyr = as<osgEarth::VisibleLayer>();
 	if (plyr == nullptr)
 		return;
 

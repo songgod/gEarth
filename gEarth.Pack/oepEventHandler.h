@@ -1,5 +1,5 @@
 #pragma once
-#include "oepObject.h"
+#include "oepRefObject.h"
 #include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
@@ -7,12 +7,10 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepEventHandler :
-		public oepObject
+		public oepRefObject<osgGA::EventHandler>
 	{
 	public:
 		oepEventHandler();
-		~oepEventHandler();
-		!oepEventHandler();
 
 	public:
 
@@ -24,14 +22,8 @@ namespace gEarthPack
 
 	internal:
 
-		osgGA::EventHandler* asosgEventHandler();
 		virtual void bind(osgEarth::MapNode* pMapNode){}
 		virtual void unbind(osgEarth::MapNode* pMapNode){}
-
-	protected:
-
-		typedef oepHandle<osgGA::EventHandler> EventHandlerHandle;
-		EventHandlerHandle* _handle;
 	};
 
 	public ref class oepEventHandlers : public ObservableCollection<oepEventHandler^>

@@ -5,17 +5,12 @@ using namespace gEarthPack;
 
 oepCMYKColorFilter::oepCMYKColorFilter()
 {
-	_handle = new ColorFilterHandle(new osgEarth::Util::CMYKColorFilter());
-}
-
-osgEarth::Util::CMYKColorFilter* oepCMYKColorFilter::asoCMYKColorFilter()
-{
-	return dynamic_cast<osgEarth::Util::CMYKColorFilter*>(_handle->getValue());
+	_handle->setValue(new osgEarth::Util::CMYKColorFilter());
 }
 
 void oepCMYKColorFilter::Reset()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	cf->setCMYKOffset(osg::Vec4f(0, 0, 0, 0));
@@ -23,7 +18,7 @@ void oepCMYKColorFilter::Reset()
 
 oepVec4f oepCMYKColorFilter::Offset::get()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return oepVec4f();
 	return oepVec4f(cf->getCMYKOffset());
@@ -31,7 +26,7 @@ oepVec4f oepCMYKColorFilter::Offset::get()
 
 void oepCMYKColorFilter::Offset::set(oepVec4f v)
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	cf->setCMYKOffset(osg::Vec4f(v.x, v.y, v.z,v.a));
@@ -40,7 +35,7 @@ void oepCMYKColorFilter::Offset::set(oepVec4f v)
 
 float oepCMYKColorFilter::C::get()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getCMYKOffset().x();
@@ -48,7 +43,7 @@ float oepCMYKColorFilter::C::get()
 
 void oepCMYKColorFilter::C::set(float v)
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec4f c = cf->getCMYKOffset();
@@ -59,7 +54,7 @@ void oepCMYKColorFilter::C::set(float v)
 
 float oepCMYKColorFilter::M::get()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getCMYKOffset().y();
@@ -67,7 +62,7 @@ float oepCMYKColorFilter::M::get()
 
 void oepCMYKColorFilter::M::set(float v)
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec4f c = cf->getCMYKOffset();
@@ -78,7 +73,7 @@ void oepCMYKColorFilter::M::set(float v)
 
 float oepCMYKColorFilter::Y::get()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getCMYKOffset().z();
@@ -86,7 +81,7 @@ float oepCMYKColorFilter::Y::get()
 
 void oepCMYKColorFilter::Y::set(float v)
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec4f c = cf->getCMYKOffset();
@@ -97,7 +92,7 @@ void oepCMYKColorFilter::Y::set(float v)
 
 float oepCMYKColorFilter::K::get()
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getCMYKOffset().z();
@@ -105,7 +100,7 @@ float oepCMYKColorFilter::K::get()
 
 void oepCMYKColorFilter::K::set(float v)
 {
-	osgEarth::Util::CMYKColorFilter* cf = asoCMYKColorFilter();
+	osgEarth::Util::CMYKColorFilter* cf = as<osgEarth::Util::CMYKColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec4f c = cf->getCMYKOffset();

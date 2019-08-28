@@ -13,7 +13,7 @@ oepViewpoint^ oepViewFitter::Fitter(oepLayer^ layer, oepMap^ map, oepRender^ ren
 	if (layer == nullptr || map==nullptr || render == nullptr)
 		return nullptr;
 
-	osgEarth::Layer* pLayer = layer->asoeLayer();
+	osgEarth::Layer* pLayer = layer->ref();
 	if (pLayer == nullptr)
 		return nullptr;
 

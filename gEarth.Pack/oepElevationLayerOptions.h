@@ -8,9 +8,5 @@ namespace gEarthPack
 	{
 	public:
 		oepElevationLayerOptions();
-
-	internal:
-
-		osgEarth::ElevationLayerOptions* asoeElevationLayerOptions();
 	};
 }

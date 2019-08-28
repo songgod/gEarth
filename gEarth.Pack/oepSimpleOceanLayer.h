@@ -33,7 +33,6 @@ namespace gEarthPack
 
 	internal:
 		oepSimpleOceanLayer(osgEarth::Util::SimpleOceanLayer* layer);
-		osgEarth::Util::SimpleOceanLayer* asoeSimpleOceanLayer();
 	};
 }
 

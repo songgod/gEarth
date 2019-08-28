@@ -9,10 +9,6 @@ namespace gEarthPack
 	public:
 		oepElevationLayer(oepElevationLayerOptions^ elevationlayeroptions);
 
-	public:
-
-		osgEarth::ElevationLayer* asoeElevationLayer();
-
 	internal:
 
 		oepElevationLayer(osgEarth::ElevationLayer* pElevationLayer);

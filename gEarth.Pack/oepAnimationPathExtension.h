@@ -19,7 +19,6 @@ namespace gEarthPack
 
 	internal:
 		oepAnimationPathExtension(osgEarth::Extension* ext);
-		osgEarth::AnimationPath::AnimationPathOptions* getoeAnimationPathOptions();
 
 	private:
 

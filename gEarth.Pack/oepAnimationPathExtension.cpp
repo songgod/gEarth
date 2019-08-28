@@ -11,22 +11,15 @@ oepAnimationPathExtension::oepAnimationPathExtension()
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid viewpoints extension");
-	_handle = new ExtensionHandle(extension);
+	_handle->setValue(extension);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
 	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);
 }
 
-osgEarth::AnimationPath::AnimationPathOptions* oepAnimationPathExtension::getoeAnimationPathOptions()
-{
-	if (!_handle)
-		return NULL;
-	return dynamic_cast<osgEarth::AnimationPath::AnimationPathOptions*>(_handle->getValue());
-}
-
 void oepAnimationPathExtension::init()
 {
-	osgEarth::AnimationPath::AnimationPathOptions* vo = getoeAnimationPathOptions();
+	osgEarth::AnimationPath::AnimationPathOptions* vo = as<osgEarth::AnimationPath::AnimationPathOptions>();
 	if (!vo)
 		return;
 
@@ -40,7 +33,7 @@ void oepAnimationPathExtension::init()
 
 void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	osgEarth::AnimationPath::AnimationPathOptions* vo = getoeAnimationPathOptions();
+	osgEarth::AnimationPath::AnimationPathOptions* vo = as<osgEarth::AnimationPath::AnimationPathOptions>();
 	if (!vo)
 		return;
 	osgEarth::AnimationPath::AnimationPathInfos& aps = vo->animationpaths();
@@ -53,9 +46,9 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->NewItems[i]);
-				if (oepap != nullptr && oepap->asoeAnimationPathInfo() != NULL)
+				if (oepap != nullptr && oepap->ref() != NULL)
 				{
-					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->asoeAnimationPathInfo();
+					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->ref();
 					aps.push_back(ap);
 				}
 			}
@@ -69,9 +62,9 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->OldItems[i]);
-				if (oepap != nullptr && oepap->asoeAnimationPathInfo() != NULL)
+				if (oepap != nullptr && oepap->ref() != NULL)
 				{
-					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->asoeAnimationPathInfo();
+					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->ref();
 					osgEarth::AnimationPath::AnimationPathInfos::iterator iter = aps.begin();
 					for (iter; iter != aps.end(); ++iter)
 					{
@@ -91,7 +84,7 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex < aps.size())
 		{
 			oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->NewItems[0]);
-			aps[e->NewStartingIndex] = oepap->asoeAnimationPathInfo();
+			aps[e->NewStartingIndex] = oepap->ref();
 		}
 		break;
 	}
@@ -112,7 +105,7 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 
 oepAnimationPathExtension::oepAnimationPathExtension(osgEarth::Extension* ext)
 {
-	_handle = new ExtensionHandle(ext);
+	_handle->setValue(ext);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
 	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);

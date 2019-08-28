@@ -19,7 +19,6 @@ namespace gEarthPack
 
 	internal:
 		oepViewpointsExtension(osgEarth::Extension* ext);
-		osgEarth::Viewpoints::ViewpointsOptions* getoeViewpointsOptions();
 
 	private:
 

@@ -2,13 +2,13 @@
 
 #include "oepLayer.h"
 #include "oepExtension.h"
-#include "oepHandle.h"
+#include "oepRefObject.h"
 
 using namespace System;
 
 namespace gEarthPack 
 {
-	public ref class oepMap : public oepObject
+	public ref class oepMap : public oepRefObject<osgEarth::MapNode>
 	{
 	public:
 		oepMap();
@@ -62,8 +62,6 @@ namespace gEarthPack
 
 	private:
 
-		typedef oepHandle<osgEarth::MapNode> MapHandle;
-		MapHandle* _handle;
 		oepLayers^ _layers;
 		oepExtensions^ _extensions;
 		String^ _url;

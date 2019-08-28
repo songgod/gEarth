@@ -3,7 +3,6 @@
 
 namespace gEarthPack
 {
-	class MeasureAreaHandler;
 	public ref class oepMeasureAreaHandler :
 		public oepEventHandler
 	{
@@ -26,7 +25,6 @@ namespace gEarthPack
 		}
 
 	internal:
-		MeasureAreaHandler* asMesureAreaHandler();
 		virtual void bind(osgEarth::MapNode* pMapNode) override;
 		virtual void unbind(osgEarth::MapNode* pMapNode) override;
 

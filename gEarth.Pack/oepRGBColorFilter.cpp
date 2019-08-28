@@ -5,25 +5,20 @@ using namespace gEarthPack;
 
 oepRGBColorFilter::oepRGBColorFilter()
 {
-	_handle = new ColorFilterHandle(new osgEarth::Util::RGBColorFilter());
+	_handle->setValue(new osgEarth::Util::RGBColorFilter());
 }
 
 void oepRGBColorFilter::Reset()
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return;
 	cf->setRGBOffset(osg::Vec3f(0,0,0));
 }
 
-osgEarth::Util::RGBColorFilter* oepRGBColorFilter::asoeRGBColorFilter()
-{
-	return dynamic_cast<osgEarth::Util::RGBColorFilter*>(_handle->getValue());
-}
-
 oepVec3f oepRGBColorFilter::Offset::get()
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return oepVec3f();
 	return oepVec3f(cf->getRGBOffset());
@@ -31,7 +26,7 @@ oepVec3f oepRGBColorFilter::Offset::get()
 
 void oepRGBColorFilter::Offset::set(oepVec3f v)
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return;
 	cf->setRGBOffset(osg::Vec3f(v.x, v.y, v.z));
@@ -40,7 +35,7 @@ void oepRGBColorFilter::Offset::set(oepVec3f v)
 
 float oepRGBColorFilter::R::get()
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getRGBOffset().x();
@@ -48,7 +43,7 @@ float oepRGBColorFilter::R::get()
 
 void oepRGBColorFilter::R::set(float v)
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getRGBOffset();
@@ -59,7 +54,7 @@ void oepRGBColorFilter::R::set(float v)
 
 float oepRGBColorFilter::G::get()
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getRGBOffset().y();
@@ -67,7 +62,7 @@ float oepRGBColorFilter::G::get()
 
 void oepRGBColorFilter::G::set(float v)
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getRGBOffset();
@@ -78,7 +73,7 @@ void oepRGBColorFilter::G::set(float v)
 
 float oepRGBColorFilter::B::get()
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getRGBOffset().z();
@@ -86,7 +81,7 @@ float oepRGBColorFilter::B::get()
 
 void oepRGBColorFilter::B::set(float v)
 {
-	osgEarth::Util::RGBColorFilter* cf = asoeRGBColorFilter();
+	osgEarth::Util::RGBColorFilter* cf = as<osgEarth::Util::RGBColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getRGBOffset();

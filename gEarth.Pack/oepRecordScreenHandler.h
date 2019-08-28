@@ -3,7 +3,6 @@
 
 namespace gEarthPack
 {
-	class RecordScreenHandler;
 	public ref class oepRecordScreenHandler :
 		public oepEventHandler
 	{
@@ -15,9 +14,6 @@ namespace gEarthPack
 		void Save();
 		void Start();
 		void Stop();
-
-	internal:
-		RecordScreenHandler* asRecordScreenHandler();
 	};
 }
 

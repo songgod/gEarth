@@ -12,26 +12,21 @@ oepRecordScreenHandler::oepRecordScreenHandler(String^ file, float fps)
 
 void oepRecordScreenHandler::Save()
 {
-	RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = as<RecordScreenHandler>();
 	if (rsh)
 		rsh->save();
 }
 
 void oepRecordScreenHandler::Start()
 {
-	RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = as<RecordScreenHandler>();
 	if (rsh)
 		rsh->start();
 }
 
 void oepRecordScreenHandler::Stop()
 {
-	RecordScreenHandler* rsh = asRecordScreenHandler();
+	RecordScreenHandler* rsh = as<RecordScreenHandler>();
 	if (rsh)
 		rsh->stop();
-}
-
-RecordScreenHandler* oepRecordScreenHandler::asRecordScreenHandler()
-{
-	return dynamic_cast<RecordScreenHandler*>(_handle->getValue());
 }

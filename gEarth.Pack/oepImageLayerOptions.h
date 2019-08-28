@@ -8,9 +8,5 @@ namespace gEarthPack
 	{
 	public:
 		oepImageLayerOptions();
-
-	internal:
-
-		osgEarth::ImageLayerOptions* asoeImageLayerOptions();
 	};
 }

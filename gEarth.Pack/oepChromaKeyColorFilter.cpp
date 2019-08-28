@@ -5,17 +5,12 @@ using namespace gEarthPack;
 
 oepChromaKeyColorFilter::oepChromaKeyColorFilter()
 {
-	_handle = new ColorFilterHandle(new osgEarth::Util::ChromaKeyColorFilter());
-}
-
-osgEarth::Util::ChromaKeyColorFilter* oepChromaKeyColorFilter::asoeChromaKeyColorFilter()
-{
-	return dynamic_cast<osgEarth::Util::ChromaKeyColorFilter*>(_handle->getValue());
+	_handle->setValue(new osgEarth::Util::ChromaKeyColorFilter());
 }
 
 void oepChromaKeyColorFilter::Reset()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	cf->setColor(osg::Vec3f(0, 0, 0));
@@ -24,7 +19,7 @@ void oepChromaKeyColorFilter::Reset()
 
 oepVec3f oepChromaKeyColorFilter::Color::get()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return oepVec3f();
 	return oepVec3f(cf->getColor());
@@ -32,7 +27,7 @@ oepVec3f oepChromaKeyColorFilter::Color::get()
 
 void oepChromaKeyColorFilter::Color::set(oepVec3f v)
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	cf->setColor(osg::Vec3f(v.x, v.y, v.z));
@@ -41,7 +36,7 @@ void oepChromaKeyColorFilter::Color::set(oepVec3f v)
 
 float oepChromaKeyColorFilter::Distance::get()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return 0.0;
 	return cf->getDistance();
@@ -49,7 +44,7 @@ float oepChromaKeyColorFilter::Distance::get()
 
 void oepChromaKeyColorFilter::Distance::set(float v)
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	cf->setDistance(v);
@@ -58,7 +53,7 @@ void oepChromaKeyColorFilter::Distance::set(float v)
 
 float oepChromaKeyColorFilter::R::get()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getColor().x();
@@ -66,7 +61,7 @@ float oepChromaKeyColorFilter::R::get()
 
 void oepChromaKeyColorFilter::R::set(float v)
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getColor();
@@ -77,7 +72,7 @@ void oepChromaKeyColorFilter::R::set(float v)
 
 float oepChromaKeyColorFilter::G::get()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getColor().y();
@@ -85,7 +80,7 @@ float oepChromaKeyColorFilter::G::get()
 
 void oepChromaKeyColorFilter::G::set(float v)
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getColor();
@@ -96,7 +91,7 @@ void oepChromaKeyColorFilter::G::set(float v)
 
 float oepChromaKeyColorFilter::B::get()
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return 0.f;
 	return cf->getColor().z();
@@ -104,7 +99,7 @@ float oepChromaKeyColorFilter::B::get()
 
 void oepChromaKeyColorFilter::B::set(float v)
 {
-	osgEarth::Util::ChromaKeyColorFilter* cf = asoeChromaKeyColorFilter();
+	osgEarth::Util::ChromaKeyColorFilter* cf = as<osgEarth::Util::ChromaKeyColorFilter>();
 	if (!cf)
 		return;
 	osg::Vec3f c = cf->getColor();

@@ -68,7 +68,6 @@ namespace gEarthPack
 	internal:
 		oepSimpleSkyExtension(osgEarth::Extension* ext);
 		osgEarth::Util::SkyNode* getoeSkyNode();
-		osgEarth::SimpleSky::SimpleSkyOptions* getoeSimpleSkyOptions();
 
 	private:
 
