@@ -16,16 +16,6 @@ oepMap::oepMap()
 	_extensions->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepMap::OnExtensionsCollectionChanged);
 }
 
-oepMap::~oepMap()
-{
-	quit();
-}
-
-oepMap::!oepMap()
-{
-	quit();
-}
-
 bool oepMap::load(String^ url)
 {
 	if (!Url->Empty)
@@ -104,15 +94,6 @@ bool oepMap::saveAs(String^ url)
 		return true;
 	}
 	return false;
-}
-
-void oepMap::quit()
-{
-	if (_handle != NULL)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
 }
 
 osgEarth::Map * oepMap::getMap()

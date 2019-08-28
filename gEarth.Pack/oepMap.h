@@ -12,8 +12,6 @@ namespace gEarthPack
 	{
 	public:
 		oepMap();
-		~oepMap();
-		!oepMap();
 
 	public:
 
@@ -49,7 +47,6 @@ namespace gEarthPack
 
 	internal:
 
-		void quit();
 		osgEarth::Map* getMap();
 		osgEarth::MapNode* getMapNode();
 
