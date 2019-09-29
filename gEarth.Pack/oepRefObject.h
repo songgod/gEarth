@@ -9,9 +9,9 @@ namespace gEarthPack
 		public oepObject
 	{
 	public:
-		oepRefObject() : _handle(NULL)
+		oepRefObject()
 		{
-
+			_handle = new RefHandle();
 		}
 
 		~oepRefObject()

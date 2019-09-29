@@ -118,6 +118,7 @@
     <Compile Include="Commands\NewMapCommand.cs" />
     <Compile Include="Commands\OpenMapCommand.cs" />
     <Compile Include="Commands\AnalysisProfileCommand.cs" />
+    <Compile Include="Commands\RecordPathCommand.cs" />
     <Compile Include="Commands\RecordScreenCommand.cs" />
     <Compile Include="Commands\SaveMapAsCommand.cs" />
     <Compile Include="Commands\SaveMapCommand.cs" />

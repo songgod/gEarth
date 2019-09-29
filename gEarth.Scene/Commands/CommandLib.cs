@@ -29,6 +29,7 @@ namespace gEarth.Scene.Commands
             SetSimpleOceanOptionsCommand = CreateCommand("SetSimpleOceanOptionsCommand");
             AddViewpointCommand = CreateCommand("AddViewpointCommand");
             RecordScreenCommand = CreateCommand("RecordScreenCommand");
+            RecordPathCommand = CreateCommand("RecordPathCommand");
             EditAnimationPathCommand = CreateCommand("EditAnimationPathCommand");
             MesureDistanceCommand = CreateCommand("MesureDistanceCommand");
             MesureAreaCommand = CreateCommand("MesureAreaCommand");
@@ -59,6 +60,7 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand SetSimpleSkyOptionsCommand { get; set; }
         public static RoutedUICommand SetSimpleOceanOptionsCommand { get; set; }
         public static RoutedUICommand AddViewpointCommand { get; set; }
+        public static RoutedUICommand RecordPathCommand { get; set; }
         public static RoutedUICommand RecordScreenCommand { get; set; }
         public static RoutedUICommand EditAnimationPathCommand { get; set; }
         public static RoutedUICommand MesureDistanceCommand { get; set; }

@@ -2,6 +2,8 @@
 using gEarth.Scene.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,18 +22,26 @@ namespace gEarth.Scene.Commands
 
         private void RecordScreenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            EarthViewControl evc = e.Parameter as EarthViewControl;
-            if (evc == null)
-                return;
-            if (RecordScreenWindow.Single != null)
-                return;
-            RecordScreenWindow w = new RecordScreenWindow() { EarthViewCtrl = evc, Owner = System.Windows.Application.Current.MainWindow };
-            w.Show();
+            var obj = System.Diagnostics.Process.GetProcessesByName("ScreenRecorder").ToList();
+            if (obj.Count == 0)
+            {
+                StartProcess();
+            }
+        }
+
+        public void StartProcess()
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            string path = Directory.GetCurrentDirectory() + "\\ScreenRecorder.exe";
+            info.FileName = path;
+            info.Arguments = "";
+            info.WindowStyle = ProcessWindowStyle.Normal;
+            Process pro = Process.Start(info);
         }
 
         private void RecordScreenCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = Project.CurrentMap != null;
+            e.CanExecute = true;
             e.Handled = true;
         }
     }
