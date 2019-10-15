@@ -38,9 +38,8 @@
         <cmd:RecordPathCommand/>
         <cmd:EditAnimationPathCommand/>
         <cmd:MesureAngleCommand/>
-        <cmd:MesureHeightCommand/>
         <cmd:MesureAreaCommand/>
-        <cmd:MesureDistanceCommand/>
+        <cmd:MesureDistanceHeightCommand/>
         <cmd:MesureVolumeCommand/>
         <cmd:AnalysisProfileCommand/>
         <cmd:AnalysisVisbleCommand/>
@@ -111,11 +110,10 @@
                     <Fluent:Button Header="添加标签" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/label.png" Command="{x:Static cmd:CommandLib.AddViewpointCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="量算">
-                    <Fluent:Button Header="距离" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/distance.png" Command="{x:Static cmd:CommandLib.MesureDistanceCommand}" CommandParameter="{Binding ElementName=ax}"/>
+                    <Fluent:Button Header="距离高度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/distance.png" Command="{x:Static cmd:CommandLib.MesureDistanceHeightCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="面积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/area.png" Command="{x:Static cmd:CommandLib.MesureAreaCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="体积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/volume.png" Command="{x:Static cmd:CommandLib.MesureVolumeCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="角度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/angle.png" Command="{x:Static cmd:CommandLib.MesureAngleCommand}" CommandParameter="{Binding ElementName=ax}"/>
-                    <Fluent:Button Header="高度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/hight.png" Command="{x:Static cmd:CommandLib.MesureHeightCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="分析">
                     <Fluent:Button Header="通视" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visibleanalysis.png" Command="{x:Static cmd:CommandLib.AnalysisVisbleCommand}" CommandParameter="{Binding ElementName=ax}"/>

@@ -4,15 +4,22 @@
 
 namespace gEarthPack
 {
-	public ref class oepMeasureDistanceHandler :
+	public ref class oepMeasureDistanceHeightHandler :
 		public oepEventHandler
 	{
 	public:
-		oepMeasureDistanceHandler();
+		oepMeasureDistanceHeightHandler();
 
 	public:
 
 		property double Distance
+		{
+			double get();
+		internal:
+			void set(double d);
+		}
+
+		property double Height
 		{
 			double get();
 		internal:
@@ -38,6 +45,7 @@ namespace gEarthPack
 	private:
 
 		double _distance;
+		double _height;
 		unsigned int _nodemask;
 	};
 }

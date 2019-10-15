@@ -159,7 +159,7 @@
     <ClInclude Include="AnimationPathExtension.h" />
     <ClInclude Include="AnimationPathOptions.h" />
     <ClInclude Include="CalcMath.h" />
-    <ClInclude Include="MeasureHeightHandler.h" />
+    <ClInclude Include="MeasureDistanceHeightHandler.h" />
     <ClInclude Include="oepHandle.h" />
     <ClInclude Include="oepHandleMapManager.h" />
     <ClInclude Include="MeasureAreaHandler.h" />
@@ -183,7 +183,7 @@
     <ClInclude Include="oepLayerFactory.h" />
     <ClInclude Include="oepLayerOptions.h" />
     <ClInclude Include="oepMeasureAreaHandler.h" />
-    <ClInclude Include="oepMeasureDistanceHandler.h" />
+    <ClInclude Include="oepMeasureDistanceHeightHandler.h" />
     <ClInclude Include="oepMeasureHeightHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
@@ -229,7 +229,7 @@
     <ClCompile Include="AnimationPathPlugin.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CalcMath.cpp" />
-    <ClCompile Include="MeasureHeightHandler.cpp" />
+    <ClCompile Include="MeasureDistanceHeightHandler.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
     <ClCompile Include="MeasureAreaHandler.cpp" />
@@ -253,7 +253,7 @@
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepLayerOptions.cpp" />
     <ClCompile Include="oepMeasureAreaHandler.cpp" />
-    <ClCompile Include="oepMeasureDistanceHandler.cpp" />
+    <ClCompile Include="oepMeasureDistanceHeightHandler.cpp" />
     <ClCompile Include="oepMeasureHeightHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />

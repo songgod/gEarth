@@ -10,11 +10,11 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class MesureDistanceCommand : CommandBinding
+    public class MesureDistanceHeightCommand : CommandBinding
     {
-        public MesureDistanceCommand()
+        public MesureDistanceHeightCommand()
         {
-            Command = CommandLib.MesureDistanceCommand;
+            Command = CommandLib.MesureDistanceHeightCommand;
             CanExecute += MesureDistanceCommand_CanExecute;
             Executed += MesureDistanceCommand_Executed;
         }

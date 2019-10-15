@@ -201,9 +201,6 @@
     <ClInclude Include="PlayPathHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="oepMeasureDistanceHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="MouseCoordHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
@@ -228,14 +225,17 @@
     <ClInclude Include="CalcMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MeasureHeightHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="oepRefObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oepValObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureDistanceHeightHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureDistanceHeightHandler.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +407,6 @@
     <ClCompile Include="PlayPathHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="oepMeasureDistanceHandler.cpp">
-      <Filter>Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="MouseCoordHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -431,7 +428,10 @@
     <ClCompile Include="CalcMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MeasureHeightHandler.cpp">
+    <ClCompile Include="MeasureDistanceHeightHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureDistanceHeightHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
