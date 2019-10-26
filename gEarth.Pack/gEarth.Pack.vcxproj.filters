@@ -237,6 +237,12 @@
     <ClInclude Include="oepMeasureDistanceHeightHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="MeasureAngleHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureAngleHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -432,6 +438,12 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="oepMeasureDistanceHeightHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureAngleHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureAngleHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

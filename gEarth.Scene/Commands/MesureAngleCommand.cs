@@ -1,4 +1,6 @@
-﻿using System;
+﻿using gEarth.Scene.Controls;
+using gEarth.Scene.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,14 @@ namespace gEarth.Scene.Commands
 
         private void MesureAngleCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            EarthViewControl evc = e.Parameter as EarthViewControl;
+            if (evc == null)
+                return;
+
+            if (MeasureAngleWindow.Single != null)
+                return;
+            MeasureAngleWindow w = new MeasureAngleWindow() { EarthViewCtrl = evc, Owner = System.Windows.Application.Current.MainWindow };
+            w.Show();
         }
 
         private void MesureAngleCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
