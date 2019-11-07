@@ -21,13 +21,14 @@ namespace gEarthPack
 		virtual osgEarth::MapNode* getMapNode() { return _mapNode.get(); }
 		virtual void fireMeasureChanged(){}
 		virtual void rebuild();
-		virtual osgEarth::Features::Feature* createFeature() { return 0; }
+		virtual osgEarth::Features::Feature* createFeature() { return 0L;}
 		virtual void clear();
 
 	protected:
 
-		bool getLocationAt(osgViewer::View* view, double x, double y, double &lon, double &lat, double &height);
-		bool getLocalNormalAt(osgViewer::View* view, double x, double y, osg::Vec3d& p, osg::Vec3d& n);
+		bool getLocationAt(osgViewer::View* view, double x, double y, osg::Vec3d& p, osg::Vec3d& n);
+		osg::Vec3d xyz2latlnghigh(const osg::Vec3d& xyz);
+		osg::Vec3d latlnghigh2xyz(const osg::Vec3d& llh);
 
 	protected:
 

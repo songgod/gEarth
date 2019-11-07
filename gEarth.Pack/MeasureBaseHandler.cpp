@@ -15,7 +15,6 @@ MeasureBaseHandler::MeasureBaseHandler(osgEarth::MapNode* mapNode) :
 	_intersectionMask(0xffffffff)
 {
 	_root = new osg::Group();
-	setMapNode(mapNode);
 }
 
 
@@ -64,7 +63,7 @@ void MeasureBaseHandler::rebuild()
 	}
 
 	_feature = createFeature();
-	assert(_feature!=NULL);
+	assert(_feature.valid());
 
 	_featureNode = new FeatureNode(_feature.get());
 	_featureNode->setMapNode(getMapNode());
@@ -103,39 +102,15 @@ void MeasureBaseHandler::clear()
 	fireMeasureChanged();
 }
 
-bool
-MeasureBaseHandler::getLocationAt(osgViewer::View* view, double x, double y, double &lon, double &lat, double &height)
-{
-	osgUtil::LineSegmentIntersector::Intersections results;
-	if (getMapNode() && view->computeIntersections(x, y, results, _intersectionMask))
-	{
-		// find the first hit under the mouse:
-		osgUtil::LineSegmentIntersector::Intersection first = *(results.begin());
-		osg::Vec3d point = first.getWorldIntersectPoint();
-
-		double lat_rad, lon_rad;
-		getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-			point.x(), point.y(), point.z(), lat_rad, lon_rad, height);
-
-		lat = osg::RadiansToDegrees(lat_rad);
-		lon = osg::RadiansToDegrees(lon_rad);
-		return true;
-	}
-	return false;
-}
-
-bool MeasureBaseHandler::getLocalNormalAt(osgViewer::View* view, double x, double y, osg::Vec3d& p, osg::Vec3d& n)
+bool MeasureBaseHandler::getLocationAt(osgViewer::View* view, double x, double y, osg::Vec3d& p, osg::Vec3d& n)
 {
 	if (!getMapNode())
 		return false;
 
-	osg::Vec3d eye, center, up;
 	if (!view->getCamera())
 	{
 		return false;
 	}
-
-	view->getCamera()->getViewMatrixAsLookAt(eye, center, up);
 
 	osgUtil::LineSegmentIntersector::Intersections intersections;
 	if (view->computeIntersections(x, y, intersections))
@@ -144,17 +119,35 @@ bool MeasureBaseHandler::getLocalNormalAt(osgViewer::View* view, double x, doubl
 
 		osg::Vec3d point = hit.getWorldIntersectPoint();
 
-		double lat_rad, lon_rad, height;
-		getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-			point.x(), point.y(), point.z(), lat_rad, lon_rad, height);
-
-		p.x() = osg::RadiansToDegrees(lat_rad);
-		p.y() = osg::RadiansToDegrees(lon_rad);
-		p.z() = height;
-
+		p = xyz2latlnghigh(point);
 		n = hit.getWorldIntersectNormal();
 		return true;
 	}
 
 	return false;
+}
+
+osg::Vec3d gEarthPack::MeasureBaseHandler::xyz2latlnghigh(const osg::Vec3d& xyz)
+{
+	double lat = 0.0;
+	double lng = 0.0;
+	double height = 0.0;
+	getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
+		xyz.x(), xyz.y(), xyz.z(), lat, lng, height);
+	osg::Vec3d res;
+	res.x() = osg::RadiansToDegrees(lng);
+	res.y() = osg::RadiansToDegrees(lat);
+	res.z() = height;
+	return res;
+}
+
+osg::Vec3d gEarthPack::MeasureBaseHandler::latlnghigh2xyz(const osg::Vec3d& llh)
+{
+	osg::Vec3d res;
+	double lat = osg::DegreesToRadians(llh.y());
+	double lng = osg::DegreesToRadians(llh.x());;
+	double height = llh.z();
+	getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertLatLongHeightToXYZ(
+		lat, lng, height, res.x(), res.y(), res.z());
+	return res;
 }

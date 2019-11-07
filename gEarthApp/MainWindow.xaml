@@ -113,7 +113,7 @@
                     <Fluent:Button Header="面积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/area.png" Command="{x:Static cmd:CommandLib.MeasureAreaCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="体积" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/volume.png" Command="{x:Static cmd:CommandLib.MeasureVolumeCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="角度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/angle.png" Command="{x:Static cmd:CommandLib.MeasureAngleCommand}" CommandParameter="{Binding ElementName=ax}"/>
-                    <Fluent:Button Header="坡度坡向" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderslope.png" Command="{x:Static cmd:CommandLib.MeasureSlopeAspectCommand}" CommandParameter="{Binding ElementName=ax}"/>
+                    <Fluent:Button Header="坡度坡向" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/slope.png" Command="{x:Static cmd:CommandLib.MeasureSlopeAspectCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="分析">
                     <Fluent:Button Header="通视" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visibleanalysis.png" Command="{x:Static cmd:CommandLib.AnalysisVisbleCommand}" CommandParameter="{Binding ElementName=ax}"/>

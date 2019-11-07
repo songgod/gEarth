@@ -16,6 +16,7 @@ MeasureAreaHandler::MeasureAreaHandler(osgEarth::MapNode* pMapNode):MeasureBaseH
 	_lastPointTemporary(false),
 	_finished(false)
 {
+	setMapNode(pMapNode);
 }
 
 
@@ -43,26 +44,26 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 		_mouseDown = false;
 		if (osg::equivalent(ea.getX(), _mouseDownX, eps) && osg::equivalent(ea.getY(), _mouseDownY, eps))
 		{
-			double lon, lat, height;
-			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
+			osg::Vec3d p, n;
+			if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 			{
 				if (!_gotFirstLocation)
 				{
 					_finished = false;
 					clear();
 					_gotFirstLocation = true;
-					_feature->getGeometry()->push_back(osg::Vec3d(lon, lat, 0));
+					_feature->getGeometry()->push_back(p);
 				}
 				else
 				{
 					if (_lastPointTemporary)
 					{
-						_feature->getGeometry()->back() = osg::Vec3d(lon, lat, 0);
+						_feature->getGeometry()->back() = p;
 						_lastPointTemporary = false;
 					}
 					else
 					{
-						_feature->getGeometry()->push_back(osg::Vec3d(lon, lat, 0));
+						_feature->getGeometry()->push_back(p);
 					}
 					_featureNode->init();
 
@@ -91,17 +92,17 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 	{
 		if (_gotFirstLocation)
 		{
-			double lon, lat, height;
-			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
+			osg::Vec3d p, n;
+			if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 			{
 				if (!_lastPointTemporary)
 				{
-					_feature->getGeometry()->push_back(osg::Vec3d(lon, lat, 0));
+					_feature->getGeometry()->push_back(p);
 					_lastPointTemporary = true;
 				}
 				else
 				{
-					_feature->getGeometry()->back() = osg::Vec3d(lon, lat, 0);
+					_feature->getGeometry()->back() = p;
 				}
 				_featureNode->init();
 				//fireMeasureChanged();

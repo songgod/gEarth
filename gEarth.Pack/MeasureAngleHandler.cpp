@@ -13,7 +13,7 @@ using namespace osgEarth::Annotation;
 MeasureAngleHandler::MeasureAngleHandler(osgEarth::MapNode* mapNode):MeasureBaseHandler(mapNode),
 	_bNewMesura(true)
 {
-
+	setMapNode(mapNode);
 }
 
 
@@ -41,18 +41,18 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 		if(_bNewMesura)
 			clear();
 
-		double lon, lat, height;
-		if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
+		osg::Vec3d p, n;
+		if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 		{
 			if (_feature->getGeometry()->size() > 0)
-				_feature->getGeometry()->back() = osg::Vec3d(lon, lat, height);
+				_feature->getGeometry()->back() = p;
 			else
-				_feature->getGeometry()->push_back(osg::Vec3d(lon, lat, height));
+				_feature->getGeometry()->push_back(p);
 
 			_bNewMesura = _feature->getGeometry()->size() == 3;
 
 			if(_feature->getGeometry()->size()<3)
-				_feature->getGeometry()->push_back(osg::Vec3d(lon, lat, height));
+				_feature->getGeometry()->push_back(p);
 			_featureNode->init();
 		}
 
@@ -63,11 +63,10 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 	{
 		if (!_bNewMesura)
 		{
-			double lon, lat, height;
-			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
+			osg::Vec3d p, n;
+			if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 			{
-
-				_feature->getGeometry()->back() = osg::Vec3d(lon, lat, height);
+				_feature->getGeometry()->back() = p;
 				_featureNode->init();
 				fireMeasureChanged();
 				aa.requestRedraw();
@@ -115,12 +114,17 @@ void MeasureAngleHandler::fireMeasureChanged()
 	if (poss.size() != 3)
 		return;
 
+	poss[0].z() = 0.0;
+	poss[1].z() = 0.0;
+	poss[2].z() = 0.0;
+
 	double a = (poss[2] - poss[0]).length2();
 	double b = (poss[1] - poss[0]).length2();
 	double c = (poss[2] - poss[1]).length2();
 
 	double cosangle = (b + c - a) / (sqrt(b)*sqrt(c) * 2);
-	double angle = osg::RadiansToDegrees(acos(cosangle));
+	double angle = acos(cosangle);
+	angle = osg::RadiansToDegrees(angle);
 
 	for (MeasureAngleEventHandlerList::const_iterator i = _eventHandlers.begin(); i != _eventHandlers.end(); ++i)
 	{

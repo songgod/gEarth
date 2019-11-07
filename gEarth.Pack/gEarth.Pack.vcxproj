@@ -237,9 +237,15 @@
     <ClCompile Include="AnimationPathPlugin.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CalcMath.cpp" />
-    <ClCompile Include="MeasureAngleHandler.cpp" />
-    <ClCompile Include="MeasureBaseHandler.cpp" />
-    <ClCompile Include="MeasureDistanceHeightHandler.cpp" />
+    <ClCompile Include="MeasureAngleHandler.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
+    </ClCompile>
+    <ClCompile Include="MeasureBaseHandler.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
+    </ClCompile>
+    <ClCompile Include="MeasureDistanceHeightHandler.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
+    </ClCompile>
     <ClCompile Include="MeasureSlopeAspectHandler.cpp" />
     <ClCompile Include="MeasureVolumeHandler.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />

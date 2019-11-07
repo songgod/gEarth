@@ -13,7 +13,7 @@ namespace gEarth.Scene.Commands
     {
         public MeasureSlopeAspectCommand()
         {
-            Command = CommandLib.MeasureAngleCommand;
+            Command = CommandLib.MeasureSlopeAspectCommand;
             CanExecute += MeasureSlopeAspectCommand_CanExecute;
             Executed += MeasureSlopeAspectCommand_Executed;
         }

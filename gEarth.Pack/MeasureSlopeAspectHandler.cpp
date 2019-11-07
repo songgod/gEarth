@@ -10,6 +10,7 @@ using namespace osgEarth::Annotation;
 
 MeasureSlopeAspectHandler::MeasureSlopeAspectHandler(osgEarth::MapNode* mapNode): MeasureBaseHandler(mapNode)
 {
+	setMapNode(mapNode);
 }
 
 
@@ -34,23 +35,28 @@ bool MeasureSlopeAspectHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::
 
 	if (ea.getEventType() == osgGA::GUIEventAdapter::RELEASE && ea.getButton() == _mouseButton)
 	{
-		osg::Vec3d interPoint, interNormal;
-		if (getLocalNormalAt(view, ea.getX(), ea.getY(), interPoint, interNormal))
+		osg::Vec3d p, n;
+		if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 		{
 			double slope = 0.0;
 			double aspect = 0.0;
-			if (calSlopeAspectDegree(interPoint, interNormal, slope, aspect))
+			if (calSlopeAspectDegree(p, n, slope, aspect))
 			{
 				osg::Vec3f eye, center, up;
 				view->getCamera()->getViewMatrixAsLookAt(eye, center, up);
-				float len = (eye - center).length() / 10.f;
+
+				osg::Vec3d pxyz = latlnghigh2xyz(p);
+				float len = (eye - pxyz).length() / 10.f;
+
 				_feature->getGeometry()->clear();
-				osg::Vec3 secondp = interPoint+interNormal*len;
-				_feature->getGeometry()->push_back(interPoint);
+				osg::Vec3 secondp = pxyz+n*len;
+				secondp = xyz2latlnghigh(secondp);
+				_feature->getGeometry()->push_back(p);
 				_feature->getGeometry()->push_back(secondp);
+				_featureNode->init();
 				_slope = slope;
 				_aspect = aspect;
-				_point = interPoint;
+				_point = p;
 				fireMeasureChanged();
 			}
 		}

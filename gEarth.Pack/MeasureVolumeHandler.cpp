@@ -10,6 +10,7 @@ using namespace osgEarth::Annotation;
 
 MeasureVolumeHandler::MeasureVolumeHandler(osgEarth::MapNode* mapNode) : MeasureBaseHandler(mapNode)
 {
+	setMapNode(mapNode);
 }
 
 
