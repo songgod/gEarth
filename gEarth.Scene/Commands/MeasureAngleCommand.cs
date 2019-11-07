@@ -9,11 +9,11 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class MesureAngleCommand : CommandBinding
+    public class MeasureAngleCommand : CommandBinding
     {
-        public MesureAngleCommand()
+        public MeasureAngleCommand()
         {
-            Command = CommandLib.MesureAngleCommand;
+            Command = CommandLib.MeasureAngleCommand;
             CanExecute += MesureAngleCommand_CanExecute;
             Executed += MesureAngleCommand_Executed;
         }

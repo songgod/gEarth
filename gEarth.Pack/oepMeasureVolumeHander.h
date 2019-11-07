@@ -1,13 +1,12 @@
 #pragma once
 #include "oepEventHandler.h"
-
 namespace gEarthPack
 {
-	public ref class oepMeasureHeightHandler :
+	public ref class oepMeasureVolumeHander :
 		public oepEventHandler
 	{
 	public:
-		oepMeasureHeightHandler();
+		oepMeasureVolumeHander();
 	};
-}
 
+}

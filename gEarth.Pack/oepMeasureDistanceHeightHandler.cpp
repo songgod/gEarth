@@ -42,11 +42,6 @@ void oepMeasureDistanceHeightHandler::bind(osgEarth::MapNode* pMapNode)
 
 	_nodemask = pMapNode->getNodeMask();
 	pMapNode->setNodeMask(0x1);
-	Style style = mth->getLineStyle();
-	style.getOrCreate<LineSymbol>()->stroke()->width() = 1.0f;
-	style.getOrCreate<AltitudeSymbol>()->clamping() = AltitudeSymbol::CLAMP_TO_TERRAIN;
-	style.getOrCreate<AltitudeSymbol>()->technique() = AltitudeSymbol::TECHNIQUE_GPU;
-	mth->setLineStyle(style);
 }
 
 void oepMeasureDistanceHeightHandler::unbind(osgEarth::MapNode* pMapNode)

@@ -12,113 +12,18 @@ using namespace osgEarth::Annotation;
 
 //#define SHOW_EXTENT 1
 
-MeasureDistanceHeightHandler::MeasureDistanceHeightHandler(osgEarth::MapNode* mapNode) :
+MeasureDistanceHeightHandler::MeasureDistanceHeightHandler(osgEarth::MapNode* mapNode) : MeasureBaseHandler(mapNode),
 	_mouseDown(false),
 	_gotFirstLocation(false),
 	_lastPointTemporary(false),
 	_finished(false),
-	_geoInterpolation(GEOINTERP_GREAT_CIRCLE),
-	_mouseButton(osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON),
-	_isPath(false),
-	_intersectionMask(0xffffffff)
+	_isPath(false)
 {
-	_root = new osg::Group();
-	setMapNode(mapNode);
+
 }
 
 MeasureDistanceHeightHandler::~MeasureDistanceHeightHandler()
 {
-	setMapNode(0L);
-}
-
-
-void
-MeasureDistanceHeightHandler::setMapNode(MapNode* mapNode)
-{
-	MapNode* oldMapNode = getMapNode();
-
-	if (oldMapNode != mapNode)
-	{
-		if (oldMapNode)
-		{
-			oldMapNode->removeChild(_root.get());
-		}
-
-		_mapNode = mapNode;
-
-		if (mapNode)
-		{
-			mapNode->addChild(_root.get());
-		}
-
-		rebuild();
-	}
-}
-
-
-void
-MeasureDistanceHeightHandler::rebuild()
-{
-	if (_featureNode.valid())
-	{
-		_root->removeChild(_featureNode.get());
-		_featureNode = 0L;
-	}
-
-	if (!getMapNode())
-		return;
-
-	if (getMapNode()->getMapSRS()->isProjected())
-	{
-		OE_WARN << LC << "Sorry, MeasureTool does not yet support projected maps" << std::endl;
-		return;
-	}
-
-
-	// Define the path feature:
-	_feature = new Feature(new LineString(), getMapNode()->getMapSRS());
-	_feature->geoInterp() = _geoInterpolation;
-
-	// clamp to the terrain skin as it pages in
-	AltitudeSymbol* alt = _feature->style()->getOrCreate<AltitudeSymbol>();
-	alt->clamping() = alt->CLAMP_TO_TERRAIN;
-	alt->technique() = alt->TECHNIQUE_GPU;
-
-	// offset to mitigate Z fighting
-	RenderSymbol* render = _feature->style()->getOrCreate<RenderSymbol>();
-	render->depthOffset()->enabled() = true;
-	render->depthOffset()->automatic() = true;
-
-	// define a style for the line
-	LineSymbol* ls = _feature->style()->getOrCreate<LineSymbol>();
-	ls->stroke()->color() = Color::Yellow;
-	ls->stroke()->width() = 2.0f;
-	ls->stroke()->widthUnits() = Units::PIXELS;
-	ls->tessellation() = 150;
-
-	_featureNode = new FeatureNode(_feature.get());
-	_featureNode->setMapNode(getMapNode());
-
-	GLUtils::setLighting(_featureNode->getOrCreateStateSet(), osg::StateAttribute::OFF);
-	//_featureNode->setClusterCulling(false);
-
-	_root->addChild(_featureNode.get());
-
-#ifdef SHOW_EXTENT
-
-	// Define the extent feature:
-	_extentFeature = new Feature(new Polygon(), getMapNode()->getMapSRS());
-	_extentFeature->geoInterp() = GEOINTERP_RHUMB_LINE;
-	_extentFeature->style()->add(alt);
-	LineSymbol* extentLine = _extentFeature->style()->getOrCreate<LineSymbol>();
-	extentLine->stroke()->color() = Color::Cyan;
-	extentLine->stroke()->width() = 2.0f;
-	extentLine->tessellation() = 20;
-
-	_extentFeatureNode = new FeatureNode(getMapNode(), _extentFeature.get());
-
-	_root->addChild(_extentFeatureNode.get());
-#endif
 }
 
 bool
@@ -137,32 +42,6 @@ MeasureDistanceHeightHandler::setIsPath(bool path)
 		clear();
 		_gotFirstLocation = false;
 	}
-}
-
-
-osgEarth::GeoInterpolation
-MeasureDistanceHeightHandler::getGeoInterpolation() const
-{
-	return _geoInterpolation;
-}
-
-void
-MeasureDistanceHeightHandler::setGeoInterpolation(osgEarth::GeoInterpolation geoInterpolation)
-{
-	if (_geoInterpolation != geoInterpolation)
-	{
-		_geoInterpolation = geoInterpolation;
-		_feature->geoInterp() = _geoInterpolation;
-		_featureNode->init();
-		fireDistanceChanged();
-	}
-}
-
-void
-MeasureDistanceHeightHandler::setLineStyle(const osgEarth::Symbology::Style& style)
-{
-	_feature->style() = style;
-	_featureNode->init();
 }
 
 bool MeasureDistanceHeightHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
@@ -215,24 +94,7 @@ bool MeasureDistanceHeightHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 						_gotFirstLocation = false;
 					}
 
-#ifdef SHOW_EXTENT
-					const GeoExtent ex(_feature->getSRS(), _feature->getGeometry()->getBounds());
-					//OE_INFO << "extent = " << ex.toString() << std::endl;
-					Geometry* eg = _extentFeature->getGeometry();
-					osg::Vec3d fc = ex.getCentroid();
-					eg->clear();
-					eg->push_back(ex.west(), ex.south());
-					if (ex.width() >= 180.0)
-						eg->push_back(fc.x(), ex.south());
-					eg->push_back(ex.east(), ex.south());
-					eg->push_back(ex.east(), ex.north());
-					if (ex.width() >= 180.0)
-						eg->push_back(fc.x(), ex.north());
-					eg->push_back(ex.west(), ex.north());
-					_extentFeatureNode->init();
-#endif
-
-					fireDistanceChanged();
+					fireMeasureChanged();
 					aa.requestRedraw();
 				}
 			}
@@ -264,7 +126,7 @@ bool MeasureDistanceHeightHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 					_feature->getGeometry()->back() = osg::Vec3d(lon, lat, height);
 				}
 				_featureNode->init();
-				fireDistanceChanged();
+				fireMeasureChanged();
 				aa.requestRedraw();
 			}
 		}
@@ -272,56 +134,12 @@ bool MeasureDistanceHeightHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 	return false;
 }
 
-bool MeasureDistanceHeightHandler::getLocationAt(osgViewer::View* view, double x, double y, double &lon, double &lat, double &height)
-{
-	osgUtil::LineSegmentIntersector::Intersections results;
-	if (getMapNode() && view->computeIntersections(x, y, results, _intersectionMask))
-	{
-		// find the first hit under the mouse:
-		osgUtil::LineSegmentIntersector::Intersection first = *(results.begin());
-		osg::Vec3d point = first.getWorldIntersectPoint();
-
-		double lat_rad, lon_rad;
-		getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-			point.x(), point.y(), point.z(), lat_rad, lon_rad, height);
-
-		lat = osg::RadiansToDegrees(lat_rad);
-		lon = osg::RadiansToDegrees(lon_rad);
-		return true;
-	}
-	return false;
-}
-
 void MeasureDistanceHeightHandler::clear()
 {
-	//Clear the locations    
-	_feature->getGeometry()->clear();
-	//_features->dirty();
-	_featureNode->init();
-
-#ifdef SHOW_EXTENT
-	_extentFeature->getGeometry()->clear();
-	_extentFeatureNode->init();
-#endif
-
-	fireDistanceChanged();
-
 	_gotFirstLocation = false;
 	_lastPointTemporary = false;
+	MeasureBaseHandler::clear();
 }
-
-void
-MeasureDistanceHeightHandler::setMouseButton(int mouseButton)
-{
-	_mouseButton = mouseButton;
-}
-
-int
-MeasureDistanceHeightHandler::getMouseButton() const
-{
-	return _mouseButton;
-}
-
 
 void MeasureDistanceHeightHandler::addEventHandler(MeasureToolEventHandler* handler)
 {
@@ -329,7 +147,7 @@ void MeasureDistanceHeightHandler::addEventHandler(MeasureToolEventHandler* hand
 }
 
 
-void MeasureDistanceHeightHandler::fireDistanceChanged()
+void MeasureDistanceHeightHandler::fireMeasureChanged()
 {
 	double distance = 0;
 	std::vector<osg::Vec3d> poss = _feature->getGeometry()->asVector();
@@ -348,4 +166,30 @@ void MeasureDistanceHeightHandler::fireDistanceChanged()
 	{
 		i->get()->onDistanceHeightChanged(this, distance,height);
 	}
+}
+
+osgEarth::Features::Feature* gEarthPack::MeasureDistanceHeightHandler::createFeature()
+{
+	// Define the path feature:
+	Feature* feature = new Feature(new LineString(), getMapNode()->getMapSRS());
+	feature->geoInterp() = _geoInterpolation;
+
+	// clamp to the terrain skin as it pages in
+	AltitudeSymbol* alt = feature->style()->getOrCreate<AltitudeSymbol>();
+	alt->clamping() = alt->CLAMP_TO_TERRAIN;
+	alt->technique() = alt->TECHNIQUE_GPU;
+
+	// offset to mitigate Z fighting
+	RenderSymbol* render = feature->style()->getOrCreate<RenderSymbol>();
+	render->depthOffset()->enabled() = true;
+	render->depthOffset()->automatic() = true;
+
+	// define a style for the line
+	LineSymbol* ls = feature->style()->getOrCreate<LineSymbol>();
+	ls->stroke()->color() = Color::Yellow;
+	ls->stroke()->width() = 1.0f;
+	ls->stroke()->widthUnits() = Units::PIXELS;
+	ls->tessellation() = 150;
+
+	return feature;
 }

@@ -10,23 +10,17 @@ using namespace osgEarth::Annotation;
 using namespace osgEarth::Features;
 using namespace osgEarth::Symbology;
 
-MeasureAreaHandler::MeasureAreaHandler(osgEarth::MapNode* pMapNode):
-	_intersectionMask(0xffffffff), 
-	_geointerpolation(GEOINTERP_GREAT_CIRCLE),
+MeasureAreaHandler::MeasureAreaHandler(osgEarth::MapNode* pMapNode):MeasureBaseHandler(pMapNode),
 	_mouseDown(false),
 	_gotFirstLocation(false),
 	_lastPointTemporary(false),
-	_finished(false),
-	_mouseButton(osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON)
+	_finished(false)
 {
-	_root = new osg::Group();	
-	setMapNode(pMapNode);
 }
 
 
 MeasureAreaHandler::~MeasureAreaHandler()
 {
-	setMapNode(0L);
 }
 
 bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdapter &aa)
@@ -49,8 +43,8 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 		_mouseDown = false;
 		if (osg::equivalent(ea.getX(), _mouseDownX, eps) && osg::equivalent(ea.getY(), _mouseDownY, eps))
 		{
-			double lon, lat;
-			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat))
+			double lon, lat, height;
+			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
 			{
 				if (!_gotFirstLocation)
 				{
@@ -78,7 +72,7 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 						_gotFirstLocation = false;
 					}
 
-					fireAreaChanged();
+					fireMeasureChanged();
 					aa.requestRedraw();
 				}
 			}
@@ -97,8 +91,8 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 	{
 		if (_gotFirstLocation)
 		{
-			double lon, lat;
-			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat))
+			double lon, lat, height;
+			if (getLocationAt(view, ea.getX(), ea.getY(), lon, lat, height))
 			{
 				if (!_lastPointTemporary)
 				{
@@ -110,7 +104,7 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 					_feature->getGeometry()->back() = osg::Vec3d(lon, lat, 0);
 				}
 				_featureNode->init();
-				//fireAreaChanged();
+				//fireMeasureChanged();
 				aa.requestRedraw();
 			}
 		}
@@ -118,74 +112,21 @@ bool MeasureAreaHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActi
 	return false;
 }
 
-bool MeasureAreaHandler::getLocationAt(osgViewer::View* view, double x, double y, double &lon, double &lat)
-{
-	osgUtil::LineSegmentIntersector::Intersections results;
-	if (getMapNode() && view->computeIntersections(x, y, results, _intersectionMask))
-	{
-		// find the first hit under the mouse:
-		osgUtil::LineSegmentIntersector::Intersection first = *(results.begin());
-		osg::Vec3d point = first.getWorldIntersectPoint();
-
-		double lat_rad, lon_rad, height;
-		getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-			point.x(), point.y(), point.z(), lat_rad, lon_rad, height);
-
-		lat = osg::RadiansToDegrees(lat_rad);
-		lon = osg::RadiansToDegrees(lon_rad);
-		return true;
-	}
-	return false;
-}
-
 void MeasureAreaHandler::clear()
 {
-	//Clear the locations    
-	_feature->getGeometry()->clear();
-	//_features->dirty();
-	_featureNode->init();
-
-	fireAreaChanged();
-
 	_gotFirstLocation = false;
 	_lastPointTemporary = false;
+	MeasureBaseHandler::clear();
 }
 
-void MeasureAreaHandler::setMapNode(osgEarth::MapNode* mapNode)
-{
-	MapNode* oldMapNode = getMapNode();
-
-	if (oldMapNode != mapNode)
-	{
-		if (oldMapNode)
-		{
-			oldMapNode->removeChild(_root.get());
-		}
-
-		_mapnode = mapNode;
-
-		if (mapNode)
-		{
-			mapNode->addChild(_root.get());
-		}
-
-		rebuild();
-	}
-}
-
-osgEarth::GeoInterpolation MeasureAreaHandler::getGeoInterpolation() const
-{
-	return _geointerpolation;
-}
-
-void MeasureAreaHandler::fireAreaChanged()
+void MeasureAreaHandler::fireMeasureChanged()
 {
 	double distance = 0;
-	if (_geointerpolation == GEOINTERP_GREAT_CIRCLE)
+	if (getGeoInterpolation() == GEOINTERP_GREAT_CIRCLE)
 	{
 		distance = CalcMath::calcArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
-	else if (_geointerpolation == GEOINTERP_RHUMB_LINE)
+	else if (getGeoInterpolation() == GEOINTERP_RHUMB_LINE)
 	{
 		distance = CalcMath::calcRhumbArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
@@ -195,76 +136,31 @@ void MeasureAreaHandler::fireAreaChanged()
 	}
 }
 
-void MeasureAreaHandler::setGeoInterpolation(osgEarth::GeoInterpolation geoInterpolation)
+osgEarth::Features::Feature* MeasureAreaHandler::createFeature()
 {
-	if (_geointerpolation != geoInterpolation)
-	{
-		_geointerpolation = geoInterpolation;
-		_feature->geoInterp() = _geointerpolation;
-		_featureNode->init();
-		fireAreaChanged();
-	}
-}
-
-void
-MeasureAreaHandler::setMouseButton(int mouseButton)
-{
-	_mouseButton = mouseButton;
-}
-
-int
-MeasureAreaHandler::getMouseButton() const
-{
-	return _mouseButton;
-}
-
-void MeasureAreaHandler::rebuild()
-{
-	if (_featureNode.valid())
-	{
-		_root->removeChild(_featureNode.get());
-		_featureNode = 0L;
-	}
-
-	if (!getMapNode())
-		return;
-
-	if (getMapNode()->getMapSRS()->isProjected())
-	{
-		OE_WARN << LC << "Sorry, MeasureTool does not yet support projected maps" << std::endl;
-		return;
-	}
-
-
 	// Define the path feature:
-	_feature = new Feature(new osgEarth::Symbology::Polygon(), getMapNode()->getMapSRS());
-	_feature->geoInterp() = _geointerpolation;
+	Feature* feature = new Feature(new osgEarth::Symbology::Polygon(), getMapNode()->getMapSRS());
+	feature->geoInterp() = getGeoInterpolation();
 
 	// clamp to the terrain skin as it pages in
-	AltitudeSymbol* alt = _feature->style()->getOrCreate<AltitudeSymbol>();
+	AltitudeSymbol* alt = feature->style()->getOrCreate<AltitudeSymbol>();
 	alt->clamping() = alt->CLAMP_TO_TERRAIN;
 	alt->technique() = alt->TECHNIQUE_DRAPE;
 
 	// offset to mitigate Z fighting
-	RenderSymbol* render = _feature->style()->getOrCreate<RenderSymbol>();
+	RenderSymbol* render = feature->style()->getOrCreate<RenderSymbol>();
 	render->depthOffset()->enabled() = true;
 	render->depthOffset()->automatic() = true;
 
 	// define a style for the line
-	LineSymbol* ls = _feature->style()->getOrCreate<LineSymbol>();
+	LineSymbol* ls = feature->style()->getOrCreate<LineSymbol>();
 	ls->stroke()->color() = Color::Yellow;
 	ls->stroke()->width() = 2.0f;
 	ls->stroke()->widthUnits() = Units::PIXELS;
 	ls->tessellation() = 150;
 
-	PolygonSymbol* ps = _feature->style()->getOrCreate<PolygonSymbol>();
+	PolygonSymbol* ps = feature->style()->getOrCreate<PolygonSymbol>();
 	ps->fill()->color() = Color(Color::Green, 0.5);
 
-	_featureNode = new FeatureNode(_feature.get());
-	_featureNode->setMapNode(getMapNode());
-
-	GLUtils::setLighting(_featureNode->getOrCreateStateSet(), osg::StateAttribute::OFF);
-	//_featureNode->setClusterCulling(false);
-
-	_root->addChild(_featureNode.get());
+	return feature;
 }

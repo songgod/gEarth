@@ -160,7 +160,10 @@
     <ClInclude Include="AnimationPathOptions.h" />
     <ClInclude Include="CalcMath.h" />
     <ClInclude Include="MeasureAngleHandler.h" />
+    <ClInclude Include="MeasureBaseHandler.h" />
     <ClInclude Include="MeasureDistanceHeightHandler.h" />
+    <ClInclude Include="MeasureSlopeAspectHandler.h" />
+    <ClInclude Include="MeasureVolumeHandler.h" />
     <ClInclude Include="oepHandle.h" />
     <ClInclude Include="oepHandleMapManager.h" />
     <ClInclude Include="MeasureAreaHandler.h" />
@@ -185,8 +188,11 @@
     <ClInclude Include="oepLayerOptions.h" />
     <ClInclude Include="oepMeasureAngleHandler.h" />
     <ClInclude Include="oepMeasureAreaHandler.h" />
+    <ClInclude Include="oepMeasureSlopeAspectHandler.h" />
     <ClInclude Include="oepMeasureDistanceHeightHandler.h" />
-    <ClInclude Include="oepMeasureHeightHandler.h" />
+    <ClInclude Include="oepMeasureProfileHandler.h" />
+    <ClInclude Include="oepMeasureVisibiltyHandler.h" />
+    <ClInclude Include="oepMeasureVolumeHander.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
@@ -232,7 +238,10 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CalcMath.cpp" />
     <ClCompile Include="MeasureAngleHandler.cpp" />
+    <ClCompile Include="MeasureBaseHandler.cpp" />
     <ClCompile Include="MeasureDistanceHeightHandler.cpp" />
+    <ClCompile Include="MeasureSlopeAspectHandler.cpp" />
+    <ClCompile Include="MeasureVolumeHandler.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
     <ClCompile Include="MeasureAreaHandler.cpp" />
@@ -257,8 +266,11 @@
     <ClCompile Include="oepLayerOptions.cpp" />
     <ClCompile Include="oepMeasureAngleHandler.cpp" />
     <ClCompile Include="oepMeasureAreaHandler.cpp" />
+    <ClCompile Include="oepMeasureSlopeAspectHandler.cpp" />
     <ClCompile Include="oepMeasureDistanceHeightHandler.cpp" />
-    <ClCompile Include="oepMeasureHeightHandler.cpp" />
+    <ClCompile Include="oepMeasureProfileHandler.cpp" />
+    <ClCompile Include="oepMeasureVisibiltyHandler.cpp" />
+    <ClCompile Include="oepMeasureVolumeHander.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />

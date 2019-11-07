@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class MesureVolumeCommand : CommandBinding
+    public class MeasureVolumeCommand : CommandBinding
     {
-        public MesureVolumeCommand()
+        public MeasureVolumeCommand()
         {
-            Command = CommandLib.MesureVolumeCommand;
+            Command = CommandLib.MeasureVolumeCommand;
             CanExecute += MesureVolumeCommand_CanExecute;
             Executed += MesureVolumeCommand_Executed;
         }

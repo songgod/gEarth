@@ -10,129 +10,16 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureAngleHandler::MeasureAngleHandler(osgEarth::MapNode* mapNode):
-	_geoInterpolation(GEOINTERP_GREAT_CIRCLE),
-	_mouseButton(osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON),
-	_intersectionMask(0xffffffff),
+MeasureAngleHandler::MeasureAngleHandler(osgEarth::MapNode* mapNode):MeasureBaseHandler(mapNode),
 	_bNewMesura(true)
 {
-	_root = new osg::Group();
-	setMapNode(mapNode);
+
 }
 
 
 MeasureAngleHandler::~MeasureAngleHandler()
 {
-	setMapNode(0L);
-}
 
-void MeasureAngleHandler::setMapNode(osgEarth::MapNode* mapNode)
-{
-	MapNode* oldMapNode = getMapNode();
-
-	if (oldMapNode != mapNode)
-	{
-		if (oldMapNode)
-		{
-			oldMapNode->removeChild(_root.get());
-		}
-
-		_mapNode = mapNode;
-
-		if (mapNode)
-		{
-			mapNode->addChild(_root.get());
-		}
-
-		rebuild();
-	}
-}
-
-void MeasureAngleHandler::rebuild()
-{
-	if (_featureNode.valid())
-	{
-		_root->removeChild(_featureNode.get());
-		_featureNode = 0L;
-	}
-
-	if (!getMapNode())
-		return;
-
-	if (getMapNode()->getMapSRS()->isProjected())
-	{
-		OE_WARN << LC << "Sorry, MeasureTool does not yet support projected maps" << std::endl;
-		return;
-	}
-
-
-	// Define the path feature:
-	_feature = new Feature(new LineString(), getMapNode()->getMapSRS());
-	_feature->geoInterp() = _geoInterpolation;
-
-	// clamp to the terrain skin as it pages in
-	AltitudeSymbol* alt = _feature->style()->getOrCreate<AltitudeSymbol>();
-	alt->clamping() = alt->CLAMP_TO_TERRAIN;
-	alt->technique() = alt->TECHNIQUE_GPU;
-
-	// offset to mitigate Z fighting
-	RenderSymbol* render = _feature->style()->getOrCreate<RenderSymbol>();
-	render->depthOffset()->enabled() = true;
-	render->depthOffset()->automatic() = true;
-
-	// define a style for the line
-	LineSymbol* ls = _feature->style()->getOrCreate<LineSymbol>();
-	ls->stroke()->color() = Color::Yellow;
-	ls->stroke()->width() = 2.0f;
-	ls->stroke()->widthUnits() = Units::PIXELS;
-	ls->tessellation() = 150;
-
-	_featureNode = new FeatureNode(_feature.get());
-	_featureNode->setMapNode(getMapNode());
-
-	GLUtils::setLighting(_featureNode->getOrCreateStateSet(), osg::StateAttribute::OFF);
-	//_featureNode->setClusterCulling(false);
-
-	_root->addChild(_featureNode.get());
-}
-
-osgEarth::GeoInterpolation
-MeasureAngleHandler::getGeoInterpolation() const
-{
-	return _geoInterpolation;
-}
-
-void
-MeasureAngleHandler::setGeoInterpolation(osgEarth::GeoInterpolation geoInterpolation)
-{
-	if (_geoInterpolation != geoInterpolation)
-	{
-		_geoInterpolation = geoInterpolation;
-		_feature->geoInterp() = _geoInterpolation;
-		_featureNode->init();
-		fireAngleChanged();
-	}
-}
-
-bool 
-MeasureAngleHandler::getLocationAt(osgViewer::View* view, double x, double y, double &lon, double &lat, double &height)
-{
-	osgUtil::LineSegmentIntersector::Intersections results;
-	if (getMapNode() && view->computeIntersections(x, y, results, _intersectionMask))
-	{
-		// find the first hit under the mouse:
-		osgUtil::LineSegmentIntersector::Intersection first = *(results.begin());
-		osg::Vec3d point = first.getWorldIntersectPoint();
-
-		double lat_rad, lon_rad;
-		getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-			point.x(), point.y(), point.z(), lat_rad, lon_rad, height);
-
-		lat = osg::RadiansToDegrees(lat_rad);
-		lon = osg::RadiansToDegrees(lon_rad);
-		return true;
-	}
-	return false;
 }
 
 void MeasureAngleHandler::addEventHandler(MeasureAngleEventHandler* handler)
@@ -169,7 +56,7 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 			_featureNode->init();
 		}
 
-		fireAngleChanged();
+		fireMeasureChanged();
 		aa.requestRedraw();
 	}
 	else if (ea.getEventType() == osgGA::GUIEventAdapter::MOVE)
@@ -182,7 +69,7 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 
 				_feature->getGeometry()->back() = osg::Vec3d(lon, lat, height);
 				_featureNode->init();
-				fireAngleChanged();
+				fireMeasureChanged();
 				aa.requestRedraw();
 			}
 		}
@@ -190,7 +77,39 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 	return false;
 }
 
-void MeasureAngleHandler::fireAngleChanged()
+osgEarth::Features::Feature * gEarthPack::MeasureAngleHandler::createFeature()
+{
+	// Define the path feature:
+	Feature* feature = new Feature(new LineString(), getMapNode()->getMapSRS());
+	feature->geoInterp() = _geoInterpolation;
+
+	// clamp to the terrain skin as it pages in
+	AltitudeSymbol* alt = feature->style()->getOrCreate<AltitudeSymbol>();
+	alt->clamping() = alt->CLAMP_TO_TERRAIN;
+	alt->technique() = alt->TECHNIQUE_GPU;
+
+	// offset to mitigate Z fighting
+	RenderSymbol* render = feature->style()->getOrCreate<RenderSymbol>();
+	render->depthOffset()->enabled() = true;
+	render->depthOffset()->automatic() = true;
+
+	// define a style for the line
+	LineSymbol* ls = feature->style()->getOrCreate<LineSymbol>();
+	ls->stroke()->color() = Color::Yellow;
+	ls->stroke()->width() = 2.0f;
+	ls->stroke()->widthUnits() = Units::PIXELS;
+	ls->tessellation() = 150;
+
+	return feature;
+}
+
+void MeasureAngleHandler::clear()
+{
+	_bNewMesura = true;
+	MeasureBaseHandler::clear();
+}
+
+void MeasureAngleHandler::fireMeasureChanged()
 {
 	std::vector<osg::Vec3d> poss = _feature->getGeometry()->asVector();
 	if (poss.size() != 3)
@@ -207,14 +126,4 @@ void MeasureAngleHandler::fireAngleChanged()
 	{
 		i->get()->onAngleChanged(this, angle);
 	}
-}
-
-void MeasureAngleHandler::clear()
-{
-	//Clear the locations    
-	_feature->getGeometry()->clear();
-	//_features->dirty();
-	_featureNode->init();
-
-	fireAngleChanged();
 }

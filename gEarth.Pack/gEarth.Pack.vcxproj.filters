@@ -210,9 +210,6 @@
     <ClInclude Include="MeasureAreaHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="oepMeasureHeightHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="oepHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -241,6 +238,27 @@
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="oepMeasureAngleHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureBaseHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureVolumeHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureVolumeHander.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureVisibiltyHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureProfileHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureSlopeAspectHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureSlopeAspectHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -422,9 +440,6 @@
     <ClCompile Include="MeasureAreaHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="oepMeasureHeightHandler.cpp">
-      <Filter>Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="oepHandleMapManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -444,6 +459,27 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="oepMeasureAngleHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureBaseHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureVolumeHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureVolumeHander.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureVisibiltyHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureProfileHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureSlopeAspectHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureSlopeAspectHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
