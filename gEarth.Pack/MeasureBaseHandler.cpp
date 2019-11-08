@@ -127,7 +127,7 @@ bool MeasureBaseHandler::getLocationAt(osgViewer::View* view, double x, double y
 	return false;
 }
 
-osg::Vec3d gEarthPack::MeasureBaseHandler::xyz2latlnghigh(const osg::Vec3d& xyz)
+osg::Vec3d MeasureBaseHandler::xyz2latlnghigh(const osg::Vec3d& xyz)
 {
 	double lat = 0.0;
 	double lng = 0.0;
@@ -141,7 +141,7 @@ osg::Vec3d gEarthPack::MeasureBaseHandler::xyz2latlnghigh(const osg::Vec3d& xyz)
 	return res;
 }
 
-osg::Vec3d gEarthPack::MeasureBaseHandler::latlnghigh2xyz(const osg::Vec3d& llh)
+osg::Vec3d MeasureBaseHandler::latlnghigh2xyz(const osg::Vec3d& llh)
 {
 	osg::Vec3d res;
 	double lat = osg::DegreesToRadians(llh.y());

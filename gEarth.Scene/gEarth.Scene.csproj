@@ -130,7 +130,7 @@
     <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
     <Compile Include="Commands\SetSimpleOceanOptionsCommand.cs" />
     <Compile Include="Commands\SetSimpleSkyOptionsCommand.cs" />
-    <Compile Include="Commands\AnalysisVisbleCommand.cs" />
+    <Compile Include="Commands\AnalysisVisbleLineCommand.cs" />
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
@@ -141,6 +141,9 @@
     </Compile>
     <Compile Include="Windows\AnalysisProfileWindow.xaml.cs">
       <DependentUpon>AnalysisProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AnalysisVisibilityLineWindow.xaml.cs">
+      <DependentUpon>AnalysisVisibilityLineWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ArcGISSourceOptionsWindow.xaml.cs">
       <DependentUpon>ArcGISSourceOptionsWindow.xaml</DependentUpon>
@@ -210,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AnalysisProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AnalysisVisibilityLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

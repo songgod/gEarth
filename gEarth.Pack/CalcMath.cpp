@@ -12,7 +12,7 @@ CalcMath::~CalcMath()
 {
 }
 
-double gEarthPack::CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
 	if (mapnode && mapnode->isGeocentric())
 	{
@@ -164,12 +164,12 @@ double gEarthPack::CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osg
 	}
 }
 
-double gEarthPack::CalcMath::calcSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
 	return 0.0;
 }
 
-double gEarthPack::CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
 	if (!mapnode || !mapnode->isGeocentric() || points.size()<=2)
 		return 0.0;
@@ -210,7 +210,7 @@ double gEarthPack::CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points
 	return calcArea(temppoints, mapnode);
 }
 
-double gEarthPack::CalcMath::calcRhumbSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcRhumbSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
 	return 0.0;
 }

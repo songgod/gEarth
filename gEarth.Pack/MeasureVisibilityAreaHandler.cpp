@@ -19,7 +19,7 @@ MeasureVisibilityAreaHandler::~MeasureVisibilityAreaHandler()
 
 }
 
-void gEarthPack::MeasureVisibilityAreaHandler::rebuild()
+void MeasureVisibilityAreaHandler::rebuild()
 {
 	if (_radiaofsightnode.valid())
 	{
@@ -40,7 +40,7 @@ void gEarthPack::MeasureVisibilityAreaHandler::rebuild()
 	_root->addChild(_radiaofsightnode.get());
 }
 
-void gEarthPack::MeasureVisibilityAreaHandler::clear()
+void MeasureVisibilityAreaHandler::clear()
 {
 
 }

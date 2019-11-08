@@ -194,7 +194,7 @@
     <ClInclude Include="oepMeasureSlopeAspectHandler.h" />
     <ClInclude Include="oepMeasureDistanceHeightHandler.h" />
     <ClInclude Include="oepMeasureProfileHandler.h" />
-    <ClInclude Include="oepMeasureVisibiltyHandler.h" />
+    <ClInclude Include="oepMeasureVisibiltyLineHandler.h" />
     <ClInclude Include="oepMeasureVolumeHander.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
@@ -281,7 +281,7 @@
     <ClCompile Include="oepMeasureSlopeAspectHandler.cpp" />
     <ClCompile Include="oepMeasureDistanceHeightHandler.cpp" />
     <ClCompile Include="oepMeasureProfileHandler.cpp" />
-    <ClCompile Include="oepMeasureVisibiltyHandler.cpp" />
+    <ClCompile Include="oepMeasureVisibiltyLineHandler.cpp" />
     <ClCompile Include="oepMeasureVolumeHander.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />

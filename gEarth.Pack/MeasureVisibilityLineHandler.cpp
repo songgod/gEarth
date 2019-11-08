@@ -8,7 +8,7 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureVisibilityLineHandler::MeasureVisibilityLineHandler(osgEarth::MapNode* mapNode):MeasureBaseHandler(mapNode)
+MeasureVisibilityLineHandler::MeasureVisibilityLineHandler(osgEarth::MapNode* mapNode):MeasureBaseHandler(mapNode), _startValid(false)
 {
 	setMapNode(mapNode);
 }
@@ -42,6 +42,43 @@ void MeasureVisibilityLineHandler::rebuild()
 
 void MeasureVisibilityLineHandler::clear()
 {
+	_startValid = false;
 	_lineofsightnode->setStart(osgEarth::GeoPoint());
 	_lineofsightnode->setEnd(osgEarth::GeoPoint());
+}
+
+bool MeasureVisibilityLineHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
+{
+	if (ea.getEventType() == ea.PUSH && ea.getButton() == _mouseButton)
+	{
+		osg::Vec3d world;
+		if (_mapNode->getTerrain()->getWorldCoordsUnderMouse(aa.asView(), ea.getX(), ea.getY(), world))
+		{
+			GeoPoint mapPoint;
+			mapPoint.fromWorld(_mapNode->getMapSRS(), world);
+			if (!_startValid)
+			{
+				clear();
+				_startValid = true;
+				_lineofsightnode->setStart(mapPoint);
+				_lineofsightnode->setEnd(mapPoint);
+			}
+			else
+			{
+				_startValid = false;
+				fireMeasureChanged();
+			}
+		}
+	}
+	else if (ea.getEventType() == ea.MOVE && _startValid)
+	{
+		osg::Vec3d world;
+		if (_mapNode->getTerrain()->getWorldCoordsUnderMouse(aa.asView(), ea.getX(), ea.getY(), world))
+		{
+			GeoPoint mapPoint;
+			mapPoint.fromWorld(_mapNode->getMapSRS(), world);
+			_lineofsightnode->setEnd(mapPoint);
+		}
+	}
+	return false;
 }

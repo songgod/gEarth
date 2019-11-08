@@ -36,7 +36,7 @@ namespace gEarth.Scene.Commands
             MeasureVolumeCommand = CreateCommand("MeasureVolumeCommand");
             MeasureAngleCommand = CreateCommand("MeasureAngleCommand");
             MeasureSlopeAspectCommand = CreateCommand("MeasureSlopeAspectCommand");
-            AnalysisVisbleCommand = CreateCommand("AnalysisVisbleCommand");
+            AnalysisVisbleLineCommand = CreateCommand("AnalysisVisbleLineCommand");
             AnalysisProfileCommand = CreateCommand("AnalysisProfileCommand");
         }
         private static RoutedUICommand CreateCommand(string name)
@@ -68,7 +68,7 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand MeasureVolumeCommand { get; set; }
         public static RoutedUICommand MeasureAngleCommand { get; set; }
         public static RoutedUICommand MeasureSlopeAspectCommand { get; set; }
-        public static RoutedUICommand AnalysisVisbleCommand { get; set; }
+        public static RoutedUICommand AnalysisVisbleLineCommand { get; set; }
         public static RoutedUICommand AnalysisProfileCommand { get; set; }
     }
 }

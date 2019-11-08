@@ -21,7 +21,7 @@ MeasureProfileHandler::~MeasureProfileHandler()
 {
 }
 
-bool gEarthPack::MeasureProfileHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
+bool MeasureProfileHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
 {
 	if (ea.getEventType() == ea.PUSH && ea.getButton() == _mouseButton)
 	{
@@ -58,7 +58,7 @@ bool gEarthPack::MeasureProfileHandler::handle(const osgGA::GUIEventAdapter& ea,
 	return false;
 }
 
-osgEarth::Features::Feature* gEarthPack::MeasureProfileHandler::createFeature()
+osgEarth::Features::Feature* MeasureProfileHandler::createFeature()
 {
 	LineString* line = new LineString();
 	Feature* feature = new Feature(line, _mapNode->getMapSRS());
@@ -83,7 +83,7 @@ osgEarth::Features::Feature* gEarthPack::MeasureProfileHandler::createFeature()
 	return feature;
 }
 
-void gEarthPack::MeasureProfileHandler::fireMeasureChanged()
+void MeasureProfileHandler::fireMeasureChanged()
 {
 	osg::Vec3d start, end;
 	if (_feature->getGeometry()->size() == 2)
@@ -95,7 +95,7 @@ void gEarthPack::MeasureProfileHandler::fireMeasureChanged()
 		GeoPoint(_mapNode->getMapSRS(), end.x(), end.y()));
 }
 
-void gEarthPack::MeasureProfileHandler::clear()
+void MeasureProfileHandler::clear()
 {
 	_startValid = false;
 	MeasureBaseHandler::clear();

@@ -76,7 +76,7 @@ bool MeasureAngleHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIAct
 	return false;
 }
 
-osgEarth::Features::Feature * gEarthPack::MeasureAngleHandler::createFeature()
+osgEarth::Features::Feature * MeasureAngleHandler::createFeature()
 {
 	// Define the path feature:
 	Feature* feature = new Feature(new LineString(), getMapNode()->getMapSRS());

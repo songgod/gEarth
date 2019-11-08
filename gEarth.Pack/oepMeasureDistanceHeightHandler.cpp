@@ -69,12 +69,12 @@ void oepMeasureDistanceHeightHandler::Distance::set(double d)
 	NotifyChanged("Distance");
 }
 
-double gEarthPack::oepMeasureDistanceHeightHandler::Height::get()
+double oepMeasureDistanceHeightHandler::Height::get()
 {
 	return _height;
 }
 
-void gEarthPack::oepMeasureDistanceHeightHandler::Height::set(double d)
+void oepMeasureDistanceHeightHandler::Height::set(double d)
 {
 	_height = d;
 	NotifyChanged("Height");

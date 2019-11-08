@@ -73,7 +73,7 @@ void oepMeasureAreaHandler::Area::set(double a)
 	NotifyChanged("Area");
 }
 
-bool gEarthPack::oepMeasureAreaHandler::bGreatCircle::get()
+bool oepMeasureAreaHandler::bGreatCircle::get()
 {
 	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
 	if (!handle)
@@ -81,7 +81,7 @@ bool gEarthPack::oepMeasureAreaHandler::bGreatCircle::get()
 	return handle->getGeoInterpolation() == osgEarth::GEOINTERP_GREAT_CIRCLE;
 }
 
-void gEarthPack::oepMeasureAreaHandler::bGreatCircle::set(bool b)
+void oepMeasureAreaHandler::bGreatCircle::set(bool b)
 {
 	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
 	if (!handle)

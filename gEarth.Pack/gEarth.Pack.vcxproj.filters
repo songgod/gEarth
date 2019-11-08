@@ -249,9 +249,6 @@
     <ClInclude Include="oepMeasureVolumeHander.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="oepMeasureVisibiltyHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="oepMeasureProfileHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
@@ -268,6 +265,9 @@
       <Filter>Handlers</Filter>
     </ClInclude>
     <ClInclude Include="MeasureVisibilityAreaHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMeasureVisibiltyLineHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -479,9 +479,6 @@
     <ClCompile Include="oepMeasureVolumeHander.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="oepMeasureVisibiltyHandler.cpp">
-      <Filter>Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="oepMeasureProfileHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -498,6 +495,9 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="MeasureVisibilityLineHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureVisibiltyLineHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
