@@ -139,6 +139,9 @@
     <Compile Include="Windows\AddViewpointOptionsWindow.xaml.cs">
       <DependentUpon>AddViewpointOptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AnalysisProfileWindow.xaml.cs">
+      <DependentUpon>AnalysisProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ArcGISSourceOptionsWindow.xaml.cs">
       <DependentUpon>ArcGISSourceOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddViewpointOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AnalysisProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

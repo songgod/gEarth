@@ -37,7 +37,9 @@
 #include <osgEarthUtil/EarthManipulator>
 #include <osgEarthUtil/SimpleOceanLayer>
 #include <osgEarthUtil/ViewFitter>
-
+#include <osgEarthUtil/TerrainProfile>
+#include <osgEarthUtil/LinearLineOfSight>
+#include <osgEarthUtil/RadialLineOfSight>
 
 #include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
 #include <osgEarthDrivers/viewpoints/ViewpointsOptions>

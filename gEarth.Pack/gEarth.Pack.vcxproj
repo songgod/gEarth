@@ -162,7 +162,10 @@
     <ClInclude Include="MeasureAngleHandler.h" />
     <ClInclude Include="MeasureBaseHandler.h" />
     <ClInclude Include="MeasureDistanceHeightHandler.h" />
+    <ClInclude Include="MeasureProfileHandler.h" />
     <ClInclude Include="MeasureSlopeAspectHandler.h" />
+    <ClInclude Include="MeasureVisibilityAreaHandler.h" />
+    <ClInclude Include="MeasureVisibilityLineHandler.h" />
     <ClInclude Include="MeasureVolumeHandler.h" />
     <ClInclude Include="oepHandle.h" />
     <ClInclude Include="oepHandleMapManager.h" />
@@ -246,7 +249,10 @@
     <ClCompile Include="MeasureDistanceHeightHandler.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="MeasureProfileHandler.cpp" />
     <ClCompile Include="MeasureSlopeAspectHandler.cpp" />
+    <ClCompile Include="MeasureVisibilityAreaHandler.cpp" />
+    <ClCompile Include="MeasureVisibilityLineHandler.cpp" />
     <ClCompile Include="MeasureVolumeHandler.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />

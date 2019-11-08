@@ -1,0 +1,51 @@
+﻿<Window x:Class="gEarth.Scene.Windows.AnalysisProfileWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gEarth.Scene.Windows"
+             mc:Ignorable="d" 
+             WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+            ShowInTaskbar="False"
+            Title="剖面分析"
+             Height="168.246" Width="383.932"
+        Closed="Window_Closed"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Resources>
+            <local:ProfilePointsConverter x:Key="ppcvt"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="bd" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" BorderThickness="0.5" Margin="0">
+            <Polyline  Stroke="Black" StrokeThickness="1.0">
+                <Polyline.Points>
+                    <MultiBinding Converter="{StaticResource ppcvt}">
+                        <Binding Path="TotalDistance"/>
+                        <Binding Path="MinElevation"/>
+                        <Binding Path="MaxElevation"/>
+                        <Binding Path="Profiles"/>
+                        <Binding Path="ActualWidth" ElementName="bd"/>
+                        <Binding Path="ActualHeight" ElementName="bd"/>
+                    </MultiBinding>
+                </Polyline.Points>
+            </Polyline>
+        </Border>
+        <TextBlock Text="距离:" TextAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock Text="{Binding TotalDistance}" TextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="最小高程:" TextAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+        <TextBlock Text="{Binding MinElevation}" TextAlignment="Center" Grid.Row="1" Grid.Column="3"/>
+        <TextBlock Text="最大高程:" TextAlignment="Center" Grid.Row="1" Grid.Column="4"/>
+        <TextBlock Text="{Binding MaxElevation}" TextAlignment="Center" Grid.Row="1" Grid.Column="5"/>
+    </Grid>
+</Window>

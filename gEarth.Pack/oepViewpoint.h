@@ -31,7 +31,6 @@ namespace gEarthPack
 
 	private:
 
-		osgEarth::Viewpoint* _handle;
 		bool _ownhandle;
 	};
 

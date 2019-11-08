@@ -261,6 +261,15 @@
     <ClInclude Include="oepMeasureSlopeAspectHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="MeasureProfileHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureVisibilityLineHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeasureVisibilityAreaHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -480,6 +489,15 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="oepMeasureSlopeAspectHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureProfileHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureVisibilityAreaHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="MeasureVisibilityLineHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
