@@ -56,6 +56,8 @@ bool MeasureVisibilityLineHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 		{
 			GeoPoint mapPoint;
 			mapPoint.fromWorld(_mapNode->getMapSRS(), world);
+			mapPoint.z() = 10;
+			mapPoint.altitudeMode() = ALTMODE_RELATIVE;
 			if (!_startValid)
 			{
 				clear();
@@ -77,6 +79,8 @@ bool MeasureVisibilityLineHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 		{
 			GeoPoint mapPoint;
 			mapPoint.fromWorld(_mapNode->getMapSRS(), world);
+			mapPoint.z() = 10;
+			mapPoint.altitudeMode() = ALTMODE_RELATIVE;
 			_lineofsightnode->setEnd(mapPoint);
 		}
 	}

@@ -270,6 +270,9 @@
     <ClInclude Include="oepMeasureVisibiltyLineHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepMeasureVisibilityAreaHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -498,6 +501,9 @@
       <Filter>Handlers</Filter>
     </ClCompile>
     <ClCompile Include="oepMeasureVisibiltyLineHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMeasureVisibilityAreaHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>

@@ -108,6 +108,7 @@
     <Compile Include="Commands\AddGdalElevationLayerCommand.cs" />
     <Compile Include="Commands\AddGdalImageLayerCommand.cs" />
     <Compile Include="Commands\AddViewpointCommand.cs" />
+    <Compile Include="Commands\AnalysisVisibleAreaCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />
     <Compile Include="Commands\EditAnimationPathCommand.cs" />
     <Compile Include="Commands\MeasureSlopeAspectCommand.cs" />
@@ -130,7 +131,7 @@
     <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
     <Compile Include="Commands\SetSimpleOceanOptionsCommand.cs" />
     <Compile Include="Commands\SetSimpleSkyOptionsCommand.cs" />
-    <Compile Include="Commands\AnalysisVisbleLineCommand.cs" />
+    <Compile Include="Commands\AnalysisVisibleLineCommand.cs" />
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
@@ -141,6 +142,9 @@
     </Compile>
     <Compile Include="Windows\AnalysisProfileWindow.xaml.cs">
       <DependentUpon>AnalysisProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AnalysisVisibilityAreaWindow.xaml.cs">
+      <DependentUpon>AnalysisVisibilityAreaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AnalysisVisibilityLineWindow.xaml.cs">
       <DependentUpon>AnalysisVisibilityLineWindow.xaml</DependentUpon>
@@ -213,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AnalysisProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AnalysisVisibilityAreaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

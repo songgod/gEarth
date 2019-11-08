@@ -43,7 +43,8 @@
         <cmd:MeasureVolumeCommand/>
         <cmd:MeasureSlopeAspectCommand/>
         <cmd:AnalysisProfileCommand/>
-        <cmd:AnalysisVisbleLineCommand/>
+        <cmd:AnalysisVisibleLineCommand/>
+        <cmd:AnalysisVisibleAreaCommand/>
     </Fluent:RibbonWindow.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -116,7 +117,8 @@
                     <Fluent:Button Header="坡度坡向" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/slope.png" Command="{x:Static cmd:CommandLib.MeasureSlopeAspectCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="分析">
-                    <Fluent:Button Header="通视" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visibleanalysis.png" Command="{x:Static cmd:CommandLib.AnalysisVisbleLineCommand}" CommandParameter="{Binding ElementName=ax}"/>
+                    <Fluent:Button Header="可视线分析" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visibleanalysis.png" Command="{x:Static cmd:CommandLib.AnalysisVisibleLineCommand}" CommandParameter="{Binding ElementName=ax}"/>
+                    <Fluent:Button Header="可视区分析" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/visiblearea.png" Command="{x:Static cmd:CommandLib.AnalysisVisibleAreaCommand}" CommandParameter="{Binding ElementName=ax}"/>
                     <Fluent:Button Header="剖面" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/profile.png" Command="{x:Static cmd:CommandLib.AnalysisProfileCommand}" CommandParameter="{Binding ElementName=ax}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>

@@ -9,11 +9,11 @@ using System.Windows.Input;
 
 namespace gEarth.Scene.Commands
 {
-    public class AnalysisVisbleLineCommand : CommandBinding
+    public class AnalysisVisibleLineCommand : CommandBinding
     {
-        public AnalysisVisbleLineCommand()
+        public AnalysisVisibleLineCommand()
         {
-            Command = CommandLib.AnalysisVisbleLineCommand;
+            Command = CommandLib.AnalysisVisibleLineCommand;
             CanExecute += AnalysisVisbleCommand_CanExecute;
             Executed += AnalysisVisbleCommand_Executed;
         }
