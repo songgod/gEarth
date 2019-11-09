@@ -11,11 +11,8 @@ using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
 MeasureVolumeHandler::MeasureVolumeHandler(osgEarth::MapNode* mapNode) : MeasureBaseHandler(mapNode),
-_mouseDown(false),
-_gotFirstLocation(false),
-_lastPointTemporary(false),
-_finished(false),
-_deep(0.0)
+_bnewmeasure(true),
+_deep(10.0)
 {
 	setMapNode(mapNode);
 }
@@ -33,80 +30,45 @@ bool MeasureVolumeHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIAc
 	}
 
 	osgViewer::View* view = static_cast<osgViewer::View*>(aa.asView());
-	if (ea.getEventType() == osgGA::GUIEventAdapter::PUSH && ea.getButton() == _mouseButton)
+	if (ea.getEventType() == osgGA::GUIEventAdapter::RELEASE)
 	{
-		_mouseDown = true;
-		_mouseDownX = ea.getX();
-		_mouseDownY = ea.getY();
-	}
-	else if (ea.getEventType() == osgGA::GUIEventAdapter::RELEASE && ea.getButton() == _mouseButton)
-	{
-		float eps = 1.0f;
-		_mouseDown = false;
-		if (osg::equivalent(ea.getX(), _mouseDownX, eps) && osg::equivalent(ea.getY(), _mouseDownY, eps))
+		if (ea.getButton() == osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON)
 		{
+			if (_bnewmeasure)
+				clear();
 			osg::Vec3d p, n;
 			if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 			{
-				if (!_gotFirstLocation)
-				{
-					_finished = false;
-					clear();
-					_gotFirstLocation = true;
-					_feature->getGeometry()->push_back(p);
-				}
+				if (_feature->getGeometry()->size() > 0)
+					_feature->getGeometry()->back() = p;
 				else
-				{
-					if (_lastPointTemporary)
-					{
-						_feature->getGeometry()->back() = p;
-						_lastPointTemporary = false;
-					}
-					else
-					{
-						_feature->getGeometry()->push_back(p);
-					}
-					_featureNode->init();
+					_feature->getGeometry()->push_back(p);
 
-					//_gotFirstLocation = false;
-					//_finished = true;
-					if (_finished) {
-						_gotFirstLocation = false;
-					}
 
-					fireMeasureChanged();
-					aa.requestRedraw();
-				}
+				_featureNode->init();
+
+				fireMeasureChanged();
+				_feature->getGeometry()->push_back(p);
+				_bnewmeasure = false;
+				aa.requestRedraw();
 			}
 		}
-	}
-	else if (ea.getEventType() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON) {
-		if (_gotFirstLocation)
+		else if (ea.getButton() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON)
 		{
-			//_gotFirstLocation = false;
-			_finished = true;
-			aa.requestRedraw();
-			return true;
+			_bnewmeasure = true;
 		}
 	}
 	else if (ea.getEventType() == osgGA::GUIEventAdapter::MOVE)
 	{
-		if (_gotFirstLocation)
+		if(!_bnewmeasure)
 		{
 			osg::Vec3d p, n;
 			if (getLocationAt(view, ea.getX(), ea.getY(), p, n))
 			{
-				if (!_lastPointTemporary)
-				{
-					_feature->getGeometry()->push_back(p);
-					_lastPointTemporary = true;
-				}
-				else
-				{
-					_feature->getGeometry()->back() = p;
-				}
-				_featureNode->init();
-				//fireMeasureChanged();
+				_feature->getGeometry()->back() = p;
+				double d = (*(_feature->getGeometry()->end() - 2) - p).length();
+				if (!osg::equivalent(d, 0.0, 1.0))
+					_featureNode->init();
 				aa.requestRedraw();
 			}
 		}
@@ -116,8 +78,6 @@ bool MeasureVolumeHandler::handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIAc
 
 void MeasureVolumeHandler::clear()
 {
-	_gotFirstLocation = false;
-	_lastPointTemporary = false;
 	MeasureBaseHandler::clear();
 }
 
@@ -173,7 +133,7 @@ void gEarthPack::MeasureVolumeHandler::setDeep(double d)
 	fireMeasureChanged();
 }
 
-float gEarthPack::MeasureVolumeHandler::getDeep() const
+double gEarthPack::MeasureVolumeHandler::getDeep() const
 {
 	return _deep;
 }

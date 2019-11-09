@@ -9,7 +9,7 @@
          WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
             ShowInTaskbar="False"
             Title="距离高度量算"
-             Height="105.032" Width="183.932"
+             Height="105.032" Width="345.279"
         Closed="Window_Closed"
         Loaded="Window_Loaded">
     <Grid Margin="2">
@@ -23,10 +23,10 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="距离(米):" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding Distance}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="高度(米):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding Height}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="距离(m):" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Distance, StringFormat={}{0:F2}}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="高度(m):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Height, StringFormat={}{0:F2}}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <CheckBox IsChecked="{Binding bPath}" Content="折线模式" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <CheckBox IsChecked="{Binding bGreatCircle}" Content="航线模式" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
     </Grid>

@@ -90,3 +90,20 @@ void oepMeasureVolumeHander::bGreatCircle::set(bool b)
 		handle->setGeoInterpolation(osgEarth::GEOINTERP_RHUMB_LINE);
 	NotifyChanged("bGreatCircle");
 }
+
+double oepMeasureVolumeHander::Deep::get()
+{
+	MeasureVolumeHandler* handle = as<MeasureVolumeHandler>();
+	if (!handle)
+		return 0.0;
+	return handle->getDeep();
+}
+
+void oepMeasureVolumeHander::Deep::set(double v)
+{
+	MeasureVolumeHandler* handle = as<MeasureVolumeHandler>();
+	if (!handle || osg::equivalent(v,handle->getDeep()))
+		return;
+	handle->setDeep(v);
+	NotifyChanged("Deep");
+}

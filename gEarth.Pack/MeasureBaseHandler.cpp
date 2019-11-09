@@ -16,6 +16,7 @@ MeasureBaseHandler::MeasureBaseHandler(osgEarth::MapNode* mapNode) :
 	_intersectionMask(0xffffffff)
 {
 	_root = new osg::Group();
+	_root->setNodeMask(0x2);
 }
 
 
@@ -114,7 +115,7 @@ bool MeasureBaseHandler::getLocationAt(osgViewer::View* view, double x, double y
 	}
 
 	osgUtil::LineSegmentIntersector::Intersections intersections;
-	if (view->computeIntersections(x, y, intersections))
+	if (view->computeIntersections(x, y, intersections,_intersectionMask))
 	{
 		const osgUtil::LineSegmentIntersector::Intersection& hit = *intersections.begin();
 

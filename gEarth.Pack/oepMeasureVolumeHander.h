@@ -17,6 +17,12 @@ namespace gEarthPack
 			void set(double v);
 		}
 
+		property double Deep
+		{
+			double get();
+			void set(double v);
+		}
+
 		property bool bGreatCircle
 		{
 			bool get();

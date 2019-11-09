@@ -36,11 +36,7 @@ namespace gEarthPack
 	private:
 
 		bool _bsurface;
-		bool _lastPointTemporary;
-		bool _gotFirstLocation;
-		bool _finished;
-		bool _mouseDown;
-		float _mouseDownX, _mouseDownY;
+		bool _bnewmeasure;
 		ResultHandlers _reshandlers;
 	};
 }

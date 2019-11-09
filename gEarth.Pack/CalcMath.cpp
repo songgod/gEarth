@@ -126,7 +126,6 @@ void CalcMath::trianglation(const std::vector<osg::Vec3d>& points, std::vector<s
 	{
 		(*vertices)[i] = osg::Vec3d(points[i].x(),points[i].y(),0.0);
 	}
-	vertices->insert(vertices->end(), points.begin(), points.end());
 	polyGeom->setVertexArray(vertices);
 	polyGeom->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POLYGON, 0, points.size()));
 
@@ -296,7 +295,7 @@ double CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNo
 
 double CalcMath::calcSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
-	double minarea = calcArea(points, mapnode);
+	double minarea = calcArea(points, 0L);
 	minarea /= 100;
 	std::vector<std::vector<osg::Vec3d>> triangles;
 	trianglation(points, triangles, minarea);

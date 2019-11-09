@@ -125,7 +125,10 @@ bool MeasureDistanceHeightHandler::handle(const osgGA::GUIEventAdapter& ea, osgG
 				{
 					_feature->getGeometry()->back() = p;
 				}
-				_featureNode->init();
+				double d = (*(_feature->getGeometry()->end() - 2) - p).length();
+				if (!osg::equivalent(d, 0.0, 1.0))
+					_featureNode->init();
+				
 				fireMeasureChanged();
 				aa.requestRedraw();
 			}

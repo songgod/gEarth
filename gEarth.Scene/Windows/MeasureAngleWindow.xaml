@@ -21,7 +21,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="角度:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBlock Text="{Binding Angle}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Angle, StringFormat={}{0:F2}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <CheckBox IsChecked="{Binding bGreatCircle}" Content="航线模式" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -8,21 +8,23 @@
         WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
             ShowInTaskbar="False"
             Title="体积量算"
-             Height="68.246" Width="183.932"
+             Height="94.913" Width="297.932"
         Closed="Window_Closed"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="体积:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBlock Text="{Binding Volume}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBlock Text="体积(m³):" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Volume, StringFormat={}{0:F2}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <CheckBox IsChecked="{Binding bGreatCircle}" Content="航线模式" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
-
+        <TextBlock Text="深度(m):" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Deep}"  Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </Window>

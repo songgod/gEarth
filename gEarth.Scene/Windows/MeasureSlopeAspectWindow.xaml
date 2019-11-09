@@ -21,8 +21,8 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="坡度:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBlock Text="{Binding Slope}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Slope, StringFormat={}{0:F2}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <TextBlock Text="坡向:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBlock Text="{Binding Aspect}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Aspect, StringFormat={}{0:F2}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
     </Grid>
 </Window>

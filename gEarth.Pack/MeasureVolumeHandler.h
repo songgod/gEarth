@@ -24,7 +24,7 @@ namespace gEarthPack
 		const ResultHandlers& getResHandlers() const { return _reshandlers; }
 
 		void setDeep(double d);
-		float getDeep() const;
+		double getDeep() const;
 
 	public:
 
@@ -35,11 +35,7 @@ namespace gEarthPack
 
 	private:
 
-		bool _lastPointTemporary;
-		bool _gotFirstLocation;
-		bool _finished;
-		bool _mouseDown;
-		float _mouseDownX, _mouseDownY;
+		bool _bnewmeasure;
 		ResultHandlers _reshandlers;
 		double _deep;
 	};
