@@ -27,8 +27,6 @@ namespace gEarthPack
 	protected:
 
 		bool getLocationAt(osgViewer::View* view, double x, double y, osg::Vec3d& p, osg::Vec3d& n);
-		osg::Vec3d xyz2latlnghigh(const osg::Vec3d& xyz);
-		osg::Vec3d latlnghigh2xyz(const osg::Vec3d& llh);
 
 	protected:
 

@@ -24,6 +24,12 @@ namespace gEarthPack
 			void set(bool b);
 		}
 
+		property bool bSurface
+		{
+			bool get();
+			void set(bool b);
+		}
+
 	internal:
 		virtual void bind(osgEarth::MapNode* pMapNode) override;
 		virtual void unbind(osgEarth::MapNode* pMapNode) override;

@@ -14,7 +14,8 @@ MeasureAreaHandler::MeasureAreaHandler(osgEarth::MapNode* pMapNode):MeasureBaseH
 	_mouseDown(false),
 	_gotFirstLocation(false),
 	_lastPointTemporary(false),
-	_finished(false)
+	_finished(false),
+	_bsurface(false)
 {
 	setMapNode(pMapNode);
 }
@@ -122,18 +123,24 @@ void MeasureAreaHandler::clear()
 
 void MeasureAreaHandler::fireMeasureChanged()
 {
-	double distance = 0;
+	double area = 0;
 	if (getGeoInterpolation() == GEOINTERP_GREAT_CIRCLE)
 	{
-		distance = CalcMath::calcArea(_feature->getGeometry()->asVector(), getMapNode());
+		if (_bsurface)
+			area = CalcMath::calcSurfaceArea(_feature->getGeometry()->asVector(), getMapNode());
+		else
+			area = CalcMath::calcArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
 	else if (getGeoInterpolation() == GEOINTERP_RHUMB_LINE)
 	{
-		distance = CalcMath::calcRhumbArea(_feature->getGeometry()->asVector(), getMapNode());
+		if (_bsurface)
+			area = CalcMath::calcRhumbArea(_feature->getGeometry()->asVector(), getMapNode());
+		else
+			area = CalcMath::calcRhumbSurfaceArea(_feature->getGeometry()->asVector(), getMapNode());
 	}
 	for (ResultHandlers::const_iterator i = _reshandlers.begin(); i != _reshandlers.end(); ++i)
 	{
-		i->get()->onAreaChanged(this, distance);
+		i->get()->onAreaChanged(this, area);
 	}
 }
 
@@ -164,4 +171,12 @@ osgEarth::Features::Feature* MeasureAreaHandler::createFeature()
 	ps->fill()->color() = Color(Color::Green, 0.5);
 
 	return feature;
+}
+
+void gEarthPack::MeasureAreaHandler::setSurface(bool b)
+{
+	if (_bsurface == b)
+		return;
+	_bsurface = b;
+	fireMeasureChanged();
 }

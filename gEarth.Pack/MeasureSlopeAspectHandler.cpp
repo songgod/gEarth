@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MeasureSlopeAspectHandler.h"
+#include "CalcMath.h"
 
 using namespace gEarthPack;
 using namespace osgEarth;
@@ -45,12 +46,12 @@ bool MeasureSlopeAspectHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::
 				osg::Vec3f eye, center, up;
 				view->getCamera()->getViewMatrixAsLookAt(eye, center, up);
 
-				osg::Vec3d pxyz = latlnghigh2xyz(p);
+				osg::Vec3d pxyz = CalcMath::latlnghigh2xyz(getMapNode(), p);
 				float len = (eye - pxyz).length() / 10.f;
 
 				_feature->getGeometry()->clear();
 				osg::Vec3 secondp = pxyz+n*len;
-				secondp = xyz2latlnghigh(secondp);
+				secondp = CalcMath::xyz2latlnghigh(getMapNode(), secondp);
 				_feature->getGeometry()->push_back(p);
 				_feature->getGeometry()->push_back(secondp);
 				_featureNode->init();

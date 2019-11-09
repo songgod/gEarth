@@ -188,6 +188,9 @@
     <Compile Include="Windows\MeasureSlopeAspectWindow.xaml.cs">
       <DependentUpon>MeasureSlopeAspectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MeasureVolumeWindow.xaml.cs">
+      <DependentUpon>MeasureVolumeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RecordScreenWindow.xaml.cs">
       <DependentUpon>RecordScreenWindow.xaml</DependentUpon>
     </Compile>
@@ -273,6 +276,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MeasureSlopeAspectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MeasureVolumeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

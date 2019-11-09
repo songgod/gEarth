@@ -63,6 +63,7 @@
 #include <osg/AnimationPath>
 #include <osg/Group>
 #include <osg\ComputeBoundsVisitor>
+#include <osg/TriangleFunctor>
 
 #include <osgGA/GUIEventHandler>
 #include <osgGA/AnimationPathManipulator>
@@ -79,6 +80,8 @@
 #include <osgDB\WriteFile>
 #include <osgDB/ReaderWriter>
 #include <osgDB/Registry>
+
+#include <osgUtil/Tessellator>
 
 #include <OpenThreads\ScopedLock>
 #include <OpenThreads/Thread>

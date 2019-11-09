@@ -3,6 +3,108 @@
 
 using namespace gEarthPack;
 
+namespace
+{
+	class TriangleResult
+	{
+	public:
+
+		TriangleResult()
+		{
+			
+		}
+
+	public:
+
+		void operator() (const osg::Vec3& v1, const osg::Vec3& v2, const osg::Vec3& v3, bool)
+		{
+			std::vector<osg::Vec3d> triangle;
+			triangle.resize(3);
+			triangle[0] = v1;
+			triangle[1] = v2;
+			triangle[2] = v3;
+			_bigtriangles.push_back(triangle);
+		}
+
+	public:
+
+		void createtriangles(std::vector<std::vector<osg::Vec3d>>& triangles, double minarea)
+		{
+			std::vector<std::vector<std::vector<osg::Vec3d>>> results;
+			results.resize(_bigtriangles.size());
+			double minarea2 = minarea*minarea;
+#pragma omp parallel for
+			for (size_t i = 0; i < _bigtriangles.size(); i++)
+			{
+				DecomposeTriangleArea(_bigtriangles[i][0], _bigtriangles[i][1], _bigtriangles[i][2], results[i], minarea);
+			}
+
+			for (size_t i = 0; i < results.size(); i++)
+			{
+				triangles.insert(triangles.end(), results[i].begin(), results[i].end());
+			}
+		}
+
+	private:
+
+		double getarea2(osg::Vec3d& v1, osg::Vec3d& v2, osg::Vec3d& v3) const
+		{
+			double a = (v1 - v2).length2();
+			double b = (v1 - v3).length2();
+			double c = (v3 - v2).length2();
+			return ((c*a) - pow((c + a - b) / 2, 2)) / 4;
+		}
+
+		void DecomposeTriangleArea(osg::Vec3d& p1, osg::Vec3d& p2, osg::Vec3d& p3, std::vector<std::vector<osg::Vec3d>>& result, double minarea2)
+		{
+
+			double area2 = getarea2(p1, p2, p3);
+			if (area2 < minarea2)
+			{
+				std::vector<osg::Vec3d> triangle;
+				triangle.resize(3);
+				triangle[0] = p1;
+				triangle[1] = p2;
+				triangle[2] = p3;
+				result.push_back(triangle);
+			}
+			else
+			{
+				double d12 = (p1 - p2).length2();
+				double d13 = (p1 - p3).length2();
+				double d23 = (p3 - p2).length2();
+
+				double maxd = max(d23, max(d12, d13));
+				if (osg::equivalent(d12, maxd))
+				{
+					osg::Vec3d pc;
+					pc = (p1 + p2) / 2.0;
+					DecomposeTriangleArea(p1, pc, p3, result, minarea2);
+					DecomposeTriangleArea(pc, p2, p3, result, minarea2);
+				}
+				else if (osg::equivalent(d13, maxd))
+				{
+					osg::Vec3d pc;
+					pc = (p1 + p3) / 2.0;
+					DecomposeTriangleArea(p2, pc, p1, result, minarea2);
+					DecomposeTriangleArea(pc, p2, p3, result, minarea2);
+				}
+				else
+				{
+					osg::Vec3d pc;
+					pc = (p2 + p3) / 2.0;
+					DecomposeTriangleArea(p1, pc, p3, result, minarea2);
+					DecomposeTriangleArea(pc, p1, p2, result, minarea2);
+				}
+			}
+		}
+
+	private:
+
+		std::vector<std::vector<osg::Vec3d>> _bigtriangles;
+	};
+}
+
 CalcMath::CalcMath()
 {
 }
@@ -10,6 +112,34 @@ CalcMath::CalcMath()
 
 CalcMath::~CalcMath()
 {
+}
+
+
+void CalcMath::trianglation(const std::vector<osg::Vec3d>& points, std::vector<std::vector<osg::Vec3d>>& triangles, double minarea)
+{
+	if (minarea < 0)
+		return;
+	osg::ref_ptr<osg::Geometry> polyGeom = new osg::Geometry();
+	osg::ref_ptr<osg::Vec3Array> vertices = new osg::Vec3Array;
+	vertices->resize(points.size());
+	for (size_t i = 0; i < points.size(); i++)
+	{
+		(*vertices)[i] = osg::Vec3d(points[i].x(),points[i].y(),0.0);
+	}
+	vertices->insert(vertices->end(), points.begin(), points.end());
+	polyGeom->setVertexArray(vertices);
+	polyGeom->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::POLYGON, 0, points.size()));
+
+	osg::ref_ptr<osgUtil::Tessellator> tscx = new osgUtil::Tessellator;
+	tscx->setTessellationType(osgUtil::Tessellator::TESS_TYPE_GEOMETRY);
+	tscx->setBoundaryOnly(false);
+	tscx->setWindingType(osgUtil::Tessellator::TESS_WINDING_ODD);
+	tscx->retessellatePolygons(*polyGeom);
+
+	
+	osg::TriangleFunctor<TriangleResult> tf;
+	polyGeom->accept(tf);
+	tf.createtriangles(triangles,minarea);
 }
 
 double CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
@@ -166,15 +296,35 @@ double CalcMath::calcArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNo
 
 double CalcMath::calcSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
 {
-	return 0.0;
+	double minarea = calcArea(points, mapnode);
+	minarea /= 100;
+	std::vector<std::vector<osg::Vec3d>> triangles;
+	trianglation(points, triangles, minarea);
+
+	double surfacearea = 0.0;
+	for (size_t i = 0; i < triangles.size(); i++)
+	{
+		osg::Vec3d p0 = triangles[i][0];
+		osg::Vec3d p1 = triangles[i][1];
+		osg::Vec3d p2 = triangles[i][2];
+		mapnode->getTerrain()->getHeight(NULL, p0.x(), p0.y(), &(p0.z()),NULL);
+		mapnode->getTerrain()->getHeight(NULL, p1.x(), p1.y(), &(p1.z()), NULL);
+		mapnode->getTerrain()->getHeight(NULL, p2.x(), p2.y(), &(p2.z()), NULL);
+		p0 = latlnghigh2xyz(mapnode, p0);
+		p1 = latlnghigh2xyz(mapnode, p1);
+		p2 = latlnghigh2xyz(mapnode, p2);
+		
+		surfacearea += caltrianglearea(p0, p1, p2);
+	}
+
+	return surfacearea;
 }
 
-double CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode, unsigned int parts)
 {
 	if (!mapnode || !mapnode->isGeocentric() || points.size()<=2)
 		return 0.0;
 
-	unsigned int parts = 100;
 	double step = 1.0 / double(parts);
 
 	std::vector<osg::Vec3d> temppoints;
@@ -210,7 +360,152 @@ double CalcMath::calcRhumbArea(const std::vector<osg::Vec3d>& points, osgEarth::
 	return calcArea(temppoints, mapnode);
 }
 
-double CalcMath::calcRhumbSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode)
+double CalcMath::calcRhumbSurfaceArea(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode, unsigned int parts)
 {
-	return 0.0;
+	if (!mapnode || !mapnode->isGeocentric() || points.size() <= 2)
+		return 0.0;
+
+	double step = 1.0 / double(parts);
+
+	std::vector<osg::Vec3d> temppoints;
+	temppoints.push_back(points[0]);
+	for (size_t i = 0; i < points.size() - 1; i++)
+	{
+		osg::Vec3d p0 = points[i];
+		osg::Vec3d p1 = points[i + 1];
+		double zdelta = p1.z() - p0.z();
+
+		for (unsigned i = 1; i <= parts; ++i)
+		{
+			double t = step*double(i);
+			osg::Vec3d p;
+
+			double lat1 = osg::DegreesToRadians(p0.y()), lon1 = osg::DegreesToRadians(p0.x());
+			double lat2 = osg::DegreesToRadians(p1.y()), lon2 = osg::DegreesToRadians(p1.x());
+
+			double totalDistance = osgEarth::GeoMath::rhumbDistance(lat1, lon1, lat2, lon2);
+			double bearing = osgEarth::GeoMath::rhumbBearing(lat1, lon1, lat2, lon2);
+
+			double interpDistance = t * totalDistance;
+
+			double lat3, lon3;
+			osgEarth::GeoMath::rhumbDestination(lat1, lon1, bearing, interpDistance, lat3, lon3);
+
+			p.set(osg::RadiansToDegrees(lon3), osg::RadiansToDegrees(lat3), p0.z() + t*zdelta);
+
+			temppoints.push_back(p);
+		}
+	}
+
+	return calcRhumbSurfaceArea(temppoints, mapnode);
+}
+
+double CalcMath::calcVolume(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode, double deep)
+{
+	double minarea = calcArea(points, mapnode);
+	minarea /= 100;
+	std::vector<std::vector<osg::Vec3d>> triangles;
+	trianglation(points, triangles, minarea);
+
+	double volume = 0.0;
+	for (size_t i = 0; i < triangles.size(); i++)
+	{
+		osg::Vec3d p0 = triangles[i][0];
+		osg::Vec3d p1 = triangles[i][1];
+		osg::Vec3d p2 = triangles[i][2];
+		mapnode->getTerrain()->getHeight(NULL, p0.x(), p0.y(), &(p0.z()), NULL);
+		mapnode->getTerrain()->getHeight(NULL, p1.x(), p1.y(), &(p1.z()), NULL);
+		mapnode->getTerrain()->getHeight(NULL, p2.x(), p2.y(), &(p2.z()), NULL);
+		p0 = latlnghigh2xyz(mapnode, p0);
+		p1 = latlnghigh2xyz(mapnode, p1);
+		p2 = latlnghigh2xyz(mapnode, p2);
+
+		volume += caltrianglearea(p0, p1, p2)*deep;
+	}
+
+	return volume;
+}
+
+double CalcMath::calcRhumbVolume(const std::vector<osg::Vec3d>& points, osgEarth::MapNode* mapnode, double deep, unsigned int parts /*= 100*/)
+{
+	if (!mapnode || !mapnode->isGeocentric() || points.size() <= 2)
+		return 0.0;
+
+	double step = 1.0 / double(parts);
+
+	std::vector<osg::Vec3d> temppoints;
+	temppoints.push_back(points[0]);
+	for (size_t i = 0; i < points.size() - 1; i++)
+	{
+		osg::Vec3d p0 = points[i];
+		osg::Vec3d p1 = points[i + 1];
+		double zdelta = p1.z() - p0.z();
+
+		for (unsigned i = 1; i <= parts; ++i)
+		{
+			double t = step*double(i);
+			osg::Vec3d p;
+
+			double lat1 = osg::DegreesToRadians(p0.y()), lon1 = osg::DegreesToRadians(p0.x());
+			double lat2 = osg::DegreesToRadians(p1.y()), lon2 = osg::DegreesToRadians(p1.x());
+
+			double totalDistance = osgEarth::GeoMath::rhumbDistance(lat1, lon1, lat2, lon2);
+			double bearing = osgEarth::GeoMath::rhumbBearing(lat1, lon1, lat2, lon2);
+
+			double interpDistance = t * totalDistance;
+
+			double lat3, lon3;
+			osgEarth::GeoMath::rhumbDestination(lat1, lon1, bearing, interpDistance, lat3, lon3);
+
+			p.set(osg::RadiansToDegrees(lon3), osg::RadiansToDegrees(lat3), p0.z() + t*zdelta);
+
+			temppoints.push_back(p);
+		}
+	}
+
+	return calcVolume(temppoints, mapnode,deep);
+}
+
+osg::Vec3d CalcMath::latlnghigh2xyz(osgEarth::MapNode* mapnode, const osg::Vec3d& llh)
+{
+	osg::Vec3d res;
+	double lat = osg::DegreesToRadians(llh.y());
+	double lng = osg::DegreesToRadians(llh.x());;
+	double height = llh.z();
+	mapnode->getMap()->getProfile()->getSRS()->getEllipsoid()->convertLatLongHeightToXYZ(
+		lat, lng, height, res.x(), res.y(), res.z());
+	return res;
+}
+
+osg::Vec3d CalcMath::xyz2latlnghigh(osgEarth::MapNode* mapnode, const osg::Vec3d& xyz)
+{
+	double lat = 0.0;
+	double lng = 0.0;
+	double height = 0.0;
+	mapnode->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
+		xyz.x(), xyz.y(), xyz.z(), lat, lng, height);
+	osg::Vec3d res;
+	res.x() = osg::RadiansToDegrees(lng);
+	res.y() = osg::RadiansToDegrees(lat);
+	res.z() = height;
+	return res;
+}
+
+
+double CalcMath::caltrianglearea(const osg::Vec3d& a, const osg::Vec3d& b, const osg::Vec3d& c)
+{
+	double area = 0;
+
+	double side[3];
+
+	side[0] = sqrt(pow(a.x() - b.x(), 2) + pow(a.y() - b.y(), 2) + pow(a.z() - b.z(), 2));
+	side[1] = sqrt(pow(a.x() - c.x(), 2) + pow(a.y() - c.y(), 2) + pow(a.z() - c.z(), 2));
+	side[2] = sqrt(pow(c.x() - b.x(), 2) + pow(c.y() - b.y(), 2) + pow(c.z() - b.z(), 2));
+
+	if (side[0] + side[1] <= side[2] || side[0] + side[2] <= side[1] || side[1] + side[2] <= side[0]) return area;
+
+	double p = (side[0] + side[1] + side[2]) / 2;
+	area = sqrt(p*(p - side[0])*(p - side[1])*(p - side[2]));
+
+	return area;
 }

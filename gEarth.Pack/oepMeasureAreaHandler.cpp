@@ -92,3 +92,20 @@ void oepMeasureAreaHandler::bGreatCircle::set(bool b)
 		handle->setGeoInterpolation(osgEarth::GEOINTERP_RHUMB_LINE);
 	NotifyChanged("bGreatCircle");
 }
+
+bool gEarthPack::oepMeasureAreaHandler::bSurface::get()
+{
+	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
+	if (!handle)
+		return false;
+	return handle->getSurface();
+}
+
+void gEarthPack::oepMeasureAreaHandler::bSurface::set(bool b)
+{
+	MeasureAreaHandler* handle = as<MeasureAreaHandler>();
+	if (!handle || handle->getSurface()==b)
+		return;
+	handle->setSurface(b);
+	NotifyChanged("bSurface");
+}

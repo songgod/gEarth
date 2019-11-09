@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MeasureBaseHandler.h"
 #include <assert.h>
+#include "CalcMath.h"
 
 using namespace gEarthPack;
 using namespace osgEarth;
@@ -119,35 +120,10 @@ bool MeasureBaseHandler::getLocationAt(osgViewer::View* view, double x, double y
 
 		osg::Vec3d point = hit.getWorldIntersectPoint();
 
-		p = xyz2latlnghigh(point);
+		p = CalcMath::xyz2latlnghigh(getMapNode(),point);
 		n = hit.getWorldIntersectNormal();
 		return true;
 	}
 
 	return false;
-}
-
-osg::Vec3d MeasureBaseHandler::xyz2latlnghigh(const osg::Vec3d& xyz)
-{
-	double lat = 0.0;
-	double lng = 0.0;
-	double height = 0.0;
-	getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertXYZToLatLongHeight(
-		xyz.x(), xyz.y(), xyz.z(), lat, lng, height);
-	osg::Vec3d res;
-	res.x() = osg::RadiansToDegrees(lng);
-	res.y() = osg::RadiansToDegrees(lat);
-	res.z() = height;
-	return res;
-}
-
-osg::Vec3d MeasureBaseHandler::latlnghigh2xyz(const osg::Vec3d& llh)
-{
-	osg::Vec3d res;
-	double lat = osg::DegreesToRadians(llh.y());
-	double lng = osg::DegreesToRadians(llh.x());;
-	double height = llh.z();
-	getMapNode()->getMap()->getProfile()->getSRS()->getEllipsoid()->convertLatLongHeightToXYZ(
-		lat, lng, height, res.x(), res.y(), res.z());
-	return res;
 }

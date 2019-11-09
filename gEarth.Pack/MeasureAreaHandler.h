@@ -23,6 +23,9 @@ namespace gEarthPack
 		ResultHandlers& getResHandlers() { return _reshandlers; }
 		const ResultHandlers& getResHandlers() const { return _reshandlers; }
 
+		void setSurface(bool b);
+		bool getSurface() const { return _bsurface; }
+
 	public:
 
 		virtual bool handle(const osgGA::GUIEventAdapter &ea, osgGA::GUIActionAdapter &aa);
@@ -32,6 +35,7 @@ namespace gEarthPack
 
 	private:
 
+		bool _bsurface;
 		bool _lastPointTemporary;
 		bool _gotFirstLocation;
 		bool _finished;

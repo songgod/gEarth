@@ -7,6 +7,30 @@ namespace gEarthPack
 	{
 	public:
 		oepMeasureVolumeHander();
+
+	public:
+
+		property double Volume
+		{
+			double get();
+		internal:
+			void set(double v);
+		}
+
+		property bool bGreatCircle
+		{
+			bool get();
+			void set(bool b);
+		}
+
+	internal:
+		virtual void bind(osgEarth::MapNode* pMapNode) override;
+		virtual void unbind(osgEarth::MapNode* pMapNode) override;
+
+	private:
+
+		double _volume;
+		unsigned int _nodemask;
 	};
 
 }
