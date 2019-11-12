@@ -25,6 +25,7 @@ namespace gEarth.Scene.Windows
         public AnalysisVisibilityAreaWindow()
         {
             InitializeComponent();
+            Single = this;
         }
 
         public static AnalysisVisibilityAreaWindow Single { get; private set; }

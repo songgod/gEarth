@@ -3,6 +3,7 @@
 #include "oepSimpleSkyExtension.h"
 #include "oepViewpointsExtension.h"
 #include "oepAnimationPathExtension.h"
+#include "oepContourMapExtension.h"
 
 using namespace gEarthPack;
 
@@ -33,6 +34,22 @@ namespace gEarthPack
 			osgEarth::Extension* extension = (osgEarth::Extension*)(param.ToPointer());
 			if (!extension) throw gcnew Exception("Invalid simple sky extension");
 			return gcnew oepSimpleSkyExtension(extension);
+		}
+	};
+
+	private ref class oepContourMapCreator : IoepExtensionCreator
+	{
+	public:
+		virtual String^ supportType()
+		{
+			return "contour_map";
+		}
+
+		virtual oepExtension ^ createExtenson(IntPtr param)
+		{
+			osgEarth::Extension* extension = (osgEarth::Extension*)(param.ToPointer());
+			if (!extension) throw gcnew Exception("Invalid contour map extension");
+			return gcnew oepContourMapExtension(extension);
 		}
 	};
 
@@ -74,6 +91,7 @@ static oepExtensionFactory::oepExtensionFactory()
 {
 	_creatorcache = gcnew Dictionary<String^, IoepExtensionCreator^>();
 	registerCreator(gcnew oepSimpleSkyCreator());
+	registerCreator(gcnew oepContourMapCreator());
 	registerCreator(gcnew oepViewpointsExtensionCreator());
 	registerCreator(gcnew oepAnimationPathExtensionCreator());
 }

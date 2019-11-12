@@ -167,6 +167,7 @@
     <ClInclude Include="MeasureVisibilityAreaHandler.h" />
     <ClInclude Include="MeasureVisibilityLineHandler.h" />
     <ClInclude Include="MeasureVolumeHandler.h" />
+    <ClInclude Include="oepContourMapExtension.h" />
     <ClInclude Include="oepHandle.h" />
     <ClInclude Include="oepHandleMapManager.h" />
     <ClInclude Include="MeasureAreaHandler.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="MeasureVisibilityAreaHandler.cpp" />
     <ClCompile Include="MeasureVisibilityLineHandler.cpp" />
     <ClCompile Include="MeasureVolumeHandler.cpp" />
+    <ClCompile Include="oepContourMapExtension.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
     <ClCompile Include="MeasureAreaHandler.cpp" />

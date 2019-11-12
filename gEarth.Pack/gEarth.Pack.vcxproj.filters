@@ -273,6 +273,9 @@
     <ClInclude Include="oepMeasureVisibilityAreaHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepContourMapExtension.h">
+      <Filter>Extensions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -505,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="oepMeasureVisibilityAreaHandler.cpp">
       <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepContourMapExtension.cpp">
+      <Filter>Extensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

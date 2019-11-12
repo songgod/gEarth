@@ -31,6 +31,7 @@
         <cmd:SetGammaColorFilterCommand/>
         <cmd:SetHSLColorFilterCommand/>
         <cmd:SetRGBColorFilterCommand/>
+        <cmd:SetContourMapOptionsCommand/>
         <cmd:SetSimpleSkyOptionsCommand/>
         <cmd:SetSimpleOceanOptionsCommand/>
         <cmd:AddViewpointCommand/>
@@ -91,7 +92,7 @@
                     <Fluent:Button Header="亮度对比度" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderbrightness.png" Command="{x:Static cmd:CommandLib.SetBrightnessColorFilterCommand}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="着色">
-                    <Fluent:Button Header="高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/shaderdem.png"/>
+                    <Fluent:Button Header="高程" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/contour.png" Command="{x:Static cmd:CommandLib.SetContourMapOptionsCommand}"/>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="环境">
                     <Fluent:Button Header="大气" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/air.png" Command="{x:Static cmd:CommandLib.SetSimpleSkyOptionsCommand}"/>

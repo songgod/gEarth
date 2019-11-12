@@ -40,6 +40,7 @@
 #include <osgEarthUtil/TerrainProfile>
 #include <osgEarthUtil/LinearLineOfSight>
 #include <osgEarthUtil/RadialLineOfSight>
+#include <osgEarthUtil/ContourMap>
 
 #include <osgEarthDrivers/sky_simple/SimpleSkyOptions>
 #include <osgEarthDrivers/viewpoints/ViewpointsOptions>

@@ -69,6 +69,7 @@ namespace gEarth.Scene.Windows
         public AnalysisProfileWindow()
         {
             InitializeComponent();
+            Single = this;
         }
 
         public static AnalysisProfileWindow Single { get; private set; }

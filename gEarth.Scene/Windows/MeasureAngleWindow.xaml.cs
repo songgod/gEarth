@@ -25,6 +25,7 @@ namespace gEarth.Scene.Windows
         public MeasureAngleWindow()
         {
             InitializeComponent();
+            Single = this;
         }
 
         public static MeasureAngleWindow Single { get; private set; }

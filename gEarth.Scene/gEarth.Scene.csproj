@@ -126,6 +126,7 @@
     <Compile Include="Commands\SetBrightnessColorFilterCommand.cs" />
     <Compile Include="Commands\SetChromaKeyColorFilterCommand.cs" />
     <Compile Include="Commands\SetCMYKColorFilterCommand.cs" />
+    <Compile Include="Commands\SetContourMapOptionsCommand.cs" />
     <Compile Include="Commands\SetGammaColorFilterCommand.cs" />
     <Compile Include="Commands\SetHSLColorFilterCommand.cs" />
     <Compile Include="Commands\SetRGBColorFilterCommand.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Windows\CMYKColorFilterOptionsWindow.xaml.cs">
       <DependentUpon>CMYKColorFilterOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ContourMapOptionsWindow.xaml.cs">
+      <DependentUpon>ContourMapOptionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EditAnimationPathWindow.xaml.cs">
       <DependentUpon>EditAnimationPathWindow.xaml</DependentUpon>
@@ -251,6 +255,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ContourMapOptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\EditAnimationPathWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -330,6 +338,9 @@
   <ItemGroup>
     <Resource Include="Images\animationpaths.png" />
     <Resource Include="Images\viewpoints.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\contour.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

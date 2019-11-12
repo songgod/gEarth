@@ -25,6 +25,7 @@ namespace gEarth.Scene.Windows
         public MeasureSlopeAspectWindow()
         {
             InitializeComponent();
+            Single = this;
         }
 
         public static MeasureSlopeAspectWindow Single { get; private set; }

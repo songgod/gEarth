@@ -26,6 +26,7 @@ namespace gEarth.Scene.Commands
             SetHSLColorFilterCommand = CreateCommand("SetHSLColorFilterCommand");
             SetRGBColorFilterCommand = CreateCommand("SetRGBColorFilterCommand");
             SetSimpleSkyOptionsCommand = CreateCommand("SetSimpleSkyOptionsCommand");
+            SetContourMapOptionsCommand = CreateCommand("SetContourMapOptionsCommand");
             SetSimpleOceanOptionsCommand = CreateCommand("SetSimpleOceanOptionsCommand");
             AddViewpointCommand = CreateCommand("AddViewpointCommand");
             RecordScreenCommand = CreateCommand("RecordScreenCommand");
@@ -59,6 +60,7 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand SetHSLColorFilterCommand { get; set; }
         public static RoutedUICommand SetRGBColorFilterCommand { get; set; }
         public static RoutedUICommand SetSimpleSkyOptionsCommand { get; set; }
+        public static RoutedUICommand SetContourMapOptionsCommand { get; set; }
         public static RoutedUICommand SetSimpleOceanOptionsCommand { get; set; }
         public static RoutedUICommand AddViewpointCommand { get; set; }
         public static RoutedUICommand RecordPathCommand { get; set; }

@@ -98,6 +98,13 @@
                         <TextBlock Text="{Binding Path=Name}"/>
                     </StackPanel>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepContourMapExtension}">
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <Image Source="/gEarth.Scene;component/Images/contour.png"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </StackPanel>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepViewpoint}">
                     <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
                         <StackPanel Orientation="Horizontal" Margin="2">
