@@ -11,7 +11,7 @@ namespace gEarthPack
 	public:
 		oepRefObject()
 		{
-			_handle = new RefHandle();
+			_handle = new oepRefHandle<T>();
 		}
 
 		~oepRefObject()
@@ -44,10 +44,20 @@ namespace gEarthPack
 			return NULL;
 		}
 
+		void setRef(T* v)
+		{
+			if (_handle)
+				_handle->setValue(v);
+		}
+
+		void clear()
+		{
+			setRef(NULL);
+		}
+
 	protected:
 
-		typedef oepHandle<T> RefHandle;
-		RefHandle* _handle;
+		oepRefHandle<T>* _handle;
 	};
 }
 

@@ -7,9 +7,5 @@ namespace gEarthPack
 	{
 	public:
 		oepTileSourceOptions();
-
-	internal:
-
-		osgEarth::TileSourceOptions* asoeTileSourceOptions();
 	};
 }

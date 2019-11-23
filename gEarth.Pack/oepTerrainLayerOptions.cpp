@@ -17,6 +17,6 @@ void oepTerrainLayerOptions::driver::set(oepTileSourceOptions^ v)
 	osgEarth::TerrainLayerOptions* to = as<osgEarth::TerrainLayerOptions>();
 	if (to != NULL)
 	{
-		to->driver() = *(_driver->asoeTileSourceOptions());
+		to->driver() = *(_driver->as<osgEarth::TileSourceOptions>());
 	}
 }

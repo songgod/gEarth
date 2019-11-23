@@ -8,23 +8,32 @@ namespace gEarthPack
 		public oepObject
 	{
 	public:
-		oepValObject():_handle(NULL)
+		oepValObject() : _ownhandle(true), _handle(NULL)
 		{
 
 		}
+
 		!oepValObject()
 		{
-			if(_handle)
+			if (_handle && _ownhandle)
 				delete _handle;
 		}
-		~oepValObject()
+
+		virtual ~oepValObject()
 		{
 			this->!oepValObject();
 		}
 
+	public:
+
+		property bool Valid
+		{
+			bool get() { return _handle != NULL; }
+		}
+
 	internal:
 
-		T* val() { return _handle; }
+		T* val() { return (T*)_handle; }
 
 		template<class T1>
 		T1* as()
@@ -34,9 +43,48 @@ namespace gEarthPack
 			return NULL;
 		}
 
+	internal:
+
+		void setVal(const T& v)
+		{
+			if (_handle)
+				(*_handle) = v;
+		}
+
+		void setVal(T* handle)
+		{
+			if (handle == _handle && _ownhandle)
+				return;
+			if (_handle != NULL && handle != _handle && _ownhandle)
+			{
+				delete _handle;
+				_handle = NULL;
+			}
+			_handle = handle;
+			_ownhandle = true;
+		}
+
+		void setRefVal(T* handle)
+		{
+			if (handle == _handle && !_ownhandle)
+				return;
+			if (_handle != NULL && handle != _handle && _ownhandle)
+			{
+				delete _handle;
+				_handle = NULL;
+			}
+			_handle = handle;
+			_ownhandle = false;
+		}
+
+		void clear()
+		{
+			setVal(NULL);
+		}
+
 	protected:
 
 		T* _handle;
+		bool _ownhandle;
 	};
-
 }

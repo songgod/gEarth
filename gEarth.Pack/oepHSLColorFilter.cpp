@@ -5,7 +5,7 @@ using namespace gEarthPack;
 
 oepHSLColorFilter::oepHSLColorFilter()
 {
-	_handle->setValue(new osgEarth::Util::HSLColorFilter());
+	setRef(new osgEarth::Util::HSLColorFilter());
 }
 
 void oepHSLColorFilter::Reset()

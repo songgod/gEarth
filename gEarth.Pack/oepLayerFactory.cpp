@@ -4,6 +4,8 @@
 #include "oepElevationLayer.h"
 #include "oepUnknownLayer.h"
 #include "oepSimpleOceanLayer.h"
+#include "oepFeatureModelLayer.h"
+#include "oepModelLayer.h"
 
 using namespace gEarthPack;
 
@@ -52,6 +54,42 @@ namespace gEarthPack
 		}
 	};
 
+	private ref class oepFeatureModelLayerCreator : IoepLayerCreator
+	{
+
+	public:
+		virtual String^ supportType()
+		{
+			return "feature_model";
+		}
+
+
+		virtual oepLayer^ createLayer(IntPtr param)
+		{
+			osgEarth::Features::FeatureModelLayer* pLayer = (osgEarth::Features::FeatureModelLayer*)param.ToPointer();
+			return gcnew oepFeatureModelLayer(pLayer);
+		}
+
+	};
+
+	private ref class oepModelLayerCreator : IoepLayerCreator
+	{
+
+	public:
+		virtual String^ supportType()
+		{
+			return "model";
+		}
+
+
+		virtual oepLayer^ createLayer(IntPtr param)
+		{
+			osgEarth::ModelLayer* pLayer = (osgEarth::ModelLayer*)param.ToPointer();
+			return gcnew oepModelLayer(pLayer);
+		}
+
+	};
+
 	private ref class oepUnkownLayerCreator : IoepLayerCreator
 	{
 	public:
@@ -74,7 +112,9 @@ static oepLayerFactory::oepLayerFactory()
 	registerCreator(gcnew oepImageLayerCreator());
 	registerCreator(gcnew oepElevationLayerCreator());
 	registerCreator(gcnew oepSimpleOceanLayerCreator());
+	registerCreator(gcnew oepFeatureModelLayerCreator());
 	registerCreator(gcnew oepUnkownLayerCreator());
+	registerCreator(gcnew oepModelLayerCreator());
 }
 
 void oepLayerFactory::registerCreator(IoepLayerCreator^ creator)

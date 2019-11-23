@@ -4,9 +4,15 @@
 using namespace msclr::interop;
 using namespace gEarthPack;
 
-oepViewpoint::oepViewpoint() : _ownhandle(true)
+oepViewpoint::oepViewpoint()
 {
-	_handle = new osgEarth::Viewpoint();
+	setVal(new osgEarth::Viewpoint());
+}
+
+oepViewpoint::oepViewpoint(osgEarth::Viewpoint& vp)
+{
+	setVal(new osgEarth::Viewpoint());
+	setVal(vp);
 }
 
 String^ oepViewpoint::Name::get()
@@ -29,29 +35,4 @@ bool oepViewpoint::IsValid::get()
 	if (!_handle)
 		return false;
 	return _handle->isValid();
-}
-
-oepViewpoint::oepViewpoint(const osgEarth::Viewpoint& vp): _ownhandle(true)
-{
-	_handle = new osgEarth::Viewpoint();
-	(*_handle) = vp;
-}
-
-void oepViewpoint::setHandle(osgEarth::Viewpoint* handle)
-{
-	if (_handle != NULL && _ownhandle)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-	_handle = handle;
-	_ownhandle = false;
-}
-
-void oepViewpoint::resetHandle()
-{
-	if (_ownhandle)
-		return;
-	_handle = new osgEarth::Viewpoint();
-	_ownhandle = true;
 }

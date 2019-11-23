@@ -10,12 +10,12 @@ oepSimpleSkyExtension::oepSimpleSkyExtension():_bNotifyVisible(true)
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid simple sky extension");
-	_handle->setValue(extension);
+	setRef(extension);
 }
 
 oepSimpleSkyExtension::oepSimpleSkyExtension(osgEarth::Extension* ext) :_bNotifyVisible(true)
 {
-	_handle->setValue(ext);
+	setRef(ext);
 }
 
 osgEarth::Util::SkyNode* oepSimpleSkyExtension::getoeSkyNode()

@@ -19,40 +19,7 @@ using System.Collections.ObjectModel;
 
 namespace gEarth.Scene.Windows
 {
-    internal class ColorMapMinMaxValue : DependencyObject
-    {
-        public static float GetMinV(DependencyObject obj)
-        {
-            return (float)obj.GetValue(MinVProperty);
-        }
-
-        public static void SetMinV(DependencyObject obj, float value)
-        {
-            obj.SetValue(MinVProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for MinV.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MinVProperty =
-            DependencyProperty.RegisterAttached("MinV", typeof(float), typeof(ColorMapMinMaxValue), new PropertyMetadata(0.0f));
-
-
-
-        public static float GetMaxV(DependencyObject obj)
-        {
-            return (float)obj.GetValue(MaxVProperty);
-        }
-
-        public static void SetMaxV(DependencyObject obj, float value)
-        {
-            obj.SetValue(MaxVProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for MaxV.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MaxVProperty =
-            DependencyProperty.RegisterAttached("MaxV", typeof(float), typeof(ColorMapMinMaxValue), new PropertyMetadata(0.0f));
-
-
-    }
+    
     internal class ColorMapConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -68,8 +35,6 @@ namespace gEarth.Scene.Windows
             LinearGradientBrush brush = new LinearGradientBrush();
             brush.StartPoint = new Point(0, 0);
             brush.EndPoint = new Point(1, 0);
-            brush.SetValue(ColorMapMinMaxValue.MinVProperty, minv);
-            brush.SetValue(ColorMapMinMaxValue.MaxVProperty, maxv);
 
             foreach (var c in cm)
             {

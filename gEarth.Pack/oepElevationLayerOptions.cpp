@@ -5,5 +5,5 @@ using namespace gEarthPack;
 
 oepElevationLayerOptions::oepElevationLayerOptions()
 {
-	_handle = new osgEarth::ElevationLayerOptions();
+	setVal(new osgEarth::ElevationLayerOptions());
 }

@@ -9,7 +9,7 @@ using namespace gEarthPack;
 
 oepMap::oepMap()
 {
-	_handle->setValue(new osgEarth::MapNode(new osgEarth::Map()));
+	setRef(new osgEarth::MapNode(new osgEarth::Map()));
 	_layers = gcnew oepLayers();
 	_layers->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepMap::OnLayersCollectionChanged);
 	_extensions = gcnew oepExtensions();
@@ -30,7 +30,7 @@ bool oepMap::load(String^ url)
 		return false;
 
 	delete _handle;
-	_handle->setValue(mapnode);
+	setRef(mapnode);
 
 	Url = url;
 	InitLayers();

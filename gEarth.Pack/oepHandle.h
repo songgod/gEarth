@@ -3,14 +3,14 @@
 namespace gEarthPack
 {
 	template<class T>
-	class oepHandle
+	class oepRefHandle
 	{
 	public:
-		oepHandle()
+		oepRefHandle()
 		{
 			
 		}
-		oepHandle(T* t)
+		oepRefHandle(T* t)
 		{
 			_handle = t;
 		}

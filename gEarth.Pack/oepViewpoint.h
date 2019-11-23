@@ -25,13 +25,8 @@ namespace gEarthPack
 		}
 
 	internal:
-		oepViewpoint(const osgEarth::Viewpoint& vp);
-		void setHandle(osgEarth::Viewpoint* handle);
-		void resetHandle();
 
-	private:
-
-		bool _ownhandle;
+		oepViewpoint(osgEarth::Viewpoint& vp);
 	};
 
 	public ref class oepViewPoints : public ObservableCollection<oepViewpoint^>

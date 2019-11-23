@@ -5,5 +5,5 @@ using namespace gEarthPack;
 
 oepImageLayerOptions::oepImageLayerOptions()
 {
-	_handle = new osgEarth::ImageLayerOptions();
+	setVal(new osgEarth::ImageLayerOptions());
 }

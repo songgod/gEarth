@@ -9,7 +9,7 @@ oepUnknownLayer::oepUnknownLayer()
 
 oepUnknownLayer::oepUnknownLayer(osgEarth::Layer* layer)
 {
-	_handle->setValue(layer);
+	setRef(layer);
 }
 
 bool oepUnknownLayer::Visible::get()

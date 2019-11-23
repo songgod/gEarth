@@ -6,7 +6,7 @@ using namespace gEarthPack;
 
 oepBingSourceOptions::oepBingSourceOptions()
 {
-	_handle = new osgEarth::Drivers::BingOptions();
+	setVal(new osgEarth::Drivers::BingOptions());
 }
 
 String^ oepBingSourceOptions::apikey::get()

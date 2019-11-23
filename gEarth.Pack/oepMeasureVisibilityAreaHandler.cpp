@@ -13,7 +13,7 @@ oepMeasureVisibilityAreaHandler::oepMeasureVisibilityAreaHandler()
 void oepMeasureVisibilityAreaHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureVisibilityAreaHandler* mth = new MeasureVisibilityAreaHandler(pMapNode);
-	_handle->setValue(mth);
+	setRef(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

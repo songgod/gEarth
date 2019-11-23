@@ -5,7 +5,7 @@ using namespace gEarthPack;
 
 oepCMYKColorFilter::oepCMYKColorFilter()
 {
-	_handle->setValue(new osgEarth::Util::CMYKColorFilter());
+	setRef(new osgEarth::Util::CMYKColorFilter());
 }
 
 void oepCMYKColorFilter::Reset()

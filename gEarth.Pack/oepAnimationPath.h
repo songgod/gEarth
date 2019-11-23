@@ -29,15 +29,11 @@ namespace gEarthPack
 
 	internal:
 
-		oepControlPoint(const osg::AnimationPath::ControlPoint& cp);
-		void setHandle(osg::AnimationPath::ControlPoint* cp);
-		void resetHandle();
-		osg::AnimationPath::ControlPoint* asosgControlPoint();
+		oepControlPoint(osg::AnimationPath::ControlPoint& cp);
 
 	private:
 
 		double _time;
-		bool _ownhandle;
 	};
 
 	public ref class oepControlPoints : public ObservableCollection<oepControlPoint^>

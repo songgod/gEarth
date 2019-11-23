@@ -25,6 +25,7 @@
 #include <osgEarth/Layer>
 #include <osgEarth/VisibleLayer>
 #include <osgEarth/TileSource>
+#include <osgEarth/ModelLayer>
 
 #include <osgEarthUtil/BrightnessContrastColorFilter>
 #include <osgEarthUtil/ChromaKeyColorFilter>
@@ -47,6 +48,7 @@
 #include <osgEarthDrivers/arcgis/ArcGISOptions>
 #include <osgEarthDrivers/bing/BingOptions>
 #include <osgEarthDrivers/gdal/GDALOptions>
+#include <osgEarthDrivers/feature_elevation/FeatureElevationOptions>
 
 #include <osgEarthAnnotation/FeatureNode>
 
@@ -54,6 +56,8 @@
 #include <osgEarthSymbology/Geometry>
 
 #include <osgEarthFeatures/GeometryUtils>
+#include <osgEarthFeatures/FeatureModelLayer>
+#include <osgEarthFeatures/FeatureModelSource>
 
 //osg
 #include <osg/ref_ptr>
@@ -87,4 +91,3 @@
 #include <OpenThreads\ScopedLock>
 #include <OpenThreads/Thread>
 #include <OpenThreads/Block>
-

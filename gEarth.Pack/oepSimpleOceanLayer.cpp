@@ -6,14 +6,14 @@ using namespace gEarthPack;
 oepSimpleOceanLayer::oepSimpleOceanLayer(oepSimpleOceanLayerOptions^ options)
 {
 	if (options != nullptr && options->as<osgEarth::Util::SimpleOceanLayerOptions>() != NULL)
-		_handle->setValue(new osgEarth::Util::SimpleOceanLayer(*(options->as<osgEarth::Util::SimpleOceanLayerOptions>())));
+		setRef(new osgEarth::Util::SimpleOceanLayer(*(options->as<osgEarth::Util::SimpleOceanLayerOptions>())));
 	else
-		_handle->setValue(new osgEarth::Util::SimpleOceanLayer());
+		setRef(new osgEarth::Util::SimpleOceanLayer());
 }
 
 oepSimpleOceanLayer::oepSimpleOceanLayer(osgEarth::Util::SimpleOceanLayer* layer)
 {
-	_handle->setValue(layer);
+	setRef(layer);
 }
 
 float oepSimpleOceanLayer::MaxAltitude::get()

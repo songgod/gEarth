@@ -5,7 +5,7 @@ using namespace msclr::interop;
 using namespace gEarthPack;
 oepSimpleOceanLayerOptions::oepSimpleOceanLayerOptions()
 {
-	_handle = new osgEarth::Util::SimpleOceanLayerOptions();
+	setVal(new osgEarth::Util::SimpleOceanLayerOptions());
 }
 
 oepVec4f oepSimpleOceanLayerOptions::Color::get()

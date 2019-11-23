@@ -6,7 +6,7 @@ using namespace gEarthPack;
 
 oepArcGISSourceOptions::oepArcGISSourceOptions()
 {
-	_handle = new osgEarth::Drivers::ArcGISOptions();
+	setVal(new osgEarth::Drivers::ArcGISOptions());
 	url = "http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/";
 }
 

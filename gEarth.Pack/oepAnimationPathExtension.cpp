@@ -11,7 +11,7 @@ oepAnimationPathExtension::oepAnimationPathExtension()
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid viewpoints extension");
-	_handle->setValue(extension);
+	setRef(extension);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
 	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);
@@ -105,7 +105,7 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 
 oepAnimationPathExtension::oepAnimationPathExtension(osgEarth::Extension* ext)
 {
-	_handle->setValue(ext);
+	setRef(ext);
 	_animationpaths = gcnew oepAnimationPaths();
 	init();
 	_animationpaths->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPathExtension::OnAnimationPathCollectionChanged);

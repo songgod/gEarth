@@ -11,12 +11,12 @@ oepContourMapExtension::oepContourMapExtension(): _bVisible(true)
 	conf.key() = "contour_map";
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid contour map extension");
-	_handle->setValue(extension);
+	setRef(extension);
 }
 
 oepContourMapExtension::oepContourMapExtension(osgEarth::Extension* ext)
 {
-	_handle->setValue(ext);
+	setRef(ext);
 }
 
 osgEarth::Util::ContourMap* gEarthPack::oepContourMapExtension::getoeContourMap()

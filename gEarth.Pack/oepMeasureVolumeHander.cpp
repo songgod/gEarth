@@ -32,7 +32,7 @@ void oepMeasureVolumeHander::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureVolumeHandler* mth = new MeasureVolumeHandler(pMapNode);
 	mth->getResHandlers().push_back(new MeasureVolumeCallback());
-	_handle->setValue(mth);
+	setRef(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

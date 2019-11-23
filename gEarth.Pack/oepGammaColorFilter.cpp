@@ -5,7 +5,7 @@ using namespace gEarthPack;
 
 oepGammaColorFilter::oepGammaColorFilter()
 {
-	_handle->setValue(new osgEarth::Util::GammaColorFilter());
+	setRef(new osgEarth::Util::GammaColorFilter());
 }
 
 void oepGammaColorFilter::Reset()

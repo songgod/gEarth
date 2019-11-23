@@ -9,7 +9,7 @@ using namespace msclr::interop;
 
 oepAnimationPath::oepAnimationPath()
 {
-	_handle->setValue(new osgEarth::AnimationPath::AnimationPathInfo());
+	setRef(new osgEarth::AnimationPath::AnimationPathInfo());
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
@@ -52,7 +52,7 @@ bool oepAnimationPath::Save()
 
 oepAnimationPath::oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info)
 {
-	_handle->setValue(info);
+	setRef(info);
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
@@ -69,7 +69,7 @@ void oepAnimationPath::init()
 	for (iter; iter != tcpm.end(); iter++)
 	{
 		oepControlPoint^ cp = gcnew oepControlPoint();
-		cp->setHandle(&(iter->second));
+		cp->setRefVal(&(iter->second));
 		cp->Time = iter->first;
 		_controlpoints->Add(cp);
 	}
@@ -91,12 +91,12 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepControlPoint^ oepcp = dynamic_cast<oepControlPoint^>(e->NewItems[i]);
-				if (oepcp != nullptr && oepcp->asosgControlPoint() != NULL)
+				if (oepcp != nullptr && oepcp->as<osg::AnimationPath::ControlPoint>() != NULL)
 				{
-					osg::AnimationPath::ControlPoint vp = *(oepcp->asosgControlPoint());
+					osg::AnimationPath::ControlPoint vp = *(oepcp->as<osg::AnimationPath::ControlPoint>());
 					double time = oepcp->Time;
 					tcpm[time] = vp;
-					oepcp->setHandle(&(tcpm[time]));
+					oepcp->setRefVal(&(tcpm[time]));
 				}
 			}
 		}
@@ -112,7 +112,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 				if (oepcp != nullptr)
 				{
 					tcpm.erase(oepcp->Time);
-					oepcp->resetHandle();
+					oepcp->clear();
 				}
 			}
 		}
@@ -123,8 +123,8 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex < tcpm.size())
 		{
 			oepControlPoint^ oepcp = dynamic_cast<oepControlPoint^>(e->NewItems[0]);
-			tcpm[oepcp->Time] = *(oepcp->asosgControlPoint());
-			oepcp->setHandle(&(tcpm[oepcp->Time]));
+			tcpm[oepcp->Time] = *(oepcp->val());
+			oepcp->setRefVal(&(tcpm[oepcp->Time]));
 		}
 		break;
 	}
@@ -184,33 +184,15 @@ oepControlPoints^ oepAnimationPath::ControlPoints::get()
 	return _controlpoints;
 }
 
-oepControlPoint::oepControlPoint() : _ownhandle(true),_time(0.0)
+oepControlPoint::oepControlPoint() : _time(0.0)
 {
-	_handle = new osg::AnimationPath::ControlPoint();
+	setVal(new osg::AnimationPath::ControlPoint());
 }
 
-void oepControlPoint::setHandle(osg::AnimationPath::ControlPoint* cp)
+oepControlPoint::oepControlPoint(osg::AnimationPath::ControlPoint& cp)
 {
-	if (_handle != NULL && _ownhandle)
-	{
-		delete _handle;
-		_handle = NULL;
-	}
-	_handle = cp;
-	_ownhandle = false;
-}
-
-void oepControlPoint::resetHandle()
-{
-	if (_ownhandle)
-		return;
-	_handle = new osg::AnimationPath::ControlPoint();
-	_ownhandle = true;
-}
-
-osg::AnimationPath::ControlPoint* oepControlPoint::asosgControlPoint()
-{
-	return _handle;
+	setVal(new osg::AnimationPath::ControlPoint());
+	setVal(cp);
 }
 
 oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double time)
@@ -222,12 +204,6 @@ oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double tim
 	oepControlPoint^ oepcp = gcnew oepControlPoint(cp);
 	oepcp->Time = time;
 	return oepcp;
-}
-
-oepControlPoint::oepControlPoint(const osg::AnimationPath::ControlPoint& cp) : _ownhandle(true)
-{
-	_handle = new osg::AnimationPath::ControlPoint();
-	(*_handle) = cp;
 }
 
 double oepControlPoint::Time::get()

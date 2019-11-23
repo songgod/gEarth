@@ -5,7 +5,7 @@ using namespace gEarthPack;
 
 oepRGBColorFilter::oepRGBColorFilter()
 {
-	_handle->setValue(new osgEarth::Util::RGBColorFilter());
+	setRef(new osgEarth::Util::RGBColorFilter());
 }
 
 void oepRGBColorFilter::Reset()

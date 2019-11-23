@@ -276,6 +276,33 @@
     <ClInclude Include="oepContourMapExtension.h">
       <Filter>Extensions</Filter>
     </ClInclude>
+    <ClInclude Include="oepModelLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureModelLayer.h">
+      <Filter>Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureModelLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepModelLayerOptions.h">
+      <Filter>LayerOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepModelSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepProfileOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepBounds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepGeoCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -511,6 +538,33 @@
     </ClCompile>
     <ClCompile Include="oepContourMapExtension.cpp">
       <Filter>Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepModelLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureModelLayer.cpp">
+      <Filter>Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepModelLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureModelLayerOptions.cpp">
+      <Filter>LayerOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepModelSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepProfileOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepBounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepGeoCommon.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

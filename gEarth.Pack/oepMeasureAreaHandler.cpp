@@ -34,7 +34,7 @@ void oepMeasureAreaHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureAreaHandler* mth = new MeasureAreaHandler(pMapNode);
 	mth->getResHandlers().push_back(new MeasureAreaToolCallback());
-	_handle->setValue(mth);
+	setRef(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);
