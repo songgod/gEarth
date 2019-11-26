@@ -107,6 +107,7 @@
     <Compile Include="Commands\AddBingImageLayerCommand.cs" />
     <Compile Include="Commands\AddGdalElevationLayerCommand.cs" />
     <Compile Include="Commands\AddGdalImageLayerCommand.cs" />
+    <Compile Include="Commands\AddOgrFeatureLayerCommand.cs" />
     <Compile Include="Commands\AddViewpointCommand.cs" />
     <Compile Include="Commands\AnalysisVisibleAreaCommand.cs" />
     <Compile Include="Commands\CommandLib.cs" />

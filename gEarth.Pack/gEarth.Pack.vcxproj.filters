@@ -294,14 +294,23 @@
     <ClInclude Include="oepModelSourceOptions.h">
       <Filter>SourceOptions</Filter>
     </ClInclude>
-    <ClInclude Include="oepProfileOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="oepBounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oepGeoCommon.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepOGRFeatureSourceOptions.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepQuery.h">
+      <Filter>SourceOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="oepProfileOptions.h">
+      <Filter>SourceOptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -557,14 +566,23 @@
     <ClCompile Include="oepModelSourceOptions.cpp">
       <Filter>SourceOptions</Filter>
     </ClCompile>
-    <ClCompile Include="oepProfileOptions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="oepBounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="oepGeoCommon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepOGRFeatureSourceOptions.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepQuery.cpp">
+      <Filter>SourceOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="oepProfileOptions.cpp">
+      <Filter>SourceOptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

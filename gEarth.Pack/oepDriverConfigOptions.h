@@ -8,6 +8,16 @@ namespace gEarthPack
 	{
 	public:
 		oepDriverConfigOptions();
+
+	public:
+
+		property String^ Driver
+		{
+			String^ get();
+			void set(String^ p);
+		}
+
+
 	};
 
 }

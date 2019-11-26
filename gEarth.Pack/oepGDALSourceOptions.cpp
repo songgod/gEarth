@@ -11,10 +11,10 @@ oepGDALSourceOptions::oepGDALSourceOptions()
 
 String^ oepGDALSourceOptions::url::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::GDALOptions*)(_handle))->url()->full());
+	return marshal_as<String^>(as<osgEarth::Drivers::GDALOptions>()->url()->full());
 }
 
 void oepGDALSourceOptions::url::set(String^ v)
 {
-	((osgEarth::Drivers::GDALOptions*)(_handle))->url() = marshal_as<std::string>(v);
+	as<osgEarth::Drivers::GDALOptions>()->url() = marshal_as<std::string>(v);
 }

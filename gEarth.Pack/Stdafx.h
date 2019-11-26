@@ -49,6 +49,7 @@
 #include <osgEarthDrivers/bing/BingOptions>
 #include <osgEarthDrivers/gdal/GDALOptions>
 #include <osgEarthDrivers/feature_elevation/FeatureElevationOptions>
+#include <osgEarthDrivers/feature_ogr/OGRFeatureOptions>
 
 #include <osgEarthAnnotation/FeatureNode>
 

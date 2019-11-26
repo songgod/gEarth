@@ -25,6 +25,7 @@
         <cmd:AddGdalElevationLayerCommand/>
         <cmd:AddArcGISImageLayerCommand/>
         <cmd:AddBingImageLayerCommand/>
+        <cmd:AddOgrFeatureLayerCommand/>
         <cmd:SetBrightnessColorFilterCommand/>
         <cmd:SetChromaKeyColorFilterCommand/>
         <cmd:SetCMYKColorFilterCommand/>
@@ -79,7 +80,7 @@
                 <Fluent:RibbonGroupBox Header="本地数据">
                     <Fluent:Button Header="高程数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/dem.png" Command="{x:Static cmd:CommandLib.AddGdalElevationLayerCommand}"/>
                     <Fluent:Button Header="影像数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/image.png" Command="{x:Static cmd:CommandLib.AddGdalImageLayerCommand}"/>
-                    <Fluent:Button Header="矢量数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/map.png"/>
+                    <Fluent:Button Header="矢量数据" Width="64" Height="64" LargeIcon="/gEarthApp;component/Images/map.png" Command="{x:Static cmd:CommandLib.AddOgrFeatureLayerCommand}"/>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
             <Fluent:RibbonTabItem Header="显示">

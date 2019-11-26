@@ -168,6 +168,7 @@
     <ClInclude Include="MeasureVisibilityLineHandler.h" />
     <ClInclude Include="MeasureVolumeHandler.h" />
     <ClInclude Include="oepBounds.h" />
+    <ClInclude Include="oepConfig.h" />
     <ClInclude Include="oepContourMapExtension.h" />
     <ClInclude Include="oepFeatureModelLayer.h" />
     <ClInclude Include="oepFeatureModelLayerOptions.h" />
@@ -208,8 +209,10 @@
     <ClInclude Include="oepModelSourceOptions.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepObject.h" />
+    <ClInclude Include="oepOGRFeatureSourceOptions.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
     <ClInclude Include="oepProfileOptions.h" />
+    <ClInclude Include="oepQuery.h" />
     <ClInclude Include="oepRecordScreenHandler.h" />
     <ClInclude Include="oepRefObject.h" />
     <ClInclude Include="oepRGBColorFilter.h" />
@@ -266,6 +269,7 @@
     <ClCompile Include="MeasureVisibilityLineHandler.cpp" />
     <ClCompile Include="MeasureVolumeHandler.cpp" />
     <ClCompile Include="oepBounds.cpp" />
+    <ClCompile Include="oepConfig.cpp" />
     <ClCompile Include="oepContourMapExtension.cpp" />
     <ClCompile Include="oepFeatureModelLayer.cpp" />
     <ClCompile Include="oepFeatureModelLayerOptions.cpp" />
@@ -306,8 +310,10 @@
     <ClCompile Include="oepModelSourceOptions.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepObject.cpp" />
+    <ClCompile Include="oepOGRFeatureSourceOptions.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />
     <ClCompile Include="oepProfileOptions.cpp" />
+    <ClCompile Include="oepQuery.cpp" />
     <ClCompile Include="oepRecordScreenHandler.cpp" />
     <ClCompile Include="oepRGBColorFilter.cpp" />
     <ClCompile Include="oepSimpleOceanLayer.cpp" />

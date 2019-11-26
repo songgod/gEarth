@@ -19,6 +19,7 @@ namespace gEarth.Scene.Commands
             AddGdalElevationLayerCommand = CreateCommand("AddGdalEelvationLayerCommand");
             AddArcGISImageLayerCommand = CreateCommand("AddArcGISImageLayerCommand");
             AddBingImageLayerCommand = CreateCommand("AddBingImageLayerCommand");
+            AddOgrFeatureLayerCommand = CreateCommand("AddOgrFeatureLayerCommand");
             SetBrightnessColorFilterCommand = CreateCommand("SetBrightnessColorFilterCommand");
             SetChromaKeyColorFilterCommand = CreateCommand("SetChromaKeyColorFilterCommand");
             SetCMYKColorFilterCommand = CreateCommand("SetCMYKColorFilterCommand");
@@ -53,6 +54,7 @@ namespace gEarth.Scene.Commands
         public static RoutedUICommand AddGdalElevationLayerCommand { get; set; }
         public static RoutedUICommand AddArcGISImageLayerCommand { get; set; }
         public static RoutedUICommand AddBingImageLayerCommand { get; set; }
+        public static RoutedUICommand AddOgrFeatureLayerCommand { get; set; }
         public static RoutedUICommand SetBrightnessColorFilterCommand { get; set; }
         public static RoutedUICommand SetChromaKeyColorFilterCommand { get; set; }
         public static RoutedUICommand SetCMYKColorFilterCommand { get; set; }
