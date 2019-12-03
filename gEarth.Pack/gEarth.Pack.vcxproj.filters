@@ -37,6 +37,9 @@
     <Filter Include="Symbology">
       <UniqueIdentifier>{14aa284e-1756-4340-a468-d07b76b6b070}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{b766a3f9-202f-4429-bc9b-ea905d0efa92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -333,6 +336,21 @@
     <ClInclude Include="oepUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="oepFeatureDisplayLayout.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="oepNumericExpression.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepStringExpression.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFeatureSourceIndexOptions.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFadeOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -621,6 +639,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="oepUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureDisplayLayout.cpp">
+      <Filter>Features</Filter>
+    </ClCompile>
+    <ClCompile Include="oepNumericExpression.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepStringExpression.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFeatureSourceIndexOptions.cpp">
+      <Filter>Features</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFadeOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

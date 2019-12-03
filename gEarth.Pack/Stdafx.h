@@ -26,6 +26,7 @@
 #include <osgEarth/VisibleLayer>
 #include <osgEarth/TileSource>
 #include <osgEarth/ModelLayer>
+#include <osgEarth/FadeEffect>
 
 #include <osgEarthUtil/BrightnessContrastColorFilter>
 #include <osgEarthUtil/ChromaKeyColorFilter>
@@ -57,10 +58,12 @@
 #include <osgEarthSymbology/StyleSheet>
 #include <osgEarthSymbology/Symbol>
 #include <osgEarthSymbology/Geometry>
+#include <osgEarthSymbology/Expression>
 
 #include <osgEarthFeatures/GeometryUtils>
 #include <osgEarthFeatures/FeatureModelLayer>
 #include <osgEarthFeatures/FeatureModelSource>
+#include <osgEarthFeatures/FeatureSourceIndexNode>
 
 //osg
 #include <osg/ref_ptr>

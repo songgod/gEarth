@@ -170,8 +170,11 @@
     <ClInclude Include="oepBounds.h" />
     <ClInclude Include="oepConfig.h" />
     <ClInclude Include="oepContourMapExtension.h" />
+    <ClInclude Include="oepFadeOptions.h" />
+    <ClInclude Include="oepFeatureDisplayLayout.h" />
     <ClInclude Include="oepFeatureModelLayer.h" />
     <ClInclude Include="oepFeatureModelLayerOptions.h" />
+    <ClInclude Include="oepFeatureSourceIndexOptions.h" />
     <ClInclude Include="oepFeatureSourceOptions.h" />
     <ClInclude Include="oepGeoCommon.h" />
     <ClInclude Include="oepHandle.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="oepModelLayerOptions.h" />
     <ClInclude Include="oepModelSourceOptions.h" />
     <ClInclude Include="oepNotify.h" />
+    <ClInclude Include="oepNumericExpression.h" />
     <ClInclude Include="oepObject.h" />
     <ClInclude Include="oepOGRFeatureSourceOptions.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
@@ -219,6 +223,7 @@
     <ClInclude Include="oepSimpleOceanLayer.h" />
     <ClInclude Include="oepSimpleOceanLayerOptions.h" />
     <ClInclude Include="oepSimpleSkyExtension.h" />
+    <ClInclude Include="oepStringExpression.h" />
     <ClInclude Include="oepStyle.h" />
     <ClInclude Include="oepStyleSheet.h" />
     <ClInclude Include="oepSymbol.h" />
@@ -277,8 +282,11 @@
     <ClCompile Include="oepBounds.cpp" />
     <ClCompile Include="oepConfig.cpp" />
     <ClCompile Include="oepContourMapExtension.cpp" />
+    <ClCompile Include="oepFadeOptions.cpp" />
+    <ClCompile Include="oepFeatureDisplayLayout.cpp" />
     <ClCompile Include="oepFeatureModelLayer.cpp" />
     <ClCompile Include="oepFeatureModelLayerOptions.cpp" />
+    <ClCompile Include="oepFeatureSourceIndexOptions.cpp" />
     <ClCompile Include="oepFeatureSourceOptions.cpp" />
     <ClCompile Include="oepGeoCommon.cpp" />
     <ClCompile Include="oepHandleMapManager.cpp" />
@@ -315,6 +323,7 @@
     <ClCompile Include="oepModelLayerOptions.cpp" />
     <ClCompile Include="oepModelSourceOptions.cpp" />
     <ClCompile Include="oepNotify.cpp" />
+    <ClCompile Include="oepNumericExpression.cpp" />
     <ClCompile Include="oepObject.cpp" />
     <ClCompile Include="oepOGRFeatureSourceOptions.cpp" />
     <ClCompile Include="oepOSGSourceOptions.cpp" />
@@ -325,6 +334,7 @@
     <ClCompile Include="oepSimpleOceanLayer.cpp" />
     <ClCompile Include="oepSimpleOceanLayerOptions.cpp" />
     <ClCompile Include="oepSimpleSkyExtension.cpp" />
+    <ClCompile Include="oepStringExpression.cpp" />
     <ClCompile Include="oepStyle.cpp" />
     <ClCompile Include="oepStyleSheet.cpp" />
     <ClCompile Include="oepSymbol.cpp" />
