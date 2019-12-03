@@ -32,7 +32,7 @@ void oepMeasureAngleHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureAngleHandler* mth = new MeasureAngleHandler(pMapNode);
 	mth->addEventHandler(new MeasureAngleToolCallback());
-	setRef(mth);
+	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

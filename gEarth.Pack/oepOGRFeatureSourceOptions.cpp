@@ -3,60 +3,75 @@
 
 using namespace msclr::interop;
 using namespace gEarthPack;
+using namespace osgEarth::Drivers;
 
 oepOGRFeatureSourceOptions::oepOGRFeatureSourceOptions()
 {
-	setVal(new osgEarth::Drivers::OGRFeatureOptions());
+	bind(new OGRFeatureOptions(),true);
+}
+
+void gEarthPack::oepOGRFeatureSourceOptions::binded()
+{
+	_geometryConfig = gcnew oepConfig();
+	_geometryConfig->bind(&(as<OGRFeatureOptions>()->geometryConfig().mutable_value()), false);
+	_query = gcnew oepQuery();
+	_query->bind(&(as<OGRFeatureOptions>()->query().mutable_value()), false);
+}
+
+void gEarthPack::oepOGRFeatureSourceOptions::unbinded()
+{
+	_geometryConfig->unbind();
+	_query->unbind();
 }
 
 String^ oepOGRFeatureSourceOptions::Url::get()
 {
-	return marshal_as<String^>(as<osgEarth::Drivers::OGRFeatureOptions>()->url()->full());
+	return marshal_as<String^>(as<OGRFeatureOptions>()->url()->full());
 }
 
 void oepOGRFeatureSourceOptions::Url::set(String^ p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->url() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->url() = marshal_as<std::string>(p);
 }
 
 String^ oepOGRFeatureSourceOptions::Connection::get()
 {
-	return marshal_as<String^>(as<osgEarth::Drivers::OGRFeatureOptions>()->connection().value());
+	return marshal_as<String^>(as<OGRFeatureOptions>()->connection().value());
 }
 
 void oepOGRFeatureSourceOptions::Connection::set(String^ p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->connection() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->connection() = marshal_as<std::string>(p);
 }
 
 String^ oepOGRFeatureSourceOptions::OgrDriver::get()
 {
-	return marshal_as<String^>(as<osgEarth::Drivers::OGRFeatureOptions>()->ogrDriver().value());
+	return marshal_as<String^>(as<OGRFeatureOptions>()->ogrDriver().value());
 }
 
 void oepOGRFeatureSourceOptions::OgrDriver::set(String^ p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->ogrDriver() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->ogrDriver() = marshal_as<std::string>(p);
 }
 
 bool oepOGRFeatureSourceOptions::BuildSpatialIndex::get()
 {
-	return as<osgEarth::Drivers::OGRFeatureOptions>()->buildSpatialIndex().value();
+	return as<OGRFeatureOptions>()->buildSpatialIndex().value();
 }
 
 void oepOGRFeatureSourceOptions::BuildSpatialIndex::set(bool p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->buildSpatialIndex() = p;
+	as<OGRFeatureOptions>()->buildSpatialIndex() = p;
 }
 
 bool oepOGRFeatureSourceOptions::ForceRebuildSpatialIndex::get()
 {
-	return as<osgEarth::Drivers::OGRFeatureOptions>()->forceRebuildSpatialIndex().value();
+	return as<OGRFeatureOptions>()->forceRebuildSpatialIndex().value();
 }
 
 void oepOGRFeatureSourceOptions::ForceRebuildSpatialIndex::set(bool p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->forceRebuildSpatialIndex() = p;
+	as<OGRFeatureOptions>()->forceRebuildSpatialIndex() = p;
 }
 
 oepConfig^ oepOGRFeatureSourceOptions::GeometryConfig::get()
@@ -67,28 +82,32 @@ oepConfig^ oepOGRFeatureSourceOptions::GeometryConfig::get()
 void oepOGRFeatureSourceOptions::GeometryConfig::set(oepConfig^ p)
 {
 	_geometryConfig = p;
-	if(p!=nullptr)
-		as<osgEarth::Drivers::OGRFeatureOptions>()->geometryConfig() = *(p->val());
+	if (p != nullptr)
+	{
+		osgEarth::Config& cf = as<OGRFeatureOptions>()->geometryConfig().mutable_value();
+		p->getVal(cf);
+		p->bind(&cf,false);
+	}
 }
 
 String^ oepOGRFeatureSourceOptions::GeometryUrl::get()
 {
-	return marshal_as<String^>(as<osgEarth::Drivers::OGRFeatureOptions>()->geometryUrl().value());
+	return marshal_as<String^>(as<OGRFeatureOptions>()->geometryUrl().value());
 }
 
 void oepOGRFeatureSourceOptions::GeometryUrl::set(String^ p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->geometryUrl() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->geometryUrl() = marshal_as<std::string>(p);
 }
 
 String^ oepOGRFeatureSourceOptions::Layer::get()
 {
-	return marshal_as<String^>(as<osgEarth::Drivers::OGRFeatureOptions>()->layer().value());
+	return marshal_as<String^>(as<OGRFeatureOptions>()->layer().value());
 }
 
 void oepOGRFeatureSourceOptions::Layer::set(String^ p)
 {
-	as<osgEarth::Drivers::OGRFeatureOptions>()->layer() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->layer() = marshal_as<std::string>(p);
 }
 
 oepQuery^ oepOGRFeatureSourceOptions::Query::get()
@@ -99,6 +118,11 @@ oepQuery^ oepOGRFeatureSourceOptions::Query::get()
 void oepOGRFeatureSourceOptions::Query::set(oepQuery^ p)
 {
 	_query = p;
-	if(p)
-		as<osgEarth::Drivers::OGRFeatureOptions>()->query() = *(p->val());
+	if (p != nullptr)
+	{
+		osgEarth::Query& q = as<OGRFeatureOptions>()->query().mutable_value();
+		p->getVal(q);
+		p->bind(&q,false);
+	}
 }
+

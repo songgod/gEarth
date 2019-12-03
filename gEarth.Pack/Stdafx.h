@@ -5,7 +5,7 @@
 #pragma once
 
 #include <windows.h> 
-#include <msclr\marshal_cppstd.h>  
+#include <msclr\marshal_cppstd.h> 
 
 //osgEarth
 #include <osgEarth/Map>
@@ -54,6 +54,8 @@
 #include <osgEarthAnnotation/FeatureNode>
 
 #include <osgEarthSymbology/Style>
+#include <osgEarthSymbology/StyleSheet>
+#include <osgEarthSymbology/Symbol>
 #include <osgEarthSymbology/Geometry>
 
 #include <osgEarthFeatures/GeometryUtils>

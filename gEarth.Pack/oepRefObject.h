@@ -44,16 +44,28 @@ namespace gEarthPack
 			return NULL;
 		}
 
-		void setRef(T* v)
+		void bind(T* v)
 		{
 			if (_handle)
+			{
 				_handle->setValue(v);
+				if (v != NULL)
+					binded();
+				else
+					unbinded();
+			}
+				
 		}
 
-		void clear()
+		void unbind()
 		{
-			setRef(NULL);
+			bind(NULL);
 		}
+
+	internal:
+
+		virtual void binded(){}
+		virtual void unbinded(){}
 
 	protected:
 

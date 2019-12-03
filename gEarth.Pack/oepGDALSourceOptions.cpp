@@ -6,7 +6,7 @@ using namespace gEarthPack;
 
 oepGDALSourceOptions::oepGDALSourceOptions()
 {
-	setVal(new osgEarth::Drivers::GDALOptions());
+	bind(new osgEarth::Drivers::GDALOptions(),true);
 }
 
 String^ oepGDALSourceOptions::url::get()

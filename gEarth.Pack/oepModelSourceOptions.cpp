@@ -5,5 +5,5 @@ using namespace gEarthPack;
 
 oepModelSourceOptions::oepModelSourceOptions()
 {
-	setVal(new osgEarth::ModelSourceOptions());
+	bind(new osgEarth::ModelSourceOptions(),true);
 }

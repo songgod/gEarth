@@ -5,13 +5,7 @@ using namespace gEarthPack;
 
 oepBounds::oepBounds()
 {
-	setVal(new osgEarth::Bounds());
-}
-
-oepBounds::oepBounds(const osgEarth::Bounds& bounds)
-{
-	setVal(new osgEarth::Bounds());
-	setVal(bounds);
+	bind(new osgEarth::Bounds(),true);
 }
 
 double oepBounds::Xmin::get()

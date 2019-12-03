@@ -51,12 +51,15 @@ namespace gEarthPack
 			void set(String^ p);
 		}
 
+	internal:
+
+		virtual void binded() override;
+		virtual void unbinded() override;
 
 	private:
 
 		oepConfigOptionsCollection^ _filters;
 		oepProfileOptions^ _profile;
-		oepGeoInterpolation _geoinerp;
 	};
 }
 

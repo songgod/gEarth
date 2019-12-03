@@ -52,7 +52,7 @@ void oepMeasureProfileHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureProfileHandler* mth = new MeasureProfileHandler(pMapNode);
 	mth->getProfileCalculator()->addChangedCallback(new MeasureProfileCallback(mth));
-	setRef(mth);
+	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

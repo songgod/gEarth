@@ -6,7 +6,7 @@ using namespace osgEarth::Util;
 
 oepBrightnessContrastColorFilter::oepBrightnessContrastColorFilter()
 {
-	setRef(new BrightnessContrastColorFilter());
+	bind(new BrightnessContrastColorFilter());
 }
 
 void oepBrightnessContrastColorFilter::Reset()

@@ -10,7 +10,7 @@ oepViewpointsExtension::oepViewpointsExtension()
 	osgEarth::Config conf = options.getConfig();
 	osgEarth::Extension* extension = oepExtensionFactory::createoeExtension(conf);
 	if (!extension) throw gcnew Exception("Invalid viewpoints extension");
-	setRef(extension);
+	bind(extension);
 	_viewpoints = gcnew oepViewPoints();
 	init();
 	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
@@ -18,7 +18,7 @@ oepViewpointsExtension::oepViewpointsExtension()
 
 oepViewpointsExtension::oepViewpointsExtension(osgEarth::Extension* ext)
 {
-	setRef(ext);
+	bind(ext);
 	_viewpoints = gcnew oepViewPoints();
 	init();
 	_viewpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepViewpointsExtension::OnViewpointsCollectionChanged);
@@ -34,7 +34,7 @@ void oepViewpointsExtension::init()
 	for (size_t i = 0; i < vps.size(); i++)
 	{
 		oepViewpoint^ vp = gcnew oepViewpoint();
-		vp->setRefVal(&vps[i]);
+		vp->bind(&vps[i],false);
 		_viewpoints->Add(vp);
 	}
 }
@@ -58,7 +58,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 					osgEarth::Viewpoint vp = *(oepvp->val());
 					std::vector<osgEarth::Viewpoint>& vps = vo->viewpoints();
 					vps.push_back(vp);
-					oepvp->setRefVal(&(vps[vps.size() - 1]));
+					oepvp->bind(&(vps[vps.size() - 1]),false);
 				}
 			}
 		}
@@ -79,7 +79,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 					if (index >= 0 && index <= vps.size())
 					{
 						vps.erase(vps.begin() + index);
-						oepvp->clear();
+						oepvp->unbind();
 					}
 				}
 			}
@@ -93,7 +93,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 		{
 			oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[0]);
 			vps[e->NewStartingIndex] = *(oepvp->val());
-			oepvp->setRefVal(&(vps[e->NewStartingIndex]));
+			oepvp->bind(&(vps[e->NewStartingIndex]),false);
 		}
 		break;
 	}

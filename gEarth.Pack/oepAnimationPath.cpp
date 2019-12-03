@@ -9,7 +9,7 @@ using namespace msclr::interop;
 
 oepAnimationPath::oepAnimationPath()
 {
-	setRef(new osgEarth::AnimationPath::AnimationPathInfo());
+	bind(new osgEarth::AnimationPath::AnimationPathInfo());
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
@@ -52,7 +52,7 @@ bool oepAnimationPath::Save()
 
 oepAnimationPath::oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info)
 {
-	setRef(info);
+	bind(info);
 	_controlpoints = gcnew oepControlPoints();
 	init();
 	_controlpoints->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepAnimationPath::OnControlPointsCollectionChanged);
@@ -69,7 +69,7 @@ void oepAnimationPath::init()
 	for (iter; iter != tcpm.end(); iter++)
 	{
 		oepControlPoint^ cp = gcnew oepControlPoint();
-		cp->setRefVal(&(iter->second));
+		cp->bind(&(iter->second),false);
 		cp->Time = iter->first;
 		_controlpoints->Add(cp);
 	}
@@ -96,7 +96,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 					osg::AnimationPath::ControlPoint vp = *(oepcp->as<osg::AnimationPath::ControlPoint>());
 					double time = oepcp->Time;
 					tcpm[time] = vp;
-					oepcp->setRefVal(&(tcpm[time]));
+					oepcp->bind(&(tcpm[time]),false);
 				}
 			}
 		}
@@ -112,7 +112,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 				if (oepcp != nullptr)
 				{
 					tcpm.erase(oepcp->Time);
-					oepcp->clear();
+					oepcp->unbind();
 				}
 			}
 		}
@@ -124,7 +124,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 		{
 			oepControlPoint^ oepcp = dynamic_cast<oepControlPoint^>(e->NewItems[0]);
 			tcpm[oepcp->Time] = *(oepcp->val());
-			oepcp->setRefVal(&(tcpm[oepcp->Time]));
+			oepcp->bind(&(tcpm[oepcp->Time]),false);
 		}
 		break;
 	}
@@ -186,12 +186,12 @@ oepControlPoints^ oepAnimationPath::ControlPoints::get()
 
 oepControlPoint::oepControlPoint() : _time(0.0)
 {
-	setVal(new osg::AnimationPath::ControlPoint());
+	bind(new osg::AnimationPath::ControlPoint(),true);
 }
 
 oepControlPoint::oepControlPoint(osg::AnimationPath::ControlPoint& cp)
 {
-	setVal(new osg::AnimationPath::ControlPoint());
+	bind(new osg::AnimationPath::ControlPoint(),true);
 	setVal(cp);
 }
 

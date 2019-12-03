@@ -3,10 +3,22 @@
 #include <osgEarthFeatures/FeatureModelLayer>
 
 using namespace gEarthPack;
+using namespace osgEarth::Features;
 
 oepFeatureModelLayerOptions::oepFeatureModelLayerOptions()
 {
-	setVal(new osgEarth::Features::FeatureModelLayerOptions());
+	bind(new FeatureModelLayerOptions(),true);
+}
+
+void gEarthPack::oepFeatureModelLayerOptions::binded()
+{
+	_driver = gcnew oepFeatureSourceOptions();
+	_driver->bind(&(as<FeatureModelLayerOptions>()->featureSource().mutable_value()),false);
+}
+
+void gEarthPack::oepFeatureModelLayerOptions::unbinded()
+{
+	_driver->unbind();
 }
 
 gEarthPack::oepFeatureSourceOptions^ gEarthPack::oepFeatureModelLayerOptions::driver::get()
@@ -17,9 +29,7 @@ gEarthPack::oepFeatureSourceOptions^ gEarthPack::oepFeatureModelLayerOptions::dr
 void gEarthPack::oepFeatureModelLayerOptions::driver::set(oepFeatureSourceOptions^ v)
 {
 	_driver = v;
-	osgEarth::Features::FeatureModelLayerOptions* to = as<osgEarth::Features::FeatureModelLayerOptions>();
-	if (to != NULL)
-	{
-		to->featureSource() = *(_driver->as<osgEarth::Features::FeatureSourceOptions>());
-	}
+	FeatureSourceOptions &fso = as<FeatureModelLayerOptions>()->featureSource().mutable_value();
+	_driver->getVal(fso);
+	_driver->bind(&fso, false);
 }

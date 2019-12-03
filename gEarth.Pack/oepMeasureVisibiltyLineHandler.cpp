@@ -12,7 +12,7 @@ oepMeasureVisibiltyLineHandler::oepMeasureVisibiltyLineHandler()
 void oepMeasureVisibiltyLineHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureVisibilityLineHandler* mth = new MeasureVisibilityLineHandler(pMapNode);
-	setRef(mth);
+	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

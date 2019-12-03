@@ -43,7 +43,10 @@ namespace gEarthPack
 			return NULL;
 		}
 
-	internal:
+		void getVal(T& v)
+		{
+			v = *(val());
+		}
 
 		void setVal(const T& v)
 		{
@@ -51,7 +54,7 @@ namespace gEarthPack
 				(*_handle) = v;
 		}
 
-		void setVal(T* handle)
+		void bind(T* handle, bool own)
 		{
 			if (handle == _handle && _ownhandle)
 				return;
@@ -61,26 +64,22 @@ namespace gEarthPack
 				_handle = NULL;
 			}
 			_handle = handle;
-			_ownhandle = true;
+			_ownhandle = own;
+			if(_handle!=NULL)
+				binded();
+			else
+				unbinded();
 		}
 
-		void setRefVal(T* handle)
+		void unbind()
 		{
-			if (handle == _handle && !_ownhandle)
-				return;
-			if (_handle != NULL && handle != _handle && _ownhandle)
-			{
-				delete _handle;
-				_handle = NULL;
-			}
-			_handle = handle;
-			_ownhandle = false;
+			bind(NULL,true);
 		}
 
-		void clear()
-		{
-			setVal(NULL);
-		}
+	internal:
+
+		virtual void binded(){}
+		virtual void unbinded(){}
 
 	protected:
 

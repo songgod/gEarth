@@ -1,23 +1,38 @@
 #include "stdafx.h"
 #include "oepFeatureSourceOptions.h"
 
-using namespace msclr::interop;
 using namespace gEarthPack;
+using namespace osgEarth;
+using namespace osgEarth::Features;
+using namespace msclr::interop;
 
-oepFeatureSourceOptions::oepFeatureSourceOptions()
+oepFeatureSourceOptions::oepFeatureSourceOptions():_profile(nullptr), _filters(nullptr)
 {
-	setVal(new osgEarth::Features::FeatureSourceOptions());
+	bind(new FeatureSourceOptions(),true);
+}
+
+void gEarthPack::oepFeatureSourceOptions::binded()
+{
+	_profile = gcnew oepProfileOptions();
+	_profile->bind(&(as<FeatureSourceOptions>()->profile().mutable_value()), false);
 	_filters = gcnew oepConfigOptionsCollection();
+	_filters->bind(&(as<FeatureSourceOptions>()->filters()), false);
+}
+
+void gEarthPack::oepFeatureSourceOptions::unbinded()
+{
+	_profile->unbind();
+	_filters->unbind();
 }
 
 String^ oepFeatureSourceOptions::Name::get()
 {
-	return marshal_as<String^>(as<osgEarth::Features::FeatureSourceOptions>()->name().value());
+	return marshal_as<String^>(as<FeatureSourceOptions>()->name().value());
 }
 
 void oepFeatureSourceOptions::Name::set(String^ v)
 {
-	as<osgEarth::Features::FeatureSourceOptions>()->name() = marshal_as<std::string>(v);
+	as<FeatureSourceOptions>()->name() = marshal_as<std::string>(v);
 	NotifyChanged("Name");
 }
 
@@ -29,17 +44,21 @@ oepConfigOptionsCollection^ oepFeatureSourceOptions::Filters::get()
 void oepFeatureSourceOptions::Filters::set(oepConfigOptionsCollection^ v)
 {
 	_filters = v;
+
+	std::vector<osgEarth::ConfigOptions>& coptions = as<FeatureSourceOptions>()->filters();
+	_filters->getVal(coptions);
+	_filters->bind(&coptions,false);
 	NotifyChanged("Filters");
 }
 
 bool oepFeatureSourceOptions::OpenWrite::get()
 {
-	return as<osgEarth::Features::FeatureSourceOptions>()->openWrite().value();
+	return as<FeatureSourceOptions>()->openWrite().value();
 }
 
 void oepFeatureSourceOptions::OpenWrite::set(bool b)
 {
-	as<osgEarth::Features::FeatureSourceOptions>()->openWrite() = b;
+	as<FeatureSourceOptions>()->openWrite() = b;
 	NotifyChanged("OpenWrite");
 }
 
@@ -51,30 +70,31 @@ oepProfileOptions^ oepFeatureSourceOptions::Profile::get()
 void oepFeatureSourceOptions::Profile::set(oepProfileOptions^ profile)
 {
 	_profile = profile;
-	if(profile!=nullptr)
-		as<osgEarth::Features::FeatureSourceOptions>()->profile() = *(profile->val());
+	ProfileOptions &ops = as<FeatureSourceOptions>()->profile().mutable_value();
+	_profile->getVal(ops);
+	_profile->bind(&ops,false);
 	NotifyChanged("Profile");
 }
 
 oepGeoInterpolation oepFeatureSourceOptions::GeoInterp::get()
 {
-	return _geoinerp;
+	int v = as<FeatureSourceOptions>()->geoInterp().value();
+	return v == 0 ? oepGeoInterpolation::GreatCircle : oepGeoInterpolation::RhumbLine;
 }
 
 void oepFeatureSourceOptions::GeoInterp::set(oepGeoInterpolation geoinerp)
 {
-	_geoinerp = geoinerp;
-	as<osgEarth::Features::FeatureSourceOptions>()->geoInterp() = (osgEarth::GeoInterpolation)((int)geoinerp);
+	as<FeatureSourceOptions>()->geoInterp() = (osgEarth::GeoInterpolation)((int)geoinerp);
 	NotifyChanged("GeoInterp");
 }
 
 String^ oepFeatureSourceOptions::FidAttribute::get()
 {
-	return marshal_as<String^>(as<osgEarth::Features::FeatureSourceOptions>()->fidAttribute().value());
+	return marshal_as<String^>(as<FeatureSourceOptions>()->fidAttribute().value());
 }
 
 void oepFeatureSourceOptions::FidAttribute::set(String^ v)
 {
-	as<osgEarth::Features::FeatureSourceOptions>()->fidAttribute() = marshal_as<std::string>(v);
+	as<FeatureSourceOptions>()->fidAttribute() = marshal_as<std::string>(v);
 	NotifyChanged("FidAttribute");
 }

@@ -34,6 +34,9 @@
     <Filter Include="Handlers">
       <UniqueIdentifier>{32c2d66b-7372-4f46-92cb-daaae64bde0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Symbology">
+      <UniqueIdentifier>{14aa284e-1756-4340-a468-d07b76b6b070}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -306,11 +309,29 @@
     <ClInclude Include="oepConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="oepStyleSheet.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
     <ClInclude Include="oepQuery.h">
-      <Filter>SourceOptions</Filter>
+      <Filter>Symbology</Filter>
     </ClInclude>
     <ClInclude Include="oepProfileOptions.h">
-      <Filter>SourceOptions</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepStyle.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepValVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepValList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepUtil.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -578,11 +599,29 @@
     <ClCompile Include="oepConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="oepStyleSheet.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
     <ClCompile Include="oepQuery.cpp">
-      <Filter>SourceOptions</Filter>
+      <Filter>Symbology</Filter>
     </ClCompile>
     <ClCompile Include="oepProfileOptions.cpp">
-      <Filter>SourceOptions</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepStyle.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepValVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepValList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepUtil.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

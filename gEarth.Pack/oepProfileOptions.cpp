@@ -6,7 +6,18 @@ using namespace msclr::interop;
 
 oepProfileOptions::oepProfileOptions()
 {
-	setVal(new osgEarth::ProfileOptions());
+	bind(new osgEarth::ProfileOptions(),true);
+}
+
+void gEarthPack::oepProfileOptions::binded()
+{
+	_bounds = gcnew oepBounds();
+	_bounds->bind(&(as<osgEarth::ProfileOptions>()->bounds().mutable_value()), false);
+}
+
+void gEarthPack::oepProfileOptions::unbinded()
+{
+	_bounds->unbind();
 }
 
 String^ oepProfileOptions::NamedProfile::get()
@@ -43,15 +54,19 @@ void oepProfileOptions::VsrsString::set(String^ v)
 }
 
 oepBounds^ oepProfileOptions::Bounds::get()
-{
+{	
 	return _bounds;
 }
 
 void oepProfileOptions::Bounds::set(oepBounds^ p)
 {
 	_bounds = p;
-	if(p!=nullptr)
-		as<osgEarth::ProfileOptions>()->bounds() = *(p->val());
+	if (p != nullptr)
+	{
+		osgEarth::Bounds& bounds = as<osgEarth::ProfileOptions>()->bounds().mutable_value();
+		p->getVal(bounds);
+		p->bind(&bounds,false);
+	}
 	NotifyChanged("Bounds");
 }
 

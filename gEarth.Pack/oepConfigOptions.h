@@ -1,5 +1,6 @@
 #pragma once
 #include "oepValObject.h"
+#include "oepValVector.h"
 
 using namespace System::Collections::ObjectModel;
 
@@ -11,7 +12,7 @@ namespace gEarthPack
 		oepConfigOptions();
 	};
 
-	public ref class oepConfigOptionsCollection : ObservableCollection<oepConfigOptions^>
+	public ref class oepConfigOptionsCollection : oepValVector<oepConfigOptions,osgEarth::ConfigOptions>
 	{
 
 	};

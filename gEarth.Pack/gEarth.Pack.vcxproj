@@ -219,6 +219,9 @@
     <ClInclude Include="oepSimpleOceanLayer.h" />
     <ClInclude Include="oepSimpleOceanLayerOptions.h" />
     <ClInclude Include="oepSimpleSkyExtension.h" />
+    <ClInclude Include="oepStyle.h" />
+    <ClInclude Include="oepStyleSheet.h" />
+    <ClInclude Include="oepSymbol.h" />
     <ClInclude Include="oepTerrainLayerOptions.h" />
     <ClInclude Include="oepTMSSourceOptions.h" />
     <ClInclude Include="oepArcGISSourceOptions.h" />
@@ -232,6 +235,9 @@
     <ClInclude Include="oepTerrainLayer.h" />
     <ClInclude Include="oepTileSourceOptions.h" />
     <ClInclude Include="oepUnknownLayer.h" />
+    <ClInclude Include="oepUtil.h" />
+    <ClInclude Include="oepValList.h" />
+    <ClInclude Include="oepValVector.h" />
     <ClInclude Include="oepValObject.h" />
     <ClInclude Include="oepVector.h" />
     <ClInclude Include="oepViewFitter.h" />
@@ -319,6 +325,9 @@
     <ClCompile Include="oepSimpleOceanLayer.cpp" />
     <ClCompile Include="oepSimpleOceanLayerOptions.cpp" />
     <ClCompile Include="oepSimpleSkyExtension.cpp" />
+    <ClCompile Include="oepStyle.cpp" />
+    <ClCompile Include="oepStyleSheet.cpp" />
+    <ClCompile Include="oepSymbol.cpp" />
     <ClCompile Include="oepTerrainLayerOptions.cpp" />
     <ClCompile Include="oepTMSSourceOptions.cpp" />
     <ClCompile Include="oepArcGISSourceOptions.cpp" />
@@ -332,6 +341,9 @@
     <ClCompile Include="oepTerrainLayer.cpp" />
     <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
+    <ClCompile Include="oepUtil.cpp" />
+    <ClCompile Include="oepValList.cpp" />
+    <ClCompile Include="oepValVector.cpp" />
     <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewFitter.cpp" />
     <ClCompile Include="oepViewpoint.cpp">

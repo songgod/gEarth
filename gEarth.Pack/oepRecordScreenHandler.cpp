@@ -7,7 +7,7 @@ using namespace gEarthPack;
 
 oepRecordScreenHandler::oepRecordScreenHandler(String^ file, float fps)
 {
-	setRef(new RecordScreenHandler(marshal_as<std::string>(file),fps));
+	bind(new RecordScreenHandler(marshal_as<std::string>(file),fps));
 }
 
 void oepRecordScreenHandler::Save()

@@ -63,10 +63,6 @@ namespace gEarthPack
 		{
 			double get();
 		}
-
-	internal:
-
-		oepBounds(const osgEarth::Bounds& bounds);
 	};
 
 	public ref class oepBoundsCollection : public ObservableCollection<oepBounds^>

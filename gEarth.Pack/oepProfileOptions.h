@@ -48,6 +48,11 @@ namespace gEarthPack
 			void set(int p);
 		}
 
+	internal:
+
+		virtual void binded() override;
+		virtual void unbinded() override;
+
 	private:
 
 		oepBounds^ _bounds;

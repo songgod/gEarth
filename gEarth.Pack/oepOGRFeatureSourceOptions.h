@@ -67,6 +67,11 @@ namespace gEarthPack
 			void set(oepQuery^ p);
 		}
 
+	internal:
+
+		virtual void binded() override;
+		virtual void unbinded() override;
+
 	protected:
 
 		oepConfig^ _geometryConfig;

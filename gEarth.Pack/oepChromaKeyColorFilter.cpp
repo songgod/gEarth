@@ -5,7 +5,7 @@ using namespace gEarthPack;
 
 oepChromaKeyColorFilter::oepChromaKeyColorFilter()
 {
-	setRef(new osgEarth::Util::ChromaKeyColorFilter());
+	bind(new osgEarth::Util::ChromaKeyColorFilter());
 }
 
 void oepChromaKeyColorFilter::Reset()

@@ -3,10 +3,22 @@
 #include <osgEarth/ModelLayer>
 
 using namespace gEarthPack;
+using namespace osgEarth;
 
 oepModelLayerOptions::oepModelLayerOptions()
 {
-	setVal(new osgEarth::ModelLayerOptions());
+	bind(new osgEarth::ModelLayerOptions(),true);
+}
+
+void gEarthPack::oepModelLayerOptions::binded()
+{
+	_driver = gcnew oepModelSourceOptions();
+	_driver->bind(&(as<ModelLayerOptions>()->driver().mutable_value()), false);
+}
+
+void gEarthPack::oepModelLayerOptions::unbinded()
+{
+	_driver->unbind();
 }
 
 gEarthPack::oepModelSourceOptions^ gEarthPack::oepModelLayerOptions::driver::get()
@@ -17,9 +29,7 @@ gEarthPack::oepModelSourceOptions^ gEarthPack::oepModelLayerOptions::driver::get
 void gEarthPack::oepModelLayerOptions::driver::set(oepModelSourceOptions^ v)
 {
 	_driver = v;
-	osgEarth::ModelLayerOptions* to = as<osgEarth::ModelLayerOptions>();
-	if (to != NULL)
-	{
-		to->driver() = *(_driver->as<osgEarth::ModelSourceOptions>());
-	}
+	ModelSourceOptions &mso = as<ModelLayerOptions>()->driver().mutable_value();
+	_driver->getVal(mso);
+	_driver->bind(&mso, false);
 }

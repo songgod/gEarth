@@ -34,7 +34,7 @@ void oepMeasureSlopeAspectHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureSlopeAspectHandler* mth = new MeasureSlopeAspectHandler(pMapNode);
 	mth->addEventHandler(new MeasureSlopeAspectCallback());
-	setRef(mth);
+	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 
 	mth->setIntersectionMask(0x1);

@@ -6,9 +6,9 @@ using namespace gEarthPack;
 oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 {
 	if (imagelayeroptions != nullptr && imagelayeroptions->as<osgEarth::ImageLayerOptions>() != NULL)
-		setRef(new osgEarth::ImageLayer(*(imagelayeroptions->as<osgEarth::ImageLayerOptions>())));
+		bind(new osgEarth::ImageLayer(*(imagelayeroptions->as<osgEarth::ImageLayerOptions>())));
 	else
-		setRef(new osgEarth::ImageLayer());
+		bind(new osgEarth::ImageLayer());
 
 	_colorfilters = gcnew oepColorFilters();
 	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepImageLayer::OnColorFiltersCollectionChanged);
@@ -16,7 +16,7 @@ oepImageLayer::oepImageLayer(oepImageLayerOptions^ imagelayeroptions)
 
 oepImageLayer::oepImageLayer(osgEarth::ImageLayer* layer)
 {
-	setRef(layer);
+	bind(layer);
 	_colorfilters = gcnew oepColorFilters();
 	_colorfilters->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepImageLayer::OnColorFiltersCollectionChanged);
 

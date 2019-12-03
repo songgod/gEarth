@@ -18,6 +18,11 @@ namespace gEarthPack
 			void set(oepModelSourceOptions^ v);
 		}
 
+	internal:
+
+		virtual void binded() override;
+		virtual void unbinded() override;
+
 	private:
 
 		oepModelSourceOptions^ _driver;

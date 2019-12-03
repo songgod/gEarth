@@ -35,7 +35,7 @@ void oepMeasureDistanceHeightHandler::bind(osgEarth::MapNode* pMapNode)
 {
 	MeasureDistanceHeightHandler* mth = new MeasureDistanceHeightHandler(pMapNode);
 	mth->addEventHandler(new MeasureDistanceToolCallback());
-	setRef(mth);
+	bind(mth);
 	oepHandleMapManager::registerHandle(mth,this);
 	
 	mth->setIntersectionMask(0x1);

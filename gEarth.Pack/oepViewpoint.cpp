@@ -6,12 +6,12 @@ using namespace gEarthPack;
 
 oepViewpoint::oepViewpoint()
 {
-	setVal(new osgEarth::Viewpoint());
+	bind(new osgEarth::Viewpoint(),true);
 }
 
 oepViewpoint::oepViewpoint(osgEarth::Viewpoint& vp)
 {
-	setVal(new osgEarth::Viewpoint());
+	bind(new osgEarth::Viewpoint(),true);
 	setVal(vp);
 }
 
