@@ -59,6 +59,8 @@
 #include <osgEarthSymbology/Symbol>
 #include <osgEarthSymbology/Geometry>
 #include <osgEarthSymbology/Expression>
+#include <osgEarthSymbology/Resource>
+#include <osgEarthSymbology/ResourceLibrary>
 
 #include <osgEarthFeatures/GeometryUtils>
 #include <osgEarthFeatures/FeatureModelLayer>

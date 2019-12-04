@@ -351,6 +351,18 @@
     <ClInclude Include="oepFadeOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="oepValMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepStyleSelector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oepResourceLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -654,6 +666,18 @@
       <Filter>Features</Filter>
     </ClCompile>
     <ClCompile Include="oepFadeOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepValMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepStyleSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepResourceLibrary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

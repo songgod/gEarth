@@ -219,12 +219,15 @@
     <ClInclude Include="oepQuery.h" />
     <ClInclude Include="oepRecordScreenHandler.h" />
     <ClInclude Include="oepRefObject.h" />
+    <ClInclude Include="oepResource.h" />
+    <ClInclude Include="oepResourceLibrary.h" />
     <ClInclude Include="oepRGBColorFilter.h" />
     <ClInclude Include="oepSimpleOceanLayer.h" />
     <ClInclude Include="oepSimpleOceanLayerOptions.h" />
     <ClInclude Include="oepSimpleSkyExtension.h" />
     <ClInclude Include="oepStringExpression.h" />
     <ClInclude Include="oepStyle.h" />
+    <ClInclude Include="oepStyleSelector.h" />
     <ClInclude Include="oepStyleSheet.h" />
     <ClInclude Include="oepSymbol.h" />
     <ClInclude Include="oepTerrainLayerOptions.h" />
@@ -242,6 +245,7 @@
     <ClInclude Include="oepUnknownLayer.h" />
     <ClInclude Include="oepUtil.h" />
     <ClInclude Include="oepValList.h" />
+    <ClInclude Include="oepValMap.h" />
     <ClInclude Include="oepValVector.h" />
     <ClInclude Include="oepValObject.h" />
     <ClInclude Include="oepVector.h" />
@@ -330,12 +334,15 @@
     <ClCompile Include="oepProfileOptions.cpp" />
     <ClCompile Include="oepQuery.cpp" />
     <ClCompile Include="oepRecordScreenHandler.cpp" />
+    <ClCompile Include="oepResource.cpp" />
+    <ClCompile Include="oepResourceLibrary.cpp" />
     <ClCompile Include="oepRGBColorFilter.cpp" />
     <ClCompile Include="oepSimpleOceanLayer.cpp" />
     <ClCompile Include="oepSimpleOceanLayerOptions.cpp" />
     <ClCompile Include="oepSimpleSkyExtension.cpp" />
     <ClCompile Include="oepStringExpression.cpp" />
     <ClCompile Include="oepStyle.cpp" />
+    <ClCompile Include="oepStyleSelector.cpp" />
     <ClCompile Include="oepStyleSheet.cpp" />
     <ClCompile Include="oepSymbol.cpp" />
     <ClCompile Include="oepTerrainLayerOptions.cpp" />
@@ -353,6 +360,7 @@
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepUtil.cpp" />
     <ClCompile Include="oepValList.cpp" />
+    <ClCompile Include="oepValMap.cpp" />
     <ClCompile Include="oepValVector.cpp" />
     <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewFitter.cpp" />

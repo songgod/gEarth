@@ -2,8 +2,221 @@
 #include "oepStyleSheet.h"
 
 using namespace gEarthPack;
+using namespace osgEarth::Symbology;
+using namespace msclr::interop;
 
 oepStyleSheet::oepStyleSheet()
 {
-	bind(new osgEarth::StyleSheet());
+	bind(new StyleSheet());
+}
+
+oepStyleSheet::oepScriptDef::oepScriptDef()
+{
+	bind(new StyleSheet::ScriptDef());
+}
+
+String^ oepStyleSheet::oepScriptDef::Name::get()
+{
+	return marshal_as<String^>(ref()->name);
+}
+
+void oepStyleSheet::oepScriptDef::Name::set(String^ s)
+{
+	ref()->name = marshal_as<std::string>(s);
+	NotifyChanged("Name");
+}
+
+String^ oepStyleSheet::oepScriptDef::Code::get()
+{
+	return marshal_as<String^>(ref()->code);
+}
+
+void oepStyleSheet::oepScriptDef::Code::set(String^ s)
+{
+	ref()->code = marshal_as<std::string>(s);
+	NotifyChanged("Code");
+}
+
+String^ oepStyleSheet::oepScriptDef::Language::get()
+{
+	return marshal_as<String^>(ref()->language);
+}
+
+void oepStyleSheet::oepScriptDef::Language::set(String^ s)
+{
+	ref()->language = marshal_as<std::string>(s);
+	NotifyChanged("Language");
+}
+
+String^ oepStyleSheet::oepScriptDef::Profile::get()
+{
+	return marshal_as<String^>(ref()->profile);
+}
+
+void oepStyleSheet::oepScriptDef::Profile::set(String^ s)
+{
+	ref()->profile = marshal_as<std::string>(s);
+	NotifyChanged("Profile");
+}
+
+String^ oepStyleSheet::oepScriptDef::Url::get()
+{
+	return marshal_as<String^>(ref()->uri.mutable_value().full());
+}
+
+void oepStyleSheet::oepScriptDef::Url::set(String^ s)
+{
+	ref()->uri.mutable_value() = marshal_as<std::string>(s);
+	NotifyChanged("Url");
+}
+
+String^ oepStyleSheet::Name::get()
+{
+	return marshal_as<String^>(ref()->name().value());
+}
+
+void oepStyleSheet::Name::set(String^ s)
+{
+	ref()->name() = marshal_as<std::string>(s);
+	NotifyChanged("Name");
+}
+
+oepStyleMap^ oepStyleSheet::Styles::get()
+{
+	return _stylemap;
+}
+
+void oepStyleSheet::Styles::set(oepStyleMap^ s)
+{
+	_stylemap = s;
+	_stylemap->getVal(ref()->styles());
+	_stylemap->bind(&(ref()->styles()),false);
+	NotifyChanged("Styles");
+}
+
+oepStyle^ oepStyleSheet::DefaultStyle::get()
+{
+	oepStyle^ res = gcnew oepStyle();
+	res->bind(ref()->getDefaultStyle(),false);
+	return res;
+}
+
+oepStyleSelectorList^ oepStyleSheet::Selectors::get()
+{
+	return _selectors;
+}
+
+void oepStyleSheet::Selectors::set(oepStyleSelectorList^ s)
+{
+	_selectors = s;
+	_selectors->getVal(ref()->selectors());
+	_selectors->bind(&(ref()->selectors()), false);
+	NotifyChanged("Selectors");
+}
+
+oepResourceLibraryMap^ oepStyleSheet::Resources::get()
+{
+	return _resLibs;
+}
+
+void oepStyleSheet::Resources::set(oepResourceLibraryMap^ s)
+{
+	_resLibs = s;
+	ref()->ClearResourceLibrary();
+	for each (oepResourceLibrary^ r in s)
+	{
+		ref()->addResourceLibrary(r->ref());
+	}
+	NotifyChanged("Resources");
+}
+
+oepStyleSheet::oepScriptDef^ oepStyleSheet::Script::get()
+{
+	return _script;
+}
+
+void oepStyleSheet::Script::set(oepStyleSheet::oepScriptDef^ s)
+{
+	_script = s;
+	ref()->setScript(_script->ref());
+	NotifyChanged("Script");
+}
+
+void gEarthPack::oepStyleSheet::binded()
+{
+	_stylemap = gcnew oepStyleMap();
+	_stylemap->bind(&(ref()->styles()),false);
+	_selectors = gcnew oepStyleSelectorList();
+	_selectors->bind(&(ref()->selectors()),false);
+	_script = gcnew oepScriptDef();
+	_script->bind(ref()->script());
+	_resLibs = gcnew oepResourceLibraryMap();
+	std::vector<std::string> names = ref()->getResourceNames();
+	for (size_t i = 0; i < names.size(); i++)
+	{
+		oepResourceLibrary^ r = gcnew oepResourceLibrary();
+		r->bind(ref()->getResourceLibrary(names[i]));
+	}
+	_resLibs->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepStyleSheet::OnResourceCollectionChanged);
+}
+
+void gEarthPack::oepStyleSheet::unbinded()
+{
+	_stylemap->unbind();
+	_selectors->unbind();
+	_script->unbind();
+}
+
+void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
+{
+	switch (e->Action)
+	{
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Add:
+	{
+		if (e->NewItems != nullptr && e->NewItems->Count > 0)
+		{
+			for (int i = 0; i < e->NewItems->Count; i++)
+			{
+				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
+				if (r != nullptr)
+				{
+					ref()->addResourceLibrary(r->ref());
+				}
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Remove:
+	{
+		if (e->OldItems != nullptr && e->OldItems->Count > 0)
+		{
+			for (int i = 0; i < e->OldItems->Count; i++)
+			{
+				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
+				if (r != nullptr)
+				{
+					ref()->removeResourceLibrary(r->ref());
+				}
+			}
+		}
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Replace:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Move:
+	{
+		throw gcnew NotImplementedException();
+		break;
+	}
+	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
+	{
+		ref()->ClearResourceLibrary();
+		break;
+	}
+	default:
+		break;
+	}
 }

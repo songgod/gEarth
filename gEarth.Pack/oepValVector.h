@@ -13,6 +13,7 @@ namespace gEarthPack
 			_vector = new std::vector<LT>();
 			this->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepValVector::OnMTCollectionChanged);
 		}
+
 		!oepValVector()
 		{
 			if (_vector && _bOwn)

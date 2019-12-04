@@ -1,5 +1,6 @@
 #pragma once
 #include "oepValObject.h"
+#include "oepValMap.h"
 
 namespace gEarthPack
 {
@@ -8,6 +9,11 @@ namespace gEarthPack
 	{
 	public:
 		oepStyle();
+	};
+
+	public ref class oepStyleMap : oepValMap<oepStyle, osgEarth::Symbology::Style>
+	{
+
 	};
 }
 
