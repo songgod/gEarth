@@ -230,6 +230,7 @@
     <ClInclude Include="oepStyleSelector.h" />
     <ClInclude Include="oepStyleSheet.h" />
     <ClInclude Include="oepSymbol.h" />
+    <ClInclude Include="oepSymbolFactory.h" />
     <ClInclude Include="oepTerrainLayerOptions.h" />
     <ClInclude Include="oepTMSSourceOptions.h" />
     <ClInclude Include="oepArcGISSourceOptions.h" />
@@ -243,6 +244,7 @@
     <ClInclude Include="oepTerrainLayer.h" />
     <ClInclude Include="oepTileSourceOptions.h" />
     <ClInclude Include="oepUnknownLayer.h" />
+    <ClInclude Include="oepUnkownSymbol.h" />
     <ClInclude Include="oepUtil.h" />
     <ClInclude Include="oepValList.h" />
     <ClInclude Include="oepValMap.h" />
@@ -345,6 +347,7 @@
     <ClCompile Include="oepStyleSelector.cpp" />
     <ClCompile Include="oepStyleSheet.cpp" />
     <ClCompile Include="oepSymbol.cpp" />
+    <ClCompile Include="oepSymbolFactory.cpp" />
     <ClCompile Include="oepTerrainLayerOptions.cpp" />
     <ClCompile Include="oepTMSSourceOptions.cpp" />
     <ClCompile Include="oepArcGISSourceOptions.cpp" />
@@ -358,6 +361,7 @@
     <ClCompile Include="oepTerrainLayer.cpp" />
     <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
+    <ClCompile Include="oepUnkownSymbol.cpp" />
     <ClCompile Include="oepUtil.cpp" />
     <ClCompile Include="oepValList.cpp" />
     <ClCompile Include="oepValMap.cpp" />

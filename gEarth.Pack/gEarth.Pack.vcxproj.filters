@@ -355,13 +355,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="oepStyleSelector.h">
-      <Filter>Header Files</Filter>
+      <Filter>Symbology</Filter>
     </ClInclude>
-    <ClInclude Include="oepResource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="oepSymbolFactory.h">
+      <Filter>Symbology</Filter>
     </ClInclude>
     <ClInclude Include="oepResourceLibrary.h">
-      <Filter>Header Files</Filter>
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepResource.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepUnkownSymbol.h">
+      <Filter>Symbology</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -671,14 +677,20 @@
     <ClCompile Include="oepValMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="oepStyleSelector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="oepResource.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Symbology</Filter>
     </ClCompile>
     <ClCompile Include="oepResourceLibrary.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepStyleSelector.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepSymbolFactory.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepUnkownSymbol.cpp">
+      <Filter>Symbology</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

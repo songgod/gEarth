@@ -154,7 +154,7 @@ void gEarthPack::oepStyleSheet::binded()
 	std::vector<std::string> names = ref()->getResourceNames();
 	for (size_t i = 0; i < names.size(); i++)
 	{
-		oepResourceLibrary^ r = gcnew oepResourceLibrary();
+		oepResourceLibrary^ r = gcnew oepResourceLibrary("","");
 		r->bind(ref()->getResourceLibrary(names[i]));
 	}
 	_resLibs->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepStyleSheet::OnResourceCollectionChanged);

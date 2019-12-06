@@ -1,6 +1,7 @@
 #pragma once
 #include "oepRefObject.h"
 #include "oepValMap.h"
+#include "oepResource.h"
 using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
@@ -9,7 +10,36 @@ namespace gEarthPack
 		public oepRefObject<osgEarth::Symbology::ResourceLibrary>
 	{
 	public:
-		oepResourceLibrary();
+		oepResourceLibrary(String^ name, String^ url);
+
+	public:
+
+		virtual property String^ Name
+		{
+			String^ get() override;
+			void set(String^ p) override;
+		}
+
+		property String^ Uri
+		{
+			String^ get();
+			void set(String^ p);
+		}
+		
+		property oepResourceCollection^ Resources
+		{
+			oepResourceCollection^ get();
+			void set(oepResourceCollection^ p);
+		}
+
+	public:
+
+		virtual void binded() override;
+		virtual void unbinded() override;
+
+	private:
+
+		oepResourceCollection^ _resources;
 	};
 
 	public ref class oepResourceLibraryMap : public ObservableCollection<oepResourceLibrary^>
