@@ -2,7 +2,7 @@
 #include "oepDriverConfigOptions.h"
 
 using namespace gEarthPack;
-using namespace msclr::interop;
+
 
 oepDriverConfigOptions::oepDriverConfigOptions()
 {
@@ -10,11 +10,11 @@ oepDriverConfigOptions::oepDriverConfigOptions()
 
 String^ oepDriverConfigOptions::Driver::get()
 {
-	return marshal_as<String^>(as<osgEarth::DriverConfigOptions>()->getDriver());
+	return Str2Cli(as<osgEarth::DriverConfigOptions>()->getDriver());
 }
 
 void oepDriverConfigOptions::Driver::set(String^ p)
 {
-	as<osgEarth::Features::DriverConfigOptions>()->setDriver(marshal_as<std::string>(p));
+	as<osgEarth::Features::DriverConfigOptions>()->setDriver(Str2Std(p));
 	NotifyChanged("Name");
 }

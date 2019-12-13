@@ -7,6 +7,26 @@ namespace gEarthPack
 	{
 	public:
 		oepFadeOptions();
+
+	public:
+
+		property float Duration
+		{
+			float get();
+			void set(float p);
+		}
+
+		property float MaxRange
+		{
+			float get();
+			void set(float p);
+		}
+
+		property float AttenuationDistance
+		{
+			float get();
+			void set(float p);
+		}
 	};
 }
 

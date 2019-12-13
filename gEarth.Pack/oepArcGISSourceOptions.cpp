@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "oepArcGISSourceOptions.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 
 oepArcGISSourceOptions::oepArcGISSourceOptions()
@@ -12,40 +12,40 @@ oepArcGISSourceOptions::oepArcGISSourceOptions()
 
 String^ oepArcGISSourceOptions::url::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::ArcGISOptions*)(_handle))->url()->full());
+	return Str2Cli(((osgEarth::Drivers::ArcGISOptions*)(_handle))->url()->full());
 }
 
 void oepArcGISSourceOptions::url::set(String^ v)
 {
-	((osgEarth::Drivers::ArcGISOptions*)(_handle))->url() = marshal_as<std::string>(v);
+	((osgEarth::Drivers::ArcGISOptions*)(_handle))->url() = Str2Std(v);
 }
 
 String^ oepArcGISSourceOptions::token::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::ArcGISOptions*)(_handle))->token().get());
+	return Str2Cli(((osgEarth::Drivers::ArcGISOptions*)(_handle))->token().get());
 }
 
 void oepArcGISSourceOptions::token::set(String^ v)
 {
-	((osgEarth::Drivers::ArcGISOptions*)(_handle))->token() = marshal_as<std::string>(v);
+	((osgEarth::Drivers::ArcGISOptions*)(_handle))->token() = Str2Std(v);
 }
 
 String^ oepArcGISSourceOptions::format::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::ArcGISOptions*)(_handle))->format().get());
+	return Str2Cli(((osgEarth::Drivers::ArcGISOptions*)(_handle))->format().get());
 }
 
 void oepArcGISSourceOptions::format::set(String^ v)
 {
-	((osgEarth::Drivers::ArcGISOptions*)(_handle))->format() = marshal_as<std::string>(v);
+	((osgEarth::Drivers::ArcGISOptions*)(_handle))->format() = Str2Std(v);
 }
 
 String^ oepArcGISSourceOptions::layers::get()
 {
-	return marshal_as<String^>(((osgEarth::Drivers::ArcGISOptions*)(_handle))->layers().get());
+	return Str2Cli(((osgEarth::Drivers::ArcGISOptions*)(_handle))->layers().get());
 }
 
 void oepArcGISSourceOptions::layers::set(String^ v)
 {
-	((osgEarth::Drivers::ArcGISOptions*)(_handle))->layers() = marshal_as<std::string>(v);
+	((osgEarth::Drivers::ArcGISOptions*)(_handle))->layers() = Str2Std(v);
 }

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "oepSimpleOceanLayerOptions.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 oepSimpleOceanLayerOptions::oepSimpleOceanLayerOptions()
 {
@@ -34,12 +34,12 @@ void oepSimpleOceanLayerOptions::MaxAltitude::set(float v)
 
 String^ oepSimpleOceanLayerOptions::MaskLayer::get()
 {
-	return marshal_as<String^>(as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer().value());
+	return Str2Cli(as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer().value());
 }
 
 void oepSimpleOceanLayerOptions::MaskLayer::set(String^ v)
 {
-	as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer() = marshal_as<std::string>(v);
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->maskLayer() = Str2Std(v);
 	NotifyChanged("MaskLayer");
 }
 
@@ -56,12 +56,12 @@ void oepSimpleOceanLayerOptions::UseBathymetry::set(bool b)
 
 String^ oepSimpleOceanLayerOptions::TextureUrl::get()
 {
-	return marshal_as<String^>(as<osgEarth::Util::SimpleOceanLayerOptions>()->texture().value().full());
+	return Str2Cli(as<osgEarth::Util::SimpleOceanLayerOptions>()->texture().value().full());
 }
 
 void oepSimpleOceanLayerOptions::TextureUrl::set(String^ url)
 {
-	as<osgEarth::Util::SimpleOceanLayerOptions>()->texture()= marshal_as<std::string>(url);
+	as<osgEarth::Util::SimpleOceanLayerOptions>()->texture()= Str2Std(url);
 	NotifyChanged("TextureUrl");
 }
 

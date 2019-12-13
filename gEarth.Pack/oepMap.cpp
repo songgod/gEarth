@@ -4,7 +4,7 @@
 #include "oepLayerFactory.h"
 #include "oepExtensionFactory.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 
 oepMap::oepMap()
@@ -21,7 +21,7 @@ bool oepMap::load(String^ url)
 	if (!Url->Empty)
 		return false;
 
-	osg::ref_ptr<osg::Node> node = osgDB::readNodeFile(marshal_as<std::string>(url));
+	osg::ref_ptr<osg::Node> node = osgDB::readNodeFile(Str2Std(url));
 	if (!node)
 		return false;
 
@@ -52,7 +52,7 @@ void oepMap::InitLayers()
 		if(!pVisibleLayer)
 			continue;
 		std::string type = pLayer->options().getConfig().key();
-		oepLayer^ layer = oepLayerFactory::creatorLayer(marshal_as<String^>(type), IntPtr(pLayer));
+		oepLayer^ layer = oepLayerFactory::creatorLayer(Str2Cli(type), IntPtr(pLayer));
 		if(layer==nullptr)
 			continue;
 		
@@ -72,7 +72,7 @@ void oepMap::InitExtensions()
 	{
 		osgEarth::Extension* oeextension = extensions[i];
 		std::string type = oeextension->getConfigKey();
-		oepExtension^ extension = oepExtensionFactory::creatorExtenson(marshal_as<String^>(type), IntPtr(oeextension));
+		oepExtension^ extension = oepExtensionFactory::creatorExtenson(Str2Cli(type), IntPtr(oeextension));
 		if (extension == nullptr)
 			continue;
 
@@ -83,12 +83,12 @@ void oepMap::InitExtensions()
 
 bool oepMap::save()
 {
-	return osgDB::writeNodeFile(*_handle->getValue(), marshal_as<std::string>(Url));
+	return osgDB::writeNodeFile(*_handle->getValue(), Str2Std(Url));
 }
 
 bool oepMap::saveAs(String^ url)
 {
-	if (osgDB::writeNodeFile(*_handle->getValue(), marshal_as<std::string>(url)))
+	if (osgDB::writeNodeFile(*_handle->getValue(), Str2Std(url)))
 	{
 		Url = url;
 		return true;
@@ -257,7 +257,7 @@ String^ oepMap::Name::get()
 	osgEarth::Map* pmap = getMap();
 	if (!pmap)
 		return "";
-	return marshal_as<String^>(pmap->getName());
+	return Str2Cli(pmap->getName());
 }
 
 void oepMap::Name::set(String^ v)
@@ -265,6 +265,6 @@ void oepMap::Name::set(String^ v)
 	osgEarth::Map* pmap = getMap();
 	if (!pmap)
 		return;
-	pmap->setName(marshal_as<std::string>(v));
+	pmap->setName(Str2Std(v));
 	NotifyChanged("Name");
 }

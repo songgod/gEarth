@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepStringExpression::oepStringExpression()
 {
@@ -12,23 +12,23 @@ oepStringExpression::oepStringExpression()
 
 String^ oepStringExpression::Infix::get()
 {
-	return marshal_as<String^>(val()->expr());
+	return Str2Cli(val()->expr());
 }
 
 void oepStringExpression::Infix::set(String^ p)
 {
-	val()->setInfix(marshal_as<std::string>(p));
+	val()->setInfix(Str2Std(p));
 	NotifyChanged("Infix");
 }
 
 String^ oepStringExpression::Literal::get()
 {
-	return marshal_as<String^>(val()->eval());
+	return Str2Cli(val()->eval());
 }
 
 void oepStringExpression::Literal::set(String^ p)
 {
-	val()->setLiteral(marshal_as<std::string>(p));
+	val()->setLiteral(Str2Std(p));
 	NotifyChanged("Literal");
 }
 

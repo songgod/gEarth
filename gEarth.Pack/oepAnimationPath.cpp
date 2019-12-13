@@ -5,7 +5,7 @@
 #include "AnimationPathOptions.h"
 
 using namespace gEarthPack;
-using namespace msclr::interop;
+
 
 oepAnimationPath::oepAnimationPath()
 {
@@ -28,8 +28,8 @@ oepAnimationPath^ oepAnimationPath::From(String^ url)
 	if (String::IsNullOrEmpty(url))
 		return nullptr;
 	osgEarth::AnimationPath::AnimationPathInfo* info = new osgEarth::AnimationPath::AnimationPathInfo();
-	info->name() = marshal_as<std::string>(System::IO::Path::GetFileNameWithoutExtension(url));
-	info->url() = marshal_as<std::string>(url);
+	info->name() = Str2Std(System::IO::Path::GetFileNameWithoutExtension(url));
+	info->url() = Str2Std(url);
 	
 	oepAnimationPath^ res = gcnew oepAnimationPath(info);
 	return res;
@@ -39,7 +39,7 @@ bool oepAnimationPath::Save()
 {
 	if (_handle!=NULL && _handle->getValue()!=NULL && _handle->getValue()->animationpath()!=NULL && !_handle->getValue()->animationpath()->empty() && !String::IsNullOrEmpty(Url))
 	{
-		std::string url = marshal_as<std::string>(Url);
+		std::string url = Str2Std(Url);
 		std::ofstream ofs(url);
 		ofs.setf(std::ios::fixed, std::ios::floatfield);
 		ofs.precision(15);
@@ -148,7 +148,7 @@ String^ oepAnimationPath::Name::get()
 	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return "";
-	return marshal_as<String^>(ap->name());
+	return Str2Cli(ap->name());
 }
 
 void oepAnimationPath::Name::set(String^ v)
@@ -157,7 +157,7 @@ void oepAnimationPath::Name::set(String^ v)
 	if (!ap)
 		return;
 
-	ap->name() = marshal_as<std::string>(v);
+	ap->name() = Str2Std(v);
 	NotifyChanged("Name");
 }
 
@@ -166,7 +166,7 @@ String^ oepAnimationPath::Url::get()
 	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
 	if (!ap)
 		return "";
-	return marshal_as<String^>(ap->url());
+	return Str2Cli(ap->url());
 }
 
 void oepAnimationPath::Url::set(String^ v)
@@ -175,7 +175,7 @@ void oepAnimationPath::Url::set(String^ v)
 	if (!ap)
 		return;
 
-	ap->url() = marshal_as<std::string>(v);
+	ap->url() = Str2Std(v);
 	NotifyChanged("Url");
 }
 

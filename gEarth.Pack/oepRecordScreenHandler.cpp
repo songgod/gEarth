@@ -2,12 +2,12 @@
 #include "oepRecordScreenHandler.h"
 #include "RecordScreenHandler.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 
 oepRecordScreenHandler::oepRecordScreenHandler(String^ file, float fps)
 {
-	bind(new RecordScreenHandler(marshal_as<std::string>(file),fps));
+	bind(new RecordScreenHandler(Str2Std(file),fps));
 }
 
 void oepRecordScreenHandler::Save()

@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepStyleSelector::oepStyleSelector()
 {
@@ -12,23 +12,23 @@ oepStyleSelector::oepStyleSelector()
 
 String^ oepStyleSelector::Name::get()
 {
-	return marshal_as<String^>(val()->name());
+	return Str2Cli(val()->name());
 }
 
 void oepStyleSelector::Name::set(String^ p)
 {
-	val()->name() = marshal_as<std::string>(p);
+	val()->name() = Str2Std(p);
 	NotifyChanged("Name");
 }
 
 String^ oepStyleSelector::StyleName::get()
 {
-	return marshal_as<String^>(val()->styleName().mutable_value());
+	return Str2Cli(val()->styleName().mutable_value());
 }
 
 void oepStyleSelector::StyleName::set(String^ p)
 {
-	val()->styleName() = marshal_as<std::string>(p);
+	val()->styleName() = Str2Std(p);
 	NotifyChanged("StyleName");
 }
 
@@ -58,7 +58,7 @@ void oepStyleSelector::Query::set(oepQuery^ p)
 
 String^ oepStyleSelector::SelectStyleName::get()
 {
-	return marshal_as<String^>(val()->getSelectedStyleName());
+	return Str2Cli(val()->getSelectedStyleName());
 }
 
 void oepStyleSelector::binded()

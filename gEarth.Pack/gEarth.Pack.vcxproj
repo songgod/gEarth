@@ -362,7 +362,11 @@
     <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnknownLayer.cpp" />
     <ClCompile Include="oepUnkownSymbol.cpp" />
-    <ClCompile Include="oepUtil.cpp" />
+    <ClCompile Include="oepUtil.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="oepValList.cpp" />
     <ClCompile Include="oepValMap.cpp" />
     <ClCompile Include="oepValVector.cpp" />

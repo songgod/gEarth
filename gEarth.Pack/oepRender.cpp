@@ -8,7 +8,7 @@
 #include "oepHandleMapManager.h"
 #include "MouseCoordHandler.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 
 namespace

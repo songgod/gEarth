@@ -2,7 +2,7 @@
 #include "oepProfileOptions.h"
 
 using namespace gEarthPack;
-using namespace msclr::interop;
+
 
 oepProfileOptions::oepProfileOptions()
 {
@@ -22,34 +22,34 @@ void gEarthPack::oepProfileOptions::unbinded()
 
 String^ oepProfileOptions::NamedProfile::get()
 {
-	return marshal_as<String^>(as<osgEarth::ProfileOptions>()->namedProfile().value());
+	return Str2Cli(as<osgEarth::ProfileOptions>()->namedProfile().value());
 }
 
 void oepProfileOptions::NamedProfile::set(String^ v)
 {
-	as<osgEarth::ProfileOptions>()->namedProfile() = marshal_as<std::string>(v);
+	as<osgEarth::ProfileOptions>()->namedProfile() = Str2Std(v);
 	NotifyChanged("NamedProfile");
 }
 
 String^ oepProfileOptions::SrsString::get()
 {
-	return marshal_as<String^>(as<osgEarth::ProfileOptions>()->srsString().value());
+	return Str2Cli(as<osgEarth::ProfileOptions>()->srsString().value());
 }
 
 void oepProfileOptions::SrsString::set(String^ v)
 {
-	as<osgEarth::ProfileOptions>()->srsString() = marshal_as<std::string>(v);
+	as<osgEarth::ProfileOptions>()->srsString() = Str2Std(v);
 	NotifyChanged("SrsString");
 }
 
 String^ oepProfileOptions::VsrsString::get()
 {
-	return marshal_as<String^>(as<osgEarth::ProfileOptions>()->vsrsString().value());
+	return Str2Cli(as<osgEarth::ProfileOptions>()->vsrsString().value());
 }
 
 void oepProfileOptions::VsrsString::set(String^ v)
 {
-	as<osgEarth::ProfileOptions>()->vsrsString() = marshal_as<std::string>(v);
+	as<osgEarth::ProfileOptions>()->vsrsString() = Str2Std(v);
 	NotifyChanged("VsrsString");
 }
 

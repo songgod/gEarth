@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "oepOGRFeatureSourceOptions.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 using namespace osgEarth::Drivers;
 
@@ -26,32 +26,32 @@ void gEarthPack::oepOGRFeatureSourceOptions::unbinded()
 
 String^ oepOGRFeatureSourceOptions::Url::get()
 {
-	return marshal_as<String^>(as<OGRFeatureOptions>()->url()->full());
+	return Str2Cli(as<OGRFeatureOptions>()->url()->full());
 }
 
 void oepOGRFeatureSourceOptions::Url::set(String^ p)
 {
-	as<OGRFeatureOptions>()->url() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->url() = Str2Std(p);
 }
 
 String^ oepOGRFeatureSourceOptions::Connection::get()
 {
-	return marshal_as<String^>(as<OGRFeatureOptions>()->connection().value());
+	return Str2Cli(as<OGRFeatureOptions>()->connection().value());
 }
 
 void oepOGRFeatureSourceOptions::Connection::set(String^ p)
 {
-	as<OGRFeatureOptions>()->connection() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->connection() = Str2Std(p);
 }
 
 String^ oepOGRFeatureSourceOptions::OgrDriver::get()
 {
-	return marshal_as<String^>(as<OGRFeatureOptions>()->ogrDriver().value());
+	return Str2Cli(as<OGRFeatureOptions>()->ogrDriver().value());
 }
 
 void oepOGRFeatureSourceOptions::OgrDriver::set(String^ p)
 {
-	as<OGRFeatureOptions>()->ogrDriver() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->ogrDriver() = Str2Std(p);
 }
 
 bool oepOGRFeatureSourceOptions::BuildSpatialIndex::get()
@@ -92,22 +92,22 @@ void oepOGRFeatureSourceOptions::GeometryConfig::set(oepConfig^ p)
 
 String^ oepOGRFeatureSourceOptions::GeometryUrl::get()
 {
-	return marshal_as<String^>(as<OGRFeatureOptions>()->geometryUrl().value());
+	return Str2Cli(as<OGRFeatureOptions>()->geometryUrl().value());
 }
 
 void oepOGRFeatureSourceOptions::GeometryUrl::set(String^ p)
 {
-	as<OGRFeatureOptions>()->geometryUrl() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->geometryUrl() = Str2Std(p);
 }
 
 String^ oepOGRFeatureSourceOptions::Layer::get()
 {
-	return marshal_as<String^>(as<OGRFeatureOptions>()->layer().value());
+	return Str2Cli(as<OGRFeatureOptions>()->layer().value());
 }
 
 void oepOGRFeatureSourceOptions::Layer::set(String^ p)
 {
-	as<OGRFeatureOptions>()->layer() = marshal_as<std::string>(p);
+	as<OGRFeatureOptions>()->layer() = Str2Std(p);
 }
 
 oepQuery^ oepOGRFeatureSourceOptions::Query::get()

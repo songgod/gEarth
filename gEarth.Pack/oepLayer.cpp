@@ -3,7 +3,7 @@
 #include "oepHandle.h"
 #include "oepLayerFactory.h"
 
-using namespace msclr::interop;
+
 using namespace gEarthPack;
 
 oepLayer::oepLayer()
@@ -16,7 +16,7 @@ String^ oepLayer::StatusString::get()
 	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return "";
-	return marshal_as<String^>(plyr->getStatus().toString());
+	return Str2Cli(plyr->getStatus().toString());
 }
 
 bool oepLayer::IsOK::get()
@@ -32,7 +32,7 @@ String^ oepLayer::Name::get()
 	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return "";
-	return marshal_as<String^>(plyr->getName());
+	return Str2Cli(plyr->getName());
 }
 
 void oepLayer::Name::set(String^ v)
@@ -40,6 +40,6 @@ void oepLayer::Name::set(String^ v)
 	osgEarth::Layer* plyr = ref();
 	if (!plyr)
 		return;
-	plyr->setName(marshal_as<std::string>(v));
+	plyr->setName(Str2Std(v));
 	NotifyChanged("Name");
 }

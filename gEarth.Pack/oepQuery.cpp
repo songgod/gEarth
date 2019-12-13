@@ -2,7 +2,7 @@
 #include "oepQuery.h"
 
 using namespace gEarthPack;
-using namespace msclr::interop;
+
 
 oepQuery::oepQuery()
 {
@@ -38,23 +38,23 @@ void oepQuery::Bounds::set(oepBounds^ p)
 
 String^ oepQuery::Expression::get()
 {
-	return marshal_as<String^>(val()->expression().value());
+	return Str2Cli(val()->expression().value());
 }
 
 void oepQuery::Expression::set(String^ p)
 {
-	val()->expression() = marshal_as<std::string>(p);
+	val()->expression() = Str2Std(p);
 	NotifyChanged("Expression");
 }
 
 String^ oepQuery::OrderBy::get()
 {
-	return marshal_as<String^>(val()->orderby().value());
+	return Str2Cli(val()->orderby().value());
 }
 
 void oepQuery::OrderBy::set(String^ p)
 {
-	val()->orderby() = marshal_as<std::string>(p);
+	val()->orderby() = Str2Std(p);
 	NotifyChanged("OrderBy");
 }
 

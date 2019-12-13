@@ -4,7 +4,7 @@
 using namespace gEarthPack;
 using namespace osgEarth;
 using namespace osgEarth::Features;
-using namespace msclr::interop;
+
 
 oepFeatureSourceOptions::oepFeatureSourceOptions():_profile(nullptr), _filters(nullptr)
 {
@@ -27,12 +27,12 @@ void gEarthPack::oepFeatureSourceOptions::unbinded()
 
 String^ oepFeatureSourceOptions::Name::get()
 {
-	return marshal_as<String^>(as<FeatureSourceOptions>()->name().value());
+	return Str2Cli(as<FeatureSourceOptions>()->name().value());
 }
 
 void oepFeatureSourceOptions::Name::set(String^ v)
 {
-	as<FeatureSourceOptions>()->name() = marshal_as<std::string>(v);
+	as<FeatureSourceOptions>()->name() = Str2Std(v);
 	NotifyChanged("Name");
 }
 
@@ -90,11 +90,11 @@ void oepFeatureSourceOptions::GeoInterp::set(oepGeoInterpolation geoinerp)
 
 String^ oepFeatureSourceOptions::FidAttribute::get()
 {
-	return marshal_as<String^>(as<FeatureSourceOptions>()->fidAttribute().value());
+	return Str2Cli(as<FeatureSourceOptions>()->fidAttribute().value());
 }
 
 void oepFeatureSourceOptions::FidAttribute::set(String^ v)
 {
-	as<FeatureSourceOptions>()->fidAttribute() = marshal_as<std::string>(v);
+	as<FeatureSourceOptions>()->fidAttribute() = Str2Std(v);
 	NotifyChanged("FidAttribute");
 }

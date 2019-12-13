@@ -4,7 +4,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepStyle::oepStyle()
 {
@@ -26,7 +26,7 @@ void oepStyle::binded()
 	for (int i = 0; i < val()->symbols().size(); i++)
 	{
 		Symbol* pSymbol = val()->symbols()[i];
-		String^ type = marshal_as<String^>(pSymbol->getConfig().key());
+		String^ type = Str2Cli(pSymbol->getConfig().key());
 		oepSymbol^ symbol = oepSymbolFactory::creatorSymbol(type, IntPtr(pSymbol));
 		_symbols->Add(symbol);
 	}
@@ -99,12 +99,12 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 
 String^ oepStyle::Name::get()
 {
-	return marshal_as<String^>(val()->getName());
+	return Str2Cli(val()->getName());
 }
 
 void oepStyle::Name::set(String^ p)
 {
-	val()->setName(marshal_as<std::string>(p));
+	val()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 

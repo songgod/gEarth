@@ -2,7 +2,7 @@
 #include "oepConfig.h"
 
 using namespace gEarthPack;
-using namespace msclr::interop;
+
 
 oepConfig::oepConfig()
 {
@@ -22,12 +22,12 @@ void oepConfig::unbinded()
 
 String^ oepConfig::Referrer::get()
 {
-	return marshal_as<String^>(as<osgEarth::Config>()->referrer());
+	return Str2Cli(as<osgEarth::Config>()->referrer());
 }
 
 void oepConfig::Referrer::set(String^ p)
 {
-	as<osgEarth::Config>()->setReferrer(marshal_as<std::string>(p));
+	as<osgEarth::Config>()->setReferrer(Str2Std(p));
 	NotifyChanged("Referrer");
 }
 
@@ -44,23 +44,23 @@ void oepConfig::IsLocation::set(bool p)
 
 String^ oepConfig::ExternalRef::get()
 {
-	return marshal_as<String^>(as<osgEarth::Config>()->externalRef());
+	return Str2Cli(as<osgEarth::Config>()->externalRef());
 }
 
 void oepConfig::ExternalRef::set(String^ p)
 {
-	as<osgEarth::Config>()->setExternalRef(marshal_as<std::string>(p));
+	as<osgEarth::Config>()->setExternalRef(Str2Std(p));
 	NotifyChanged("ExternalRef");
 }
 
 String^ oepConfig::Joson::get()
 {
-	return marshal_as<String^>(as<osgEarth::Config>()->toJSON());
+	return Str2Cli(as<osgEarth::Config>()->toJSON());
 }
 
 void oepConfig::Joson::set(String^ p)
 {
-	as<osgEarth::Config>()->fromJSON(marshal_as<std::string>(p));
+	as<osgEarth::Config>()->fromJSON(Str2Std(p));
 	NotifyChanged("Joson");
 }
 
@@ -81,23 +81,23 @@ bool gEarthPack::oepConfig::IsNumber::get()
 
 String^ oepConfig::Key::get()
 {
-	return marshal_as<String^>(as<osgEarth::Config>()->key());
+	return Str2Cli(as<osgEarth::Config>()->key());
 }
 
 void oepConfig::Key::set(String^ p)
 {
-	as<osgEarth::Config>()->key() = marshal_as<std::string>(p);
+	as<osgEarth::Config>()->key() = Str2Std(p);
 	NotifyChanged("Key");
 }
 
 String^ oepConfig::StrValue::get()
 {
-	return marshal_as<String^>(as<osgEarth::Config>()->value());
+	return Str2Cli(as<osgEarth::Config>()->value());
 }
 
 void oepConfig::StrValue::set(String^ p)
 {
-	as<osgEarth::Config>()->setValue<std::string>(marshal_as<std::string>(p));
+	as<osgEarth::Config>()->setValue<std::string>(Str2Std(p));
 	NotifyChanged("StrValue");
 }
 

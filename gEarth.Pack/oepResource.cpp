@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepResource::oepResource()
 {
@@ -16,7 +16,7 @@ void oepResource::binded()
 	TagSet::const_iterator citer = tagset.begin();
 	for (citer; citer != tagset.end(); ++citer)
 	{
-		_tags->Add(marshal_as<String^>(*citer));
+		_tags->Add(Str2Cli(*citer));
 	}
 	_tags->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepResource::OnMTCollectionChanged);
 }
@@ -39,7 +39,7 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 				String^ tag = dynamic_cast<String^>(e->NewItems[i]);
 				if (tag != nullptr)
 				{
-					ref()->addTag(marshal_as<std::string>(tag));
+					ref()->addTag(Str2Std(tag));
 				}
 			}
 		}
@@ -54,7 +54,7 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 				String^ tag = dynamic_cast<String^>(e->OldItems[i]);
 				if (tag != nullptr)
 				{
-					ref()->removeTag(marshal_as<std::string>(tag));
+					ref()->removeTag(Str2Std(tag));
 				}
 			}
 		}
@@ -87,12 +87,12 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 
 String^ oepResource::Name::get()
 {
-	return marshal_as<String^>(ref()->getName());
+	return Str2Cli(ref()->getName());
 }
 
 void oepResource::Name::set(String^ p)
 {
-	ref()->setName(marshal_as<std::string>(p));
+	ref()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
@@ -113,7 +113,7 @@ void oepResource::Tags::set(ObservableCollection<String^>^ p)
 	_tags = p;
 	for each (String^ tag in p)
 	{
-		ref()->addTag(marshal_as<std::string>(tag));
+		ref()->addTag(Str2Std(tag));
 	}
 	_tags->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepResource::OnMTCollectionChanged);
 

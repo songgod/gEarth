@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepStyleSheet::oepStyleSheet()
 {
@@ -17,67 +17,67 @@ oepStyleSheet::oepScriptDef::oepScriptDef()
 
 String^ oepStyleSheet::oepScriptDef::Name::get()
 {
-	return marshal_as<String^>(ref()->name);
+	return Str2Cli(ref()->name);
 }
 
 void oepStyleSheet::oepScriptDef::Name::set(String^ s)
 {
-	ref()->name = marshal_as<std::string>(s);
+	ref()->name = Str2Std(s);
 	NotifyChanged("Name");
 }
 
 String^ oepStyleSheet::oepScriptDef::Code::get()
 {
-	return marshal_as<String^>(ref()->code);
+	return Str2Cli(ref()->code);
 }
 
 void oepStyleSheet::oepScriptDef::Code::set(String^ s)
 {
-	ref()->code = marshal_as<std::string>(s);
+	ref()->code = Str2Std(s);
 	NotifyChanged("Code");
 }
 
 String^ oepStyleSheet::oepScriptDef::Language::get()
 {
-	return marshal_as<String^>(ref()->language);
+	return Str2Cli(ref()->language);
 }
 
 void oepStyleSheet::oepScriptDef::Language::set(String^ s)
 {
-	ref()->language = marshal_as<std::string>(s);
+	ref()->language = Str2Std(s);
 	NotifyChanged("Language");
 }
 
 String^ oepStyleSheet::oepScriptDef::Profile::get()
 {
-	return marshal_as<String^>(ref()->profile);
+	return Str2Cli(ref()->profile);
 }
 
 void oepStyleSheet::oepScriptDef::Profile::set(String^ s)
 {
-	ref()->profile = marshal_as<std::string>(s);
+	ref()->profile = Str2Std(s);
 	NotifyChanged("Profile");
 }
 
 String^ oepStyleSheet::oepScriptDef::Url::get()
 {
-	return marshal_as<String^>(ref()->uri.mutable_value().full());
+	return Str2Cli(ref()->uri.mutable_value().full());
 }
 
 void oepStyleSheet::oepScriptDef::Url::set(String^ s)
 {
-	ref()->uri.mutable_value() = marshal_as<std::string>(s);
+	ref()->uri.mutable_value() = Str2Std(s);
 	NotifyChanged("Url");
 }
 
 String^ oepStyleSheet::Name::get()
 {
-	return marshal_as<String^>(ref()->name().value());
+	return Str2Cli(ref()->name().value());
 }
 
 void oepStyleSheet::Name::set(String^ s)
 {
-	ref()->name() = marshal_as<std::string>(s);
+	ref()->name() = Str2Std(s);
 	NotifyChanged("Name");
 }
 

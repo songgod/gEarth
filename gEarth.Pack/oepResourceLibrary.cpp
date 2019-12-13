@@ -3,32 +3,32 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
-using namespace msclr::interop;
+
 
 oepResourceLibrary::oepResourceLibrary(String^ name, String^ url)
 {
-	bind(new ResourceLibrary(marshal_as<std::string>(name), osgEarth::URI(marshal_as<std::string>(url))));
+	bind(new ResourceLibrary(Str2Std(name), osgEarth::URI(Str2Std(url))));
 }
 
 String^ oepResourceLibrary::Name::get()
 {
-	return marshal_as<String^>(ref()->getName());
+	return Str2Cli(ref()->getName());
 }
 
 void oepResourceLibrary::Name::set(String^ p)
 {
-	ref()->setName(marshal_as<std::string>(p));
+	ref()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
 String^ oepResourceLibrary::Uri::get()
 {
-	return marshal_as<String^>(ref()->uri().mutable_value().full());
+	return Str2Cli(ref()->uri().mutable_value().full());
 }
 
 void oepResourceLibrary::Uri::set(String^ p)
 {
-	ref()->uri() = (marshal_as<std::string>(p));
+	ref()->uri() = (Str2Std(p));
 	NotifyChanged("Uri");
 }
 
@@ -49,7 +49,7 @@ void oepResourceLibrary::binded()
 	/*for (int i = 0; i < ref()->symbols().size(); i++)
 	{
 		Symbol* pSymbol = val()->symbols()[i];
-		String^ type = marshal_as<String^>(pSymbol->getConfig().key());
+		String^ type = Str2Cli(pSymbol->getConfig().key());
 		oepSymbol^ symbol = oepSymbolFactory::creatorSymbol(type, IntPtr(pSymbol));
 		_symbols->Add(symbol);
 	}
