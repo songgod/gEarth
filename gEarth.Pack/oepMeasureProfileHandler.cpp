@@ -50,7 +50,8 @@ oepMeasureProfileHandler::oepMeasureProfileHandler():_totaldistance(0.0), _minel
 
 void oepMeasureProfileHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureProfileHandler* mth = new MeasureProfileHandler(pMapNode);
+	MeasureProfileHandler* mth = new MeasureProfileHandler();
+	mth->setMapNode(pMapNode);
 	mth->getProfileCalculator()->addChangedCallback(new MeasureProfileCallback(mth));
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);

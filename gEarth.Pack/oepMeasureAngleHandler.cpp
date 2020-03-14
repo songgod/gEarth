@@ -30,7 +30,8 @@ oepMeasureAngleHandler::oepMeasureAngleHandler() :_angle(0.0)
 
 void oepMeasureAngleHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureAngleHandler* mth = new MeasureAngleHandler(pMapNode);
+	MeasureAngleHandler* mth = new MeasureAngleHandler();
+	mth->setMapNode(pMapNode);
 	mth->addEventHandler(new MeasureAngleToolCallback());
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);

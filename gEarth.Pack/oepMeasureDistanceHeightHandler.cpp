@@ -33,7 +33,8 @@ oepMeasureDistanceHeightHandler::oepMeasureDistanceHeightHandler() : _distance(0
 
 void oepMeasureDistanceHeightHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureDistanceHeightHandler* mth = new MeasureDistanceHeightHandler(pMapNode);
+	MeasureDistanceHeightHandler* mth = new MeasureDistanceHeightHandler();
+	mth->setMapNode(pMapNode);
 	mth->addEventHandler(new MeasureDistanceToolCallback());
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth,this);

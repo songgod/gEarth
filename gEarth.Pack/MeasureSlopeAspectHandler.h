@@ -16,7 +16,7 @@ namespace gEarthPack
 		typedef std::list< osg::ref_ptr< MeasureSlopeAspectEventHandler > > MeasureSlopeAspectEventHandlerList;
 
 	public:
-		MeasureSlopeAspectHandler(osgEarth::MapNode* mapNode);
+		MeasureSlopeAspectHandler();
 		~MeasureSlopeAspectHandler();
 
 	public:

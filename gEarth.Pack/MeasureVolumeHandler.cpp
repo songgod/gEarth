@@ -10,11 +10,11 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureVolumeHandler::MeasureVolumeHandler(osgEarth::MapNode* mapNode) : MeasureBaseHandler(mapNode),
+MeasureVolumeHandler::MeasureVolumeHandler() : 
 _bnewmeasure(true),
 _deep(10.0)
 {
-	setMapNode(mapNode);
+
 }
 
 

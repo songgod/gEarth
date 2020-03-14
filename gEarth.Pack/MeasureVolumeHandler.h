@@ -6,7 +6,7 @@ namespace gEarthPack
 	class MeasureVolumeHandler : public MeasureBaseHandler
 	{
 	public:
-		MeasureVolumeHandler(osgEarth::MapNode* mapNode);
+		MeasureVolumeHandler();
 		~MeasureVolumeHandler();
 
 	public:

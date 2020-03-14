@@ -16,7 +16,7 @@ namespace gEarthPack
 		typedef std::list< osg::ref_ptr< MeasureAngleEventHandler > > MeasureAngleEventHandlerList;
 
 	public:
-		MeasureAngleHandler(osgEarth::MapNode* mapNode);
+		MeasureAngleHandler();
 		virtual ~MeasureAngleHandler();
 
 	public:

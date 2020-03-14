@@ -10,7 +10,7 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureBaseHandler::MeasureBaseHandler(osgEarth::MapNode* mapNode) :
+MeasureBaseHandler::MeasureBaseHandler() :
 	_geoInterpolation(GEOINTERP_GREAT_CIRCLE),
 	_mouseButton(osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON),
 	_intersectionMask(0xffffffff)

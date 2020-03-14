@@ -8,9 +8,9 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureVisibilityLineHandler::MeasureVisibilityLineHandler(osgEarth::MapNode* mapNode):MeasureBaseHandler(mapNode), _startValid(false)
+MeasureVisibilityLineHandler::MeasureVisibilityLineHandler() : _startValid(false)
 {
-	setMapNode(mapNode);
+
 }
 
 

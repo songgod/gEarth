@@ -32,7 +32,8 @@ oepMeasureAreaHandler::oepMeasureAreaHandler():_area(0.0)
 
 void oepMeasureAreaHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureAreaHandler* mth = new MeasureAreaHandler(pMapNode);
+	MeasureAreaHandler* mth = new MeasureAreaHandler();
+	mth->setMapNode(pMapNode);
 	mth->getResHandlers().push_back(new MeasureAreaToolCallback());
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);

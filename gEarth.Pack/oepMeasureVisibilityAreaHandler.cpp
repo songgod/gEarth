@@ -12,7 +12,8 @@ oepMeasureVisibilityAreaHandler::oepMeasureVisibilityAreaHandler()
 
 void oepMeasureVisibilityAreaHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureVisibilityAreaHandler* mth = new MeasureVisibilityAreaHandler(pMapNode);
+	MeasureVisibilityAreaHandler* mth = new MeasureVisibilityAreaHandler();
+	mth->setMapNode(pMapNode);
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 

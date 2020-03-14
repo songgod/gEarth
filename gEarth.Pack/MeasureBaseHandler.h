@@ -4,7 +4,7 @@ namespace gEarthPack
 	class MeasureBaseHandler : public osgGA::GUIEventHandler, public osgEarth::MapNodeObserver
 	{
 	public:
-		MeasureBaseHandler(osgEarth::MapNode* mapNode);
+		MeasureBaseHandler();
 		virtual ~MeasureBaseHandler();
 
 	public:

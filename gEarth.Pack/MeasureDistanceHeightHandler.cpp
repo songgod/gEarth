@@ -12,14 +12,14 @@ using namespace osgEarth::Annotation;
 
 //#define SHOW_EXTENT 1
 
-MeasureDistanceHeightHandler::MeasureDistanceHeightHandler(osgEarth::MapNode* mapNode) : MeasureBaseHandler(mapNode),
+MeasureDistanceHeightHandler::MeasureDistanceHeightHandler() :
 	_mouseDown(false),
 	_gotFirstLocation(false),
 	_lastPointTemporary(false),
 	_finished(false),
 	_isPath(false)
 {
-	setMapNode(mapNode);
+
 }
 
 MeasureDistanceHeightHandler::~MeasureDistanceHeightHandler()

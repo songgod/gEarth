@@ -9,9 +9,9 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureSlopeAspectHandler::MeasureSlopeAspectHandler(osgEarth::MapNode* mapNode): MeasureBaseHandler(mapNode)
+MeasureSlopeAspectHandler::MeasureSlopeAspectHandler()
 {
-	setMapNode(mapNode);
+
 }
 
 

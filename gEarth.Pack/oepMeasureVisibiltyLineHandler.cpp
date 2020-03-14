@@ -11,7 +11,8 @@ oepMeasureVisibiltyLineHandler::oepMeasureVisibiltyLineHandler()
 
 void oepMeasureVisibiltyLineHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureVisibilityLineHandler* mth = new MeasureVisibilityLineHandler(pMapNode);
+	MeasureVisibilityLineHandler* mth = new MeasureVisibilityLineHandler();
+	mth->setMapNode(pMapNode);
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
 

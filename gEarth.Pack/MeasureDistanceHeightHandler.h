@@ -18,7 +18,7 @@ namespace gEarthPack
 
 	public:
 
-		MeasureDistanceHeightHandler(osgEarth::MapNode* mapNode);
+		MeasureDistanceHeightHandler();
 		virtual ~MeasureDistanceHeightHandler();
 
 	public:

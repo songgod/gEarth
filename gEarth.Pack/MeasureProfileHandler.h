@@ -6,7 +6,7 @@ namespace gEarthPack
 	class MeasureProfileHandler : public MeasureBaseHandler
 	{		
 	public:
-		MeasureProfileHandler(osgEarth::MapNode* mapNode);
+		MeasureProfileHandler();
 		~MeasureProfileHandler();
 
 	public:
@@ -16,6 +16,7 @@ namespace gEarthPack
 
 	public:
 
+		virtual void setMapNode(osgEarth::MapNode* mapNode);
 		virtual bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
 		virtual osgEarth::Features::Feature* createFeature();
 		virtual void fireMeasureChanged();

@@ -102,3 +102,7 @@
 
 
 #include "oepUtil.h"
+
+#ifdef __CLRVER
+#undef __CLR_VER
+#endif // __CLRVER

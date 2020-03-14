@@ -6,7 +6,7 @@ namespace gEarthPack
 	class MeasureAreaHandler : public MeasureBaseHandler
 	{
 	public:
-		MeasureAreaHandler(osgEarth::MapNode* pMapNode);
+		MeasureAreaHandler();
 		~MeasureAreaHandler();
 
 	public:

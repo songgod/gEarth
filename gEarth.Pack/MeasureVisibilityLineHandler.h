@@ -5,7 +5,7 @@ namespace gEarthPack
 	class MeasureVisibilityLineHandler : public MeasureBaseHandler
 	{
 	public:
-		MeasureVisibilityLineHandler(osgEarth::MapNode* mapNode);
+		MeasureVisibilityLineHandler();
 		~MeasureVisibilityLineHandler();
 
 	public:

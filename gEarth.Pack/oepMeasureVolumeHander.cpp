@@ -30,7 +30,8 @@ oepMeasureVolumeHander::oepMeasureVolumeHander()
 
 void oepMeasureVolumeHander::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureVolumeHandler* mth = new MeasureVolumeHandler(pMapNode);
+	MeasureVolumeHandler* mth = new MeasureVolumeHandler();
+	mth->setMapNode(pMapNode);
 	mth->getResHandlers().push_back(new MeasureVolumeCallback());
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);

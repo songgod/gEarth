@@ -8,17 +8,22 @@ using namespace osgEarth::Symbology;
 using namespace osgEarth::Features;
 using namespace osgEarth::Annotation;
 
-MeasureProfileHandler::MeasureProfileHandler(osgEarth::MapNode* mapNode) :MeasureBaseHandler(mapNode), _startValid(false)
+MeasureProfileHandler::MeasureProfileHandler() : _startValid(false)
 {
-	setMapNode(mapNode);
-	_profileCalculator = new TerrainProfileCalculator(mapNode,
-		GeoPoint(mapNode->getMapSRS(), 0, 0),
-		GeoPoint(mapNode->getMapSRS(), 0, 0));
+
 }
 
 
 MeasureProfileHandler::~MeasureProfileHandler()
 {
+}
+
+void gEarthPack::MeasureProfileHandler::setMapNode(osgEarth::MapNode * mapNode)
+{
+	_profileCalculator = new TerrainProfileCalculator(mapNode,
+		GeoPoint(mapNode->getMapSRS(), 0, 0),
+		GeoPoint(mapNode->getMapSRS(), 0, 0));
+	MeasureBaseHandler::setMapNode(mapNode);
 }
 
 bool MeasureProfileHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)

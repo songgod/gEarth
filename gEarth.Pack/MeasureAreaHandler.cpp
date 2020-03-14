@@ -10,11 +10,11 @@ using namespace osgEarth::Annotation;
 using namespace osgEarth::Features;
 using namespace osgEarth::Symbology;
 
-MeasureAreaHandler::MeasureAreaHandler(osgEarth::MapNode* pMapNode):MeasureBaseHandler(pMapNode),
+MeasureAreaHandler::MeasureAreaHandler():
 	_bnewmeasure(true),
 	_bsurface(false)
 {
-	setMapNode(pMapNode);
+
 }
 
 

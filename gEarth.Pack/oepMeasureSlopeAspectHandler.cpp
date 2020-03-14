@@ -32,7 +32,8 @@ oepMeasureSlopeAspectHandler::oepMeasureSlopeAspectHandler():_slope(0.f),_aspect
 
 void oepMeasureSlopeAspectHandler::bind(osgEarth::MapNode* pMapNode)
 {
-	MeasureSlopeAspectHandler* mth = new MeasureSlopeAspectHandler(pMapNode);
+	MeasureSlopeAspectHandler* mth = new MeasureSlopeAspectHandler();
+	mth->setMapNode(pMapNode);
 	mth->addEventHandler(new MeasureSlopeAspectCallback());
 	bind(mth);
 	oepHandleMapManager::registerHandle(mth, this);
