@@ -4,36 +4,10 @@
 
 #include "oepRender.h"
 #include "viewer.h"
-#include <string>  
-#include "oepHandleMapManager.h"
-#include "MouseCoordHandler.h"
+#include <string>
 
 
 using namespace gEarthPack;
-
-namespace
-{
-	class MouseMoveCallback : public MouseCoordHandler::MouseMoveCallback
-	{
-	public:
-
-		MouseMoveCallback()
-		{
-
-		}
-
-	public:
-
-		virtual void update(MouseCoordHandler* sender, const osg::Vec3& coords)
-		{
-			oepRender^ render = oepHandleMapManager::getHandle<oepRender>(sender);
-			if (render == nullptr)
-				return;
-
-			render->FireMoveEvent(oepVec3f(coords.y(), coords.x(), coords.z()));
-		}
-	};
-}
 
 oepRender::oepRender():_viewer(NULL)
 {
@@ -49,14 +23,12 @@ void oepRender::Start(IntPtr hwnd)
 	HWND h = (HWND)hwnd.ToPointer();
 	_viewer = new Viewer(h);
 	_viewer->init();
-	InitEvents();
 	_viewer->start();
 
 }
 
 void oepRender::End()
 {
-	oepHandleMapManager::unRegisterHandle(_viewer->getMouseCoordHandler());
 	if (_viewer)
 	{
 		delete _viewer;
@@ -74,12 +46,6 @@ bool oepRender::Open(oepMap^ map)
 	return true;
 }
 
-void oepRender::InitEvents()
-{
-	oepHandleMapManager::registerHandle(_viewer->getMouseCoordHandler(), this);
-	MouseMoveCallback* cb = new MouseMoveCallback();
-	_viewer->getMouseCoordHandler()->addMoveCallback(cb);
-}
 
 void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
@@ -123,7 +89,10 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 					_viewer->pause();
 					oepeh->unbind(_viewer->getMapNode());
 					if (oepeh->ref())
-						_viewer->getViewer()->removeEventHandler(oepeh->ref());
+					{
+						if(!oepeh->Keep)
+							_viewer->getViewer()->removeEventHandler(oepeh->ref());
+					}
 					else
 						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
@@ -150,11 +119,6 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 	default:
 		break;
 	}
-}
-
-void oepRender::FireMoveEvent(oepVec3f p)
-{
-	OnMouseMove(this, p);
 }
 
 oepViewpoint^ oepRender::Viewpoint::get()

@@ -84,15 +84,18 @@ namespace gEarthApp
         private void Ax_OnEarthViewReady(bool bready)
         {
             Project.CurrentMap = StartMap;
-            ax.render.OnMouseMove += Render_OnMouseMove;
+            oepMouseEventHandler mh = new oepMouseEventHandler();
+            mh.Keep = true;
+            mh.OnMouseMove += Mh_OnMouseMove;
+            ax.render.Handlers.Add(mh);
         }
 
-        private void Render_OnMouseMove(oepRender render, oepVec3f p)
+        private void Mh_OnMouseMove(oepMouseEventHandler handle, oepVec3f p, int keybutton)
         {
             string lat = this.Resources["lat"] as string;
             string lng = this.Resources["lat"] as string;
             string alt = this.Resources["lat"] as string;
-            this.coords.Dispatcher.Invoke(new Action(() => { this.coords.Text =lat+p.x.ToString() + lng + p.y.ToString() + alt + p.z.ToString(); }));
+            this.coords.Dispatcher.Invoke(new Action(() => { this.coords.Text = lat + p.x.ToString() + lng + p.y.ToString() + alt + p.z.ToString(); }));
         }
     }
 }

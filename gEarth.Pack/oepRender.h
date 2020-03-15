@@ -13,7 +13,6 @@ using namespace System::Runtime::InteropServices;
 namespace gEarthPack {
 	class Viewer;
 	ref class oepRender;
-	public delegate void MouseMoveEvent(oepRender^, oepVec3f);
 
 	public ref class oepRender : public oepNotify
 	{
@@ -43,14 +42,8 @@ namespace gEarthPack {
 
 		bool Open(oepMap^ map);
 
-	public:
-
-		event MouseMoveEvent^ OnMouseMove;
-		void FireMoveEvent(oepVec3f p);
-
 	protected:
 
-		void InitEvents();
 		void OnHandlersCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);
 
 	internal:

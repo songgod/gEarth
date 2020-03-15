@@ -207,9 +207,6 @@
     <ClInclude Include="PlayPathHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="MouseCoordHandler.h">
-      <Filter>Handlers</Filter>
-    </ClInclude>
     <ClInclude Include="oepMeasureAreaHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
@@ -368,6 +365,12 @@
     </ClInclude>
     <ClInclude Include="oepUnkownSymbol.h">
       <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseEventHandler.h">
+      <Filter>Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="oepMouseEventHandler.h">
+      <Filter>Handlers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -539,9 +542,6 @@
     <ClCompile Include="PlayPathHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="MouseCoordHandler.cpp">
-      <Filter>Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="oepMeasureAreaHandler.cpp">
       <Filter>Handlers</Filter>
     </ClCompile>
@@ -691,6 +691,12 @@
     </ClCompile>
     <ClCompile Include="oepUnkownSymbol.cpp">
       <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseEventHandler.cpp">
+      <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMouseEventHandler.cpp">
+      <Filter>Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,7 @@ namespace
 	};
 }
 
-Viewer::Viewer(HWND hWnd) : _hWnd(hWnd),_viewer(NULL),_renderthread(NULL), _mapnode(NULL), _mousecoordshandler(NULL), _playpathmp(NULL)
+Viewer::Viewer(HWND hWnd) : _hWnd(hWnd),_viewer(NULL),_renderthread(NULL), _mapnode(NULL), _playpathmp(NULL)
 {
 
 }
@@ -131,7 +131,6 @@ void Viewer::open(osgEarth::MapNode* mapnode)
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
 	_root->addChild(top);
-	((MouseCoordHandler*)(_mousecoordshandler))->setMapNode(mapnode);
 	resume();
 }
 
@@ -139,7 +138,6 @@ void Viewer::clear()
 {
 	pause();
 	_root->removeChildren(0, _root->getNumChildren());
-	((MouseCoordHandler*)(_mousecoordshandler))->setMapNode(NULL);
 	resume();
 }
 
@@ -258,10 +256,8 @@ void Viewer::InitCameraConfig()
 
 	_viewer->addEventHandler(new osgViewer::StatsHandler());
 	_viewer->addEventHandler(new osgGA::StateSetManipulator(camera->getOrCreateStateSet()));
-	_playpathmp = new	 PlayPathHandler();
+	_playpathmp = new PlayPathHandler();
 	_viewer->addEventHandler(_playpathmp);
-	_mousecoordshandler = new MouseCoordHandler();
-	_viewer->addEventHandler(_mousecoordshandler);
 
 	_viewer->setKeyEventSetsDone(0);
 

@@ -4,7 +4,7 @@
 
 using namespace gEarthPack;
 
-oepEventHandler::oepEventHandler()
+oepEventHandler::oepEventHandler() : _keep(false)
 {
 	
 }
@@ -24,4 +24,15 @@ void oepEventHandler::Name::set(String^ v)
 		return;
 	evh->setName(Str2Std(v));
 	NotifyChanged("Name");
+}
+
+bool oepEventHandler::Keep::get()
+{
+	return _keep;
+}
+
+void oepEventHandler::Keep::set(bool b)
+{
+	_keep = b;
+	NotifyChanged("Keep");
 }

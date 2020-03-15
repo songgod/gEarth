@@ -180,7 +180,7 @@
     <ClInclude Include="oepHandle.h" />
     <ClInclude Include="oepHandleMapManager.h" />
     <ClInclude Include="MeasureAreaHandler.h" />
-    <ClInclude Include="MouseCoordHandler.h" />
+    <ClInclude Include="MouseEventHandler.h" />
     <ClInclude Include="oepAnimationPath.h" />
     <ClInclude Include="oepAnimationPathExtension.h" />
     <ClInclude Include="oepBrightnessContrastColorFilter.h" />
@@ -210,6 +210,7 @@
     <ClInclude Include="oepModelLayer.h" />
     <ClInclude Include="oepModelLayerOptions.h" />
     <ClInclude Include="oepModelSourceOptions.h" />
+    <ClInclude Include="oepMouseEventHandler.h" />
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepNumericExpression.h" />
     <ClInclude Include="oepObject.h" />
@@ -298,7 +299,7 @@
     <ClCompile Include="oepHandleMapManager.cpp" />
     <ClCompile Include="Initor.cpp" />
     <ClCompile Include="MeasureAreaHandler.cpp" />
-    <ClCompile Include="MouseCoordHandler.cpp" />
+    <ClCompile Include="MouseEventHandler.cpp" />
     <ClCompile Include="oepAnimationPath.cpp" />
     <ClCompile Include="oepAnimationPathExtension.cpp" />
     <ClCompile Include="oepBrightnessContrastColorFilter.cpp" />
@@ -328,6 +329,7 @@
     <ClCompile Include="oepModelLayer.cpp" />
     <ClCompile Include="oepModelLayerOptions.cpp" />
     <ClCompile Include="oepModelSourceOptions.cpp" />
+    <ClCompile Include="oepMouseEventHandler.cpp" />
     <ClCompile Include="oepNotify.cpp" />
     <ClCompile Include="oepNumericExpression.cpp" />
     <ClCompile Include="oepObject.cpp" />

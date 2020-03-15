@@ -20,10 +20,21 @@ namespace gEarthPack
 			void set(String^ v) override;
 		}
 
+		property bool Keep
+		{
+			bool get();
+			void set(bool v);
+		}
+
 	internal:
 
 		virtual void bind(osgEarth::MapNode* pMapNode){}
 		virtual void unbind(osgEarth::MapNode* pMapNode){}
+
+	private:
+
+		bool _keep;
+
 	};
 
 	public ref class oepEventHandlers : public ObservableCollection<oepEventHandler^>

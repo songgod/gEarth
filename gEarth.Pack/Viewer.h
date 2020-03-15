@@ -1,7 +1,6 @@
 #pragma once
 
 #include "PlayPathHandler.h"
-#include "MouseCoordHandler.h"
 
 namespace gEarthPack
 {
@@ -42,8 +41,6 @@ namespace gEarthPack
 
 		void playPath(osg::AnimationPath* path);
 
-		MouseCoordHandler* getMouseCoordHandler() const { return _mousecoordshandler; }
-
 	protected:
 
 		void InitCameraConfig();
@@ -56,7 +53,6 @@ namespace gEarthPack
 		osgEarth::MapNode* _mapnode;
 		osg::Group* _root;
 		PlayPathHandler* _playpathmp;
-		MouseCoordHandler* _mousecoordshandler;
 		void* _renderthread;
 	};
 }
