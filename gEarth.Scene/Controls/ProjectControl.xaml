@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="gEarth.Scene.Controls.ProjectControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:gEarth.Scene.Controls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <sys:String x:Key="lat">纬度:</sys:String>
+        <sys:String x:Key="lng">经度:</sys:String>
+        <sys:String x:Key="alt">高度:</sys:String>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="panel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" MinWidth="100" Grid.Column="0">
+                <local:MapTreeControl x:Name="mtree"/>
+            </Border>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <local:EarthViewControl  Grid.Column="2" x:Name="ax"/>
+        </Grid>
+        <Border Grid.Row="1" x:Name="status" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock x:Name="coords" Width="300" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

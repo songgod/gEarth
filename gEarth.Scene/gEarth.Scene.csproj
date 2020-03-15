@@ -137,6 +137,9 @@
     <Compile Include="Controls\MapTreeControl.xaml.cs">
       <DependentUpon>MapTreeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProjectControl.xaml.cs">
+      <DependentUpon>ProjectControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\oepVec3f2StringConverter.cs" />
     <Compile Include="Converter\oepVec4f2ColorConverter.cs" />
     <Compile Include="Windows\AddViewpointOptionsWindow.xaml.cs">
@@ -219,6 +222,10 @@
     <Page Include="Controls\MapTreeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProjectControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\AddViewpointOptionsWindow.xaml">
       <SubType>Designer</SubType>

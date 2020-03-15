@@ -6,16 +6,10 @@
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:gEarthApp"
+        xmlns:ctrl="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
         xmlns:cmd="clr-namespace:gEarth.Scene.Commands;assembly=gEarth.Scene"
-        xmlns:gsctrls="clr-namespace:gEarth.Scene.Controls;assembly=gEarth.Scene"
-        xmlns:gscvt="clr-namespace:gEarth.Scene.Converter;assembly=gEarth.Scene"
         mc:Ignorable="d"
         Title="gEarth" Height="600" Width="800">
-    <Fluent:RibbonWindow.Resources>
-        <sys:String x:Key="lat">纬度: </sys:String>
-        <sys:String x:Key="lng">经度: </sys:String>
-        <sys:String x:Key="alt">高度: </sys:String>
-    </Fluent:RibbonWindow.Resources>
     <Fluent:RibbonWindow.CommandBindings>
         <cmd:OpenMapCommand/>
         <cmd:NewMapCommand/>
@@ -52,7 +46,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <Fluent:Ribbon Grid.Row="0">
@@ -125,23 +118,6 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
-
-        <Grid Grid.Row="1" x:Name="panel">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
-            <Border BorderThickness="1" MinWidth="100" Grid.Column="0">
-                <gsctrls:MapTreeControl x:Name="mtree"/>
-            </Border>
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <gsctrls:EarthViewControl  Grid.Column="2" x:Name="ax"/>
-        </Grid>
-        <Border Grid.Row="2" x:Name="status" BorderThickness="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock x:Name="coords" Width="300" HorizontalAlignment="Right"/>
-            </StackPanel>
-        </Border>
+        <ctrl:ProjectControl Grid.Row="1"/>
     </Grid>
 </Fluent:RibbonWindow>
