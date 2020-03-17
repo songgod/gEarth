@@ -13,17 +13,17 @@ oepFeatureModelLayerOptions::oepFeatureModelLayerOptions()
 void oepFeatureModelLayerOptions::binded()
 {
 	_driver = gcnew oepFeatureSourceOptions();
-	_driver->bind(&(as<FeatureModelLayerOptions>()->featureSource().mutable_value()),false);
+	_driver->bind<FeatureSourceOptions>(as<FeatureModelLayerOptions>()->featureSource(),false);
 	_styles = gcnew oepStyleSheet();
 	_styles->bind(as<FeatureModelLayerOptions>()->styles());
 	_layout = gcnew oepFeatureDisplayLayout();
-	_layout->bind(&(as<FeatureModelLayerOptions>()->layout().mutable_value()),false);
+	_layout->bind(as<FeatureModelLayerOptions>()->layout(),false);
 	_featureName = gcnew oepStringExpression();
-	_featureName->bind(&(as<FeatureModelLayerOptions>()->GeometryCompilerOptions::featureName().mutable_value()), false);
+	_featureName->bind(as<FeatureModelLayerOptions>()->GeometryCompilerOptions::featureName(), false);
 	_featureIndexing = gcnew oepFeatureSourceIndexOptions();
-	_featureIndexing->bind(&(as<FeatureModelLayerOptions>()->featureIndexing().mutable_value()), false);
+	_featureIndexing->bind(as<FeatureModelLayerOptions>()->featureIndexing(), false);
 	_fading = gcnew oepFadeOptions();
-	_fading->bind(&(as<FeatureModelLayerOptions>()->fading().mutable_value()), false);
+	_fading->bind(as<FeatureModelLayerOptions>()->fading(), false);
 }
 
 void oepFeatureModelLayerOptions::unbinded()
@@ -39,9 +39,11 @@ oepFeatureSourceOptions^ oepFeatureModelLayerOptions::driver::get()
 void oepFeatureModelLayerOptions::driver::set(oepFeatureSourceOptions^ v)
 {
 	_driver = v;
-	FeatureSourceOptions &fso = as<FeatureModelLayerOptions>()->featureSource().mutable_value();
-	_driver->getVal(fso);
-	_driver->bind(&fso, false);
+	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
+	if (to != NULL && _driver!=nullptr)
+	{
+		to->featureSource() = *(_driver->as<FeatureSourceOptions>());
+	}
 }
 
 oepStyleSheet^ oepFeatureModelLayerOptions::Styles::get()
@@ -83,9 +85,11 @@ oepFeatureDisplayLayout^ oepFeatureModelLayerOptions::Layout::get()
 void oepFeatureModelLayerOptions::Layout::set(oepFeatureDisplayLayout^ p)
 {
 	_layout = p;
-	FeatureDisplayLayout &fso = as<FeatureModelLayerOptions>()->layout().mutable_value();
-	_layout->getVal(fso);
-	_layout->bind(&fso, false);
+	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
+	if (to != NULL && _layout != nullptr)
+	{
+		to->layout() = *(_driver->as<FeatureDisplayLayout>());
+	}
 }
 
 bool oepFeatureModelLayerOptions::ClusterCulling::get()
@@ -106,9 +110,11 @@ oepStringExpression^ oepFeatureModelLayerOptions::FeatureName::get()
 void oepFeatureModelLayerOptions::FeatureName::set(oepStringExpression^ p)
 {
 	_featureName = p;
-	StringExpression &fso = as<FeatureModelLayerOptions>()->GeometryCompilerOptions::featureName().mutable_value();
-	_featureName->getVal(fso);
-	_featureName->bind(&fso, false);
+	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
+	if (to != NULL && _featureName != nullptr)
+	{
+		to->GeometryCompilerOptions::featureName() = *(_driver->as<StringExpression>());
+	}
 }
 
 oepFeatureSourceIndexOptions^ oepFeatureModelLayerOptions::FeatureIndexing::get()
@@ -119,9 +125,11 @@ oepFeatureSourceIndexOptions^ oepFeatureModelLayerOptions::FeatureIndexing::get(
 void oepFeatureModelLayerOptions::FeatureIndexing::set(oepFeatureSourceIndexOptions^ p)
 {
 	_featureIndexing = p;
-	FeatureSourceIndexOptions &fso = as<FeatureModelLayerOptions>()->featureIndexing().mutable_value();
-	_featureIndexing->getVal(fso);
-	_featureIndexing->bind(&fso, false);
+	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
+	if (to != NULL && _featureIndexing != nullptr)
+	{
+		to->featureIndexing() = *(_driver->as<FeatureSourceIndexOptions>());
+	}
 }
 
 bool oepFeatureModelLayerOptions::BackfaceCulling::get()
@@ -152,9 +160,11 @@ oepFadeOptions^ oepFeatureModelLayerOptions::Fading::get()
 void oepFeatureModelLayerOptions::Fading::set(oepFadeOptions^ p)
 {
 	_fading = p;
-	FadeOptions &fso = as<FeatureModelLayerOptions>()->fading().mutable_value();
-	_fading->getVal(fso);
-	_fading->bind(&fso, false);
+	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
+	if (to != NULL && _fading != nullptr)
+	{
+		to->fading() = *(_driver->as<FadeOptions>());
+	}
 }
 
 bool oepFeatureModelLayerOptions::NodeCaching::get()
@@ -229,7 +239,7 @@ void oepFeatureModelLayerOptions::IgnoreAltitudeSymbol::set(bool p)
 
 oepResampleMode oepFeatureModelLayerOptions::ResampleMode::get()
 {
-	return (oepResampleMode)(as<FeatureModelLayerOptions>()->resampleMode().mutable_value());
+	return (oepResampleMode)(as<FeatureModelLayerOptions>()->resampleMode().value());
 }
 
 void oepFeatureModelLayerOptions::ResampleMode::set(oepResampleMode p)
@@ -249,7 +259,7 @@ void oepFeatureModelLayerOptions::ResampleMaxLength::set(double p)
 
 oepShaderPolicy oepFeatureModelLayerOptions::ShaderPolicy::get()
 {
-	return (oepShaderPolicy)(as<FeatureModelLayerOptions>()->shaderPolicy().mutable_value());
+	return (oepShaderPolicy)(as<FeatureModelLayerOptions>()->shaderPolicy().value());
 }
 
 void oepFeatureModelLayerOptions::ShaderPolicy::set(oepShaderPolicy p)

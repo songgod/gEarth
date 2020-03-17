@@ -12,7 +12,7 @@ oepProfileOptions::oepProfileOptions()
 void gEarthPack::oepProfileOptions::binded()
 {
 	_bounds = gcnew oepBounds();
-	_bounds->bind(&(as<osgEarth::ProfileOptions>()->bounds().mutable_value()), false);
+	_bounds->bind(as<osgEarth::ProfileOptions>()->bounds(), false);
 }
 
 void gEarthPack::oepProfileOptions::unbinded()
@@ -61,11 +61,10 @@ oepBounds^ oepProfileOptions::Bounds::get()
 void oepProfileOptions::Bounds::set(oepBounds^ p)
 {
 	_bounds = p;
-	if (p != nullptr)
+	osgEarth::ProfileOptions* to = as<osgEarth::ProfileOptions>();
+	if (to != NULL && _bounds!=nullptr)
 	{
-		osgEarth::Bounds& bounds = as<osgEarth::ProfileOptions>()->bounds().mutable_value();
-		p->getVal(bounds);
-		p->bind(&bounds,false);
+		to->bounds() = *(_bounds->as<osgEarth::Bounds>());
 	}
 	NotifyChanged("Bounds");
 }

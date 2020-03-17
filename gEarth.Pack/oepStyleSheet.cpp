@@ -61,7 +61,7 @@ void oepStyleSheet::oepScriptDef::Profile::set(String^ s)
 
 String^ oepStyleSheet::oepScriptDef::Url::get()
 {
-	return Str2Cli(ref()->uri.mutable_value().full());
+	return Str2Cli(ref()->uri.value().full());
 }
 
 void oepStyleSheet::oepScriptDef::Url::set(String^ s)
@@ -89,8 +89,11 @@ oepStyleMap^ oepStyleSheet::Styles::get()
 void oepStyleSheet::Styles::set(oepStyleMap^ s)
 {
 	_stylemap = s;
-	_stylemap->getVal(ref()->styles());
-	_stylemap->bind(&(ref()->styles()),false);
+	StyleSheet* to = as<StyleSheet>();
+	if (to != NULL && _stylemap != nullptr)
+	{
+		to->styles() = *(_stylemap->Val());
+	}
 	NotifyChanged("Styles");
 }
 
@@ -109,8 +112,11 @@ oepStyleSelectorList^ oepStyleSheet::Selectors::get()
 void oepStyleSheet::Selectors::set(oepStyleSelectorList^ s)
 {
 	_selectors = s;
-	_selectors->getVal(ref()->selectors());
-	_selectors->bind(&(ref()->selectors()), false);
+	StyleSheet* to = as<StyleSheet>();
+	if (to != NULL && _selectors != nullptr)
+	{
+		to->selectors() = *(_selectors->Val());
+	}
 	NotifyChanged("Selectors");
 }
 

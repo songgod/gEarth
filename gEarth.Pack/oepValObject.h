@@ -43,15 +43,22 @@ namespace gEarthPack
 			return NULL;
 		}
 
-		void getVal(T& v)
+		template<class T1>
+		void bind(osgEarth::optional<T1>& handle, bool own)
 		{
-			v = *(val());
+			if (!handle.isSet())
+				return;
+			T* h = dynamic_cast<T*>(&(handle.mutable_value()));
+			if (!h)
+				return;
+			bind(h, own);
 		}
 
-		void setVal(const T& v)
+		void bind(osgEarth::optional<T>& handle, bool own)
 		{
-			if (_handle)
-				(*_handle) = v;
+			if (!handle.isSet())
+				return;
+			bind(&(handle.mutable_value()), own);
 		}
 
 		void bind(T* handle, bool own)
@@ -65,7 +72,7 @@ namespace gEarthPack
 			}
 			_handle = handle;
 			_ownhandle = own;
-			if(_handle!=NULL)
+			if (_handle != NULL)
 				binded();
 			else
 				unbinded();

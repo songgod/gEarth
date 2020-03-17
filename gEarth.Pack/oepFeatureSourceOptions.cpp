@@ -8,13 +8,13 @@ using namespace osgEarth::Features;
 
 oepFeatureSourceOptions::oepFeatureSourceOptions():_profile(nullptr), _filters(nullptr)
 {
-	bind(new FeatureSourceOptions(),true);
+	
 }
 
 void gEarthPack::oepFeatureSourceOptions::binded()
 {
 	_profile = gcnew oepProfileOptions();
-	_profile->bind(&(as<FeatureSourceOptions>()->profile().mutable_value()), false);
+	_profile->bind<osgEarth::ProfileOptions>(as<FeatureSourceOptions>()->profile(), false);
 	_filters = gcnew oepConfigOptionsCollection();
 	_filters->bind(&(as<FeatureSourceOptions>()->filters()), false);
 }
@@ -45,9 +45,11 @@ void oepFeatureSourceOptions::Filters::set(oepConfigOptionsCollection^ v)
 {
 	_filters = v;
 
-	std::vector<osgEarth::ConfigOptions>& coptions = as<FeatureSourceOptions>()->filters();
-	_filters->getVal(coptions);
-	_filters->bind(&coptions,false);
+	FeatureSourceOptions* to = as<FeatureSourceOptions>();
+	if (to != NULL && _filters != nullptr)
+	{
+		to->filters() = *(_filters->Val());
+	}
 	NotifyChanged("Filters");
 }
 
@@ -70,9 +72,11 @@ oepProfileOptions^ oepFeatureSourceOptions::Profile::get()
 void oepFeatureSourceOptions::Profile::set(oepProfileOptions^ profile)
 {
 	_profile = profile;
-	ProfileOptions &ops = as<FeatureSourceOptions>()->profile().mutable_value();
-	_profile->getVal(ops);
-	_profile->bind(&ops,false);
+	FeatureSourceOptions* to = as<FeatureSourceOptions>();
+	if (to != NULL && _profile!=nullptr)
+	{
+		to->profile() = *(_profile->as<ProfileOptions>());
+	}
 	NotifyChanged("Profile");
 }
 

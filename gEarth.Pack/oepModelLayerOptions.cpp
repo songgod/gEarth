@@ -13,7 +13,7 @@ oepModelLayerOptions::oepModelLayerOptions()
 void gEarthPack::oepModelLayerOptions::binded()
 {
 	_driver = gcnew oepModelSourceOptions();
-	_driver->bind(&(as<ModelLayerOptions>()->driver().mutable_value()), false);
+	_driver->bind<ModelSourceOptions>(as<ModelLayerOptions>()->driver(), false);
 }
 
 void gEarthPack::oepModelLayerOptions::unbinded()
@@ -29,7 +29,9 @@ gEarthPack::oepModelSourceOptions^ gEarthPack::oepModelLayerOptions::driver::get
 void gEarthPack::oepModelLayerOptions::driver::set(oepModelSourceOptions^ v)
 {
 	_driver = v;
-	ModelSourceOptions &mso = as<ModelLayerOptions>()->driver().mutable_value();
-	_driver->getVal(mso);
-	_driver->bind(&mso, false);
+	ModelLayerOptions* to = as<ModelLayerOptions>();
+	if (to != NULL && _driver!=nullptr)
+	{
+		to->driver() = *(_driver->as<ModelSourceOptions>());
+	}
 }

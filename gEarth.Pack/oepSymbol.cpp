@@ -18,14 +18,14 @@ void oepSymbol::Script::set(oepStringExpression^ p)
 {
 	_script = p;
 	if (ref())
-		_script->bind(&(ref()->script().mutable_value()), false);
+		_script->bind(ref()->script(), false);
 }
 
 void oepSymbol::binded()
 {
 	_script = gcnew oepStringExpression();
 	if (ref())
-		_script->bind(&(ref()->script().mutable_value()), false);
+		_script->bind(ref()->script(), false);
 }
 
 void oepSymbol::unbinded()

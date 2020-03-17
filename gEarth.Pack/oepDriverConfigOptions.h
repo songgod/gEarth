@@ -16,8 +16,6 @@ namespace gEarthPack
 			String^ get();
 			void set(String^ p);
 		}
-
-
 	};
 
 }

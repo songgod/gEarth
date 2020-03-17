@@ -191,8 +191,7 @@ oepControlPoint::oepControlPoint() : _time(0.0)
 
 oepControlPoint::oepControlPoint(osg::AnimationPath::ControlPoint& cp)
 {
-	bind(new osg::AnimationPath::ControlPoint(),true);
-	setVal(cp);
+	bind(new osg::AnimationPath::ControlPoint(cp.getPosition(),cp.getRotation(),cp.getScale()),true);
 }
 
 oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double time)

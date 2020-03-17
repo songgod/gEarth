@@ -28,11 +28,18 @@ namespace gEarthPack
 			this->!oepValMap();
 		}
 
+		property bool Valid
+		{
+			bool get() { return _map != NULL; }
+		}
+
+
+
 	internal:
 
-		void getVal(std::map<std::string, LT>& l)
+		std::map<std::string, LT>* Val()
 		{
-			l = *_map;
+			return _map;
 		}
 
 		void bind(std::map<std::string, LT>* handle, bool own)
@@ -68,24 +75,11 @@ namespace gEarthPack
 
 		void OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 		{
-			std::map<std::string, LT>* pVal = _map;
-			if (pVal == NULL)
-				return;
-			std::map<std::string, LT> stdmap;
+			_map->clear();
 			for (int i = 0; i < Count; i++)
 			{
-				LT lt;
-				this[i]->getVal(lt);
-				stdmap[lt.getName()] = lt;
-			}
-
-			*pVal = stdmap;
-			std::map<std::string, LT>& tmp = *pVal;
-			int i = 0;
-			for (std::map<std::string, LT>::iterator iter = tmp.begin(); iter != tmp.end(); iter++)
-			{
-				this[i]->bind(&(iter->second), false);
-				i++;
+				(*_map)[this[i]->val()->getName()] = *(this[i]->val());
+				this[i]->bind(&((*_map)[this[i]->val()->getName()]), false);
 			}
 		}
 

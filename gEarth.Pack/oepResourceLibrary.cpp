@@ -23,7 +23,7 @@ void oepResourceLibrary::Name::set(String^ p)
 
 String^ oepResourceLibrary::Uri::get()
 {
-	return Str2Cli(ref()->uri().mutable_value().full());
+	return Str2Cli(ref()->uri().value().full());
 }
 
 void oepResourceLibrary::Uri::set(String^ p)

@@ -12,7 +12,7 @@ oepQuery::oepQuery()
 void gEarthPack::oepQuery::binded()
 {
 	_bounds = gcnew oepBounds();
-	_bounds->bind(&(val()->bounds().mutable_value()), false);
+	_bounds->bind(val()->bounds(), false);
 }
 
 void gEarthPack::oepQuery::unbinded()
@@ -28,10 +28,10 @@ oepBounds^ oepQuery::Bounds::get()
 void oepQuery::Bounds::set(oepBounds^ p)
 {
 	_bounds = p;
-	if (p != nullptr)
+	osgEarth::Query* to = as<osgEarth::Query>();
+	if (to != NULL && _bounds != nullptr)
 	{
-		p->getVal(val()->bounds().mutable_value());
-		p->bind(&(val()->bounds().mutable_value()),false);
+		to->bounds() = *(_bounds->as<osgEarth::Bounds>());
 	}
 	NotifyChanged("Bounds");
 }

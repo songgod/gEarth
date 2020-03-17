@@ -23,7 +23,7 @@ void oepStyleSelector::Name::set(String^ p)
 
 String^ oepStyleSelector::StyleName::get()
 {
-	return Str2Cli(val()->styleName().mutable_value());
+	return Str2Cli(val()->styleName().value());
 }
 
 void oepStyleSelector::StyleName::set(String^ p)
@@ -40,8 +40,11 @@ oepStringExpression^ oepStyleSelector::StyleExpression::get()
 void oepStyleSelector::StyleExpression::set(oepStringExpression^ p)
 {
 	_styleExpression = p;
-	_styleExpression->getVal(val()->styleExpression().mutable_value());
-	_styleExpression->bind(&(val()->styleExpression().mutable_value()), false);
+	StyleSelector* to = as<StyleSelector>();
+	if (to != NULL && _query != nullptr)
+	{
+		to->styleExpression() = *(_query->as<StringExpression>());
+	}
 }
 
 oepQuery^ oepStyleSelector::Query::get()
@@ -52,8 +55,11 @@ oepQuery^ oepStyleSelector::Query::get()
 void oepStyleSelector::Query::set(oepQuery^ p)
 {
 	_query = p;
-	_query->getVal(val()->query().mutable_value());
-	_query->bind(&(val()->query().mutable_value()), false);
+	StyleSelector* to = as<StyleSelector>();
+	if (to != NULL && _query != nullptr)
+	{
+		to->query() = *(_query->as<osgEarth::Query>());
+	}
 }
 
 String^ oepStyleSelector::SelectStyleName::get()
@@ -64,12 +70,10 @@ String^ oepStyleSelector::SelectStyleName::get()
 void oepStyleSelector::binded()
 {
 	_styleExpression = gcnew oepStringExpression();
-	_styleExpression->getVal(val()->styleExpression().mutable_value());
-	_styleExpression->bind(&(val()->styleExpression().mutable_value()), false);
+	_styleExpression->bind(val()->styleExpression(), false);
 
 	_query = gcnew oepQuery();
-	_query->getVal(val()->query().mutable_value());
-	_query->bind(&(val()->query().mutable_value()), false);
+	_query->bind(val()->query(), false);
 }
 
 void oepStyleSelector::unbinded()

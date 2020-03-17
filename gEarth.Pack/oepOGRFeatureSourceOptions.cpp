@@ -13,9 +13,10 @@ oepOGRFeatureSourceOptions::oepOGRFeatureSourceOptions()
 void gEarthPack::oepOGRFeatureSourceOptions::binded()
 {
 	_geometryConfig = gcnew oepConfig();
-	_geometryConfig->bind(&(as<OGRFeatureOptions>()->geometryConfig().mutable_value()), false);
+	OGRFeatureOptions* o = as<OGRFeatureOptions>();
+	_geometryConfig->bind(as<OGRFeatureOptions>()->geometryConfig(), false);
 	_query = gcnew oepQuery();
-	_query->bind(&(as<OGRFeatureOptions>()->query().mutable_value()), false);
+	_query->bind(as<OGRFeatureOptions>()->query(), false);
 }
 
 void gEarthPack::oepOGRFeatureSourceOptions::unbinded()
@@ -82,11 +83,10 @@ oepConfig^ oepOGRFeatureSourceOptions::GeometryConfig::get()
 void oepOGRFeatureSourceOptions::GeometryConfig::set(oepConfig^ p)
 {
 	_geometryConfig = p;
-	if (p != nullptr)
+	OGRFeatureOptions* to = as<OGRFeatureOptions>();
+	if (to != NULL && _geometryConfig != nullptr)
 	{
-		osgEarth::Config& cf = as<OGRFeatureOptions>()->geometryConfig().mutable_value();
-		p->getVal(cf);
-		p->bind(&cf,false);
+		to->geometryConfig() = *(_geometryConfig->as<Config>());
 	}
 }
 
@@ -118,11 +118,10 @@ oepQuery^ oepOGRFeatureSourceOptions::Query::get()
 void oepOGRFeatureSourceOptions::Query::set(oepQuery^ p)
 {
 	_query = p;
-	if (p != nullptr)
+	OGRFeatureOptions* to = as<OGRFeatureOptions>();
+	if (to != NULL && _query != nullptr)
 	{
-		osgEarth::Query& q = as<OGRFeatureOptions>()->query().mutable_value();
-		p->getVal(q);
-		p->bind(&q,false);
+		to->query() = *(_query->as<osgEarth::Query>());
 	}
 }
 

@@ -11,8 +11,7 @@ oepViewpoint::oepViewpoint()
 
 oepViewpoint::oepViewpoint(osgEarth::Viewpoint& vp)
 {
-	bind(new osgEarth::Viewpoint(),true);
-	setVal(vp);
+	bind(new osgEarth::Viewpoint(vp),true);
 }
 
 String^ oepViewpoint::Name::get()

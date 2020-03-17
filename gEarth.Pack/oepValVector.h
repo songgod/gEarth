@@ -28,12 +28,14 @@ namespace gEarthPack
 			this->!oepValVector();
 		}
 
+		property bool Valid
+		{
+			bool get() { return _vector != NULL; }
+		}
+
 	internal:
 
-		void getVal(std::vector<LT>& l)
-		{
-			l = *_vector;
-		}
+		std::vector<LT> *Val() { return _vector; }
 
 		void bind(std::vector<LT>* handle, bool own)
 		{
@@ -68,19 +70,11 @@ namespace gEarthPack
 
 		void OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 		{
-			std::vector<LT>* pVal = _vector;
-			if (pVal == NULL)
-				return;
-			std::vector<LT> stdvector(Count);
+			_vector->resize(Count);
 			for (int i = 0; i < Count; i++)
 			{
-				this[i]->getVal(stdvector[i]);
-			}
-
-			*pVal = stdvector;
-			for (int i = 0; i < Count; i++)
-			{
-				this[i]->bind(&((*pVal)[i]),false);
+				(*_vector)[i] = *(this[i]->val());
+				this[i]->bind(&((*_vector)[i]), false);
 			}
 		}
 

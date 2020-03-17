@@ -11,7 +11,7 @@ oepFadeOptions::oepFadeOptions()
 
 float oepFadeOptions::Duration::get()
 {
-	return val()->duration().mutable_value();
+	return val()->duration().value();
 }
 
 void oepFadeOptions::Duration::set(float p)
@@ -22,7 +22,7 @@ void oepFadeOptions::Duration::set(float p)
 
 float oepFadeOptions::MaxRange::get()
 {
-	return val()->maxRange().mutable_value();
+	return val()->maxRange().value();
 }
 
 void oepFadeOptions::MaxRange::set(float p)
@@ -33,7 +33,7 @@ void oepFadeOptions::MaxRange::set(float p)
 
 float oepFadeOptions::AttenuationDistance::get()
 {
-	return val()->attenuationDistance().mutable_value();
+	return val()->attenuationDistance().value();
 }
 
 void oepFadeOptions::AttenuationDistance::set(float p)
