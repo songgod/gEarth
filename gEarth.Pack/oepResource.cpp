@@ -116,5 +116,5 @@ void oepResource::Tags::set(ObservableCollection<String^>^ p)
 		ref()->addTag(Str2Std(tag));
 	}
 	_tags->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepResource::OnMTCollectionChanged);
-
+	NotifyChanged("Tags");
 }

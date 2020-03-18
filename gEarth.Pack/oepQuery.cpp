@@ -27,13 +27,12 @@ oepBounds^ oepQuery::Bounds::get()
 
 void oepQuery::Bounds::set(oepBounds^ p)
 {
-	_bounds = p;
 	osgEarth::Query* to = as<osgEarth::Query>();
-	if (to != NULL && _bounds != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->bounds() = *(_bounds->as<osgEarth::Bounds>());
+		to->bounds() = *(p->as<osgEarth::Bounds>());
+		NotifyChanged("Bounds");
 	}
-	NotifyChanged("Bounds");
 }
 
 String^ oepQuery::Expression::get()

@@ -88,11 +88,10 @@ oepStyleMap^ oepStyleSheet::Styles::get()
 
 void oepStyleSheet::Styles::set(oepStyleMap^ s)
 {
-	_stylemap = s;
 	StyleSheet* to = as<StyleSheet>();
-	if (to != NULL && _stylemap != nullptr)
+	if (to != NULL && s != nullptr)
 	{
-		to->styles() = *(_stylemap->Val());
+		to->styles() = *(s->Val());
 	}
 	NotifyChanged("Styles");
 }
@@ -111,11 +110,10 @@ oepStyleSelectorList^ oepStyleSheet::Selectors::get()
 
 void oepStyleSheet::Selectors::set(oepStyleSelectorList^ s)
 {
-	_selectors = s;
 	StyleSheet* to = as<StyleSheet>();
-	if (to != NULL && _selectors != nullptr)
+	if (to != NULL && s != nullptr)
 	{
-		to->selectors() = *(_selectors->Val());
+		to->selectors() = *(s->Val());
 	}
 	NotifyChanged("Selectors");
 }

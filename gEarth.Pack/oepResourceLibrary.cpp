@@ -40,7 +40,7 @@ oepResourceCollection^ oepResourceLibrary::Resources::get()
 void oepResourceLibrary::Resources::set(oepResourceCollection^ p)
 {
 	_resources = p;
-
+	NotifyChanged("Resources");
 }
 
 void oepResourceLibrary::binded()

@@ -28,10 +28,10 @@ gEarthPack::oepModelSourceOptions^ gEarthPack::oepModelLayerOptions::driver::get
 
 void gEarthPack::oepModelLayerOptions::driver::set(oepModelSourceOptions^ v)
 {
-	_driver = v;
 	ModelLayerOptions* to = as<ModelLayerOptions>();
-	if (to != NULL && _driver!=nullptr)
+	if (to != NULL && v!=nullptr)
 	{
-		to->driver() = *(_driver->as<ModelSourceOptions>());
+		to->driver() = *(v->as<ModelSourceOptions>());
+		NotifyChanged("driver");
 	}
 }

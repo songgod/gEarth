@@ -213,4 +213,5 @@ double oepControlPoint::Time::get()
 void oepControlPoint::Time::set(double v)
 {
 	_time = v;
+	NotifyChanged("Time");
 }

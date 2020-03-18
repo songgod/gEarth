@@ -18,6 +18,7 @@ String^ oepArcGISSourceOptions::url::get()
 void oepArcGISSourceOptions::url::set(String^ v)
 {
 	((osgEarth::Drivers::ArcGISOptions*)(_handle))->url() = Str2Std(v);
+	NotifyChanged("url");
 }
 
 String^ oepArcGISSourceOptions::token::get()
@@ -28,6 +29,7 @@ String^ oepArcGISSourceOptions::token::get()
 void oepArcGISSourceOptions::token::set(String^ v)
 {
 	((osgEarth::Drivers::ArcGISOptions*)(_handle))->token() = Str2Std(v);
+	NotifyChanged("token");
 }
 
 String^ oepArcGISSourceOptions::format::get()
@@ -38,6 +40,7 @@ String^ oepArcGISSourceOptions::format::get()
 void oepArcGISSourceOptions::format::set(String^ v)
 {
 	((osgEarth::Drivers::ArcGISOptions*)(_handle))->format() = Str2Std(v);
+	NotifyChanged("format");
 }
 
 String^ oepArcGISSourceOptions::layers::get()
@@ -48,4 +51,5 @@ String^ oepArcGISSourceOptions::layers::get()
 void oepArcGISSourceOptions::layers::set(String^ v)
 {
 	((osgEarth::Drivers::ArcGISOptions*)(_handle))->layers() = Str2Std(v);
+	NotifyChanged("layers");
 }

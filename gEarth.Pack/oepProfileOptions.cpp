@@ -60,11 +60,10 @@ oepBounds^ oepProfileOptions::Bounds::get()
 
 void oepProfileOptions::Bounds::set(oepBounds^ p)
 {
-	_bounds = p;
 	osgEarth::ProfileOptions* to = as<osgEarth::ProfileOptions>();
-	if (to != NULL && _bounds!=nullptr)
+	if (to != NULL && p!=nullptr)
 	{
-		to->bounds() = *(_bounds->as<osgEarth::Bounds>());
+		to->bounds() = *(p->as<osgEarth::Bounds>());
 	}
 	NotifyChanged("Bounds");
 }

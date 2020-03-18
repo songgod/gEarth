@@ -38,11 +38,11 @@ oepFeatureSourceOptions^ oepFeatureModelLayerOptions::driver::get()
 
 void oepFeatureModelLayerOptions::driver::set(oepFeatureSourceOptions^ v)
 {
-	_driver = v;
 	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
-	if (to != NULL && _driver!=nullptr)
+	if (to != NULL && v!=nullptr)
 	{
-		to->featureSource() = *(_driver->as<FeatureSourceOptions>());
+		to->featureSource() = *(v->as<FeatureSourceOptions>());
+		NotifyChanged("driver");
 	}
 }
 
@@ -55,6 +55,7 @@ void oepFeatureModelLayerOptions::Styles::set(oepStyleSheet^ p)
 {
 	_styles = p;
 	as<FeatureModelLayerOptions>()->styles() = _styles->ref();
+	NotifyChanged("Styles");
 }
 
 double oepFeatureModelLayerOptions::MaxGranularity::get()
@@ -65,6 +66,7 @@ double oepFeatureModelLayerOptions::MaxGranularity::get()
 void oepFeatureModelLayerOptions::MaxGranularity::set(double p)
 {
 	as<FeatureModelLayerOptions>()->GeometryCompilerOptions::maxGranularity() = p;
+	NotifyChanged("MaxGranularity");
 }
 
 bool oepFeatureModelLayerOptions::EnableLighting::get()
@@ -75,6 +77,7 @@ bool oepFeatureModelLayerOptions::EnableLighting::get()
 void oepFeatureModelLayerOptions::EnableLighting::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->enableLighting() = p;
+	NotifyChanged("EnableLighting");
 }
 
 oepFeatureDisplayLayout^ oepFeatureModelLayerOptions::Layout::get()
@@ -84,11 +87,11 @@ oepFeatureDisplayLayout^ oepFeatureModelLayerOptions::Layout::get()
 
 void oepFeatureModelLayerOptions::Layout::set(oepFeatureDisplayLayout^ p)
 {
-	_layout = p;
 	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
-	if (to != NULL && _layout != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->layout() = *(_driver->as<FeatureDisplayLayout>());
+		to->layout() = *(p->as<FeatureDisplayLayout>());
+		NotifyChanged("Layout");
 	}
 }
 
@@ -100,6 +103,7 @@ bool oepFeatureModelLayerOptions::ClusterCulling::get()
 void oepFeatureModelLayerOptions::ClusterCulling::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->clusterCulling() = p;
+	NotifyChanged("ClusterCulling");
 }
 
 oepStringExpression^ oepFeatureModelLayerOptions::FeatureName::get()
@@ -109,11 +113,11 @@ oepStringExpression^ oepFeatureModelLayerOptions::FeatureName::get()
 
 void oepFeatureModelLayerOptions::FeatureName::set(oepStringExpression^ p)
 {
-	_featureName = p;
 	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
-	if (to != NULL && _featureName != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->GeometryCompilerOptions::featureName() = *(_driver->as<StringExpression>());
+		to->GeometryCompilerOptions::featureName() = *(p->as<StringExpression>());
+		NotifyChanged("FeatureName");
 	}
 }
 
@@ -124,11 +128,11 @@ oepFeatureSourceIndexOptions^ oepFeatureModelLayerOptions::FeatureIndexing::get(
 
 void oepFeatureModelLayerOptions::FeatureIndexing::set(oepFeatureSourceIndexOptions^ p)
 {
-	_featureIndexing = p;
 	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
-	if (to != NULL && _featureIndexing != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->featureIndexing() = *(_driver->as<FeatureSourceIndexOptions>());
+		to->featureIndexing() = *(p->as<FeatureSourceIndexOptions>());
+		NotifyChanged("FeatureIndexing");
 	}
 }
 
@@ -140,6 +144,7 @@ bool oepFeatureModelLayerOptions::BackfaceCulling::get()
 void oepFeatureModelLayerOptions::BackfaceCulling::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->backfaceCulling() = p;
+	NotifyChanged("BackfaceCulling");
 }
 
 bool oepFeatureModelLayerOptions::AlphaBlending::get()
@@ -150,6 +155,7 @@ bool oepFeatureModelLayerOptions::AlphaBlending::get()
 void oepFeatureModelLayerOptions::AlphaBlending::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->alphaBlending() = p;
+	NotifyChanged("AlphaBlending");
 }
 
 oepFadeOptions^ oepFeatureModelLayerOptions::Fading::get()
@@ -159,11 +165,11 @@ oepFadeOptions^ oepFeatureModelLayerOptions::Fading::get()
 
 void oepFeatureModelLayerOptions::Fading::set(oepFadeOptions^ p)
 {
-	_fading = p;
 	FeatureModelLayerOptions* to = as<FeatureModelLayerOptions>();
-	if (to != NULL && _fading != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->fading() = *(_driver->as<FadeOptions>());
+		to->fading() = *(p->as<FadeOptions>());
+		NotifyChanged("Fading");
 	}
 }
 
@@ -175,6 +181,7 @@ bool oepFeatureModelLayerOptions::NodeCaching::get()
 void oepFeatureModelLayerOptions::NodeCaching::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->nodeCaching() = p;
+	NotifyChanged("NodeCaching");
 }
 
 bool oepFeatureModelLayerOptions::SessionWideResourceCache::get()
@@ -185,6 +192,7 @@ bool oepFeatureModelLayerOptions::SessionWideResourceCache::get()
 void oepFeatureModelLayerOptions::SessionWideResourceCache::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->sessionWideResourceCache() = p;
+	NotifyChanged("SessionWideResourceCache");
 }
 
 oepGeoInterpolation oepFeatureModelLayerOptions::GeoInterp::get()
@@ -195,6 +203,7 @@ oepGeoInterpolation oepFeatureModelLayerOptions::GeoInterp::get()
 void oepFeatureModelLayerOptions::GeoInterp::set(oepGeoInterpolation p)
 {
 	as<FeatureModelLayerOptions>()->geoInterp() = (GeoInterpolation)p;
+	NotifyChanged("GeoInterp");
 }
 
 bool oepFeatureModelLayerOptions::MergeGeometry::get()
@@ -205,6 +214,7 @@ bool oepFeatureModelLayerOptions::MergeGeometry::get()
 void oepFeatureModelLayerOptions::MergeGeometry::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->mergeGeometry() = p;
+	NotifyChanged("MergeGeometry");
 }
 
 bool oepFeatureModelLayerOptions::Clustering::get()
@@ -215,6 +225,7 @@ bool oepFeatureModelLayerOptions::Clustering::get()
 void oepFeatureModelLayerOptions::Clustering::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->clustering() = p;
+	NotifyChanged("Clustering");
 }
 
 bool oepFeatureModelLayerOptions::Instancing::get()
@@ -225,6 +236,7 @@ bool oepFeatureModelLayerOptions::Instancing::get()
 void oepFeatureModelLayerOptions::Instancing::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->instancing() = p;
+	NotifyChanged("Instancing");
 }
 
 bool oepFeatureModelLayerOptions::IgnoreAltitudeSymbol::get()
@@ -235,6 +247,7 @@ bool oepFeatureModelLayerOptions::IgnoreAltitudeSymbol::get()
 void oepFeatureModelLayerOptions::IgnoreAltitudeSymbol::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->ignoreAltitudeSymbol() = p;
+	NotifyChanged("IgnoreAltitudeSymbol");
 }
 
 oepResampleMode oepFeatureModelLayerOptions::ResampleMode::get()
@@ -245,6 +258,7 @@ oepResampleMode oepFeatureModelLayerOptions::ResampleMode::get()
 void oepFeatureModelLayerOptions::ResampleMode::set(oepResampleMode p)
 {
 	as<FeatureModelLayerOptions>()->resampleMode() = (osgEarth::Features::ResampleFilter::ResampleMode)p;
+	NotifyChanged("ResampleMode");
 }
 
 double oepFeatureModelLayerOptions::ResampleMaxLength::get()
@@ -255,6 +269,7 @@ double oepFeatureModelLayerOptions::ResampleMaxLength::get()
 void oepFeatureModelLayerOptions::ResampleMaxLength::set(double p)
 {
 	as<FeatureModelLayerOptions>()->resampleMaxLength() = p;
+	NotifyChanged("ResampleMaxLength");
 }
 
 oepShaderPolicy oepFeatureModelLayerOptions::ShaderPolicy::get()
@@ -265,6 +280,7 @@ oepShaderPolicy oepFeatureModelLayerOptions::ShaderPolicy::get()
 void oepFeatureModelLayerOptions::ShaderPolicy::set(oepShaderPolicy p)
 {
 	as<FeatureModelLayerOptions>()->shaderPolicy() = (osgEarth::ShaderPolicy)p;
+	NotifyChanged("ShaderPolicy");
 }
 
 bool oepFeatureModelLayerOptions::OptimizeStateSharing::get()
@@ -275,6 +291,7 @@ bool oepFeatureModelLayerOptions::OptimizeStateSharing::get()
 void oepFeatureModelLayerOptions::OptimizeStateSharing::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->optimizeStateSharing() = p;
+	NotifyChanged("OptimizeStateSharing");
 }
 
 bool oepFeatureModelLayerOptions::Optimize::get()
@@ -285,6 +302,7 @@ bool oepFeatureModelLayerOptions::Optimize::get()
 void oepFeatureModelLayerOptions::Optimize::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->optimize() = p;
+	NotifyChanged("Optimize");
 }
 
 bool oepFeatureModelLayerOptions::OptimizeVertexOrdering::get()
@@ -295,6 +313,7 @@ bool oepFeatureModelLayerOptions::OptimizeVertexOrdering::get()
 void oepFeatureModelLayerOptions::OptimizeVertexOrdering::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->optimizeVertexOrdering() = p;
+	NotifyChanged("OptimizeVertexOrdering");
 }
 
 bool oepFeatureModelLayerOptions::Validate::get()
@@ -305,6 +324,7 @@ bool oepFeatureModelLayerOptions::Validate::get()
 void oepFeatureModelLayerOptions::Validate::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->validate() = p;
+	NotifyChanged("Validate");
 }
 
 float oepFeatureModelLayerOptions::MaxPolygonTilingAngle::get()
@@ -315,6 +335,7 @@ float oepFeatureModelLayerOptions::MaxPolygonTilingAngle::get()
 void oepFeatureModelLayerOptions::MaxPolygonTilingAngle::set(float p)
 {
 	as<FeatureModelLayerOptions>()->maxPolygonTilingAngle() = p;
+	NotifyChanged("MaxPolygonTilingAngle");
 }
 
 bool oepFeatureModelLayerOptions::UseGPUScreenSpaceLines::get()
@@ -325,4 +346,5 @@ bool oepFeatureModelLayerOptions::UseGPUScreenSpaceLines::get()
 void oepFeatureModelLayerOptions::UseGPUScreenSpaceLines::set(bool p)
 {
 	as<FeatureModelLayerOptions>()->useGPUScreenSpaceLines() = p;
+	NotifyChanged("UseGPUScreenSpaceLines");
 }

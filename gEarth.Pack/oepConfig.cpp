@@ -216,12 +216,10 @@ oepConfigSet^ oepConfig::Children::get()
 
 void oepConfig::Children::set(oepConfigSet^ p)
 {
-	_children = p;
-
 	osgEarth::Config* to = as<osgEarth::Config>();
-	if (to != NULL && _children != nullptr)
+	if (to != NULL && p != nullptr)
 	{
 		to->children() = *(p->Val());
+		NotifyChanged("Children");
 	}
-	NotifyChanged("Children");
 }

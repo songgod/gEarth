@@ -43,12 +43,10 @@ oepConfigOptionsCollection^ oepFeatureSourceOptions::Filters::get()
 
 void oepFeatureSourceOptions::Filters::set(oepConfigOptionsCollection^ v)
 {
-	_filters = v;
-
 	FeatureSourceOptions* to = as<FeatureSourceOptions>();
-	if (to != NULL && _filters != nullptr)
+	if (to != NULL && v != nullptr)
 	{
-		to->filters() = *(_filters->Val());
+		to->filters() = *(v->Val());
 	}
 	NotifyChanged("Filters");
 }
@@ -71,11 +69,10 @@ oepProfileOptions^ oepFeatureSourceOptions::Profile::get()
 
 void oepFeatureSourceOptions::Profile::set(oepProfileOptions^ profile)
 {
-	_profile = profile;
 	FeatureSourceOptions* to = as<FeatureSourceOptions>();
-	if (to != NULL && _profile!=nullptr)
+	if (to != NULL && profile !=nullptr)
 	{
-		to->profile() = *(_profile->as<ProfileOptions>());
+		to->profile() = *(profile->as<ProfileOptions>());
 	}
 	NotifyChanged("Profile");
 }

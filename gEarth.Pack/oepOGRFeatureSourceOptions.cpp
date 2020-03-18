@@ -13,7 +13,6 @@ oepOGRFeatureSourceOptions::oepOGRFeatureSourceOptions()
 void gEarthPack::oepOGRFeatureSourceOptions::binded()
 {
 	_geometryConfig = gcnew oepConfig();
-	OGRFeatureOptions* o = as<OGRFeatureOptions>();
 	_geometryConfig->bind(as<OGRFeatureOptions>()->geometryConfig(), false);
 	_query = gcnew oepQuery();
 	_query->bind(as<OGRFeatureOptions>()->query(), false);
@@ -33,6 +32,7 @@ String^ oepOGRFeatureSourceOptions::Url::get()
 void oepOGRFeatureSourceOptions::Url::set(String^ p)
 {
 	as<OGRFeatureOptions>()->url() = Str2Std(p);
+	NotifyChanged("Url");
 }
 
 String^ oepOGRFeatureSourceOptions::Connection::get()
@@ -53,6 +53,7 @@ String^ oepOGRFeatureSourceOptions::OgrDriver::get()
 void oepOGRFeatureSourceOptions::OgrDriver::set(String^ p)
 {
 	as<OGRFeatureOptions>()->ogrDriver() = Str2Std(p);
+	NotifyChanged("OgrDriver");
 }
 
 bool oepOGRFeatureSourceOptions::BuildSpatialIndex::get()
@@ -63,6 +64,7 @@ bool oepOGRFeatureSourceOptions::BuildSpatialIndex::get()
 void oepOGRFeatureSourceOptions::BuildSpatialIndex::set(bool p)
 {
 	as<OGRFeatureOptions>()->buildSpatialIndex() = p;
+	NotifyChanged("BuildSpatialIndex");
 }
 
 bool oepOGRFeatureSourceOptions::ForceRebuildSpatialIndex::get()
@@ -73,6 +75,7 @@ bool oepOGRFeatureSourceOptions::ForceRebuildSpatialIndex::get()
 void oepOGRFeatureSourceOptions::ForceRebuildSpatialIndex::set(bool p)
 {
 	as<OGRFeatureOptions>()->forceRebuildSpatialIndex() = p;
+	NotifyChanged("ForceRebuildSpatialIndex");
 }
 
 oepConfig^ oepOGRFeatureSourceOptions::GeometryConfig::get()
@@ -82,11 +85,11 @@ oepConfig^ oepOGRFeatureSourceOptions::GeometryConfig::get()
 
 void oepOGRFeatureSourceOptions::GeometryConfig::set(oepConfig^ p)
 {
-	_geometryConfig = p;
 	OGRFeatureOptions* to = as<OGRFeatureOptions>();
-	if (to != NULL && _geometryConfig != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->geometryConfig() = *(_geometryConfig->as<Config>());
+		to->geometryConfig() = *(p->as<Config>());
+		NotifyChanged("GeometryConfig");
 	}
 }
 
@@ -98,6 +101,7 @@ String^ oepOGRFeatureSourceOptions::GeometryUrl::get()
 void oepOGRFeatureSourceOptions::GeometryUrl::set(String^ p)
 {
 	as<OGRFeatureOptions>()->geometryUrl() = Str2Std(p);
+	NotifyChanged("GeometryUrl");
 }
 
 String^ oepOGRFeatureSourceOptions::Layer::get()
@@ -108,6 +112,7 @@ String^ oepOGRFeatureSourceOptions::Layer::get()
 void oepOGRFeatureSourceOptions::Layer::set(String^ p)
 {
 	as<OGRFeatureOptions>()->layer() = Str2Std(p);
+	NotifyChanged("Layer");
 }
 
 oepQuery^ oepOGRFeatureSourceOptions::Query::get()
@@ -117,11 +122,11 @@ oepQuery^ oepOGRFeatureSourceOptions::Query::get()
 
 void oepOGRFeatureSourceOptions::Query::set(oepQuery^ p)
 {
-	_query = p;
 	OGRFeatureOptions* to = as<OGRFeatureOptions>();
-	if (to != NULL && _query != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->query() = *(_query->as<osgEarth::Query>());
+		to->query() = *(p->as<osgEarth::Query>());
+		NotifyChanged("Query");
 	}
 }
 

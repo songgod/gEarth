@@ -17,4 +17,5 @@ String^ oepGDALSourceOptions::url::get()
 void oepGDALSourceOptions::url::set(String^ v)
 {
 	as<osgEarth::Drivers::GDALOptions>()->url() = Str2Std(v);
+	NotifyChanged("url");
 }

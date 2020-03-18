@@ -16,9 +16,11 @@ oepStringExpression^ oepSymbol::Script::get()
 
 void oepSymbol::Script::set(oepStringExpression^ p)
 {
-	_script = p;
 	if (ref())
-		_script->bind(ref()->script(), false);
+	{
+		ref()->script() = *(p->val());
+		NotifyChanged("Script");
+	}
 }
 
 void oepSymbol::binded()

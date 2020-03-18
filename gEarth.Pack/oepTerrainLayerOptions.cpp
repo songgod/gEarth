@@ -13,10 +13,10 @@ oepTileSourceOptions^ oepTerrainLayerOptions::driver::get()
 
 void oepTerrainLayerOptions::driver::set(oepTileSourceOptions^ v)
 {
-	_driver = v;
 	osgEarth::TerrainLayerOptions* to = as<osgEarth::TerrainLayerOptions>();
-	if (to != NULL && _driver != nullptr)
+	if (to != NULL && v != nullptr)
 	{
-		to->driver() = *(_driver->as<osgEarth::TileSourceOptions>());
+		to->driver() = *(v->as<osgEarth::TileSourceOptions>());
+		NotifyChanged("driver");
 	}
 }

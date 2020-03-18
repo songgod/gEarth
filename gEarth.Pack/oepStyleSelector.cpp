@@ -39,11 +39,11 @@ oepStringExpression^ oepStyleSelector::StyleExpression::get()
 
 void oepStyleSelector::StyleExpression::set(oepStringExpression^ p)
 {
-	_styleExpression = p;
 	StyleSelector* to = as<StyleSelector>();
-	if (to != NULL && _query != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->styleExpression() = *(_query->as<StringExpression>());
+		to->styleExpression() = *(p->as<StringExpression>());
+		NotifyChanged("StyleExpression");
 	}
 }
 
@@ -54,11 +54,11 @@ oepQuery^ oepStyleSelector::Query::get()
 
 void oepStyleSelector::Query::set(oepQuery^ p)
 {
-	_query = p;
 	StyleSelector* to = as<StyleSelector>();
-	if (to != NULL && _query != nullptr)
+	if (to != NULL && p != nullptr)
 	{
-		to->query() = *(_query->as<osgEarth::Query>());
+		to->query() = *(p->as<osgEarth::Query>());
+		NotifyChanged("Query");
 	}
 }
 

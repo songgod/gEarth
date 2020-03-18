@@ -47,7 +47,9 @@ namespace gEarthPack
 		void bind(osgEarth::optional<T1>& handle, bool own)
 		{
 			if (!handle.isSet())
-				return;
+			{
+				handle = T1();
+			}
 			T* h = dynamic_cast<T*>(&(handle.mutable_value()));
 			if (!h)
 				return;
@@ -57,7 +59,9 @@ namespace gEarthPack
 		void bind(osgEarth::optional<T>& handle, bool own)
 		{
 			if (!handle.isSet())
-				return;
+			{
+				handle = T();
+			}
 			bind(&(handle.mutable_value()), own);
 		}
 
