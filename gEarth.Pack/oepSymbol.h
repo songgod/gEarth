@@ -17,7 +17,7 @@ namespace gEarthPack
 			void set(oepStringExpression^ p);
 		}
 
-	public:
+	internal:
 
 		virtual void binded() override;
 		virtual void unbinded() override;

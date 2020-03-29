@@ -372,6 +372,36 @@
     <ClInclude Include="oepMouseEventHandler.h">
       <Filter>Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="oepTextSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepRenderSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepPolygonSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepPointSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepLineSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepExtrusionSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepCoverageSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepBBoxSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepAltitudeSymbol.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
+    <ClInclude Include="oepFill.h">
+      <Filter>Symbology</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -697,6 +727,36 @@
     </ClCompile>
     <ClCompile Include="oepMouseEventHandler.cpp">
       <Filter>Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="oepAltitudeSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepBBoxSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepCoverageSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepExtrusionSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepLineSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepPolygonSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepPointSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepRenderSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepTextSymbol.cpp">
+      <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepFill.cpp">
+      <Filter>Symbology</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
