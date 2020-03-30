@@ -173,6 +173,7 @@
     <ClInclude Include="oepConfig.h" />
     <ClInclude Include="oepContourMapExtension.h" />
     <ClInclude Include="oepCoverageSymbol.h" />
+    <ClInclude Include="oepDepthOffsetOptions.h" />
     <ClInclude Include="oepExtrusionSymbol.h" />
     <ClInclude Include="oepFadeOptions.h" />
     <ClInclude Include="oepFeatureDisplayLayout.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="oepConfig.cpp" />
     <ClCompile Include="oepContourMapExtension.cpp" />
     <ClCompile Include="oepCoverageSymbol.cpp" />
+    <ClCompile Include="oepDepthOffsetOptions.cpp" />
     <ClCompile Include="oepExtrusionSymbol.cpp" />
     <ClCompile Include="oepFadeOptions.cpp" />
     <ClCompile Include="oepFeatureDisplayLayout.cpp" />

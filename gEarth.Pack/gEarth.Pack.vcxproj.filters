@@ -402,6 +402,9 @@
     <ClInclude Include="oepFill.h">
       <Filter>Symbology</Filter>
     </ClInclude>
+    <ClInclude Include="oepDepthOffsetOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -757,6 +760,9 @@
     </ClCompile>
     <ClCompile Include="oepFill.cpp">
       <Filter>Symbology</Filter>
+    </ClCompile>
+    <ClCompile Include="oepDepthOffsetOptions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
