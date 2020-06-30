@@ -4,7 +4,7 @@
 
 using namespace gEarthPack;
 
-namespace
+namespace gEarthPack
 {
 	class RenderThread : public OpenThreads::Thread
 	{

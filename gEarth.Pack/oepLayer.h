@@ -2,7 +2,6 @@
 
 #include "oepRefObject.h"
 #include "oepLayerOptions.h"
-#include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
 

@@ -5,7 +5,7 @@
 
 using namespace gEarthPack;
 
-namespace
+namespace gEarthPack
 {
 	class MeasureVolumeCallback : public MeasureVolumeHandler::MeasureVolumeResultHandler
 	{

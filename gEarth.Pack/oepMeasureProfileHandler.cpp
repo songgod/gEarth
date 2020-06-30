@@ -6,7 +6,7 @@
 using namespace gEarthPack;
 using namespace osgEarth::Util;
 
-namespace
+namespace gEarthPack
 {
 	struct MeasureProfileCallback : public TerrainProfileCalculator::ChangedCallback
 	{

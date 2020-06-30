@@ -6,7 +6,7 @@
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
 
-namespace
+namespace gEarthPack
 {
 	class MeasureDistanceToolCallback : public MeasureDistanceHeightHandler::MeasureToolEventHandler
 	{

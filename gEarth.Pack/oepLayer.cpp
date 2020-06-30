@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "oepLayer.h"
-#include "oepHandle.h"
 #include "oepLayerFactory.h"
 
 

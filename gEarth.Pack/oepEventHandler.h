@@ -1,6 +1,5 @@
 #pragma once
 #include "oepRefObject.h"
-#include "oepHandle.h"
 
 using namespace System::Collections::ObjectModel;
 

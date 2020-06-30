@@ -27,6 +27,7 @@
 #include <osgEarth/TileSource>
 #include <osgEarth/ModelLayer>
 #include <osgEarth/FadeEffect>
+#include <osgEarth/Units>
 
 #include <osgEarthUtil/BrightnessContrastColorFilter>
 #include <osgEarthUtil/ChromaKeyColorFilter>

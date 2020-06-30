@@ -3,7 +3,7 @@
 
 using namespace gEarthPack;
 
-namespace
+namespace gEarthPack
 {
 	class TriangleResult
 	{
