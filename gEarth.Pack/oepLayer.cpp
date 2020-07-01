@@ -12,7 +12,7 @@ oepLayer::oepLayer()
 
 String^ oepLayer::StatusString::get()
 {
-	osgEarth::Layer* plyr = ref();
+	osgEarth::Layer* plyr = ntLayer();
 	if (!plyr)
 		return "";
 	return Str2Cli(plyr->getStatus().toString());
@@ -20,7 +20,7 @@ String^ oepLayer::StatusString::get()
 
 bool oepLayer::IsOK::get()
 {
-	osgEarth::Layer* plyr = ref();
+	osgEarth::Layer* plyr = ntLayer();
 	if (!plyr)
 		return false;
 	return plyr->getStatus().isOK() ? true : false;
@@ -28,7 +28,7 @@ bool oepLayer::IsOK::get()
 
 String^ oepLayer::Name::get()
 {
-	osgEarth::Layer* plyr = ref();
+	osgEarth::Layer* plyr = ntLayer();
 	if (!plyr)
 		return "";
 	return Str2Cli(plyr->getName());
@@ -36,7 +36,7 @@ String^ oepLayer::Name::get()
 
 void oepLayer::Name::set(String^ v)
 {
-	osgEarth::Layer* plyr = ref();
+	osgEarth::Layer* plyr = ntLayer();
 	if (!plyr)
 		return;
 	plyr->setName(Str2Std(v));

@@ -41,7 +41,7 @@ namespace gEarthPack
 	};
 
 	public ref class oepAnimationPath :
-		public oepRefObject<osgEarth::AnimationPath::AnimationPathInfo>
+		public oepRefObject
 	{
 	public:
 		oepAnimationPath();
@@ -77,6 +77,10 @@ namespace gEarthPack
 	internal:
 
 		oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info);
+
+	internal:
+
+		osgEarth::AnimationPath::AnimationPathInfo* ntAnimationPathInfo() { return as<osgEarth::AnimationPath::AnimationPathInfo>(); }
 
 	private:
 

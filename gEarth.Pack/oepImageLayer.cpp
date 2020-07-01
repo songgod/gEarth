@@ -41,9 +41,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->NewItems[i]);
-				if (cf != nullptr && cf->ref() != NULL)
+				if (cf != nullptr && cf->ntColorFilter() != NULL)
 				{
-					pLayer->addColorFilter(cf->ref());
+					pLayer->addColorFilter(cf->ntColorFilter());
 				}
 			}
 		}
@@ -56,9 +56,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->OldItems[i]);
-				if (cf != nullptr && cf->ref() != NULL)
+				if (cf != nullptr && cf->ntColorFilter() != NULL)
 				{
-					pLayer->removeColorFilter(cf->ref());
+					pLayer->removeColorFilter(cf->ntColorFilter());
 				}
 			}
 		}

@@ -5,7 +5,7 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepColorFilter : public oepRefObject<osgEarth::ColorFilter>
+	public ref class oepColorFilter : public oepRefObject
 	{
 	public:
 		oepColorFilter();
@@ -13,6 +13,10 @@ namespace gEarthPack
 	public:
 
 		virtual void Reset(){}
+
+	internal:
+
+		osgEarth::ColorFilter* ntColorFilter() { return as<osgEarth::ColorFilter>(); }
 	};
 
 	public ref class oepColorFilters : public ObservableCollection<oepColorFilter^>

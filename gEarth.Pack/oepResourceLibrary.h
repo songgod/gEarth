@@ -7,7 +7,7 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepResourceLibrary :
-		public oepRefObject<osgEarth::Symbology::ResourceLibrary>
+		public oepRefObject
 	{
 	public:
 		oepResourceLibrary(String^ name, String^ url);
@@ -36,6 +36,10 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+
+	internal:
+
+		osgEarth::ResourceLibrary* ntResourceLibrary() { return as<osgEarth::ResourceLibrary>(); }
 
 	private:
 

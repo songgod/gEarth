@@ -6,7 +6,7 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepExtension : oepRefObject<osgEarth::Extension>
+	public ref class oepExtension : oepRefObject
 	{
 	public:
 		oepExtension();
@@ -18,6 +18,10 @@ namespace gEarthPack
 			String^ get() override;
 			void set(String^ v) override;
 		}
+
+	internal:
+
+		osgEarth::Extension* ntExtension() { return as<osgEarth::Extension>(); }
 	};
 
 	public ref class oepExtensions : public ObservableCollection<oepExtension^>

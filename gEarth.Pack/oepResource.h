@@ -6,7 +6,7 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepResource :
-		public oepRefObject<osgEarth::Symbology::Resource>
+		public oepRefObject
 	{
 	public:
 		oepResource();
@@ -30,6 +30,9 @@ namespace gEarthPack
 		virtual void binded() override;
 		virtual void unbinded() override;
 
+	internal:
+
+		osgEarth::Resource* ntResource() { return as<osgEarth::Resource>(); }
 	protected:
 
 		void OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);

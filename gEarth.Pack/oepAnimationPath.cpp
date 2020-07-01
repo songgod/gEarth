@@ -18,9 +18,9 @@ oepAnimationPath::oepAnimationPath()
 void oepAnimationPath::PlayPath(oepAnimationPath^ path, oepRender^ render)
 {
 	if (render==nullptr || render->_viewer==NULL ||
-		path== nullptr || path->ref() == NULL || path->ref()->animationpath() == NULL)
+		path== nullptr || path->ntAnimationPathInfo() == NULL || path->ntAnimationPathInfo()->animationpath() == NULL)
 		return;
-	render->_viewer->playPath(path->ref()->animationpath());
+	render->_viewer->playPath(path->ntAnimationPathInfo()->animationpath());
 }
 
 oepAnimationPath^ oepAnimationPath::From(String^ url)
@@ -37,13 +37,13 @@ oepAnimationPath^ oepAnimationPath::From(String^ url)
 
 bool oepAnimationPath::Save()
 {
-	if (_handle!=NULL && _handle->getValue()!=NULL && _handle->getValue()->animationpath()!=NULL && !_handle->getValue()->animationpath()->empty() && !String::IsNullOrEmpty(Url))
+	if (ntAnimationPathInfo()!=NULL && ntAnimationPathInfo()->animationpath()!=NULL && !ntAnimationPathInfo()->animationpath()->empty() && !String::IsNullOrEmpty(Url))
 	{
 		std::string url = Str2Std(Url);
 		std::ofstream ofs(url);
 		ofs.setf(std::ios::fixed, std::ios::floatfield);
 		ofs.precision(15);
-		_handle->getValue()->animationpath()->write(ofs);
+		ntAnimationPathInfo()->animationpath()->write(ofs);
 		ofs.close();
 		return true;
 	}
@@ -60,7 +60,7 @@ oepAnimationPath::oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* i
 
 void oepAnimationPath::init()
 {
-	osgEarth::AnimationPath::AnimationPathInfo* ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo* ap = ntAnimationPathInfo();
 	if (!ap || !ap->animationpath())
 		return;
 
@@ -77,7 +77,7 @@ void oepAnimationPath::init()
 
 void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
-	osgEarth::AnimationPath::AnimationPathInfo* ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo* ap = ntAnimationPathInfo();
 	if (!ap || !ap->animationpath())
 		return;
 
@@ -145,7 +145,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 
 String^ oepAnimationPath::Name::get()
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ntAnimationPathInfo();
 	if (!ap)
 		return "";
 	return Str2Cli(ap->name());
@@ -153,7 +153,7 @@ String^ oepAnimationPath::Name::get()
 
 void oepAnimationPath::Name::set(String^ v)
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ntAnimationPathInfo();
 	if (!ap)
 		return;
 
@@ -163,7 +163,7 @@ void oepAnimationPath::Name::set(String^ v)
 
 String^ oepAnimationPath::Url::get()
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ntAnimationPathInfo();
 	if (!ap)
 		return "";
 	return Str2Cli(ap->url());
@@ -171,7 +171,7 @@ String^ oepAnimationPath::Url::get()
 
 void oepAnimationPath::Url::set(String^ v)
 {
-	osgEarth::AnimationPath::AnimationPathInfo *ap = ref();
+	osgEarth::AnimationPath::AnimationPathInfo *ap = ntAnimationPathInfo();
 	if (!ap)
 		return;
 

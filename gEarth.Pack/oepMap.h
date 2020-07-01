@@ -8,7 +8,7 @@ using namespace System;
 
 namespace gEarthPack 
 {
-	public ref class oepMap : public oepRefObject<osgEarth::MapNode>
+	public ref class oepMap : public oepRefObject
 	{
 	public:
 		oepMap();

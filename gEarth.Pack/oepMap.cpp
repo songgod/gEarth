@@ -82,12 +82,12 @@ void oepMap::InitExtensions()
 
 bool oepMap::save()
 {
-	return osgDB::writeNodeFile(*_handle->getValue(), Str2Std(Url));
+	return osgDB::writeNodeFile(*getMapNode(), Str2Std(Url));
 }
 
 bool oepMap::saveAs(String^ url)
 {
-	if (osgDB::writeNodeFile(*_handle->getValue(), Str2Std(url)))
+	if (osgDB::writeNodeFile(*getMapNode(), Str2Std(url)))
 	{
 		Url = url;
 		return true;
@@ -97,14 +97,14 @@ bool oepMap::saveAs(String^ url)
 
 osgEarth::Map * oepMap::getMap()
 {
-	osgEarth::MapNode* pMapNode = _handle->getValue();
+	osgEarth::MapNode* pMapNode = getMapNode();
 	if (pMapNode) return pMapNode->getMap();
 	return NULL;
 }
 
 osgEarth::MapNode* oepMap::getMapNode()
 {
-	return _handle->getValue();
+	return as<osgEarth::MapNode>();
 }
 
 oepExtensions^ oepMap::Extensions::get()
@@ -129,7 +129,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->NewItems[i]);
 				if (layer != nullptr)
 				{
-					map->addLayer(layer->ref());
+					map->addLayer(layer->ntLayer());
 				}
 			}
 			map->endUpdate();
@@ -146,7 +146,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
 				if (layer != nullptr)
 				{
-					map->removeLayer(layer->ref());
+					map->removeLayer(layer->ntLayer());
 				}
 			}
 			map->endUpdate();
@@ -192,9 +192,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->ref())
+				if (ext != nullptr && ext->ntExtension())
 				{
-					mapnode->addExtension(ext->ref());
+					mapnode->addExtension(ext->ntExtension());
 				}
 			}
 		}
@@ -207,9 +207,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->ref())
+				if (ext != nullptr && ext->ntExtension())
 				{
-					mapnode->removeExtension(ext->ref());
+					mapnode->removeExtension(ext->ntExtension());
 				}
 			}
 		}

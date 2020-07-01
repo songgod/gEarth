@@ -12,23 +12,23 @@ oepResourceLibrary::oepResourceLibrary(String^ name, String^ url)
 
 String^ oepResourceLibrary::Name::get()
 {
-	return Str2Cli(ref()->getName());
+	return Str2Cli(ntResourceLibrary()->getName());
 }
 
 void oepResourceLibrary::Name::set(String^ p)
 {
-	ref()->setName(Str2Std(p));
+	ntResourceLibrary()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
 String^ oepResourceLibrary::Uri::get()
 {
-	return Str2Cli(ref()->uri().value().full());
+	return Str2Cli(ntResourceLibrary()->uri().value().full());
 }
 
 void oepResourceLibrary::Uri::set(String^ p)
 {
-	ref()->uri() = (Str2Std(p));
+	ntResourceLibrary()->uri() = (Str2Std(p));
 	NotifyChanged("Uri");
 }
 

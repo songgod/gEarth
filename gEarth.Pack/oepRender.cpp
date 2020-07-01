@@ -67,8 +67,8 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 				{
 					_viewer->pause();
 					oepeh->bind(_viewer->getMapNode());
-					if(oepeh->ref())
-						_viewer->getViewer()->addEventHandler(oepeh->ref());
+					if(oepeh->ntEventHandler())
+						_viewer->getViewer()->addEventHandler(oepeh->ntEventHandler());
 					else
 						throw gcnew Exception("oepEventHandler's internal handler is NULL");
 					_viewer->resume();
@@ -84,14 +84,14 @@ void oepRender::OnHandlersCollectionChanged(System::Object^ sender, System::Coll
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepEventHandler^ oepeh = dynamic_cast<oepEventHandler^>(e->OldItems[i]);
-				if (oepeh != nullptr && oepeh->ref() != NULL)
+				if (oepeh != nullptr && oepeh->ntEventHandler() != NULL)
 				{
 					_viewer->pause();
 					oepeh->unbind(_viewer->getMapNode());
-					if (oepeh->ref())
+					if (oepeh->ntEventHandler())
 					{
 						if(!oepeh->Keep)
-							_viewer->getViewer()->removeEventHandler(oepeh->ref());
+							_viewer->getViewer()->removeEventHandler(oepeh->ntEventHandler());
 					}
 					else
 						throw gcnew Exception("oepEventHandler's internal handler is NULL");

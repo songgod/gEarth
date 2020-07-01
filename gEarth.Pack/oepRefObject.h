@@ -3,7 +3,6 @@
 
 namespace gEarthPack
 {
-	template<class T>
 	class oepRefHandle
 	{
 	public:
@@ -11,29 +10,29 @@ namespace gEarthPack
 		{
 
 		}
-		oepRefHandle(T* t)
+		oepRefHandle(osg::Referenced* t)
 		{
 			_handle = t;
 		}
 
 	public:
 
-		T* getValue() { return _handle; }
-		const T* getValue() const { return _handle; }
-		void setValue(T* v) { _handle = v; }
+		osg::Referenced* getValue() { return _handle; }
+		const osg::Referenced* getValue() const { return _handle; }
+		void setValue(osg::Referenced* v) { _handle = v; }
 
 	private:
-		osg::ref_ptr<T> _handle;
+		osg::ref_ptr<osg::Referenced> _handle;
 	};
 
-	template<class T>
+
 	public ref class oepRefObject :
 		public oepObject
 	{
 	public:
 		oepRefObject()
 		{
-			_handle = new oepRefHandle<T>();
+			_handle = new oepRefHandle();
 		}
 
 		~oepRefObject()
@@ -51,22 +50,22 @@ namespace gEarthPack
 
 	internal:
 
-		T* ref()
+		osg::Referenced* ref()
 		{
 			if (_handle)
 				return _handle->getValue();
 			return NULL;
 		}
 
-		template<class T1>
-		T1* as()
+		template<class T>
+		T* as()
 		{
 			if (_handle)
-				return dynamic_cast<T1*>(_handle->getValue());
+				return dynamic_cast<T*>(_handle->getValue());
 			return NULL;
 		}
 
-		void bind(T* v)
+		void bind(osg::Referenced* v)
 		{
 			if (_handle)
 			{
@@ -91,7 +90,7 @@ namespace gEarthPack
 
 	protected:
 
-		oepRefHandle<T>* _handle;
+		oepRefHandle* _handle;
 	};
 }
 

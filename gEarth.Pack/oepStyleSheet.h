@@ -7,14 +7,14 @@
 namespace gEarthPack
 {
 	public ref class oepStyleSheet :
-		public oepRefObject<osgEarth::Symbology::StyleSheet>
+		public oepRefObject
 	{
 	public:
 		oepStyleSheet();
 
 	public:
 
-		ref class oepScriptDef : oepRefObject<osgEarth::Symbology::StyleSheet::ScriptDef>
+		ref class oepScriptDef : oepRefObject
 		{
 		public:
 
@@ -51,6 +51,10 @@ namespace gEarthPack
 				String^ get();
 				void set(String^ p);
 			}
+
+		internal:
+
+			osgEarth::StyleSheet::ScriptDef* ntScriptDef() { return as<osgEarth::StyleSheet::ScriptDef>(); }
 
 		};
 
@@ -95,6 +99,12 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+
+	internal:
+
+		osgEarth::Symbology::StyleSheet* ntStyleSheet() {
+			return as<osgEarth::Symbology::StyleSheet>();
+		}
 
 	protected:
 

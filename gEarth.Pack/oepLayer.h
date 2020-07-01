@@ -7,7 +7,7 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepLayer : public oepRefObject<osgEarth::Layer>
+	public ref class oepLayer : public oepRefObject
 	{
 	public:
 		oepLayer();
@@ -29,6 +29,10 @@ namespace gEarthPack
 		{
 			String^ get();
 		}
+
+	internal:
+
+		osgEarth::Layer* ntLayer() { return as<osgEarth::Layer>(); }
 	};
 
 	public ref class oepLayers : public ObservableCollection<oepLayer^>

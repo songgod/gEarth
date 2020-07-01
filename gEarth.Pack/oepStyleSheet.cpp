@@ -17,67 +17,67 @@ oepStyleSheet::oepScriptDef::oepScriptDef()
 
 String^ oepStyleSheet::oepScriptDef::Name::get()
 {
-	return Str2Cli(ref()->name);
+	return Str2Cli(ntScriptDef()->name);
 }
 
 void oepStyleSheet::oepScriptDef::Name::set(String^ s)
 {
-	ref()->name = Str2Std(s);
+	ntScriptDef()->name = Str2Std(s);
 	NotifyChanged("Name");
 }
 
 String^ oepStyleSheet::oepScriptDef::Code::get()
 {
-	return Str2Cli(ref()->code);
+	return Str2Cli(ntScriptDef()->code);
 }
 
 void oepStyleSheet::oepScriptDef::Code::set(String^ s)
 {
-	ref()->code = Str2Std(s);
+	ntScriptDef()->code = Str2Std(s);
 	NotifyChanged("Code");
 }
 
 String^ oepStyleSheet::oepScriptDef::Language::get()
 {
-	return Str2Cli(ref()->language);
+	return Str2Cli(ntScriptDef()->language);
 }
 
 void oepStyleSheet::oepScriptDef::Language::set(String^ s)
 {
-	ref()->language = Str2Std(s);
+	ntScriptDef()->language = Str2Std(s);
 	NotifyChanged("Language");
 }
 
 String^ oepStyleSheet::oepScriptDef::Profile::get()
 {
-	return Str2Cli(ref()->profile);
+	return Str2Cli(ntScriptDef()->profile);
 }
 
 void oepStyleSheet::oepScriptDef::Profile::set(String^ s)
 {
-	ref()->profile = Str2Std(s);
+	ntScriptDef()->profile = Str2Std(s);
 	NotifyChanged("Profile");
 }
 
 String^ oepStyleSheet::oepScriptDef::Url::get()
 {
-	return Str2Cli(ref()->uri.value().full());
+	return Str2Cli(ntScriptDef()->uri.value().full());
 }
 
 void oepStyleSheet::oepScriptDef::Url::set(String^ s)
 {
-	ref()->uri.mutable_value() = Str2Std(s);
+	ntScriptDef()->uri.mutable_value() = Str2Std(s);
 	NotifyChanged("Url");
 }
 
 String^ oepStyleSheet::Name::get()
 {
-	return Str2Cli(ref()->name().value());
+	return Str2Cli(ntStyleSheet()->name().value());
 }
 
 void oepStyleSheet::Name::set(String^ s)
 {
-	ref()->name() = Str2Std(s);
+	ntStyleSheet()->name() = Str2Std(s);
 	NotifyChanged("Name");
 }
 
@@ -99,7 +99,7 @@ void oepStyleSheet::Styles::set(oepStyleMap^ s)
 oepStyle^ oepStyleSheet::DefaultStyle::get()
 {
 	oepStyle^ res = gcnew oepStyle();
-	res->bind(ref()->getDefaultStyle(),false);
+	res->bind(ntStyleSheet()->getDefaultStyle(),false);
 	return res;
 }
 
@@ -126,10 +126,10 @@ oepResourceLibraryMap^ oepStyleSheet::Resources::get()
 void oepStyleSheet::Resources::set(oepResourceLibraryMap^ s)
 {
 	_resLibs = s;
-	ref()->ClearResourceLibrary();
+	ntStyleSheet()->ClearResourceLibrary();
 	for each (oepResourceLibrary^ r in s)
 	{
-		ref()->addResourceLibrary(r->ref());
+		ntStyleSheet()->addResourceLibrary(r->ntResourceLibrary());
 	}
 	NotifyChanged("Resources");
 }
@@ -142,24 +142,24 @@ oepStyleSheet::oepScriptDef^ oepStyleSheet::Script::get()
 void oepStyleSheet::Script::set(oepStyleSheet::oepScriptDef^ s)
 {
 	_script = s;
-	ref()->setScript(_script->ref());
+	ntStyleSheet()->setScript(_script->ntScriptDef());
 	NotifyChanged("Script");
 }
 
 void gEarthPack::oepStyleSheet::binded()
 {
 	_stylemap = gcnew oepStyleMap();
-	_stylemap->bind(&(ref()->styles()),false);
+	_stylemap->bind(&(ntStyleSheet()->styles()),false);
 	_selectors = gcnew oepStyleSelectorList();
-	_selectors->bind(&(ref()->selectors()),false);
+	_selectors->bind(&(ntStyleSheet()->selectors()),false);
 	_script = gcnew oepScriptDef();
-	_script->bind(ref()->script());
+	_script->bind(ntStyleSheet()->script());
 	_resLibs = gcnew oepResourceLibraryMap();
-	std::vector<std::string> names = ref()->getResourceNames();
+	std::vector<std::string> names = ntStyleSheet()->getResourceNames();
 	for (size_t i = 0; i < names.size(); i++)
 	{
 		oepResourceLibrary^ r = gcnew oepResourceLibrary("","");
-		r->bind(ref()->getResourceLibrary(names[i]));
+		r->bind(ntStyleSheet()->getResourceLibrary(names[i]));
 	}
 	_resLibs->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepStyleSheet::OnResourceCollectionChanged);
 }
@@ -184,7 +184,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
 				if (r != nullptr)
 				{
-					ref()->addResourceLibrary(r->ref());
+					ntStyleSheet()->addResourceLibrary(r->ntResourceLibrary());
 				}
 			}
 		}
@@ -199,7 +199,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
 				if (r != nullptr)
 				{
-					ref()->removeResourceLibrary(r->ref());
+					ntStyleSheet()->removeResourceLibrary(r->ntResourceLibrary());
 				}
 			}
 		}
@@ -217,7 +217,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		ref()->ClearResourceLibrary();
+		ntStyleSheet()->ClearResourceLibrary();
 		break;
 	}
 	default:

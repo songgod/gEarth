@@ -7,7 +7,7 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepSymbol :
-		public oepRefObject<osgEarth::Symbology::Symbol>
+		public oepRefObject
 	{
 	public:
 
@@ -21,6 +21,10 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+
+	internal:
+
+		osgEarth::Symbol* ntSymbol() { return as<osgEarth::Symbol>(); }
 
 	protected:
 		oepSymbol();

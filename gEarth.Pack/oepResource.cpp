@@ -7,12 +7,13 @@ using namespace osgEarth::Symbology;
 
 oepResource::oepResource()
 {
+	
 }
 
 void oepResource::binded()
 {
 	_tags = gcnew ObservableCollection<String ^>();
-	const TagSet &tagset = ref()->tags();
+	const TagSet &tagset = ntResource()->tags();
 	TagSet::const_iterator citer = tagset.begin();
 	for (citer; citer != tagset.end(); ++citer)
 	{
@@ -39,7 +40,7 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 				String^ tag = dynamic_cast<String^>(e->NewItems[i]);
 				if (tag != nullptr)
 				{
-					ref()->addTag(Str2Std(tag));
+					ntResource()->addTag(Str2Std(tag));
 				}
 			}
 		}
@@ -54,7 +55,7 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 				String^ tag = dynamic_cast<String^>(e->OldItems[i]);
 				if (tag != nullptr)
 				{
-					ref()->removeTag(Str2Std(tag));
+					ntResource()->removeTag(Str2Std(tag));
 				}
 			}
 		}
@@ -72,11 +73,11 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		TagSet tagset = ref()->tags();
+		TagSet tagset = ntResource()->tags();
 		TagSet::const_iterator citer = tagset.begin();
 		for (citer; citer != tagset.end(); ++citer)
 		{
-			ref()->removeTag(*citer);
+			ntResource()->removeTag(*citer);
 		}
 		break;
 	}
@@ -87,12 +88,12 @@ void oepResource::OnMTCollectionChanged(System::Object^ sender, System::Collecti
 
 String^ oepResource::Name::get()
 {
-	return Str2Cli(ref()->getName());
+	return Str2Cli(ntResource()->getName());
 }
 
 void oepResource::Name::set(String^ p)
 {
-	ref()->setName(Str2Std(p));
+	ntResource()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
@@ -103,17 +104,17 @@ ObservableCollection<String^>^ oepResource::Tags::get()
 
 void oepResource::Tags::set(ObservableCollection<String^>^ p)
 {
-	TagSet tagset = ref()->tags();
+	TagSet tagset = ntResource()->tags();
 	TagSet::const_iterator citer = tagset.begin();
 	for (citer; citer != tagset.end(); ++citer)
 	{
-		ref()->removeTag(*citer);
+		ntResource()->removeTag(*citer);
 	}
 
 	_tags = p;
 	for each (String^ tag in p)
 	{
-		ref()->addTag(Str2Std(tag));
+		ntResource()->addTag(Str2Std(tag));
 	}
 	_tags->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepResource::OnMTCollectionChanged);
 	NotifyChanged("Tags");

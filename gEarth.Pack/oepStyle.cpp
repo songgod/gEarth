@@ -54,7 +54,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->NewItems[i]);
 				if (symbol != nullptr)
 				{
-					val()->addSymbol(symbol->ref());
+					val()->addSymbol(symbol->ntSymbol());
 				}
 			}
 		}
@@ -69,7 +69,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->OldItems[i]);
 				if (symbol != nullptr)
 				{
-					val()->removeSymbol(symbol->ref());
+					val()->removeSymbol(symbol->ntSymbol());
 				}
 			}
 		}
@@ -124,7 +124,7 @@ void oepStyle::Symbols::set(oepSymbolCollection^ p)
 	SymbolList lst;
 	for each (oepSymbol^ s in p)
 	{
-		lst.push_back(s->ref());
+		lst.push_back(s->ntSymbol());
 	}
 	val()->symbols() = lst;
 	NotifyChanged("Symbols");
