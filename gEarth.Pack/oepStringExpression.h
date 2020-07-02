@@ -1,9 +1,12 @@
 #pragma once
 #include "oepValObject.h"
+
+using namespace osgEarth::Symbology;
+
 namespace gEarthPack
 {
 	public ref class oepStringExpression :
-		public oepValObject<osgEarth::Symbology::StringExpression>
+		public oepValObject
 	{
 	public:
 		oepStringExpression();
@@ -25,6 +28,16 @@ namespace gEarthPack
 		property bool IsEmpty
 		{
 			bool get();
+		}
+		
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		StringExpression* ntStringExpression() {
+			return as<StringExpression>();
 		}
 
 	private:

@@ -14,24 +14,29 @@ oepViewpoint::oepViewpoint(osgEarth::Viewpoint& vp)
 	bind(new osgEarth::Viewpoint(vp),true);
 }
 
+void oepViewpoint::delelehandle()
+{
+	del<osgEarth::Viewpoint>();
+}
+
 String^ oepViewpoint::Name::get()
 {
-	if (!_handle)
+	if (!Valid)
 		return "";
-	return Str2Cli(_handle->name().value());
+	return Str2Cli(ntViewpoint()->name().value());
 }
 
 void oepViewpoint::Name::set(String^ v)
 {
-	if (!_handle)
+	if (!Valid)
 		return;
-	_handle->name() = Str2Std(v);
+	ntViewpoint()->name() = Str2Std(v);
 	NotifyChanged("Name");
 }
 
 bool oepViewpoint::IsValid::get()
 {
-	if (!_handle)
+	if (!Valid)
 		return false;
-	return _handle->isValid();
+	return ntViewpoint()->isValid();
 }

@@ -3,7 +3,7 @@
 namespace gEarthPack
 {
 	public ref class oepDepthOffsetOptions :
-		public oepValObject<osgEarth::DepthOffsetOptions>
+		public oepValObject
 	{
 	public:
 		oepDepthOffsetOptions();
@@ -45,6 +45,14 @@ namespace gEarthPack
 			bool get();
 			void set(bool p);
 		}
+
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::DepthOffsetOptions* ntDepthOffsetOptions() { return as<osgEarth::DepthOffsetOptions>(); }
 	};
 }
 

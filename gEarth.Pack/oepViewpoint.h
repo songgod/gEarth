@@ -6,7 +6,7 @@ using namespace System::Collections::ObjectModel;
 
 namespace gEarthPack
 {
-	public ref class oepViewpoint : public oepValObject<osgEarth::Viewpoint>
+	public ref class oepViewpoint : public oepValObject
 	{
 	public:
 		oepViewpoint();
@@ -27,6 +27,11 @@ namespace gEarthPack
 	internal:
 
 		oepViewpoint(osgEarth::Viewpoint& vp);
+		osgEarth::Viewpoint* ntViewpoint() { return as<osgEarth::Viewpoint>(); }
+
+	internal:
+
+		virtual void delelehandle() override;
 	};
 
 	public ref class oepViewPoints : public ObservableCollection<oepViewpoint^>

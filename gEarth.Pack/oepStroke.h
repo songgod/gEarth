@@ -5,7 +5,7 @@
 namespace gEarthPack
 {
 	public ref class oepStroke :
-		public oepValObject<osgEarth::Symbology::Stroke>
+		public oepValObject
 	{
 	public:
 		oepStroke();
@@ -51,6 +51,13 @@ namespace gEarthPack
 			void set(float p);
 		}
 
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::Stroke* ntStroke() { return as<osgEarth::Stroke>(); }
 	};
 }
 

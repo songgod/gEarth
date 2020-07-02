@@ -5,6 +5,12 @@ using namespace gEarthPack;
 
 oepUnits::oepUnits()
 {
+	bind(new Units(), true);
+}
+
+void gEarthPack::oepUnits::delelehandle()
+{
+	del<Units>();
 }
 
 static oepUnits::oepUnits()

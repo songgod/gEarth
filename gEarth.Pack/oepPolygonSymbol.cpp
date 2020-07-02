@@ -13,7 +13,7 @@ void oepPolygonSymbol::binded()
 {
 	oepSymbol::binded();
 	_fill = gcnew oepFill();
-	_fill->bind(as<PolygonSymbol>()->fill(), false);
+	_fill->bind(as<PolygonSymbol>()->fill());
 }
 
 void oepPolygonSymbol::unbinded()
@@ -32,7 +32,7 @@ void oepPolygonSymbol::Fill::set(oepFill^ p)
 	PolygonSymbol* to = as<PolygonSymbol>();
 	if (to != NULL && p != nullptr)
 	{
-		to->fill() = *(p->val());
+		to->fill() = *(p->ntFill());
 		NotifyChanged("Fill");
 	}
 }

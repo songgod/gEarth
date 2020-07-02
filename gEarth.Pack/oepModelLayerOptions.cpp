@@ -13,7 +13,7 @@ oepModelLayerOptions::oepModelLayerOptions()
 void gEarthPack::oepModelLayerOptions::binded()
 {
 	_driver = gcnew oepModelSourceOptions();
-	_driver->bind<ModelSourceOptions>(as<ModelLayerOptions>()->driver(), false);
+	_driver->bind(as<ModelLayerOptions>()->driver());
 }
 
 void gEarthPack::oepModelLayerOptions::unbinded()

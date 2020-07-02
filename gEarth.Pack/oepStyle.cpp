@@ -14,7 +14,7 @@ oepStyle::oepStyle()
 oepStyle^ oepStyle::combineWith(oepStyle^ style)
 {
 	Style* pstyle = new Style();
-	*pstyle = val()->combineWith(*(style->val()));
+	*pstyle = ntStyle()->combineWith(*(style->ntStyle()));
 	oepStyle^ res = gcnew oepStyle();
 	res->bind(pstyle, true);
 	return res;
@@ -23,9 +23,9 @@ oepStyle^ oepStyle::combineWith(oepStyle^ style)
 void oepStyle::binded()
 {
 	_symbols = gcnew oepSymbolCollection();
-	for (int i = 0; i < val()->symbols().size(); i++)
+	for (int i = 0; i < ntStyle()->symbols().size(); i++)
 	{
-		Symbol* pSymbol = val()->symbols()[i];
+		Symbol* pSymbol = ntStyle()->symbols()[i];
 		String^ type = Str2Cli(pSymbol->getConfig().key());
 		oepSymbol^ symbol = oepSymbolFactory::creatorSymbol(type, IntPtr(pSymbol));
 		_symbols->Add(symbol);
@@ -41,6 +41,11 @@ void oepStyle::unbinded()
 	}
 }
 
+void gEarthPack::oepStyle::delelehandle()
+{
+	del<osgEarth::Symbology::Style>();
+}
+
 void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 {
 	switch (e->Action)
@@ -54,7 +59,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->NewItems[i]);
 				if (symbol != nullptr)
 				{
-					val()->addSymbol(symbol->ntSymbol());
+					ntStyle()->addSymbol(symbol->ntSymbol());
 				}
 			}
 		}
@@ -69,7 +74,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->OldItems[i]);
 				if (symbol != nullptr)
 				{
-					val()->removeSymbol(symbol->ntSymbol());
+					ntStyle()->removeSymbol(symbol->ntSymbol());
 				}
 			}
 		}
@@ -87,7 +92,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		val()->symbols().clear();
+		ntStyle()->symbols().clear();
 		break;
 	}
 	default:
@@ -99,18 +104,18 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 
 String^ oepStyle::Name::get()
 {
-	return Str2Cli(val()->getName());
+	return Str2Cli(ntStyle()->getName());
 }
 
 void oepStyle::Name::set(String^ p)
 {
-	val()->setName(Str2Std(p));
+	ntStyle()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
 bool oepStyle::IsEmpty::get()
 {
-	return val()->empty();
+	return ntStyle()->empty();
 }
 
 oepSymbolCollection^ oepStyle::Symbols::get()
@@ -126,6 +131,6 @@ void oepStyle::Symbols::set(oepSymbolCollection^ p)
 	{
 		lst.push_back(s->ntSymbol());
 	}
-	val()->symbols() = lst;
+	ntStyle()->symbols() = lst;
 	NotifyChanged("Symbols");
 }

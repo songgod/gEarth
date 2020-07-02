@@ -5,7 +5,7 @@
 namespace gEarthPack
 {
 	public ref class oepFill :
-		public oepValObject<osgEarth::Symbology::Fill>
+		public oepValObject
 	{
 	public:
 		oepFill();
@@ -16,6 +16,16 @@ namespace gEarthPack
 		{
 			oepVec4f get();
 			void set(oepVec4f p);
+		}
+
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::Symbology::Fill* ntFill() {
+			return as < osgEarth::Symbology::Fill>();
 		}
 	};
 }

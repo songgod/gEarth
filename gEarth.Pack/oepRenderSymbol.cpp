@@ -13,9 +13,9 @@ void oepRenderSymbol::binded()
 {
 	oepSymbol::binded();
 	_depthoffset = gcnew oepDepthOffsetOptions();
-	_depthoffset->bind(as<RenderSymbol>()->depthOffset(), false);
+	_depthoffset->bind(as<RenderSymbol>()->depthOffset());
 	_order = gcnew oepNumericExpression();
-	_order->bind(as<RenderSymbol>()->order(), false);
+	_order->bind(as<RenderSymbol>()->order());
 }
 
 void oepRenderSymbol::unbinded()
@@ -71,7 +71,7 @@ oepNumericExpression^ oepRenderSymbol::Order::get()
 
 void oepRenderSymbol::Order::set(oepNumericExpression^ p)
 {
-	as<RenderSymbol>()->order() = *(p->val());
+	as<RenderSymbol>()->order() = *(p->ntNumericExpression());
 	NotifyChanged("Order");
 }
 
@@ -173,6 +173,6 @@ oepDepthOffsetOptions^ oepRenderSymbol::DepthOffset::get()
 
 void oepRenderSymbol::DepthOffset::set(oepDepthOffsetOptions^ p)
 {
-	as<RenderSymbol>()->depthOffset() = *(p->val());
+	as<RenderSymbol>()->depthOffset() = *(p->ntDepthOffsetOptions());
 	NotifyChanged("DepthOffset");
 }

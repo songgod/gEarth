@@ -13,7 +13,7 @@ namespace gEarthPack
 	};
 
 	public ref class oepConfig :
-		public oepValObject<osgEarth::Config>
+		public oepValObject
 	{
 	public:
 		oepConfig();
@@ -135,6 +135,7 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+		virtual void delelehandle() override;
 
 	private:
 

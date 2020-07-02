@@ -6,7 +6,7 @@ using namespace osgEarth;
 namespace gEarthPack
 {
 	public ref class oepUnits :
-		public oepValObject<Units>
+		public oepValObject
 	{
 	public:
 		oepUnits();
@@ -18,6 +18,10 @@ namespace gEarthPack
 		{
 			oepUnits^ get();
 		}
+
+	internal:
+
+		virtual void delelehandle() override;
 
 	private:
 

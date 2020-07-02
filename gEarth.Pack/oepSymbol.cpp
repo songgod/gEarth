@@ -18,7 +18,7 @@ void oepSymbol::Script::set(oepStringExpression^ p)
 {
 	if (ntSymbol())
 	{
-		ntSymbol()->script() = *(p->val());
+		ntSymbol()->script() = *(p->ntStringExpression());
 		NotifyChanged("Script");
 	}
 }
@@ -27,7 +27,7 @@ void oepSymbol::binded()
 {
 	_script = gcnew oepStringExpression();
 	if (ntSymbol())
-		_script->bind(ntSymbol()->script(), false);
+		_script->bind(ntSymbol()->script());
 }
 
 void oepSymbol::unbinded()

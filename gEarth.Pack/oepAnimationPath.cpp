@@ -123,7 +123,7 @@ void oepAnimationPath::OnControlPointsCollectionChanged(System::Object^ sender, 
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex < tcpm.size())
 		{
 			oepControlPoint^ oepcp = dynamic_cast<oepControlPoint^>(e->NewItems[0]);
-			tcpm[oepcp->Time] = *(oepcp->val());
+			tcpm[oepcp->Time] = *(oepcp->ntControlPoint());
 			oepcp->bind(&(tcpm[oepcp->Time]),false);
 		}
 		break;
@@ -192,6 +192,11 @@ oepControlPoint::oepControlPoint() : _time(0.0)
 oepControlPoint::oepControlPoint(osg::AnimationPath::ControlPoint& cp)
 {
 	bind(new osg::AnimationPath::ControlPoint(cp.getPosition(),cp.getRotation(),cp.getScale()),true);
+}
+
+void gEarthPack::oepControlPoint::delelehandle()
+{
+	del<osg::AnimationPath::ControlPoint>();
 }
 
 oepControlPoint^ oepControlPoint::MakeControlPoint(oepRender^ render, double time)

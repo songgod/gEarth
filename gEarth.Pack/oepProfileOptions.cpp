@@ -12,7 +12,7 @@ oepProfileOptions::oepProfileOptions()
 void gEarthPack::oepProfileOptions::binded()
 {
 	_bounds = gcnew oepBounds();
-	_bounds->bind(as<osgEarth::ProfileOptions>()->bounds(), false);
+	_bounds->bind(as<osgEarth::ProfileOptions>()->bounds());
 }
 
 void gEarthPack::oepProfileOptions::unbinded()

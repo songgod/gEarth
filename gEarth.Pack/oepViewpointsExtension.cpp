@@ -53,9 +53,9 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[i]);
-				if (oepvp != nullptr && oepvp->val()!=NULL)
+				if (oepvp != nullptr && oepvp->ntViewpoint()!=NULL)
 				{
-					osgEarth::Viewpoint vp = *(oepvp->val());
+					osgEarth::Viewpoint vp = *(oepvp->ntViewpoint());
 					std::vector<osgEarth::Viewpoint>& vps = vo->viewpoints();
 					vps.push_back(vp);
 					oepvp->bind(&(vps[vps.size() - 1]),false);
@@ -73,7 +73,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->OldItems[i]);
-				if (oepvp != nullptr && oepvp->val() != NULL)
+				if (oepvp != nullptr && oepvp->ntViewpoint() != NULL)
 				{
 					int index = oepvps->IndexOf(oepvp);
 					if (index >= 0 && index <= vps.size())
@@ -92,7 +92,7 @@ void oepViewpointsExtension::OnViewpointsCollectionChanged(System::Object^ sende
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex<vps.size())
 		{
 			oepViewpoint^ oepvp = dynamic_cast<oepViewpoint^>(e->NewItems[0]);
-			vps[e->NewStartingIndex] = *(oepvp->val());
+			vps[e->NewStartingIndex] = *(oepvp->ntViewpoint());
 			oepvp->bind(&(vps[e->NewStartingIndex]),false);
 		}
 		break;

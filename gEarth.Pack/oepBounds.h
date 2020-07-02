@@ -6,7 +6,7 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepBounds :
-		public oepValObject<osgEarth::Bounds>
+		public oepValObject
 	{
 	public:
 		oepBounds();
@@ -63,6 +63,14 @@ namespace gEarthPack
 		{
 			double get();
 		}
+
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::Bounds* ntBounds() { return as<osgEarth::Bounds>(); }
 	};
 
 	public ref class oepBoundsCollection : public ObservableCollection<oepBounds^>

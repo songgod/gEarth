@@ -9,20 +9,25 @@ oepStroke::oepStroke()
 	bind(new Stroke(),true);
 }
 
+void gEarthPack::oepStroke::delelehandle()
+{
+	del<osgEarth::Symbology::Stroke>();
+}
+
 oepVec4f oepStroke::Color::get()
 {
-	return oepVec4f(val()->color());
+	return oepVec4f(ntStroke()->color());
 }
 
 void oepStroke::Color::set(oepVec4f p)
 {
-	val()->color() = p.as();
+	ntStroke()->color() = p.as();
 	NotifyChanged("Color");
 }
 
 oepStroke::oepLineCapStyle oepStroke::LineCap::get()
 {
-	Stroke::LineCapStyle lc = val()->lineCap().value();
+	Stroke::LineCapStyle lc = ntStroke()->lineCap().value();
 	switch (lc)
 	{
 	case osgEarth::Symbology::Stroke::LINECAP_FLAT:
@@ -42,13 +47,13 @@ void oepStroke::LineCap::set(oepLineCapStyle p)
 	switch (p)
 	{
 	case oepStroke::oepLineCapStyle::Flat:
-		val()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_FLAT;
+		ntStroke()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_FLAT;
 		break;
 	case oepStroke::oepLineCapStyle::Square:
-		val()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_SQUARE;
+		ntStroke()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_SQUARE;
 		break;
 	case oepStroke::oepLineCapStyle::Round:
-		val()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_ROUND;
+		ntStroke()->lineCap() = osgEarth::Symbology::Stroke::LINECAP_ROUND;
 		break;
 	default:
 		break;
@@ -58,7 +63,7 @@ void oepStroke::LineCap::set(oepLineCapStyle p)
 
 oepStroke::oepLineJoinStyle oepStroke::LineJoin::get()
 {
-	Stroke::LineJoinStyle lj = val()->lineJoin().value();
+	Stroke::LineJoinStyle lj = ntStroke()->lineJoin().value();
 	switch (lj)
 	{
 	case osgEarth::Symbology::Stroke::LINEJOIN_MITRE:
@@ -76,10 +81,10 @@ void oepStroke::LineJoin::set(oepLineJoinStyle p)
 	switch (p)
 	{
 	case oepStroke::oepLineJoinStyle::Mitre:
-		val()->lineJoin() = osgEarth::Symbology::Stroke::LINEJOIN_MITRE;
+		ntStroke()->lineJoin() = osgEarth::Symbology::Stroke::LINEJOIN_MITRE;
 		break;
 	case oepStroke::oepLineJoinStyle::Round:
-		val()->lineJoin() = osgEarth::Symbology::Stroke::LINEJOIN_ROUND;
+		ntStroke()->lineJoin() = osgEarth::Symbology::Stroke::LINEJOIN_ROUND;
 		break;
 	default:
 		break;
@@ -89,12 +94,12 @@ void oepStroke::LineJoin::set(oepLineJoinStyle p)
 
 float oepStroke::Width::get()
 {
-	return val()->width().value();
+	return ntStroke()->width().value();
 }
 
 void oepStroke::Width::set(float p)
 {
-	val()->width() = p;
+	ntStroke()->width() = p;
 	NotifyChanged("Width");
 }
 

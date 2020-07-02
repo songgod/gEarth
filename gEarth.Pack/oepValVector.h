@@ -73,7 +73,7 @@ namespace gEarthPack
 			_vector->resize(Count);
 			for (int i = 0; i < Count; i++)
 			{
-				(*_vector)[i] = *(this[i]->val());
+				(*_vector)[i] = *(this[i]->as<LT>());
 				this[i]->bind(&((*_vector)[i]), false);
 			}
 		}

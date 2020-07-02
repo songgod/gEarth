@@ -129,9 +129,9 @@ oepViewpoint^ oepRender::Viewpoint::get()
 
 void oepRender::Viewpoint::set(oepViewpoint^ v)
 {
-	if (v == nullptr || v->val() == NULL)
+	if (v == nullptr || v->ntViewpoint() == NULL)
 		return;
-	_viewer->flyto(*(v->val()));
+	_viewer->flyto(*(v->ntViewpoint()));
 	NotifyChanged("Viewpoint");
 }
 

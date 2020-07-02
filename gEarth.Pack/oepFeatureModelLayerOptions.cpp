@@ -13,17 +13,17 @@ oepFeatureModelLayerOptions::oepFeatureModelLayerOptions()
 void oepFeatureModelLayerOptions::binded()
 {
 	_driver = gcnew oepFeatureSourceOptions();
-	_driver->bind<FeatureSourceOptions>(as<FeatureModelLayerOptions>()->featureSource(),false);
+	_driver->bind(as<FeatureModelLayerOptions>()->featureSource());
 	_styles = gcnew oepStyleSheet();
 	_styles->bind(as<FeatureModelLayerOptions>()->styles());
 	_layout = gcnew oepFeatureDisplayLayout();
-	_layout->bind(as<FeatureModelLayerOptions>()->layout(),false);
+	_layout->bind(as<FeatureModelLayerOptions>()->layout());
 	_featureName = gcnew oepStringExpression();
-	_featureName->bind(as<FeatureModelLayerOptions>()->GeometryCompilerOptions::featureName(), false);
+	_featureName->bind(as<FeatureModelLayerOptions>()->GeometryCompilerOptions::featureName());
 	_featureIndexing = gcnew oepFeatureSourceIndexOptions();
-	_featureIndexing->bind(as<FeatureModelLayerOptions>()->featureIndexing(), false);
+	_featureIndexing->bind(as<FeatureModelLayerOptions>()->featureIndexing());
 	_fading = gcnew oepFadeOptions();
-	_fading->bind(as<FeatureModelLayerOptions>()->fading(), false);
+	_fading->bind(as<FeatureModelLayerOptions>()->fading());
 }
 
 void oepFeatureModelLayerOptions::unbinded()

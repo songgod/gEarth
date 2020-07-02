@@ -3,7 +3,7 @@
 namespace gEarthPack
 {
 	public ref class oepFadeOptions :
-		public oepValObject<osgEarth::FadeOptions>
+		public oepValObject
 	{
 	public:
 		oepFadeOptions();
@@ -27,6 +27,14 @@ namespace gEarthPack
 			float get();
 			void set(float p);
 		}
+
+	internal:
+
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::FadeOptions* ntFadeOptions() { return as<osgEarth::FadeOptions>(); }
 	};
 }
 

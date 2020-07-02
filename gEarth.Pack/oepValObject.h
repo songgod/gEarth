@@ -3,7 +3,6 @@
 
 namespace gEarthPack
 {
-	template<class T>
 	public ref class oepValObject :
 		public oepObject
 	{
@@ -15,8 +14,8 @@ namespace gEarthPack
 
 		!oepValObject()
 		{
-			if (_handle && _ownhandle)
-				delete _handle;
+			if(_handle && _ownhandle)
+				delelehandle();
 		}
 
 		virtual ~oepValObject()
@@ -33,46 +32,15 @@ namespace gEarthPack
 
 	internal:
 
-		T* val() { return (T*)_handle; }
+		void* val() { return _handle; }
 
-		template<class T1>
-		T1* as()
-		{
-			if (_handle)
-				return dynamic_cast<T1*>(_handle);
-			return NULL;
-		}
-
-		template<class T1>
-		void bind(osgEarth::optional<T1>& handle, bool own)
-		{
-			if (!handle.isSet())
-			{
-				handle = T1();
-			}
-			T* h = dynamic_cast<T*>(&(handle.mutable_value()));
-			if (!h)
-				return;
-			bind(h, own);
-		}
-
-		void bind(osgEarth::optional<T>& handle, bool own)
-		{
-			if (!handle.isSet())
-			{
-				handle = T();
-			}
-			bind(&(handle.mutable_value()), own);
-		}
-
-		void bind(T* handle, bool own)
+		void bind(void* handle, bool own)
 		{
 			if (handle == _handle && _ownhandle)
 				return;
 			if (_handle != NULL && handle != _handle && _ownhandle)
 			{
-				delete _handle;
-				_handle = NULL;
+				delelehandle();
 			}
 			_handle = handle;
 			_ownhandle = own;
@@ -87,14 +55,45 @@ namespace gEarthPack
 			bind(NULL,true);
 		}
 
+		template<class T>
+		T* as()
+		{
+			if (_handle)
+				return static_cast<T*>(_handle);
+			return NULL;
+		}
+
+		template<class T>
+		void del()
+		{
+			if (_handle && _ownhandle)
+			{
+				delete (T*)_handle;
+				_handle = NULL;
+			}
+		}
+
+		template<class T>
+		void bind(osgEarth::optional<T>& op)
+		{
+			if (op.isSet())
+				op.mutable_value() = T();
+			bind(&(op.mutable_value()), false);
+		}
+
 	internal:
 
 		virtual void binded(){}
 		virtual void unbinded(){}
+		virtual void delelehandle()
+		{
+			if (_handle != NULL)
+				throw gcnew System::NotImplementedException();
+		}
 
 	protected:
 
-		T* _handle;
+		void* _handle;
 		bool _ownhandle;
 	};
 }

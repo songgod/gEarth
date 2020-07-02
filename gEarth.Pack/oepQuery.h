@@ -2,10 +2,12 @@
 #include "oepValObject.h"
 #include "oepBounds.h"
 
+using namespace osgEarth::Symbology;
+
 namespace gEarthPack
 {
 	public ref class oepQuery :
-		public oepValObject<osgEarth::Symbology::Query>
+		public oepValObject
 	{
 	public:
 		oepQuery();
@@ -40,6 +42,13 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+		virtual void delelehandle() override;
+
+	internal:
+
+		Query* ntQuery() {
+			return as<Query>();
+		}
 
 	private:
 

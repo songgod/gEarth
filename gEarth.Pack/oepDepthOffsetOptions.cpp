@@ -9,80 +9,85 @@ oepDepthOffsetOptions::oepDepthOffsetOptions()
 	bind(new DepthOffsetOptions(),true);
 }
 
+void gEarthPack::oepDepthOffsetOptions::delelehandle()
+{
+	del<osgEarth::DepthOffsetOptions>();
+}
+
 bool oepDepthOffsetOptions::Enabled::get()
 {
-	if (val()->enabled().isSet())
+	if (ntDepthOffsetOptions()->enabled().isSet())
 		return false;
-	return val()->enabled().value();
+	return ntDepthOffsetOptions()->enabled().value();
 }
 
 void oepDepthOffsetOptions::Enabled::set(bool p)
 {
-	val()->enabled() = p;
+	ntDepthOffsetOptions()->enabled() = p;
 	NotifyChanged("Enabled");
 }
 
 double oepDepthOffsetOptions::MinBias::get()
 {
-	if (val()->minBias().isSet())
+	if (ntDepthOffsetOptions()->minBias().isSet())
 		return 0.0;
-	return val()->minBias().value().getValue();
+	return ntDepthOffsetOptions()->minBias().value().getValue();
 }
 
 void oepDepthOffsetOptions::MinBias::set(double p)
 {
-	val()->minBias() = p;
+	ntDepthOffsetOptions()->minBias() = p;
 	NotifyChanged("MinBias");
 }
 
 double oepDepthOffsetOptions::MaxBias::get()
 {
-	if (val()->maxBias().isSet())
+	if (ntDepthOffsetOptions()->maxBias().isSet())
 		return 0.0;
-	return val()->maxBias().value().getValue();
+	return ntDepthOffsetOptions()->maxBias().value().getValue();
 }
 
 void oepDepthOffsetOptions::MaxBias::set(double p)
 {
-	val()->maxBias() = p;
+	ntDepthOffsetOptions()->maxBias() = p;
 	NotifyChanged("MaxBias");
 }
 
 double oepDepthOffsetOptions::MinRange::get()
 {
-	if (val()->minRange().isSet())
+	if (ntDepthOffsetOptions()->minRange().isSet())
 		return 0.0;
-	return val()->minRange().value().getValue();
+	return ntDepthOffsetOptions()->minRange().value().getValue();
 }
 
 void oepDepthOffsetOptions::MinRange::set(double p)
 {
-	val()->minRange() = p;
+	ntDepthOffsetOptions()->minRange() = p;
 	NotifyChanged("MinRange");
 }
 
 double oepDepthOffsetOptions::MaxRange::get()
 {
-	if (val()->maxRange().isSet())
+	if (ntDepthOffsetOptions()->maxRange().isSet())
 		return 0.0;
-	return val()->maxRange().value().getValue();
+	return ntDepthOffsetOptions()->maxRange().value().getValue();
 }
 
 void oepDepthOffsetOptions::MaxRange::set(double p)
 {
-	val()->maxRange() = p;
+	ntDepthOffsetOptions()->maxRange() = p;
 	NotifyChanged("MaxRange");
 }
 
 bool oepDepthOffsetOptions::Automatic::get()
 {
-	if (val()->automatic().isSet())
+	if (ntDepthOffsetOptions()->automatic().isSet())
 		return false;
-	return val()->automatic().value();
+	return ntDepthOffsetOptions()->automatic().value();
 }
 
 void oepDepthOffsetOptions::Automatic::set(bool p)
 {
-	val()->automatic() = p;
+	ntDepthOffsetOptions()->automatic() = p;
 	NotifyChanged("Automatic");
 }

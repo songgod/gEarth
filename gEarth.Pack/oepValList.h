@@ -80,7 +80,7 @@ namespace gEarthPack
 			int i = 0;
 			for (std::list<LT>::iterator iter = _list->begin(); iter != _list->end(); iter++)
 			{
-				(*iter) = *(this[i]->val());
+				(*iter) = *(this[i]->as<LT>());
 				this[i]->bind(&(*iter), false);
 				i++;
 			}

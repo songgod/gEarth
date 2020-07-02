@@ -6,7 +6,7 @@
 namespace gEarthPack
 {
 	public ref class oepStyle :
-		public oepValObject<osgEarth::Symbology::Style>
+		public oepValObject
 	{
 	public:
 		oepStyle();
@@ -39,6 +39,13 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
+		virtual void delelehandle() override;
+
+	internal:
+
+		osgEarth::Symbology::Style* ntStyle() {
+			return as < osgEarth::Symbology::Style>();
+		}
 
 	protected:
 

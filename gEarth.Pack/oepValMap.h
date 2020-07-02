@@ -78,8 +78,8 @@ namespace gEarthPack
 			_map->clear();
 			for (int i = 0; i < Count; i++)
 			{
-				(*_map)[this[i]->val()->getName()] = *(this[i]->val());
-				this[i]->bind(&((*_map)[this[i]->val()->getName()]), false);
+				(*_map)[this[i]->as<LT>()->getName()] = *(this[i]->as<LT>());
+				this[i]->bind(&((*_map)[this[i]->as<LT>()->getName()]), false);
 			}
 		}
 

@@ -13,9 +13,9 @@ oepOGRFeatureSourceOptions::oepOGRFeatureSourceOptions()
 void gEarthPack::oepOGRFeatureSourceOptions::binded()
 {
 	_geometryConfig = gcnew oepConfig();
-	_geometryConfig->bind(as<OGRFeatureOptions>()->geometryConfig(), false);
+	_geometryConfig->bind(as<OGRFeatureOptions>()->geometryConfig());
 	_query = gcnew oepQuery();
-	_query->bind(as<OGRFeatureOptions>()->query(), false);
+	_query->bind(as<OGRFeatureOptions>()->query());
 }
 
 void gEarthPack::oepOGRFeatureSourceOptions::unbinded()

@@ -14,7 +14,7 @@ oepFeatureSourceOptions::oepFeatureSourceOptions():_profile(nullptr), _filters(n
 void gEarthPack::oepFeatureSourceOptions::binded()
 {
 	_profile = gcnew oepProfileOptions();
-	_profile->bind<osgEarth::ProfileOptions>(as<FeatureSourceOptions>()->profile(), false);
+	_profile->bind(as<FeatureSourceOptions>()->profile());
 	_filters = gcnew oepConfigOptionsCollection();
 	_filters->bind(&(as<FeatureSourceOptions>()->filters()), false);
 }

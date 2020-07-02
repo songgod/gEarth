@@ -9,7 +9,7 @@ using namespace System::Collections::ObjectModel;
 namespace gEarthPack
 {
 	public ref class oepControlPoint : 
-		public oepValObject<osg::AnimationPath::ControlPoint>
+		public oepValObject
 	{
 	public:
 		oepControlPoint();
@@ -29,6 +29,11 @@ namespace gEarthPack
 	internal:
 
 		oepControlPoint(osg::AnimationPath::ControlPoint& cp);
+		osg::AnimationPath::ControlPoint* ntControlPoint() { return as<osg::AnimationPath::ControlPoint>(); }
+		
+	internal:
+
+		virtual void delelehandle() override;
 
 	private:
 

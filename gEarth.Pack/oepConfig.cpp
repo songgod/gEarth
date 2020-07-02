@@ -20,6 +20,11 @@ void oepConfig::unbinded()
 	_children->unbind();
 }
 
+void gEarthPack::oepConfig::delelehandle()
+{
+	del<osgEarth::Config>();
+}
+
 String^ oepConfig::Referrer::get()
 {
 	return Str2Cli(as<osgEarth::Config>()->referrer());

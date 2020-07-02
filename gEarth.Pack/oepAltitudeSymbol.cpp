@@ -14,9 +14,9 @@ void oepAltitudeSymbol::binded()
 {
 	oepSymbol::binded();
 	_verticalOffset = gcnew oepNumericExpression();
-	_verticalOffset->bind(as<AltitudeSymbol>()->verticalOffset(), false);
+	_verticalOffset->bind(as<AltitudeSymbol>()->verticalOffset());
 	_verticalScale = gcnew oepNumericExpression();
-	_verticalScale->bind(as<AltitudeSymbol>()->verticalScale(), false);
+	_verticalScale->bind(as<AltitudeSymbol>()->verticalScale());
 }
 
 void oepAltitudeSymbol::unbinded()

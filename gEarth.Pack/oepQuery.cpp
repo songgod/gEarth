@@ -12,12 +12,17 @@ oepQuery::oepQuery()
 void gEarthPack::oepQuery::binded()
 {
 	_bounds = gcnew oepBounds();
-	_bounds->bind(val()->bounds(), false);
+	_bounds->bind(ntQuery()->bounds());
 }
 
 void gEarthPack::oepQuery::unbinded()
 {
 	_bounds->unbind();
+}
+
+void gEarthPack::oepQuery::delelehandle()
+{
+	del<osgEarth::Symbology::Query>();
 }
 
 oepBounds^ oepQuery::Bounds::get()
@@ -37,33 +42,33 @@ void oepQuery::Bounds::set(oepBounds^ p)
 
 String^ oepQuery::Expression::get()
 {
-	return Str2Cli(val()->expression().value());
+	return Str2Cli(ntQuery()->expression().value());
 }
 
 void oepQuery::Expression::set(String^ p)
 {
-	val()->expression() = Str2Std(p);
+	ntQuery()->expression() = Str2Std(p);
 	NotifyChanged("Expression");
 }
 
 String^ oepQuery::OrderBy::get()
 {
-	return Str2Cli(val()->orderby().value());
+	return Str2Cli(ntQuery()->orderby().value());
 }
 
 void oepQuery::OrderBy::set(String^ p)
 {
-	val()->orderby() = Str2Std(p);
+	ntQuery()->orderby() = Str2Std(p);
 	NotifyChanged("OrderBy");
 }
 
 int oepQuery::Limit::get()
 {
-	return val()->limit().value();
+	return ntQuery()->limit().value();
 }
 
 void oepQuery::Limit::set(int p)
 {
-	val()->limit() = p;
+	ntQuery()->limit() = p;
 	NotifyChanged("Limit");
 }
