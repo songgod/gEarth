@@ -31,10 +31,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::FadeOptions* ntFadeOptions() { return as<osgEarth::FadeOptions>(); }
 	};
 }
 

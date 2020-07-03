@@ -46,9 +46,9 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->NewItems[i]);
-				if (oepap != nullptr && oepap->ntAnimationPathInfo() != NULL)
+				if (oepap != nullptr && oepap->as<osgEarth::AnimationPath::AnimationPathInfo>() != NULL)
 				{
-					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->ntAnimationPathInfo();
+					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->as<osgEarth::AnimationPath::AnimationPathInfo>();
 					aps.push_back(ap);
 				}
 			}
@@ -62,9 +62,9 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->OldItems[i]);
-				if (oepap != nullptr && oepap->ntAnimationPathInfo() != NULL)
+				if (oepap != nullptr && oepap->as<osgEarth::AnimationPath::AnimationPathInfo>() != NULL)
 				{
-					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->ntAnimationPathInfo();
+					osgEarth::AnimationPath::AnimationPathInfo *ap = oepap->as<osgEarth::AnimationPath::AnimationPathInfo>();
 					osgEarth::AnimationPath::AnimationPathInfos::iterator iter = aps.begin();
 					for (iter; iter != aps.end(); ++iter)
 					{
@@ -84,7 +84,7 @@ void oepAnimationPathExtension::OnAnimationPathCollectionChanged(System::Object^
 		if (e->NewItems->Count > 0 && e->NewStartingIndex >= 0 && e->NewStartingIndex < aps.size())
 		{
 			oepAnimationPath^ oepap = dynamic_cast<oepAnimationPath^>(e->NewItems[0]);
-			aps[e->NewStartingIndex] = oepap->ntAnimationPathInfo();
+			aps[e->NewStartingIndex] = oepap->as<osgEarth::AnimationPath::AnimationPathInfo>();
 		}
 		break;
 	}

@@ -27,7 +27,6 @@ namespace gEarthPack
 	internal:
 
 		oepViewpoint(osgEarth::Viewpoint& vp);
-		osgEarth::Viewpoint* ntViewpoint() { return as<osgEarth::Viewpoint>(); }
 
 	internal:
 

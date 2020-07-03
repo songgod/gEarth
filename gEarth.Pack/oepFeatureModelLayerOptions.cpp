@@ -54,7 +54,7 @@ oepStyleSheet^ oepFeatureModelLayerOptions::Styles::get()
 void oepFeatureModelLayerOptions::Styles::set(oepStyleSheet^ p)
 {
 	_styles = p;
-	as<FeatureModelLayerOptions>()->styles() = _styles->ntStyleSheet();
+	as<FeatureModelLayerOptions>()->styles() = _styles->as<osgEarth::Symbology::StyleSheet>();
 	NotifyChanged("Styles");
 }
 

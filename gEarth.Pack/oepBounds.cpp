@@ -18,7 +18,7 @@ double oepBounds::Xmin::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->xMin();
+	return as<osgEarth::Bounds>()->xMin();
 }
 
 void oepBounds::Xmin::set(double p)
@@ -26,7 +26,7 @@ void oepBounds::Xmin::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->xMin()=p;
+	as<osgEarth::Bounds>()->xMin()=p;
 	NotifyChanged("Xmin");
 	NotifyChanged("Width");
 }
@@ -36,7 +36,7 @@ double oepBounds::Ymin::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->yMin();
+	return as<osgEarth::Bounds>()->yMin();
 }
 
 void oepBounds::Ymin::set(double p)
@@ -44,7 +44,7 @@ void oepBounds::Ymin::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->yMin() = p;
+	as<osgEarth::Bounds>()->yMin() = p;
 	NotifyChanged("Ymin");
 	NotifyChanged("Height");
 }
@@ -54,7 +54,7 @@ double oepBounds::Zmin::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->zMin();
+	return as<osgEarth::Bounds>()->zMin();
 }
 
 void oepBounds::Zmin::set(double p)
@@ -62,7 +62,7 @@ void oepBounds::Zmin::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->zMin() = p;
+	as<osgEarth::Bounds>()->zMin() = p;
 	NotifyChanged("Zmin");
 	NotifyChanged("Depth");
 }
@@ -72,7 +72,7 @@ double oepBounds::Xmax::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->xMax();
+	return as<osgEarth::Bounds>()->xMax();
 }
 
 void oepBounds::Xmax::set(double p)
@@ -80,7 +80,7 @@ void oepBounds::Xmax::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->xMax() = p;
+	as<osgEarth::Bounds>()->xMax() = p;
 	NotifyChanged("Xmax");
 	NotifyChanged("Width");
 }
@@ -90,7 +90,7 @@ double oepBounds::Ymax::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->yMax();
+	return as<osgEarth::Bounds>()->yMax();
 }
 
 void oepBounds::Ymax::set(double p)
@@ -98,7 +98,7 @@ void oepBounds::Ymax::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->yMax() = p;
+	as<osgEarth::Bounds>()->yMax() = p;
 	NotifyChanged("Ymax");
 	NotifyChanged("Height");
 }
@@ -108,7 +108,7 @@ double oepBounds::Zmax::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->zMax();
+	return as<osgEarth::Bounds>()->zMax();
 }
 
 void oepBounds::Zmax::set(double p)
@@ -116,7 +116,7 @@ void oepBounds::Zmax::set(double p)
 	if (!Valid)
 		return;
 
-	ntBounds()->zMax() = p;
+	as<osgEarth::Bounds>()->zMax() = p;
 	NotifyChanged("Zmax");
 	NotifyChanged("Depth");
 }
@@ -126,7 +126,7 @@ double oepBounds::Width::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->width();
+	return as<osgEarth::Bounds>()->width();
 }
 
 double oepBounds::Height::get()
@@ -134,7 +134,7 @@ double oepBounds::Height::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->height();
+	return as<osgEarth::Bounds>()->height();
 }
 
 double oepBounds::Depth::get()
@@ -142,5 +142,5 @@ double oepBounds::Depth::get()
 	if (!Valid)
 		return 0.0;
 
-	return ntBounds()->depth();
+	return as<osgEarth::Bounds>()->depth();
 }

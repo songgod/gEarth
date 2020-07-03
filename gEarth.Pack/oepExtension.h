@@ -18,10 +18,6 @@ namespace gEarthPack
 			String^ get() override;
 			void set(String^ v) override;
 		}
-
-	internal:
-
-		osgEarth::Extension* ntExtension() { return as<osgEarth::Extension>(); }
 	};
 
 	public ref class oepExtensions : public ObservableCollection<oepExtension^>

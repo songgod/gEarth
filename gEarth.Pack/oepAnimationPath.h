@@ -29,7 +29,6 @@ namespace gEarthPack
 	internal:
 
 		oepControlPoint(osg::AnimationPath::ControlPoint& cp);
-		osg::AnimationPath::ControlPoint* ntControlPoint() { return as<osg::AnimationPath::ControlPoint>(); }
 		
 	internal:
 
@@ -82,10 +81,6 @@ namespace gEarthPack
 	internal:
 
 		oepAnimationPath(osgEarth::AnimationPath::AnimationPathInfo* info);
-
-	internal:
-
-		osgEarth::AnimationPath::AnimationPathInfo* ntAnimationPathInfo() { return as<osgEarth::AnimationPath::AnimationPathInfo>(); }
 
 	private:
 

@@ -50,12 +50,6 @@ namespace gEarthPack
 		virtual void unbinded() override;
 		virtual void delelehandle() override;
 
-	internal:
-
-		osgEarth::Symbology::StyleSelector* ntStyleSelector() {
-			return as < osgEarth::Symbology::StyleSelector>();
-		}
-
 	private:
 
 		oepStringExpression^ _styleExpression;

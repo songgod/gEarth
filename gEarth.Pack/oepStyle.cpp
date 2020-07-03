@@ -14,7 +14,7 @@ oepStyle::oepStyle()
 oepStyle^ oepStyle::combineWith(oepStyle^ style)
 {
 	Style* pstyle = new Style();
-	*pstyle = ntStyle()->combineWith(*(style->ntStyle()));
+	*pstyle = as<osgEarth::Symbology::Style>()->combineWith(*(style->as<osgEarth::Symbology::Style>()));
 	oepStyle^ res = gcnew oepStyle();
 	res->bind(pstyle, true);
 	return res;
@@ -23,9 +23,9 @@ oepStyle^ oepStyle::combineWith(oepStyle^ style)
 void oepStyle::binded()
 {
 	_symbols = gcnew oepSymbolCollection();
-	for (int i = 0; i < ntStyle()->symbols().size(); i++)
+	for (int i = 0; i < as<osgEarth::Symbology::Style>()->symbols().size(); i++)
 	{
-		Symbol* pSymbol = ntStyle()->symbols()[i];
+		Symbol* pSymbol = as<osgEarth::Symbology::Style>()->symbols()[i];
 		String^ type = Str2Cli(pSymbol->getConfig().key());
 		oepSymbol^ symbol = oepSymbolFactory::creatorSymbol(type, IntPtr(pSymbol));
 		_symbols->Add(symbol);
@@ -59,7 +59,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->NewItems[i]);
 				if (symbol != nullptr)
 				{
-					ntStyle()->addSymbol(symbol->ntSymbol());
+					as<osgEarth::Symbology::Style>()->addSymbol(symbol->as<osgEarth::Symbol>());
 				}
 			}
 		}
@@ -74,7 +74,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 				oepSymbol^ symbol = dynamic_cast<oepSymbol^>(e->OldItems[i]);
 				if (symbol != nullptr)
 				{
-					ntStyle()->removeSymbol(symbol->ntSymbol());
+					as<osgEarth::Symbology::Style>()->removeSymbol(symbol->as<osgEarth::Symbol>());
 				}
 			}
 		}
@@ -92,7 +92,7 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		ntStyle()->symbols().clear();
+		as<osgEarth::Symbology::Style>()->symbols().clear();
 		break;
 	}
 	default:
@@ -104,18 +104,18 @@ void oepStyle::OnMTCollectionChanged(System::Object^ sender, System::Collections
 
 String^ oepStyle::Name::get()
 {
-	return Str2Cli(ntStyle()->getName());
+	return Str2Cli(as<osgEarth::Symbology::Style>()->getName());
 }
 
 void oepStyle::Name::set(String^ p)
 {
-	ntStyle()->setName(Str2Std(p));
+	as<osgEarth::Symbology::Style>()->setName(Str2Std(p));
 	NotifyChanged("Name");
 }
 
 bool oepStyle::IsEmpty::get()
 {
-	return ntStyle()->empty();
+	return as<osgEarth::Symbology::Style>()->empty();
 }
 
 oepSymbolCollection^ oepStyle::Symbols::get()
@@ -129,8 +129,8 @@ void oepStyle::Symbols::set(oepSymbolCollection^ p)
 	SymbolList lst;
 	for each (oepSymbol^ s in p)
 	{
-		lst.push_back(s->ntSymbol());
+		lst.push_back(s->as<osgEarth::Symbol>());
 	}
-	ntStyle()->symbols() = lst;
+	as<osgEarth::Symbology::Style>()->symbols() = lst;
 	NotifyChanged("Symbols");
 }

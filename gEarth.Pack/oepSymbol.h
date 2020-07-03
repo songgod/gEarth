@@ -22,10 +22,6 @@ namespace gEarthPack
 		virtual void binded() override;
 		virtual void unbinded() override;
 
-	internal:
-
-		osgEarth::Symbol* ntSymbol() { return as<osgEarth::Symbol>(); }
-
 	protected:
 		oepSymbol();
 

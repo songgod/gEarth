@@ -16,9 +16,9 @@ oepStringExpression^ oepSymbol::Script::get()
 
 void oepSymbol::Script::set(oepStringExpression^ p)
 {
-	if (ntSymbol())
+	if (as<osgEarth::Symbol>())
 	{
-		ntSymbol()->script() = *(p->ntStringExpression());
+		as<osgEarth::Symbol>()->script() = *(p->as<StringExpression>());
 		NotifyChanged("Script");
 	}
 }
@@ -26,8 +26,8 @@ void oepSymbol::Script::set(oepStringExpression^ p)
 void oepSymbol::binded()
 {
 	_script = gcnew oepStringExpression();
-	if (ntSymbol())
-		_script->bind(ntSymbol()->script());
+	if (as<osgEarth::Symbol>())
+		_script->bind(as<osgEarth::Symbol>()->script());
 }
 
 void oepSymbol::unbinded()

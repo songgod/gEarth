@@ -16,78 +16,78 @@ void gEarthPack::oepDepthOffsetOptions::delelehandle()
 
 bool oepDepthOffsetOptions::Enabled::get()
 {
-	if (ntDepthOffsetOptions()->enabled().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->enabled().isSet())
 		return false;
-	return ntDepthOffsetOptions()->enabled().value();
+	return as<osgEarth::DepthOffsetOptions>()->enabled().value();
 }
 
 void oepDepthOffsetOptions::Enabled::set(bool p)
 {
-	ntDepthOffsetOptions()->enabled() = p;
+	as<osgEarth::DepthOffsetOptions>()->enabled() = p;
 	NotifyChanged("Enabled");
 }
 
 double oepDepthOffsetOptions::MinBias::get()
 {
-	if (ntDepthOffsetOptions()->minBias().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->minBias().isSet())
 		return 0.0;
-	return ntDepthOffsetOptions()->minBias().value().getValue();
+	return as<osgEarth::DepthOffsetOptions>()->minBias().value().getValue();
 }
 
 void oepDepthOffsetOptions::MinBias::set(double p)
 {
-	ntDepthOffsetOptions()->minBias() = p;
+	as<osgEarth::DepthOffsetOptions>()->minBias() = p;
 	NotifyChanged("MinBias");
 }
 
 double oepDepthOffsetOptions::MaxBias::get()
 {
-	if (ntDepthOffsetOptions()->maxBias().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->maxBias().isSet())
 		return 0.0;
-	return ntDepthOffsetOptions()->maxBias().value().getValue();
+	return as<osgEarth::DepthOffsetOptions>()->maxBias().value().getValue();
 }
 
 void oepDepthOffsetOptions::MaxBias::set(double p)
 {
-	ntDepthOffsetOptions()->maxBias() = p;
+	as<osgEarth::DepthOffsetOptions>()->maxBias() = p;
 	NotifyChanged("MaxBias");
 }
 
 double oepDepthOffsetOptions::MinRange::get()
 {
-	if (ntDepthOffsetOptions()->minRange().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->minRange().isSet())
 		return 0.0;
-	return ntDepthOffsetOptions()->minRange().value().getValue();
+	return as<osgEarth::DepthOffsetOptions>()->minRange().value().getValue();
 }
 
 void oepDepthOffsetOptions::MinRange::set(double p)
 {
-	ntDepthOffsetOptions()->minRange() = p;
+	as<osgEarth::DepthOffsetOptions>()->minRange() = p;
 	NotifyChanged("MinRange");
 }
 
 double oepDepthOffsetOptions::MaxRange::get()
 {
-	if (ntDepthOffsetOptions()->maxRange().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->maxRange().isSet())
 		return 0.0;
-	return ntDepthOffsetOptions()->maxRange().value().getValue();
+	return as<osgEarth::DepthOffsetOptions>()->maxRange().value().getValue();
 }
 
 void oepDepthOffsetOptions::MaxRange::set(double p)
 {
-	ntDepthOffsetOptions()->maxRange() = p;
+	as<osgEarth::DepthOffsetOptions>()->maxRange() = p;
 	NotifyChanged("MaxRange");
 }
 
 bool oepDepthOffsetOptions::Automatic::get()
 {
-	if (ntDepthOffsetOptions()->automatic().isSet())
+	if (as<osgEarth::DepthOffsetOptions>()->automatic().isSet())
 		return false;
-	return ntDepthOffsetOptions()->automatic().value();
+	return as<osgEarth::DepthOffsetOptions>()->automatic().value();
 }
 
 void oepDepthOffsetOptions::Automatic::set(bool p)
 {
-	ntDepthOffsetOptions()->automatic() = p;
+	as<osgEarth::DepthOffsetOptions>()->automatic() = p;
 	NotifyChanged("Automatic");
 }

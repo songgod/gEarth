@@ -51,11 +51,6 @@ namespace gEarthPack
 				String^ get();
 				void set(String^ p);
 			}
-
-		internal:
-
-			osgEarth::StyleSheet::ScriptDef* ntScriptDef() { return as<osgEarth::StyleSheet::ScriptDef>(); }
-
 		};
 
 	public:
@@ -99,12 +94,6 @@ namespace gEarthPack
 
 		virtual void binded() override;
 		virtual void unbinded() override;
-
-	internal:
-
-		osgEarth::Symbology::StyleSheet* ntStyleSheet() {
-			return as<osgEarth::Symbology::StyleSheet>();
-		}
 
 	protected:
 

@@ -11,7 +11,7 @@ oepExtension::oepExtension()
 
 String^ oepExtension::Name::get()
 {
-	osgEarth::Extension* pext = ntExtension();
+	osgEarth::Extension* pext = as<osgEarth::Extension>();
 	if (!pext)
 		return "";
 	return Str2Cli(pext->getName());
@@ -19,7 +19,7 @@ String^ oepExtension::Name::get()
 
 void oepExtension::Name::set(String^ v)
 {
-	osgEarth::Extension* pext = ntExtension();
+	osgEarth::Extension* pext = as<osgEarth::Extension>();
 	if (!pext)
 		return;
 	pext->setName(Str2Std(v));

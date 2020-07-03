@@ -29,10 +29,6 @@ namespace gEarthPack
 		{
 			String^ get();
 		}
-
-	internal:
-
-		osgEarth::Layer* ntLayer() { return as<osgEarth::Layer>(); }
 	};
 
 	public ref class oepLayers : public ObservableCollection<oepLayer^>

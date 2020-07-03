@@ -11,10 +11,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::NumericExpression* ntNumericExpression() { return as<osgEarth::NumericExpression>(); }
 	};
 }
 

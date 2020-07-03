@@ -37,10 +37,6 @@ namespace gEarthPack
 		virtual void binded() override;
 		virtual void unbinded() override;
 
-	internal:
-
-		osgEarth::ResourceLibrary* ntResourceLibrary() { return as<osgEarth::ResourceLibrary>(); }
-
 	private:
 
 		oepResourceCollection^ _resources;

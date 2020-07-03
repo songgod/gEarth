@@ -21,12 +21,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::Symbology::Fill* ntFill() {
-			return as < osgEarth::Symbology::Fill>();
-		}
 	};
 }
 

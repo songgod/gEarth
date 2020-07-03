@@ -16,33 +16,33 @@ void gEarthPack::oepFadeOptions::delelehandle()
 
 float oepFadeOptions::Duration::get()
 {
-	return ntFadeOptions()->duration().value();
+	return as<osgEarth::FadeOptions>()->duration().value();
 }
 
 void oepFadeOptions::Duration::set(float p)
 {
-	ntFadeOptions()->duration() = p;
+	as<osgEarth::FadeOptions>()->duration() = p;
 	NotifyChanged("Duration");
 }
 
 float oepFadeOptions::MaxRange::get()
 {
-	return ntFadeOptions()->maxRange().value();
+	return as<osgEarth::FadeOptions>()->maxRange().value();
 }
 
 void oepFadeOptions::MaxRange::set(float p)
 {
-	ntFadeOptions()->maxRange() = p;
+	as<osgEarth::FadeOptions>()->maxRange() = p;
 	NotifyChanged("MaxRange");
 }
 
 float oepFadeOptions::AttenuationDistance::get()
 {
-	return ntFadeOptions()->attenuationDistance().value();
+	return as<osgEarth::FadeOptions>()->attenuationDistance().value();
 }
 
 void oepFadeOptions::AttenuationDistance::set(float p)
 {
-	ntFadeOptions()->attenuationDistance() = p;
+	as<osgEarth::FadeOptions>()->attenuationDistance() = p;
 	NotifyChanged("AttenuationDistance");
 }

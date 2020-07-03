@@ -30,10 +30,6 @@ namespace gEarthPack
 		virtual void bind(osgEarth::MapNode* pMapNode){}
 		virtual void unbind(osgEarth::MapNode* pMapNode){}
 
-	internal:
-
-		osgGA::EventHandler* ntEventHandler() { return as<osgGA::EventHandler>(); }
-
 	private:
 
 		bool _keep;

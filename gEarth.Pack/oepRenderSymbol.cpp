@@ -71,7 +71,7 @@ oepNumericExpression^ oepRenderSymbol::Order::get()
 
 void oepRenderSymbol::Order::set(oepNumericExpression^ p)
 {
-	as<RenderSymbol>()->order() = *(p->ntNumericExpression());
+	as<RenderSymbol>()->order() = *(p->as<osgEarth::NumericExpression>());
 	NotifyChanged("Order");
 }
 
@@ -173,6 +173,6 @@ oepDepthOffsetOptions^ oepRenderSymbol::DepthOffset::get()
 
 void oepRenderSymbol::DepthOffset::set(oepDepthOffsetOptions^ p)
 {
-	as<RenderSymbol>()->depthOffset() = *(p->ntDepthOffsetOptions());
+	as<RenderSymbol>()->depthOffset() = *(p->as<osgEarth::DepthOffsetOptions>());
 	NotifyChanged("DepthOffset");
 }

@@ -17,67 +17,67 @@ oepStyleSheet::oepScriptDef::oepScriptDef()
 
 String^ oepStyleSheet::oepScriptDef::Name::get()
 {
-	return Str2Cli(ntScriptDef()->name);
+	return Str2Cli(as<osgEarth::StyleSheet::ScriptDef>()->name);
 }
 
 void oepStyleSheet::oepScriptDef::Name::set(String^ s)
 {
-	ntScriptDef()->name = Str2Std(s);
+	as<osgEarth::StyleSheet::ScriptDef>()->name = Str2Std(s);
 	NotifyChanged("Name");
 }
 
 String^ oepStyleSheet::oepScriptDef::Code::get()
 {
-	return Str2Cli(ntScriptDef()->code);
+	return Str2Cli(as<osgEarth::StyleSheet::ScriptDef>()->code);
 }
 
 void oepStyleSheet::oepScriptDef::Code::set(String^ s)
 {
-	ntScriptDef()->code = Str2Std(s);
+	as<osgEarth::StyleSheet::ScriptDef>()->code = Str2Std(s);
 	NotifyChanged("Code");
 }
 
 String^ oepStyleSheet::oepScriptDef::Language::get()
 {
-	return Str2Cli(ntScriptDef()->language);
+	return Str2Cli(as<osgEarth::StyleSheet::ScriptDef>()->language);
 }
 
 void oepStyleSheet::oepScriptDef::Language::set(String^ s)
 {
-	ntScriptDef()->language = Str2Std(s);
+	as<osgEarth::StyleSheet::ScriptDef>()->language = Str2Std(s);
 	NotifyChanged("Language");
 }
 
 String^ oepStyleSheet::oepScriptDef::Profile::get()
 {
-	return Str2Cli(ntScriptDef()->profile);
+	return Str2Cli(as<osgEarth::StyleSheet::ScriptDef>()->profile);
 }
 
 void oepStyleSheet::oepScriptDef::Profile::set(String^ s)
 {
-	ntScriptDef()->profile = Str2Std(s);
+	as<osgEarth::StyleSheet::ScriptDef>()->profile = Str2Std(s);
 	NotifyChanged("Profile");
 }
 
 String^ oepStyleSheet::oepScriptDef::Url::get()
 {
-	return Str2Cli(ntScriptDef()->uri.value().full());
+	return Str2Cli(as<osgEarth::StyleSheet::ScriptDef>()->uri.value().full());
 }
 
 void oepStyleSheet::oepScriptDef::Url::set(String^ s)
 {
-	ntScriptDef()->uri.mutable_value() = Str2Std(s);
+	as<osgEarth::StyleSheet::ScriptDef>()->uri.mutable_value() = Str2Std(s);
 	NotifyChanged("Url");
 }
 
 String^ oepStyleSheet::Name::get()
 {
-	return Str2Cli(ntStyleSheet()->name().value());
+	return Str2Cli(as<osgEarth::Symbology::StyleSheet>()->name().value());
 }
 
 void oepStyleSheet::Name::set(String^ s)
 {
-	ntStyleSheet()->name() = Str2Std(s);
+	as<osgEarth::Symbology::StyleSheet>()->name() = Str2Std(s);
 	NotifyChanged("Name");
 }
 
@@ -99,7 +99,7 @@ void oepStyleSheet::Styles::set(oepStyleMap^ s)
 oepStyle^ oepStyleSheet::DefaultStyle::get()
 {
 	oepStyle^ res = gcnew oepStyle();
-	res->bind(ntStyleSheet()->getDefaultStyle(),false);
+	res->bind(as<osgEarth::Symbology::StyleSheet>()->getDefaultStyle(),false);
 	return res;
 }
 
@@ -126,10 +126,10 @@ oepResourceLibraryMap^ oepStyleSheet::Resources::get()
 void oepStyleSheet::Resources::set(oepResourceLibraryMap^ s)
 {
 	_resLibs = s;
-	ntStyleSheet()->ClearResourceLibrary();
+	as<osgEarth::Symbology::StyleSheet>()->ClearResourceLibrary();
 	for each (oepResourceLibrary^ r in s)
 	{
-		ntStyleSheet()->addResourceLibrary(r->ntResourceLibrary());
+		as<osgEarth::Symbology::StyleSheet>()->addResourceLibrary(r->as<osgEarth::ResourceLibrary>());
 	}
 	NotifyChanged("Resources");
 }
@@ -142,24 +142,24 @@ oepStyleSheet::oepScriptDef^ oepStyleSheet::Script::get()
 void oepStyleSheet::Script::set(oepStyleSheet::oepScriptDef^ s)
 {
 	_script = s;
-	ntStyleSheet()->setScript(_script->ntScriptDef());
+	as<osgEarth::Symbology::StyleSheet>()->setScript(_script->as<osgEarth::StyleSheet::ScriptDef>());
 	NotifyChanged("Script");
 }
 
 void gEarthPack::oepStyleSheet::binded()
 {
 	_stylemap = gcnew oepStyleMap();
-	_stylemap->bind(&(ntStyleSheet()->styles()),false);
+	_stylemap->bind(&(as<osgEarth::Symbology::StyleSheet>()->styles()),false);
 	_selectors = gcnew oepStyleSelectorList();
-	_selectors->bind(&(ntStyleSheet()->selectors()),false);
+	_selectors->bind(&(as<osgEarth::Symbology::StyleSheet>()->selectors()),false);
 	_script = gcnew oepScriptDef();
-	_script->bind(ntStyleSheet()->script());
+	_script->bind(as<osgEarth::Symbology::StyleSheet>()->script());
 	_resLibs = gcnew oepResourceLibraryMap();
-	std::vector<std::string> names = ntStyleSheet()->getResourceNames();
+	std::vector<std::string> names = as<osgEarth::Symbology::StyleSheet>()->getResourceNames();
 	for (size_t i = 0; i < names.size(); i++)
 	{
 		oepResourceLibrary^ r = gcnew oepResourceLibrary("","");
-		r->bind(ntStyleSheet()->getResourceLibrary(names[i]));
+		r->bind(as<osgEarth::Symbology::StyleSheet>()->getResourceLibrary(names[i]));
 	}
 	_resLibs->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &gEarthPack::oepStyleSheet::OnResourceCollectionChanged);
 }
@@ -184,7 +184,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
 				if (r != nullptr)
 				{
-					ntStyleSheet()->addResourceLibrary(r->ntResourceLibrary());
+					as<osgEarth::Symbology::StyleSheet>()->addResourceLibrary(r->as<osgEarth::ResourceLibrary>());
 				}
 			}
 		}
@@ -199,7 +199,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 				oepResourceLibrary^ r = dynamic_cast<oepResourceLibrary^>(e->NewItems[i]);
 				if (r != nullptr)
 				{
-					ntStyleSheet()->removeResourceLibrary(r->ntResourceLibrary());
+					as<osgEarth::Symbology::StyleSheet>()->removeResourceLibrary(r->as<osgEarth::ResourceLibrary>());
 				}
 			}
 		}
@@ -217,7 +217,7 @@ void oepStyleSheet::OnResourceCollectionChanged(System::Object^ sender, System::
 	}
 	case System::Collections::Specialized::NotifyCollectionChangedAction::Reset:
 	{
-		ntStyleSheet()->ClearResourceLibrary();
+		as<osgEarth::Symbology::StyleSheet>()->ClearResourceLibrary();
 		break;
 	}
 	default:

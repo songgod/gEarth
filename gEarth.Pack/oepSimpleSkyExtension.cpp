@@ -22,7 +22,7 @@ osgEarth::Util::SkyNode* oepSimpleSkyExtension::getoeSkyNode()
 {
 	if (!_handle || !_handle->getValue())
 		return NULL;
-	return dynamic_cast<osgEarth::Util::SkyNode*>(ntExtension()->getUserData());
+	return dynamic_cast<osgEarth::Util::SkyNode*>(as<osgEarth::Extension>()->getUserData());
 }
 
 int oepSimpleSkyExtension::DataYear::get()

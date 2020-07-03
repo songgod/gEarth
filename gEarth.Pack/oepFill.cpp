@@ -18,7 +18,7 @@ oepVec4f gEarthPack::oepFill::Color::get()
 	if (!Valid)
 		return oepVec4f();
 
-	return oepVec4f(ntFill()->color());
+	return oepVec4f(as<osgEarth::Symbology::Fill>()->color());
 }
 
 void oepFill::Color::set(oepVec4f p)
@@ -26,6 +26,6 @@ void oepFill::Color::set(oepVec4f p)
 	if (!Valid)
 		return;
 
-	ntFill()->color() = p.as();
+	as<osgEarth::Symbology::Fill>()->color() = p.as();
 	NotifyChanged("Color");
 }

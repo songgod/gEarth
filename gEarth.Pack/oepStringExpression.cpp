@@ -17,27 +17,27 @@ void gEarthPack::oepStringExpression::delelehandle()
 
 String^ oepStringExpression::Infix::get()
 {
-	return Str2Cli(ntStringExpression()->expr());
+	return Str2Cli(as<StringExpression>()->expr());
 }
 
 void oepStringExpression::Infix::set(String^ p)
 {
-	ntStringExpression()->setInfix(Str2Std(p));
+	as<StringExpression>()->setInfix(Str2Std(p));
 	NotifyChanged("Infix");
 }
 
 String^ oepStringExpression::Literal::get()
 {
-	return Str2Cli(ntStringExpression()->eval());
+	return Str2Cli(as<StringExpression>()->eval());
 }
 
 void oepStringExpression::Literal::set(String^ p)
 {
-	ntStringExpression()->setLiteral(Str2Std(p));
+	as<StringExpression>()->setLiteral(Str2Std(p));
 	NotifyChanged("Literal");
 }
 
 bool oepStringExpression::IsEmpty::get()
 {
-	return ntStringExpression()->empty();
+	return as<StringExpression>()->empty();
 }

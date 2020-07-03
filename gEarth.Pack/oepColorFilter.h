@@ -13,10 +13,6 @@ namespace gEarthPack
 	public:
 
 		virtual void Reset(){}
-
-	internal:
-
-		osgEarth::ColorFilter* ntColorFilter() { return as<osgEarth::ColorFilter>(); }
 	};
 
 	public ref class oepColorFilters : public ObservableCollection<oepColorFilter^>

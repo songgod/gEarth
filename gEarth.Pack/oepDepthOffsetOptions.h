@@ -49,10 +49,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::DepthOffsetOptions* ntDepthOffsetOptions() { return as<osgEarth::DepthOffsetOptions>(); }
 	};
 }
 

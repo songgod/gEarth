@@ -41,9 +41,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->NewItems[i]);
-				if (cf != nullptr && cf->ntColorFilter() != NULL)
+				if (cf != nullptr && cf->as<osgEarth::ColorFilter>() != NULL)
 				{
-					pLayer->addColorFilter(cf->ntColorFilter());
+					pLayer->addColorFilter(cf->as<osgEarth::ColorFilter>());
 				}
 			}
 		}
@@ -56,9 +56,9 @@ void oepImageLayer::OnColorFiltersCollectionChanged(System::Object^ sender, Syst
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepColorFilter^ cf = dynamic_cast<oepColorFilter^>(e->OldItems[i]);
-				if (cf != nullptr && cf->ntColorFilter() != NULL)
+				if (cf != nullptr && cf->as<osgEarth::ColorFilter>() != NULL)
 				{
-					pLayer->removeColorFilter(cf->ntColorFilter());
+					pLayer->removeColorFilter(cf->as<osgEarth::ColorFilter>());
 				}
 			}
 		}

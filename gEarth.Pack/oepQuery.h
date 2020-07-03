@@ -44,12 +44,6 @@ namespace gEarthPack
 		virtual void unbinded() override;
 		virtual void delelehandle() override;
 
-	internal:
-
-		Query* ntQuery() {
-			return as<Query>();
-		}
-
 	private:
 
 		oepBounds^ _bounds;

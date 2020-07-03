@@ -32,7 +32,7 @@ void oepPolygonSymbol::Fill::set(oepFill^ p)
 	PolygonSymbol* to = as<PolygonSymbol>();
 	if (to != NULL && p != nullptr)
 	{
-		to->fill() = *(p->ntFill());
+		to->fill() = *(p->as<osgEarth::Symbology::Fill>());
 		NotifyChanged("Fill");
 	}
 }

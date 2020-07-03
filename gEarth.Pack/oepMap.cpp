@@ -129,7 +129,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->NewItems[i]);
 				if (layer != nullptr)
 				{
-					map->addLayer(layer->ntLayer());
+					map->addLayer(layer->as<osgEarth::Layer>());
 				}
 			}
 			map->endUpdate();
@@ -146,7 +146,7 @@ void oepMap::OnLayersCollectionChanged(System::Object^ sender, System::Collectio
 				oepLayer^ layer = dynamic_cast<oepLayer^>(e->OldItems[i]);
 				if (layer != nullptr)
 				{
-					map->removeLayer(layer->ntLayer());
+					map->removeLayer(layer->as<osgEarth::Layer>());
 				}
 			}
 			map->endUpdate();
@@ -192,9 +192,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->NewItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->ntExtension())
+				if (ext != nullptr && ext->as<osgEarth::Extension>())
 				{
-					mapnode->addExtension(ext->ntExtension());
+					mapnode->addExtension(ext->as<osgEarth::Extension>());
 				}
 			}
 		}
@@ -207,9 +207,9 @@ void oepMap::OnExtensionsCollectionChanged(System::Object^ sender, System::Colle
 			for (int i = 0; i < e->OldItems->Count; i++)
 			{
 				oepExtension^ ext = dynamic_cast<oepExtension^>(e->NewItems[i]);
-				if (ext != nullptr && ext->ntExtension())
+				if (ext != nullptr && ext->as<osgEarth::Extension>())
 				{
-					mapnode->removeExtension(ext->ntExtension());
+					mapnode->removeExtension(ext->as<osgEarth::Extension>());
 				}
 			}
 		}

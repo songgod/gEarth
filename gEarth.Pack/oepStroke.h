@@ -54,10 +54,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::Stroke* ntStroke() { return as<osgEarth::Stroke>(); }
 	};
 }
 

@@ -23,14 +23,14 @@ String^ oepViewpoint::Name::get()
 {
 	if (!Valid)
 		return "";
-	return Str2Cli(ntViewpoint()->name().value());
+	return Str2Cli(as<osgEarth::Viewpoint>()->name().value());
 }
 
 void oepViewpoint::Name::set(String^ v)
 {
 	if (!Valid)
 		return;
-	ntViewpoint()->name() = Str2Std(v);
+	as<osgEarth::Viewpoint>()->name() = Str2Std(v);
 	NotifyChanged("Name");
 }
 
@@ -38,5 +38,5 @@ bool oepViewpoint::IsValid::get()
 {
 	if (!Valid)
 		return false;
-	return ntViewpoint()->isValid();
+	return as<osgEarth::Viewpoint>()->isValid();
 }

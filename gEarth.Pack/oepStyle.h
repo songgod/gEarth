@@ -41,12 +41,6 @@ namespace gEarthPack
 		virtual void unbinded() override;
 		virtual void delelehandle() override;
 
-	internal:
-
-		osgEarth::Symbology::Style* ntStyle() {
-			return as < osgEarth::Symbology::Style>();
-		}
-
 	protected:
 
 		void OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e);

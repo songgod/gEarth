@@ -67,10 +67,6 @@ namespace gEarthPack
 	internal:
 
 		virtual void delelehandle() override;
-
-	internal:
-
-		osgEarth::Bounds* ntBounds() { return as<osgEarth::Bounds>(); }
 	};
 
 	public ref class oepBoundsCollection : public ObservableCollection<oepBounds^>

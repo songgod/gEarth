@@ -12,23 +12,23 @@ oepStyleSelector::oepStyleSelector()
 
 String^ oepStyleSelector::Name::get()
 {
-	return Str2Cli(ntStyleSelector()->name());
+	return Str2Cli(as<osgEarth::Symbology::StyleSelector>()->name());
 }
 
 void oepStyleSelector::Name::set(String^ p)
 {
-	ntStyleSelector()->name() = Str2Std(p);
+	as<osgEarth::Symbology::StyleSelector>()->name() = Str2Std(p);
 	NotifyChanged("Name");
 }
 
 String^ oepStyleSelector::StyleName::get()
 {
-	return Str2Cli(ntStyleSelector()->styleName().value());
+	return Str2Cli(as<osgEarth::Symbology::StyleSelector>()->styleName().value());
 }
 
 void oepStyleSelector::StyleName::set(String^ p)
 {
-	ntStyleSelector()->styleName() = Str2Std(p);
+	as<osgEarth::Symbology::StyleSelector>()->styleName() = Str2Std(p);
 	NotifyChanged("StyleName");
 }
 
@@ -64,16 +64,16 @@ void oepStyleSelector::Query::set(oepQuery^ p)
 
 String^ oepStyleSelector::SelectStyleName::get()
 {
-	return Str2Cli(ntStyleSelector()->getSelectedStyleName());
+	return Str2Cli(as<osgEarth::Symbology::StyleSelector>()->getSelectedStyleName());
 }
 
 void oepStyleSelector::binded()
 {
 	_styleExpression = gcnew oepStringExpression();
-	_styleExpression->bind(ntStyleSelector()->styleExpression());
+	_styleExpression->bind(as<osgEarth::Symbology::StyleSelector>()->styleExpression());
 
 	_query = gcnew oepQuery();
-	_query->bind(ntStyleSelector()->query());
+	_query->bind(as<osgEarth::Symbology::StyleSelector>()->query());
 }
 
 void oepStyleSelector::unbinded()

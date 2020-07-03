@@ -11,7 +11,7 @@ oepEventHandler::oepEventHandler() : _keep(false)
 
 String^ oepEventHandler::Name::get()
 {
-	osgGA::EventHandler* evh = ntEventHandler();
+	osgGA::EventHandler* evh = as<osgGA::EventHandler>();
 	if (!evh)
 		return "";
 	return Str2Cli(evh->getName());
@@ -19,7 +19,7 @@ String^ oepEventHandler::Name::get()
 
 void oepEventHandler::Name::set(String^ v)
 {
-	osgGA::EventHandler* evh = ntEventHandler();
+	osgGA::EventHandler* evh = as<osgGA::EventHandler>();
 	if (!evh)
 		return;
 	evh->setName(Str2Std(v));
