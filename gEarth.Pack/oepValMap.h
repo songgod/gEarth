@@ -1,16 +1,16 @@
 #pragma once
 
-using namespace System::Collections::ObjectModel;
+#include "oepObservableDictionary.h"
 
 namespace gEarthPack
 {
-	template<typename MT, typename LT>
-	public ref class oepValMap : public ObservableCollection<MT^>
+	template<typename MKey, typename MValue, typename LKey, typename LValue>
+	public ref class oepValMap : public oepObservableDictionary<MKey, MValue>
 	{
 	public:
 		oepValMap() : _bOwn(true)
 		{
-			_map = new std::map<std::string,LT>();
+			_map = new std::map<LKey,LValue>();
 			this->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepValMap::OnMTCollectionChanged);
 		}
 
@@ -37,12 +37,12 @@ namespace gEarthPack
 
 	internal:
 
-		std::map<std::string, LT>* Val()
+		std::map<LKey, LValue>* Val()
 		{
 			return _map;
 		}
 
-		void bind(std::map<std::string, LT>* handle, bool own)
+		void bind(std::map<LKey, LValue>* handle, bool own)
 		{
 			if (_map && _bOwn)
 			{
@@ -55,12 +55,12 @@ namespace gEarthPack
 			this->Clear();
 			if (handle != NULL)
 			{
-				std::map<std::string, LT>& tmp = *handle;
-				for (std::map<std::string,LT>::iterator iter = tmp.begin(); iter!=tmp.end(); iter++)
+				std::map<LKey, LValue>& tmp = *handle;
+				for (std::map<LKey, LValue>::iterator iter = tmp.begin(); iter!=tmp.end(); iter++)
 				{
-					MT^ tmpop = gcnew MT();
+					MValue tmpop = this->NewMValue();
 					tmpop->bind(&(iter->second), false);
-					this->Add(tmpop);
+					this[this->LKey2MKey(iter->first)] = tmpop;
 				}
 			}
 			this->CollectionChanged += gcnew System::Collections::Specialized::NotifyCollectionChangedEventHandler(this, &oepValMap::OnMTCollectionChanged);
@@ -71,21 +71,30 @@ namespace gEarthPack
 			bind(NULL, true);
 		}
 
+	internal:
+
+		virtual MValue NewMValue() { throw gcnew NotImplementedException(); }
+		virtual MKey LKey2MKey(LKey key) { throw gcnew NotImplementedException(); }
+		virtual LKey MKey2LKey(MKey key) { throw gcnew NotImplementedException(); }
+
 	private:
 
 		void OnMTCollectionChanged(System::Object^ sender, System::Collections::Specialized::NotifyCollectionChangedEventArgs^ e)
 		{
 			_map->clear();
-			for (int i = 0; i < Count; i++)
+			KeyCollection^ keys = Keys;
+			for each (MKey key in keys)
 			{
-				(*_map)[this[i]->as<LT>()->getName()] = *(this[i]->as<LT>());
-				this[i]->bind(&((*_map)[this[i]->as<LT>()->getName()]), false);
+				LKey lkey = this->MKey2LKey(key);
+				MValue mv = this[key];
+				(*_map)[lkey] = *(mv->as<LValue>());
+				mv->bind(&((*_map)[lkey]), false);
 			}
 		}
 
 	protected:
 
-		std::map<std::string,LT> *_map;
+		std::map<LKey,LValue> *_map;
 		bool _bOwn;
 	};
 }

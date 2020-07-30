@@ -220,6 +220,7 @@
     <ClInclude Include="oepNotify.h" />
     <ClInclude Include="oepNumericExpression.h" />
     <ClInclude Include="oepObject.h" />
+    <ClInclude Include="oepObservableDictionary.h" />
     <ClInclude Include="oepOGRFeatureSourceOptions.h" />
     <ClInclude Include="oepOSGSourceOptions.h" />
     <ClInclude Include="oepPointSymbol.h" />
@@ -337,6 +338,7 @@
     <ClCompile Include="oepLayerFactory.cpp" />
     <ClCompile Include="oepLayerOptions.cpp" />
     <ClCompile Include="oepLineSymbol.cpp" />
+    <ClCompile Include="oepMap.cpp" />
     <ClCompile Include="oepMeasureAngleHandler.cpp" />
     <ClCompile Include="oepMeasureAreaHandler.cpp" />
     <ClCompile Include="oepMeasureSlopeAspectHandler.cpp" />
@@ -383,7 +385,6 @@
     <ClCompile Include="oepGDALSourceOptions.cpp" />
     <ClCompile Include="oepImageLayer.cpp" />
     <ClCompile Include="oepLayer.cpp" />
-    <ClCompile Include="oepMap.cpp" />
     <ClCompile Include="oepTerrainLayer.cpp" />
     <ClCompile Include="oepTileSourceOptions.cpp" />
     <ClCompile Include="oepUnits.cpp" />
@@ -395,7 +396,6 @@
       </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="oepValList.cpp" />
-    <ClCompile Include="oepValMap.cpp" />
     <ClCompile Include="oepValVector.cpp" />
     <ClCompile Include="oepVector.cpp" />
     <ClCompile Include="oepViewFitter.cpp" />

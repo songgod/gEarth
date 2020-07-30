@@ -408,6 +408,9 @@
     <ClInclude Include="oepUnits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="oepObservableDictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -420,9 +423,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Initor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="oepMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="oepElevationLayer.cpp">
@@ -710,9 +710,6 @@
     <ClCompile Include="oepFadeOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="oepValMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="oepResource.cpp">
       <Filter>Symbology</Filter>
     </ClCompile>
@@ -771,6 +768,9 @@
       <Filter>Symbology</Filter>
     </ClCompile>
     <ClCompile Include="oepUnits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oepMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

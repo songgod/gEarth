@@ -134,3 +134,18 @@ void oepStyle::Symbols::set(oepSymbolCollection^ p)
 	as<osgEarth::Symbology::Style>()->symbols() = lst;
 	NotifyChanged("Symbols");
 }
+
+oepStyle ^ gEarthPack::oepStyleMap::NewMValue()
+{
+	return gcnew oepStyle();
+}
+
+String ^ oepStyleMap::LKey2MKey(std::string key)
+{
+	return Str2Cli(key);
+}
+
+std::string oepStyleMap::MKey2LKey(String ^ key)
+{
+	return Str2Std(key);
+}

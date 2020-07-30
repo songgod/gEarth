@@ -50,9 +50,16 @@ namespace gEarthPack
 		oepSymbolCollection^ _symbols;
 	};
 
-	public ref class oepStyleMap : oepValMap<oepStyle, osgEarth::Symbology::Style>
+	public ref class oepStyleMap : oepValMap<String^, oepStyle^, std::string, osgEarth::Symbology::Style>
 	{
+	public:
+		oepStyleMap(){}
 
+	internal:
+
+		virtual oepStyle^ NewMValue() override;
+		virtual String^ LKey2MKey(std::string key) override;
+		virtual std::string MKey2LKey(String^ key) override;
 	};
 }
 
