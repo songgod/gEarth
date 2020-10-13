@@ -23,7 +23,7 @@ void oepAltitudeSymbol::unbinded()
 {
 	_verticalOffset->unbind();
 	_verticalScale->unbind();
-	oepSymbol::unbind();
+	oepSymbol::unbinded();
 }
 
 oepAltitudeSymbol::oepClamping oepAltitudeSymbol::Clamping::get()

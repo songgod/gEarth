@@ -110,12 +110,11 @@ namespace gEarthPack
 		{
 			if (Dictionary::ContainsKey(key))
 			{
-				return this[key];
+				TValue v;
+				if (Dictionary::TryGetValue(key, v))
+					return v;
 			}
-			else
-			{
-				return TValue();
-			}
+			return TValue();
 		}
 
 		void SetValue(TKey key, TValue value)

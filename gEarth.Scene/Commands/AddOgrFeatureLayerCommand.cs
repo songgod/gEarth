@@ -29,11 +29,15 @@ namespace gEarth.Scene.Commands
             {
                 oepOGRFeatureSourceOptions source = new oepOGRFeatureSourceOptions() { Url = dlg.FileName };
                 oepFeatureModelLayerOptions options = new oepFeatureModelLayerOptions() { driver = source };
-                oepFeatureModelLayer imglyr = new oepFeatureModelLayer(options) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
-                Project.CurrentMap.Layers.Add(imglyr);
-                if (!imglyr.IsOK)
+                oepStyle style = new oepStyle() { Name = "style" };
+                oepAltitudeSymbol altsym = new oepAltitudeSymbol() { Clamping = oepAltitudeSymbol.oepClamping.ClampToTerrain, Techinique = oepAltitudeSymbol.oepTechnique.TechniqueDrape };
+                style.Symbols.Add(altsym);
+                options.StyleSheet.StyleMap[style.Name] = style;
+                oepFeatureModelLayer mlyr = new oepFeatureModelLayer(options) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
+                Project.CurrentMap.Layers.Add(mlyr);
+                if (!mlyr.IsOK)
                 {
-                    MessageBox.Show(imglyr.StatusString);
+                    MessageBox.Show(mlyr.StatusString);
                 }
             }
         }

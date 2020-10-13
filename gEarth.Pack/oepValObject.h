@@ -36,23 +36,29 @@ namespace gEarthPack
 
 		void bind(void* handle, bool own)
 		{
-			if (handle == _handle && _ownhandle)
-				return;
-			if (_handle != NULL && handle != _handle && _ownhandle)
+			if (handle == _handle)
 			{
-				delelehandle();
+				if (_ownhandle != own)
+				{
+					throw gcnew System::Exception("own not equal internal own");
+				}
+				return;
 			}
+				
+			unbind();
 			_handle = handle;
 			_ownhandle = own;
 			if (_handle != NULL)
 				binded();
-			else
-				unbinded();
 		}
 
 		void unbind()
 		{
-			bind(NULL,true);
+			if (_handle != NULL && _ownhandle)
+			{
+				unbinded();
+				delelehandle();
+			}
 		}
 
 		template<class T>

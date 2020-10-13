@@ -24,7 +24,7 @@ namespace gEarthPack
 			void set(oepFeatureSourceOptions^ v);
 		}
 
-		property oepStyleSheet^ Styles
+		property oepStyleSheet^ StyleSheet
 		{
 			oepStyleSheet^ get();
 			void set(oepStyleSheet^ p);

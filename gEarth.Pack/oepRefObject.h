@@ -67,20 +67,23 @@ namespace gEarthPack
 
 		void bind(osg::Referenced* v)
 		{
+			unbind();
 			if (_handle)
 			{
 				_handle->setValue(v);
 				if (v != NULL)
 					binded();
-				else
-					unbinded();
 			}
 				
 		}
 
 		void unbind()
 		{
-			bind(NULL);
+			if (_handle && _handle->getValue()!=NULL)
+			{
+				unbinded();
+				_handle->setValue(NULL);
+			}
 		}
 
 	internal:

@@ -61,7 +61,7 @@ namespace gEarthPack
 			void set(String^ p) override;
 		}
 
-		property oepStyleMap^ Styles
+		property oepStyleMap^ StyleMap
 		{
 			oepStyleMap^ get();
 			void set(oepStyleMap^ p);

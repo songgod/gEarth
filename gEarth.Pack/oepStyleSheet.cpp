@@ -81,19 +81,19 @@ void oepStyleSheet::Name::set(String^ s)
 	NotifyChanged("Name");
 }
 
-oepStyleMap^ oepStyleSheet::Styles::get()
+oepStyleMap^ oepStyleSheet::StyleMap::get()
 {
 	return _stylemap;
 }
 
-void oepStyleSheet::Styles::set(oepStyleMap^ s)
+void oepStyleSheet::StyleMap::set(oepStyleMap^ s)
 {
 	StyleSheet* to = as<StyleSheet>();
 	if (to != NULL && s != nullptr)
 	{
 		to->styles() = *(s->Val());
 	}
-	NotifyChanged("Styles");
+	NotifyChanged("StyleMap");
 }
 
 oepStyle^ oepStyleSheet::DefaultStyle::get()

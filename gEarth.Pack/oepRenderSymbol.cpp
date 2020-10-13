@@ -22,7 +22,7 @@ void oepRenderSymbol::unbinded()
 {
 	_depthoffset->unbind();
 	_order->unbind();
-	oepSymbol::unbind();
+	oepSymbol::unbinded();
 }
 
 bool oepRenderSymbol::DepthTest::get()

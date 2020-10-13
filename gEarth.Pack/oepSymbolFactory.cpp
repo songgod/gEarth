@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "oepSymbolFactory.h"
 #include "oepUnkownSymbol.h"
+#include "oepAltitudeSymbol.h"
 
 using namespace gEarthPack;
 using namespace osgEarth::Symbology;
@@ -22,12 +23,29 @@ namespace gEarthPack
 			return res;
 		}
 	};
+
+	private ref class oepAltitudeSymbolCreator : IoepSymbolCreator
+	{
+	public:
+		virtual String^ supportType()
+		{
+			return "altitude";
+		}
+		virtual oepSymbol ^ createSymbol(IntPtr param)
+		{
+			AltitudeSymbol* pSymbol = (AltitudeSymbol*)param.ToPointer();
+			oepAltitudeSymbol^ res = gcnew oepAltitudeSymbol();
+			res->bind(pSymbol);
+			return res;
+		}
+	};
 }
 
 static oepSymbolFactory::oepSymbolFactory()
 {
 	_symbolcreatorcache = gcnew Dictionary<String^, IoepSymbolCreator^>();
 	registerCreator(gcnew oepUnkownSymbolCreator());
+	registerCreator(gcnew oepAltitudeSymbolCreator());
 }
 
 void oepSymbolFactory::registerCreator(IoepSymbolCreator^ creator)

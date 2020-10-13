@@ -19,7 +19,7 @@ void oepPolygonSymbol::binded()
 void oepPolygonSymbol::unbinded()
 {
 	_fill->unbind();
-	oepSymbol::unbind();
+	oepSymbol::unbinded();
 }
 
 oepFill^ oepPolygonSymbol::Fill::get()

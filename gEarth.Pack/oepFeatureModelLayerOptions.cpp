@@ -4,6 +4,7 @@
 
 using namespace gEarthPack;
 using namespace osgEarth::Features;
+using namespace osgEarth::Symbology;
 
 oepFeatureModelLayerOptions::oepFeatureModelLayerOptions()
 {
@@ -15,6 +16,8 @@ void oepFeatureModelLayerOptions::binded()
 	_driver = gcnew oepFeatureSourceOptions();
 	_driver->bind(as<FeatureModelLayerOptions>()->featureSource());
 	_styles = gcnew oepStyleSheet();
+	if (!as<FeatureModelLayerOptions>()->styles())
+		as<FeatureModelLayerOptions>()->styles() = new osgEarth::Symbology::StyleSheet();
 	_styles->bind(as<FeatureModelLayerOptions>()->styles());
 	_layout = gcnew oepFeatureDisplayLayout();
 	_layout->bind(as<FeatureModelLayerOptions>()->layout());
@@ -46,16 +49,16 @@ void oepFeatureModelLayerOptions::driver::set(oepFeatureSourceOptions^ v)
 	}
 }
 
-oepStyleSheet^ oepFeatureModelLayerOptions::Styles::get()
+oepStyleSheet^ oepFeatureModelLayerOptions::StyleSheet::get()
 {
 	return _styles;
 }
 
-void oepFeatureModelLayerOptions::Styles::set(oepStyleSheet^ p)
+void oepFeatureModelLayerOptions::StyleSheet::set(oepStyleSheet^ p)
 {
 	_styles = p;
 	as<FeatureModelLayerOptions>()->styles() = _styles->as<osgEarth::Symbology::StyleSheet>();
-	NotifyChanged("Styles");
+	NotifyChanged("StyleSheet");
 }
 
 double oepFeatureModelLayerOptions::MaxGranularity::get()
