@@ -29,6 +29,11 @@ namespace gEarth.Scene.Controls
             InstallEvent();
         }
 
+        public EarthViewControl EarthViewCtrl
+        {
+            get { return ax; }
+        }
+
         private oepMap StartMap { get; set; }
 
         private void InitStartMap()

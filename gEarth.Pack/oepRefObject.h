@@ -17,8 +17,8 @@ namespace gEarthPack
 
 	public:
 
-		osg::Referenced* getValue() { return _handle; }
-		const osg::Referenced* getValue() const { return _handle; }
+		osg::Referenced* getValue() { return _handle.get(); }
+		const osg::Referenced* getValue() const { return _handle.get(); }
 		void setValue(osg::Referenced* v) { _handle = v; }
 
 	private:

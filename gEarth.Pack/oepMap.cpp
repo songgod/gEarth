@@ -28,7 +28,6 @@ bool oepMap::load(String^ url)
 	if (!mapnode)
 		return false;
 
-	delete _handle;
 	bind(mapnode);
 
 	Url = url;

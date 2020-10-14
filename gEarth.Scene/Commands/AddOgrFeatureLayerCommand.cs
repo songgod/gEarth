@@ -32,6 +32,10 @@ namespace gEarth.Scene.Commands
                 oepStyle style = new oepStyle() { Name = "style" };
                 oepAltitudeSymbol altsym = new oepAltitudeSymbol() { Clamping = oepAltitudeSymbol.oepClamping.ClampToTerrain, Techinique = oepAltitudeSymbol.oepTechnique.TechniqueDrape };
                 style.Symbols.Add(altsym);
+                oepLineSymbol lsym = new oepLineSymbol();
+                lsym.Stroke.Color = new oepVec4f(1.0f, 0.0f, 0.0f, 1.0f);
+                lsym.Stroke.Width = 2.0f;
+                style.Symbols.Add(lsym);
                 options.StyleSheet.StyleMap[style.Name] = style;
                 oepFeatureModelLayer mlyr = new oepFeatureModelLayer(options) { Name = Path.GetFileNameWithoutExtension(dlg.FileName) };
                 Project.CurrentMap.Layers.Add(mlyr);

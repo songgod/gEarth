@@ -80,6 +80,17 @@
                         </StackPanel>
                     </ContentControl>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type oep:oepModelLayer}">
+                    <ContentControl MouseDoubleClick="cc_MouseDoubleClick" DataContext="{Binding}">
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <CheckBox IsChecked="{Binding Visible}"/>
+                            <TextBlock Text=" "/>
+                            <Image Source="/gEarth.Scene;component/Images/model.png"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </ContentControl>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type oep:oepSimpleOceanLayer}">
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <CheckBox IsChecked="{Binding Visible}"/>
