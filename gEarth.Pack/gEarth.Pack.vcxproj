@@ -96,11 +96,11 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd\x86\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgutild.lib;osgEarthFeaturesd.lib;osgEarthAnnotationd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\debug;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rd\x86\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,7 +109,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd\x64\include</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <OmitFramePointers>
@@ -118,7 +118,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>osgd.lib;osgviewerd.lib;openthreadsd.lib;osggad.lib;osgdbd.lib;osgutild.lib;osgEarthFeaturesd.lib;osgEarthAnnotationd.lib;osgEarthd.lib;osgEarthUtild.lib;osgEarthSymbologyd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\debug;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rd\x64\lib\debug;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,11 +126,11 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X86)\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd\x86\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgutil.lib;osgEarthFeatures.lib;osgEarthAnnotation.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X86)\lib\release;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rd\x86\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,12 +138,12 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(GEARTH_3RD_PATH_X64)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rd\x64\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>osg.lib;osgviewer.lib;openthreads.lib;osgga.lib;osgdb.lib;osgutil.lib;osgEarthFeatures.lib;osgEarthAnnotation.lib;osgEarth.lib;osgEarthUtil.lib;osgEarthSymbology.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(GEARTH_3RD_PATH_X64)\lib\release;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rd\x64\lib\release;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
